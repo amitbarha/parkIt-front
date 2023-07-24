@@ -15,7 +15,7 @@ export const modeContext = createContext();
 
 
 function App() {
-  const [colorMode, setColorMode] = useState("light");
+  const [colorMode, setColorMode] = useState("dark");
 
   return (
  <modeContext.Provider value={{colorMode, setColorMode}}>

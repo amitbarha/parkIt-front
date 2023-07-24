@@ -4,11 +4,20 @@
     box-sizing: border-box;
 }
 
-#profile-page{
+#light-profile-page{
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-color: #A076F9;
+    color: var(--white-text);
+    background-color: var(--light-background);
+}
+
+#dark-profile-page{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    color: var(--black-text);
+    background-color: var(--dark-background);
 }
 
 #profile-info-container{
@@ -19,7 +28,17 @@
     align-items: center;
 }
 
-#profile-info{
+#light-profile-info{
+    width: 68vw;
+    height: 48vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-100);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+#dark-profile-info{
     width: 68vw;
     height: 48vh;
     display: flex;

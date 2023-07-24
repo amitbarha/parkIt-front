@@ -5,7 +5,6 @@ import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Layout from "./components/Layout/Layout";
 import Register from "./components/Register/Register";
-import Register from "./components/Register/Register";
 import EditProfile from "./components/EditProfile/EditProfile";
 import HomeAfterStart from "./components/HomeAfterParking/HomeAfterStart";
 import Profile from "./components/Profile/Profile";
@@ -25,8 +24,6 @@ function App() {
         <Route index element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route element={<Layout />}>
-      <div className="app-container">
-        <Routes>
           <Route index element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/EditProfile" element={<EditProfile />}></Route>
@@ -35,6 +32,7 @@ function App() {
           <Route path="homePageAfterStart" element={<HomeAfterStart />}></Route>
           <Route path="Profile" element={<Profile />}></Route>
           <Route path="addParking" element={<AddParking />}></Route>
+          </Route>
         </Routes>
       </div>
     </modeContext.Provider>

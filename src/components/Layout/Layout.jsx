@@ -1,40 +1,47 @@
 import { Link, Outlet } from "react-router-dom";
 
 import "./layout.css";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useState } from "react";
 
 function Layout() {
+  const [open, setOpen] = useState(false);
+  const [switchMode, setSwitchMode] = useState("light");
+
+const handleSwitch = () => {
+  switchMode === 'light'? setSwitchMode('dark'): setSwitchMode('light')
+  console.log(switchMode);
+}
+
   return (
     <div>
-        <Navbar expand="lg" className="bg-body-tertiary navbar-container">
-      <Container>
-        <Navbar.Brand href="homePage">React-Bootstrap</Navbar.Brand>
-        <div>darkmode</div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link ><Link className="nav-link" to={'/homePage'}>Home</Link></Nav.Link>
-            <Nav.Link ><Link className="nav-link" to={'/addParking'}>Add Parking</Link></Nav.Link>
-            <Nav.Link ><Link className="nav-link" to={'/profile'}>Profile</Link></Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-       
-      </Container>
-    </Navbar>
+      <nav className="navbar-container">
+        <div className="navbar">
+          <div className="logo-nav">LOGO</div>
+          <div className="right-element-nav">
+            <div className="switch-mode">
+              <label className="ui-switch">
+                <input type="checkbox" onChange={handleSwitch} />
+                <div className="slider">
+                  <div className="circle"></div>
+                </div>
+              </label>
+            </div>
+            <div className="hamburger">
+              <input type="checkbox" id="checkbox" onChange={()=> setOpen(!open)} />
+              <label htmlFor="checkbox" className="toggle">
+                <div className="bars" id="bar1"></div>
+                <div className="bars" id="bar2"></div>
+                <div className="bars" id="bar3"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+        {open&&
+          <div className="open-navbar">
+
+          </div>
+        }
+      </nav>
 
       <Outlet />
       <div className="footer">footer</div>

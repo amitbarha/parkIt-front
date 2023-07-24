@@ -1,6 +1,5 @@
 import "./add-parking.css";
 import { useEffect, useState, useRef } from "react";
-import {getAddress} from './../longFunction'
 import {
   TextField,
   Button,
@@ -14,23 +13,54 @@ import axios from "axios";
 import UploadWidget from "./UploadWidget";
 // const location = getAddress()
 // console.log(location.fullAdrdess);
+const location = {
+  fullAdrdess: "",
+  country: "",
+  city: "",
+  street: "",
+  number: "",
+  latitude: "",
+  longitude: "",
+};
+navigator.geolocation.getCurrentPosition(function (position) {
+  location.latitude = position.coords.latitude;
+  location.longitude = position.coords.longitude;
+});
+
+export function getAddress() {
+  console.log(location);
+  fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=AIzaSyBG1NzDqiYX9i52WMEJX-_5fSVvPlKl-lA`
+  )
+    .then((response) => response.json())
+    .then((json) => {
+      console.log("whhoo");
+      console.log(json);
+      const results = json.results;
+      location.country = results[0].address_components[4]?.long_name;
+      location.city = results[0].address_components[2]?.long_name;
+      location.street = results[0].address_components[1]?.long_name;
+      location.number = results[0].address_components[0]?.long_name;
+      location.fullAdrdess = results[0].formatted_address;
+    })
+    .catch((error) => console.log(error.message));
+
+  return location;
+}
 
 const AddParking = () => {
   const { handleSubmit, control } = useForm();
-  const [locationObj, setLocationObj] = useState()
-
+  const [locationObj, setLocationObj] = useState();
+  const [locationAddress, setLocationAddress] = useState("hii");
 
   useEffect(() => {
-    // const location = getAddress()
-    // setLocationObj(location);
-    // console.log(location.fullAdrdess);
-    // console.log(locationObj?.fullAddress);
+    setLocationObj(getAddress());
+    console.log(locationObj);
   }, []);
-  
 
   const onSubmit = (formData) => {
     formData.availableToPark = false;
-    console.log(formData); 
+    console.log(formData);
   };
 
   return (
@@ -38,6 +68,7 @@ const AddParking = () => {
       <br />
       <h1 className="add-parking-title">Add Parking</h1>
       <br />
+      <button onClick={() => console.log(locationObj)}>hii</button>
       <form className={`form-container`} onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="parkingName"
@@ -52,20 +83,23 @@ const AddParking = () => {
             />
           )}
         />
-
-        <Controller
-          name="parkingLocation"
-          control={control}
-          defaultValue={locationObj?.fullAddress}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Enter Address"
-              variant="outlined"
-              required
-            />
-          )}
-        />
+        <div>
+          <div onClick={() => setLocationAddress(locationObj.fullAdrdess)}>
+            use location
+          </div>
+          <Controller
+            name="parkingLocation"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Enter Address"
+                variant="outlined"
+                required
+              />
+            )}
+          />
+        </div>
         <Controller
           name="pricePerHour"
           control={control}

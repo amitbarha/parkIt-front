@@ -18,7 +18,6 @@
   --radius: 7px;
   --line: 15px;
   font-family: 'Roboto', sans-serif;
-  background-color: var(--middle);
   --primary-100:#8B5FBF;
   --primary-200:#61398F;
   --primary-300:#FFFFFF;
@@ -29,7 +28,8 @@
   --bg-100:#F5F3F7;
   --bg-200:#E9E4ED;
   --bg-300:#FFFFFF;
-    
+  background-color: var(--bg-200);
+
 }
 
 * {

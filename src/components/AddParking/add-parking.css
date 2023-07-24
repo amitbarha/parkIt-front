@@ -1,0 +1,28 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    
+  }
+  .add-parking-title{
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .form-container .MuiTextField-root {
+    margin-bottom: 16px;
+  }
+  
+  .form-container .MuiButton-root {
+    margin-top: 16px;
+  }
+  .time-picker-line{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+  }
+  .time-picker-form{
+    width: 130%;
+    background-color: rgba(255, 255, 255, 0.13);
+  }

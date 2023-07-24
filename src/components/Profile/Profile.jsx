@@ -1,10 +1,14 @@
 import "./Profile.css";
+import {modeContext} from"../../App"
+import { useContext } from "react";
+
 function Profile() {
+    const {colorMode , setColorMode}=useContext(modeContext)
   return (
-    <div id="profile-page">
+    <div id={`${colorMode}-profile-page`}>
       <div id="profile-info-container">
-        <div id="profile-info">
-          <h1>Personal info</h1>
+        <div id={`${colorMode}-profile-info`}>
+          <h1>Personal info {colorMode}</h1>
           <div className="profile-personal-info">Name:EXAMPLE</div>
           <div className="profile-personal-info">Email:EXAMPLE@GMAIL.COM</div>
           <div className="profile-personal-info">Phone:XXX-XXX-XXXX</div>

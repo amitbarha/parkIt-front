@@ -8,28 +8,26 @@
 }
 
 .app-container {
-  --bright: #D7BBF5;
+  --white-text:#FFFFFF;
+  --black-text:#4A4A4A;
+  --light-background:#F5F3F7;
+  --dark-background:#4D3B64;
+  --bright-container: #D7BBF5;
+  --dark-container:#8B5FBF;
+  font-family: 'Roboto', sans-serif;
   --middle: #A076F9;
   --dark: #6528F7;
-  --h1: 40px;
-  --h2: 30px;
-  --h3: 20px;
-  --text: 15px;
-  --radius: 7px;
-  --line: 15px;
   font-family: 'Roboto', sans-serif;
-  background-color: var(--middle);
   --primary-100:#8B5FBF;
-  --primary-200:#61398F;
-  --primary-300:#FFFFFF;
-  --accent-100:#D6C6E1;
-  --accent-200:#9A73B5;
-  --text-100:#4A4A4A;
-  --text-200:#878787;
-  --bg-100:#F5F3F7;
-  --bg-200:#E9E4ED;
-  --bg-300:#FFFFFF;
-    
+  background-color: var(--bg-200);
+  --primary-200:#563763;
+  --primary-300:#D7C5DF;
+  --accent-100:#B794C0;
+  --accent-200:#895896;
+  --text-100:#FFFFFF;
+  --text-200:#909090;
+  --bg-100:#3B2D4D;
+  --bg-200:#382B49;
 }
 
 * {

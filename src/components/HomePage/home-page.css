@@ -7,9 +7,8 @@
 #home-page{
     width: 100vw;
     height: 100vh;
-    background-color: snow;
     position: relative;
-    background-color: #A076F9;
+    background-color: var(--bg-200);
 }
 
 #home-page-top{

@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-#home-page{
+#home-after-page{
     width: 100vw;
     height: 100vh;
     background-color: snow;
@@ -12,7 +12,7 @@
     background-color: #A076F9;
 }
 
-#home-page-top{
+#home-after-top{
     width: 100vw;
     height: 10vh;
     display: flex;
@@ -21,12 +21,12 @@
     align-items: center;
 }
 
-#home-page-my-parking{
+#home-after-contact{
     width: 32vw;
     height: 32vw;
     border-radius: 50%;
     position: absolute;
-    top: 24vw;
+    bottom: 24vw;
     left: 6vw ;
     background-color: #6528F7;
     color: snow;
@@ -36,12 +36,17 @@
     align-items: center;
 }
 
-#home-page-add-parking{
+#home-after-contact-image{
+    width: 20vw ;
+    height: 20vw;
+}
+
+#home-after-end{
     width: 32vw;
     height: 32vw;
     border-radius: 50%;
     position: absolute;
-    top: 24vw;
+    bottom: 24vw;
     right: 6vw ;
     background-color: #6528F7;
     color: snow;
@@ -51,7 +56,7 @@
     align-items: center;
 }
 
-#home-page-find-parking{
+#home-after-timer{
     width: 44vw;
     height: 44vw;
     border-radius: 50%;
@@ -68,24 +73,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#home-page-profile{
-    width: 32vw;
-    height: 32vw;
-    border-radius: 50%;
-    position: absolute;
-    top: 84vh;
-    right: 50vw;
-    margin-right: -16vw;
-    margin-left: -100vw;
-    margin-top: -20vw;
-    background-color: #6528F7;
-    color: snow;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
 }
 

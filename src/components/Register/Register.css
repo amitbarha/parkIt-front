@@ -1,11 +1,9 @@
-/* option 1 */
-
 * {
     margin: 0;
     box-sizing: border-box;
   }
   
-  .main-page-login {
+  .main-page {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -18,13 +16,13 @@
     background-size: cover;
   }
   
-  .login-container {
+  .register-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  .login-form {
+  .form {
     border: 1px solid #ccc;
     background-color: #fff;
     height: 28rem;
@@ -47,7 +45,7 @@
     border-radius: 4px;
   }
   
-  #log-btn {
+  #reg-btn {
     width: 100%;
     height: 2.5rem;
     background-color:rgba(160,118,249,1);
@@ -67,11 +65,7 @@
 
 
 
-
-
-
-/* option 2 */
-
+  /* option2 */
 
 
   /* * {
@@ -79,7 +73,7 @@
     box-sizing: border-box;
   }
   
-  .main-page-login {
+  .main-page{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -92,13 +86,13 @@
     background-size: cover;
   }
 
-  .login-container {
+  .register-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .login-form {
+  .form {
     height: 28rem;
     width: 22rem;
     display: flex;
@@ -117,7 +111,7 @@
     border-radius: 4px;
   }
   
-  #log-btn {
+  #reg-btn {
     width: 100%;
     height: 2.5rem;
     background-color: rgba(100,40,243,1);

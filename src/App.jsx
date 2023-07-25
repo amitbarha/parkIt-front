@@ -9,13 +9,14 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import HomeAfterStart from "./components/HomeAfterParking/HomeAfterStart";
 import Profile from "./components/Profile/Profile";
 import AddParking from "./components/AddParking/AddParking";
+import FindParking from "./components/FindParking/FindParking";
 
 
 export const modeContext = createContext();
 
 
 function App() {
-  const [colorMode, setColorMode] = useState("dark");
+  const [colorMode, setColorMode] = useState("light");
 
   return (
  <modeContext.Provider value={{colorMode, setColorMode}}>
@@ -32,6 +33,7 @@ function App() {
           <Route path="homePageAfterStart" element={<HomeAfterStart />}></Route>
           <Route path="Profile" element={<Profile />}></Route>
           <Route path="addParking" element={<AddParking />}></Route>
+          <Route path="FindParking" element={<FindParking />}></Route>
           </Route>
         </Routes>
       </div>

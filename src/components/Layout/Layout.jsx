@@ -1,15 +1,17 @@
 import { Link, Outlet } from "react-router-dom";
-
+import {modeContext} from "../../App"
 import "./layout.css";
-import { useState } from "react";
+import { useState , useContext } from "react";
 
 function Layout() {
   const [open, setOpen] = useState(false);
   const [switchMode, setSwitchMode] = useState("light");
+  const  {colorMode , setColorMode}=useContext(modeContext)
+  
 
 const handleSwitch = () => {
-  switchMode === 'light'? setSwitchMode('dark'): setSwitchMode('light')
-  console.log(switchMode);
+  colorMode === 'light'? setColorMode('dark'): setColorMode('light')
+  console.log(colorMode);
 }
 
   return (

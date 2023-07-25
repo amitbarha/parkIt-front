@@ -28,7 +28,6 @@ function EditProfile() {
         setChangeEmail(data.email)
         setChangePhoneNumber(data.phoneNumber)
         setChangePassword(data.password)
-       
       })
       .catch((err) => {
         console.log(err);

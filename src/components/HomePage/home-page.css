@@ -35,6 +35,38 @@
     color: white;
 }
 
+/* @keyframes car {
+    0% {
+      left: -50px;
+    }
+    100% {
+      right: calc(100% + 50px);
+    }
+  } */
+
+
+.car {
+    position: absolute;
+    left: -60px;
+    height: 60px; 
+    width: auto;
+    transition: left 2s linear; 
+  }
+
+  @keyframes car {
+    0% {
+      left: -50px;
+    }
+
+    100%{
+        right: calc(100% + 50px);
+    }
+  }
+  
+  .find-circle.drive-animation .car {
+    left: calc(100% + 50px); 
+  }
+
 .my-parking-section{
     /* height: 48vw; */
     display: flex;

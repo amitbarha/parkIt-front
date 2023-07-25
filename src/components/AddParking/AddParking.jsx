@@ -1,6 +1,5 @@
 import "./add-parking.css";
-import { useEffect, useState, useRef } from "react";
-import {getAddress} from './../longFunction'
+import { useEffect, useState, useRef, useContext } from "react";
 import {
   TextField,
   Button,
@@ -12,33 +11,36 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import UploadWidget from "./UploadWidget";
-// const location = getAddress()
-// console.log(location.fullAdrdess);
+import Autocomplete from "react-google-autocomplete";
+import LocationSearchInput from "./LocationSearchInput";
+import { gooleAutoLocation } from '../../App';
 
 const AddParking = () => {
+  
   const { handleSubmit, control } = useForm();
-  const [locationObj, setLocationObj] = useState()
-
-
-  useEffect(() => {
-    // const location = getAddress()
-    // setLocationObj(location);
-    // console.log(location.fullAdrdess);
-    // console.log(locationObj?.fullAddress);
-  }, []);
+  const [selectAdd, setSelectAdd] = useState(false);
   
 
+  useEffect(() => {}, []);
+  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation)
+
   const onSubmit = (formData) => {
+    formData.lat = googleLocation.lat
+    formData.lng = googleLocation.lng
+    formData.fullAddress = googleLocation.fullAddress
     formData.availableToPark = false;
-    console.log(formData); 
+    console.log(formData);
   };
 
   return (
     <div className="add-parking-container">
-      <br />
+     <br />
       <h1 className="add-parking-title">Add Parking</h1>
       <br />
       <form className={`form-container`} onSubmit={handleSubmit(onSubmit)}>
+      
+       
+      
         <Controller
           name="parkingName"
           control={control}
@@ -52,20 +54,8 @@ const AddParking = () => {
             />
           )}
         />
-
-        <Controller
-          name="parkingLocation"
-          control={control}
-          defaultValue={locationObj?.fullAddress}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Enter Address"
-              variant="outlined"
-              required
-            />
-          )}
-        />
+         <LocationSearchInput />
+        <TextField disabled label="Chosen Address" value={googleLocation.fullAddress} />
         <Controller
           name="pricePerHour"
           control={control}

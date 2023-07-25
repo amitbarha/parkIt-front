@@ -10,6 +10,7 @@ import HomeAfterStart from "./components/HomeAfterParking/HomeAfterStart";
 import Profile from "./components/Profile/Profile";
 import AddParking from "./components/AddParking/AddParking";
 import FindParking from "./components/FindParking/FindParking";
+import PayingHistory from "./components/PayingHistory/PayingHistory";
 
 export const modeContext = createContext();
 export const gooleAutoLocation = createContext();
@@ -44,6 +45,8 @@ function App() {
               <Route path="Profile" element={<Profile />}></Route>
               <Route path="addParking" element={<AddParking />}></Route>
               <Route path="FindParking" element={<FindParking />}></Route>
+              <Route path="payingHistory" element={<PayingHistory />}></Route>
+
             </Route>
           </Routes>
         </div>

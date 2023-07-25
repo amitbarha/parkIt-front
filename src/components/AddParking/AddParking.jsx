@@ -109,10 +109,10 @@ const AddParking = () => {
           <div>upload image //need fix</div>
           <UploadWidget />
         </div>
-
-        <Button type="submit" variant="contained" color="primary">
-          Submit
-        </Button>
+        <br />
+        <button type="submit" className="button-form">
+          Add
+        </button>
       </form>
     </div>
   );

@@ -9,6 +9,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import HomeAfterStart from "./components/HomeAfterParking/HomeAfterStart";
 import Profile from "./components/Profile/Profile";
 import AddParking from "./components/AddParking/AddParking";
+import FindParking from "./components/FindParking/FindParking";
 
 export const modeContext = createContext();
 export const gooleAutoLocation = createContext();
@@ -19,8 +20,6 @@ const croods = {
 }
 
 function App() {
-
- 
   const [colorMode, setColorMode] = useState("light");
   const [googleLocation, setGoogleLocation] = useState(croods);
 

@@ -20,15 +20,16 @@ const Login = () => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     const { target } = e;
-    const phoneNumber = target[0].value;
+    const username = target[0].value;
     const password = target[1].value;
-    console.log(phoneNumber, password);
+    console.log(username, password);
 
     try {
       const { data: newRegister } = await axios.post(
         "http://localhost:5000/user/loginFunc",
-        { phoneNumber, password }
+        { username, password }
       );
+      localStorage.setItem("loggedUser", newRegister);
       setRefresh((obj) => obj + 1);
       navigate("/homePage");
     } catch (err) {
@@ -41,7 +42,7 @@ const Login = () => {
       <div className="login-container">
         <form className="login-form" onSubmit={(e) => handleSubmitForm(e)}>
           <h1>Login</h1>
-          <input type="text" placeholder="Phone Number" />
+          <input type="text" placeholder="username" />
           <input type="text" placeholder="Password" />
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button id="log-btn" type="submit">Login</button>

@@ -1,0 +1,11 @@
+.edit-autocomplete{
+    padding-left: 1vw ;
+    color: white;
+    font-size: large;
+}
+.edit-autocomplete:hover{
+    background-color: var(--primary-100) ;
+}
+.city-line-google:hover{
+    font-weight: bold;
+}

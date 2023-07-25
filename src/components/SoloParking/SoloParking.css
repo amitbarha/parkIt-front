@@ -1,0 +1,85 @@
+#solo-parking-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#solo-parking-name{
+    display: flex;
+    background-color: var(--primary-200);
+    color: white;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    margin: 5vw;
+    height: 10vw;
+    font-size: 5vw;
+    border-radius: 10px ;
+}
+.solo-parking-detail{
+    display: flex;
+    background-color: var(--bg-200);
+    width: 80%;
+    height: 10vw;
+    margin: 2vw;
+    border-radius: 15px;
+    font-size: 4vw;
+}
+.solo-parking-detail-divforicon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+.solo-parking-detail-divfortext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+#solo-parking-body{
+    width: 100%;
+}
+.icon-con{
+    width: 5vw;
+    height: auto;
+}
+#solo-parking-img-container{
+    width: 90%;
+    display: flex;
+    height: 60vw;
+    margin-top: 5vw;
+    margin-bottom: 5vh;
+}
+#Solo-parking-history-title{
+    display: flex;
+    width: 80%;
+}
+.history-item-parking{
+    display: flex;
+    width: 80%;
+    background-color: var(--bg-200);
+    height: 5vh;
+    margin: 2vw;
+}
+.side-color-history{
+    width: 3%;
+    background-color: var(--dark-container);
+}
+.history-item-text{
+    width: 97%;
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

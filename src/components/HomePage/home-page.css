@@ -6,33 +6,58 @@
 
 .home-page{
     width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     background-color:var(--bg-200);
-
 }
 
-.find-circle{
-    height: 44vw;
-}
 
 .circle{
-    height: 56vw;
-    width: 56vw;
+    height: 52vw;
+    width: 52vw;
     border-radius: 100%;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--primary-100);
-    box-shadow: 10px 10px 50px 1px var(--accent-200);
 }
 
+.border-circle {
+    height: 58vw;
+    width: 58vw;
+    background-color: #b396d38f;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 10px 10px 50px 1px var(--accent-200); */
+  }
+
+  @keyframes scaling {
+    0% {
+      transform: scale(1);
+      -webkit-transform: scale(1.0);
+    }
+    50% {
+      transform: scale(1.1);
+      -webkit-transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+      -webkit-transform: scale(1.0);
+    }
+  }
+
+  .border-circle{
+    animation: scaling 2s ease-in-out infinite alternate;
+    -webkit-animation: scaling 2s ease-in-out infinite alternate;
+  }
+
+
 .circle>h1{
-    font-size: 30px;
+    font-size: 25px;
     color: white;
 }
 
@@ -46,7 +71,7 @@
   } */
 
 
-.car {
+/* .car {
     position: absolute;
     left: -60px;
     height: 60px; 
@@ -66,8 +91,8 @@
   
   .find-circle.drive-animation .car {
     left: calc(100% + 50px); 
-  }
-  
+  } */
+
 
 .my-parking-section{
     /* height: 48vw; */
@@ -93,19 +118,30 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
-    width: 100vw;
+    width: 95vw;
 }
-.my-parking-box{
+.my-parking-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.my-parking-box>h2{
+/* .my-parking-box>h2{
     font-size: 18px;
 }
 
 p{
     margin-left: 5px;
+} */
+
+.my-parking-box > h2,
+.my-parking-box > p {
+    position: absolute;
+    top: 50%; /* Adjust the positioning as needed */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Set the text color */
+    z-index: 1; /* Ensure the text is on top of the picture */
 }
 
 .add-parking-box{
@@ -115,16 +151,41 @@ p{
 
 .add-parking-box>h2{
     font-size: 18px;
+    
 }
 
-.my-parking{
+.my-parking {
+    position: relative;
     height: 48vw;
     width: 40vw;
     border-left: 3px solid;
     border-color: var(--primary-200);
-    background-color:var(--accent-100);
-    margin-left:10px;
+    margin-left: 10px;
     border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .my-parking img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(81 80 80 / 66%);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    height: 100%;
+  }
+
+#my-parking-img{
+    position: relative;
+    z-index: 0;
 }
 
 
@@ -142,21 +203,21 @@ p{
     border-radius: 10px;
 }
 
-.history{
-    height: 24vw;
-    width: 92vw;
-}
 
 .history-link{
     height: 24vw;
     width: 92vw;
-    border: 1px solid;
-    background-color: var(--primary-100);
-    color: white;
+    background-color: #D6C6E1;
+    border-left: 6px solid;
+    border-left-color: #8B5FBF;
+    color: black;
+}
+
+.history-link >p{
+    margin-left: 10px;
 }
 
 .history>h2{
     font-size: 18px;
     margin-bottom: 8px;
-    margin-left: 5px;
 }

@@ -1,9 +1,13 @@
+.save-place-nav{
+  height: 64px;
+}
 .navbar-container {
   background-color: var(--primary-100);
   color: white;
   position: absolute;
   width: 100%;
   z-index: 100;
+  height: 64px;
 }
 .right-element-nav{
     width: 30%;
@@ -11,9 +15,25 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
 .open-navbar{
     height: 40vw;
     background-color: var(--bright-container);
+}
+.open-link-style{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-300);
+  font-size: large;
+  border-bottom: solid;
+  height: 4vh;
+}
+.open-link-style:hover{
+background-color:  #af63ffb1 ;
 }
 
 

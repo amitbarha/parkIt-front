@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#light-find-page{
+    width: 100vwv;
+    height: 100vh;
+    background-color: var(--light-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dark-find-page{
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#light-find-container{
+    width: 88%;
+    height: 80%;
+    background-color: var(--dark-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#dark-find-container{
+    width: 88%;
+    height: 80%;
+    background-color: var(--bright-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#find-container-header{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 8vw;
+}
+
+#find-container-filters{
+    width: 100%;
+    height: 28%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#find-container-parkings{
+    width: 100%;
+    height: 64%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#find-location-filter{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 2vw 0px 2vw;
+}
+
+#light-find-change-location-BTN{
+    border-radius: 10px;
+    border: 4px solid var(--dark-background);
+    background-color: var(--bright-container);
+}
+
+#dark-find-change-location-BTN{
+    border-radius: 10px;
+    border: 4px solid var(--bright-container);
+    background-color: var(--dark-background);
+    color: var(--white-text);
+}
+
+#find-filters{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+#find-filteres-sorting-section{
+    width: 100%;
+}
+
+#find-filters-switch-container{
+    width: 100%;
+    height: 40%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.find-sort-by{
+    height: 100%;
+    width: 24%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black ;
+}
+
+.chosen-find-sort-by{
+    height: 100%;
+    width: 24%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #B794C0;
+    box-shadow: inset 0px 0px 8px 2px black ;
+}
+
+#find-hours-filter{
+    width: 100%;
+    height: 60%;
+    background-color: aqua;
+}
+

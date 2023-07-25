@@ -15,7 +15,9 @@
     height: 40vw;
     background-color: var(--bright-container);
 }
-
+.save-place-nav{
+  height: 64px;
+}
 
 
 

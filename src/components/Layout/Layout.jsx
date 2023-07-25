@@ -42,7 +42,7 @@ const handleSwitch = () => {
           </div>
         }
       </nav>
-
+      <div className="save-place-nav"></div>
       <Outlet />
       <div className="footer">footer</div>
     </div>

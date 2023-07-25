@@ -9,6 +9,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import HomeAfterStart from "./components/HomeAfterParking/HomeAfterStart";
 import Profile from "./components/Profile/Profile";
 import AddParking from "./components/AddParking/AddParking";
+import SoloParking from "./components/SoloParking/SoloParking";
 
 
 export const modeContext = createContext();
@@ -32,6 +33,8 @@ function App() {
           <Route path="homePageAfterStart" element={<HomeAfterStart />}></Route>
           <Route path="Profile" element={<Profile />}></Route>
           <Route path="addParking" element={<AddParking />}></Route>
+          <Route path="SoloParking" element={<SoloParking />}></Route>
+
           </Route>
         </Routes>
       </div>

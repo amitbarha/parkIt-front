@@ -19,9 +19,11 @@ const croods = {
 }
 
 function App() {
+
  
   const [colorMode, setColorMode] = useState("light");
   const [googleLocation, setGoogleLocation] = useState(croods);
+
 
   return (
     <modeContext.Provider value={{ colorMode, setColorMode }}>

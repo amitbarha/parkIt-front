@@ -44,7 +44,9 @@ function App() {
               ></Route>
               <Route path="Profile" element={<Profile />}></Route>
               <Route path="addParking" element={<AddParking />}></Route>
+              <Route path="FindParking" element={<FindParking />}></Route>
               <Route path="payingHistory" element={<PayingHistory />}></Route>
+
             </Route>
           </Routes>
         </div>

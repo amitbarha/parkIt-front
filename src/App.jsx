@@ -9,6 +9,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import HomeAfterStart from "./components/HomeAfterParking/HomeAfterStart";
 import Profile from "./components/Profile/Profile";
 import AddParking from "./components/AddParking/AddParking";
+import SoloParking from "./components/SoloParking/SoloParking";
 import FindParking from "./components/FindParking/FindParking";
 import PayingHistory from "./components/PayingHistory/PayingHistory";
 
@@ -26,6 +27,7 @@ function App() {
 
 
   return (
+
     <modeContext.Provider value={{ colorMode, setColorMode }}>
       <gooleAutoLocation.Provider value={{ googleLocation, setGoogleLocation }}>
         <div className="app-container">
@@ -46,7 +48,7 @@ function App() {
               <Route path="addParking" element={<AddParking />}></Route>
               <Route path="FindParking" element={<FindParking />}></Route>
               <Route path="payingHistory" element={<PayingHistory />}></Route>
-
+              <Route path="SoloParking" element={<SoloParking />}></Route>
             </Route>
           </Routes>
         </div>

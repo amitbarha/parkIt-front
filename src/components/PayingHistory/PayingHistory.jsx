@@ -1,4 +1,5 @@
-import OnePaying from './OnePaying'
+
+import HistoryOneParking from '../SoloParking/HistoryOnePark'
 import './paying-history.css'
 
 function PayingHistory() {
@@ -10,7 +11,7 @@ function PayingHistory() {
             <br />
         </div>
         <div className='history-pay-list'>
-        <OnePaying />
+           <HistoryOneParking />
         </div>
     </div>
   )

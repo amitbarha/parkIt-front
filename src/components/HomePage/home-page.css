@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 
@@ -216,7 +217,7 @@ p{
     width: 40vw;
     border-left: 3px solid;
     border-color: var(--primary-200);
-    background-color:#D6C6E1;
+    background-color:var(--bg-200);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -242,4 +243,46 @@ p{
 .history>h2{
     font-size: 18px;
     margin-bottom: 8px;
+}
+
+.first-pair-stat{
+  display: flex;
+  justify-content: space-evenly;
+}
+.second-pair-stat{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.box-stat{
+  height: 48vw;
+  width: 40vw;
+  border-radius: 10px;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-200);
+}
+
+.icon-state{
+  border-radius: 50%;
+  background-color: #8B5FBF;
+  height: 64px;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.name-state > p{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.info-state >h1{
+  font-weight: 900;
+  margin-left: 10px;
+  margin-top: 10px;
 }

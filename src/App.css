@@ -10,6 +10,8 @@
 .app-container {
   --white-text:#FFFFFF;
   --black-text:#4A4A4A;
+  --dark-header: #895896;
+  --light-header: #D7BBF5;
   --light-background:#F5F3F7;
   --dark-background:#4D3B64;
   --bright-container: #D7BBF5;

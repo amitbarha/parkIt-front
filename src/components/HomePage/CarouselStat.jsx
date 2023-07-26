@@ -50,12 +50,7 @@ function Carousel({ children }) {
       <div className="carousel-stat-wrapper">
         {currentIndex > 0 && (
           <button onClick={prev} className="stat-left-arrow stat-arrow-button">
-            <img
-              width="24"
-              height="24"
-              src="https://img.icons8.com/ios-glyphs/30/EBEBEB/double-left--v1.png"
-              alt="double-left--v1"
-            />
+            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/000000/double-down.png" alt="double-down"/>
           </button>
         )}
         <div
@@ -72,12 +67,7 @@ function Carousel({ children }) {
         </div>
         {currentIndex < length - 1 && (
           <button onClick={next} className="stat-right-arrow stat-arrow-button">
-            <img
-              width="24"
-              height="24"
-              src="https://img.icons8.com/material-rounded/24/EBEBEB/double-right.png"
-              alt="double-right"
-            />
+            <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/000000/double-down.png" alt="double-down"/>
           </button>
         )}
       </div>

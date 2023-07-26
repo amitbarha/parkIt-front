@@ -57,18 +57,37 @@
 }
 .history-item-parking{
     display: flex;
-    width: 80%;
+    width: 90%;
     background-color: var(--bg-200);
     height: 5vh;
     margin: 2vw;
 }
 .side-color-history{
-    width: 3%;
+    width: 1%;
     background-color: var(--dark-container);
 }
 .history-item-text{
-    width: 97%;
+    width: 99%;
     display: flex;
+    align-items: center;
+}
+.history-item-text-name{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.history-item-text-time{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.history-item-text-totalpay{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

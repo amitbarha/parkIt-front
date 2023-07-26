@@ -1,5 +1,6 @@
 import Carousel from './Carousel';
-import './SoloParking.css'
+import './SoloParking.css';
+import HistoryOneParking from './HistoryOnePark';
 function SoloParking(){
    return(
     <div id='solo-parking-container'>
@@ -29,11 +30,8 @@ function SoloParking(){
             </Carousel>
         </div>
         <div id='Solo-parking-history-title'>History:</div>
-        <div className='history-item-parking'>
-            <div className='side-color-history'>side</div>
-            <div className='history-item-text'>item1</div>
-        </div>
-       
+        <HistoryOneParking></HistoryOneParking>
+        <HistoryOneParking></HistoryOneParking>
     </div>
    )
 }

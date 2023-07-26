@@ -1,6 +1,7 @@
 import "./Profile.css";
 import {modeContext} from"../../App"
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function Profile() {
     const {colorMode , setColorMode}=useContext(modeContext)
@@ -17,7 +18,7 @@ function Profile() {
         </div>
       </div>
       <div id="profile-buttons-container">
-        <div id="profile-edit-info">Edit Profile</div>
+        <Link to={"/editProfile"} id="profile-edit-info">Edit Profile</Link>
         <div id="profile-parking-history">Parking history</div>
       </div>
     </div>

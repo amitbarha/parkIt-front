@@ -22,6 +22,7 @@ function EditProfile() {
         })
       .then(({ data }) => {
         setUserInfoToEdit(data);
+        console.log(data);
         setChangeFirstName(data.firstName)
         setChangeUsername(data.username)
         setChangeLastName(data.lastName)

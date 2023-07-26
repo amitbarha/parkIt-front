@@ -19,9 +19,20 @@ const AddParking = () => {
   
   const { handleSubmit, control } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
-  
-
-  useEffect(() => {}, []);
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/user/translateToken",
+        {
+          token: localStorage.getItem("loggedUser")
+        })
+      .then(({ data }) => {
+        setData(data)
+        console.log(data);
+      }
+      )
+      .catch((err) => console.log(err.message));
+  }, [])
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation)
 
   const onSubmit = (formData) => {

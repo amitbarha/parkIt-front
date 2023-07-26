@@ -9,3 +9,6 @@
 .city-line-google:hover{
     font-weight: bold;
 }
+.location-search-input{
+    width: 100%;
+}

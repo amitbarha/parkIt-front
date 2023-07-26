@@ -13,7 +13,7 @@ import axios from "axios";
 import UploadWidget from "./UploadWidget";
 import Autocomplete from "react-google-autocomplete";
 import LocationSearchInput from "./LocationSearchInput";
-import { gooleAutoLocation } from '../../App';
+import { CloudinaryContext, gooleAutoLocation } from '../../App';
 
 const AddParking = () => {
   
@@ -21,14 +21,24 @@ const AddParking = () => {
   const [selectAdd, setSelectAdd] = useState(false);
   
 
-  useEffect(() => {}, []);
+ 
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation)
-
+  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext)
+  console.log(cloudinaryImg);
+  useEffect(() => {
+    setSelectAdd(false)
+    console.log("mount");
+    if(googleLocation.fullAddress != "")
+    {
+      setSelectAdd(true)
+    }
+  }, [googleLocation]);
   const onSubmit = (formData) => {
     formData.lat = googleLocation.lat
     formData.lng = googleLocation.lng
     formData.fullAddress = googleLocation.fullAddress
     formData.availableToPark = false;
+    formData.photos = cloudinaryImg
     console.log(formData);
   };
 
@@ -54,8 +64,12 @@ const AddParking = () => {
             />
           )}
         />
-         <LocationSearchInput />
-        <TextField disabled label="Chosen Address" value={googleLocation.fullAddress} />
+        { !selectAdd&& <LocationSearchInput /> }
+       { selectAdd&&<div>
+         <TextField disabled label="Chosen Address" value={googleLocation.fullAddress} />
+         <button onClick={()=> setSelectAdd(false)}>change</button>
+       </div> 
+       }
         <Controller
           name="pricePerHour"
           control={control}
@@ -106,7 +120,6 @@ const AddParking = () => {
         </div>
         <br />
         <div>
-          <div>upload image //need fix</div>
           <UploadWidget />
         </div>
         <br />

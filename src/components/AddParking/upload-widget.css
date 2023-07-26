@@ -1,5 +1,12 @@
 
 .upload-image-button{
-    background-color: var(--dark);
-    border-style: solid ;
+    all: unset;
+    background-color: var(--accent-100);
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    
+    width: 45%;
+    /* border: white solid  ; */
 }

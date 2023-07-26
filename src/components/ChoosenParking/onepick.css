@@ -1,0 +1,34 @@
+#pickone-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.startparking-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(10, 234, 10);
+    color: white;
+    border-radius: 15px;
+    width: 70%;
+    height: 10vw;
+    font-size: 6vw;
+    border: rgb(10, 234, 10) ;
+    animation: scaling 2s ease-in-out infinite alternate;
+    -webkit-animation: scaling2 2s ease-in-out infinite alternate;
+}
+@keyframes scaling2 {
+    0% {
+      transform: scale(1);
+      -webkit-transform: scale(1.0);
+    }
+    50% {
+      transform: scale(1.1);
+      -webkit-transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+      -webkit-transform: scale(1.0);
+    }
+  }

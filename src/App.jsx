@@ -12,6 +12,7 @@ import AddParking from "./components/AddParking/AddParking";
 import SoloParking from "./components/SoloParking/SoloParking";
 import FindParking from "./components/FindParking/FindParking";
 import PayingHistory from "./components/PayingHistory/PayingHistory";
+import Onepick from "./components/ChoosenParking/Onepick";
 
 export const modeContext = createContext();
 export const gooleAutoLocation = createContext();
@@ -49,6 +50,7 @@ function App() {
               <Route path="FindParking" element={<FindParking />}></Route>
               <Route path="payingHistory" element={<PayingHistory />}></Route>
               <Route path="SoloParking" element={<SoloParking />}></Route>
+              <Route path="Onepick" element={<Onepick />}></Route>
             </Route>
           </Routes>
         </div>

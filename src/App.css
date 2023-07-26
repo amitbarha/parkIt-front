@@ -19,7 +19,7 @@
   --dark: #6528F7;
   font-family: 'Roboto', sans-serif;
   --primary-100:#8B5FBF;
-  background-color: var(--light-background);
+  background-color: var(--light-background) ;
   --primary-200:#563763;
   --primary-300:#D7C5DF;
   --accent-100:#B794C0;

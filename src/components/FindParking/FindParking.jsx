@@ -76,7 +76,6 @@ function FindParking() {
           {parkingsToMap.parkings.map((item, index) => {
             const {
               distanceFromMe,
-              parkingAddress,
               priceForHour,
               availableStartHour,
               availableFinishHour,
@@ -87,13 +86,12 @@ function FindParking() {
                 <div className="find-parking-tab-distance">
                   {distanceFromMe}
                 </div>
-                <div className="find-parking-tab-address">{parkingAddress}</div>
                 <div className="find-parking-tab-price">{priceForHour}</div>
                 <div className="find-parking-tab-hours">
                   {availableStartHour}-{availableFinishHour}
                 </div>
                 <div className="find-parking-tab-picture">
-                  {/* <img src={parkingPicture} alt="" /> */}
+                  <img tab="parking-tab-picture" src={parkingPicture} alt="" />
                 </div>
               </div>
             );

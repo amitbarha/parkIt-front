@@ -63,11 +63,11 @@
     margin: 2vw;
 }
 .side-color-history{
-    width: 3%;
+    width: 1%;
     background-color: var(--dark-container);
 }
 .history-item-text{
-    width: 97%;
+    width: 99%;
     display: flex;
 }
 

@@ -1,6 +1,26 @@
-.paying-history-container{
-    background-color: var(--accent-100);
+.history-pay-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .paying-history-title{
     text-align: center;
 }
+.one-paying{
+    display: flex;
+    width: 80%;
+    background-color: var(--bg-200);
+    height: 5vh;
+    margin: 2vw;
+}
+.side-color-history{
+    width: 1%;
+    background-color: var(--dark-container);
+}
+.history-item-text{
+    width: 99%;
+    display: flex;
+}
+
+

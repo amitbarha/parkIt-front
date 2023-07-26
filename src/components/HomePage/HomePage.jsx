@@ -1,6 +1,7 @@
 import "./home-page.css";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import Carousel from "./CarouselStat";
 {/* <a  href="https://icons8.com/icon/OxNBUwEP7Vwa/parking">Parking</a> icon by <a href="https://icons8.com">Icons8</a> */}
 {/* <a  href="https://icons8.com/icon/O1Lr6vDs0bLY/car-roof-box">Car Roof Box</a> icon by <a href="https://icons8.com">Icons8</a> */}
 function HomePage() {
@@ -78,22 +79,40 @@ function HomePage() {
       <br />
       <br />
       <div className="history">
-       <h2>Last Parking:</h2>
-        {/* <Link className="history-link" to={"/historyParking"}></Link> */}
-        <div className="history-link">
-            <p>Date: </p>
-            <p>Location: </p>
-        </div>
-      </div>
-      <br />
-      <div className="history">
-       <h2>History:</h2>
+       <h2><u>Last Parking:</u></h2>
         {/* <Link className="history-link" to={"/historyParking"}></Link> */}
         <div className="history-link">
             <p>Date</p>
             <p>Location</p>
         </div>
       </div>
+      <br />
+          <Carousel>
+          <div className="history">
+       <h2><u>History:</u></h2>
+        {/* <Link className="history-link" to={"/historyParking"}></Link> */}
+        <div className="history-link">
+            <p>Date</p>
+            <p>Location</p>
+        </div>
+      </div>
+      <div className="history">
+       <h2><u>History:</u></h2>
+        {/* <Link className="history-link" to={"/historyParking"}></Link> */}
+        <div className="history-link">
+            <p>Date</p>
+            <p>Location</p>
+        </div>
+      </div>
+      <div className="history">
+       <h2><u>History:</u></h2>
+        {/* <Link className="history-link" to={"/historyParking"}></Link> */}
+        <div className="history-link">
+            <p>Date</p>
+            <p>Location</p>
+        </div>
+      </div>
+          </Carousel>
     </div>
   );
 }

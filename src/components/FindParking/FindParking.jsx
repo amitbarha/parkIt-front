@@ -1,6 +1,6 @@
 import "./find-parking.css";
 import { modeContext } from "../../App";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import data from "./demiParknigData.json";
 
 function FindParking() {
@@ -8,13 +8,15 @@ function FindParking() {
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
   const [toggleHours, setToggleHours] = useState("");
+  const [sortBy, setSortBy] = useState("distance");
   const [parkingsToMap, setParkingsToMap] = useState(data);
-
-  function toggledSwitches(sortBy) {
+  
+  useEffect(() => {
     if (sortBy === "distance") {
       setToggleDistance("chosen-");
       setTogglePrice("");
       setToggleHours("");
+      console.log(parkingsToMap);
     } else if (sortBy === "price") {
       setToggleDistance("");
       setTogglePrice("chosen-");
@@ -24,14 +26,18 @@ function FindParking() {
       setTogglePrice("");
       setToggleHours("chosen-");
     }
-  }
-
-  console.log(parkingsToMap);
+  }, [sortBy]);
 
   return (
     <div id={`${colorMode}-find-page`}>
+      <div id="find-map-container">
+        <img
+          id="find-map-place-holder"
+          src="src\Pictures&Media\map-place-holder.jpg"
+          alt=""
+        />
+      </div>
       <div id={`${colorMode}-find-container`}>
-        <div id="find-container-header">Find me a parking</div>
         <div id="find-container-filters">
           <div id="find-location-filter">
             <div>Your location:</div>
@@ -41,26 +47,39 @@ function FindParking() {
             <div id="find-filteres-sorting-section">
               <div id="find-filters-switch-container">
                 <div
-                  onClick={() => toggledSwitches("distance")}
+                  onClick={() => setSortBy("distance")}
                   className={`${toggleDistance}find-sort-by`}
                 >
                   Distance
                 </div>
                 <div
-                  onClick={() => toggledSwitches("price")}
+                  onClick={() => setSortBy("price")}
                   className={`${togglePrice}find-sort-by`}
                 >
                   Price
                 </div>
                 <div
-                  onClick={() => toggledSwitches("hours")}
+                  onClick={() => setSortBy("hours")}
                   className={`${toggleHours}find-sort-by`}
                 >
                   Hours
                 </div>
               </div>
               {toggleHours == "chosen-" ? (
-                <div id="find-hours-filter"></div>
+                <div id="find-hours-filter">
+                  <h3>From</h3>{" "}
+                  <input
+                    id="find-parking-start-time"
+                    className="find-parking-time-input"
+                    type="time"
+                  />
+                  <h3>until</h3>{" "}
+                  <input
+                    id="find-parking-finish-time"
+                    className="find-parking-time-input"
+                    type="time"
+                  />
+                </div>
               ) : null}
             </div>
           </div>
@@ -68,7 +87,6 @@ function FindParking() {
         <div id="find-container-parkings">
           <div id="find-parking-header">
             <div className="find-parking-tab-distance">Distance</div>
-            <div className="find-parking-tab-address">Address</div>
             <div className="find-parking-tab-price">Price/H</div>
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
@@ -91,7 +109,11 @@ function FindParking() {
                   {availableStartHour}-{availableFinishHour}
                 </div>
                 <div className="find-parking-tab-picture">
-                  <img tab="parking-tab-picture" src={parkingPicture} alt="" />
+                  <img
+                    className="parking-tab-picture"
+                    src={parkingPicture}
+                    alt=""
+                  />
                 </div>
               </div>
             );

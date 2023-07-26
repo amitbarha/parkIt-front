@@ -15,6 +15,21 @@
             "availableStartHour":"10:00",
             "availableFinishHour":"12:00",
             "parkingPicture":"https://www.shutterstock.com/shutterstock/photos/332087375/display_1500/stock-photo-empty-space-in-a-parking-lot-332087375.jpg"
+        },
+        {
+            "distanceFromMe":"2",
+            "parkingAddress":"nahniely",
+            "priceForHour":"3",
+            "availableStartHour":"01:00",
+            "availableFinishHour":"09:00",
+            "parkingPicture":"https://www.shutterstock.com/shutterstock/photos/332087375/display_1500/stock-photo-empty-space-in-a-parking-lot-332087375.jpg"
+        },{
+            "distanceFromMe":"10",
+            "parkingAddress":"rishon",
+            "priceForHour":"2",
+            "availableStartHour":"13:00",
+            "availableFinishHour":"15:00",
+            "parkingPicture":"https://www.shutterstock.com/shutterstock/photos/332087375/display_1500/stock-photo-empty-space-in-a-parking-lot-332087375.jpg"
         }
     ]
 }

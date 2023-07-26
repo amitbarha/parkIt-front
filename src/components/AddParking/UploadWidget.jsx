@@ -1,26 +1,38 @@
-import { useEffect, useState, useRef } from "react";
-import './upload-widget.css'
+import { useEffect, useState, useRef, useContext } from "react";
+import "./upload-widget.css";
+import { CloudinaryContext } from "../../App";
 function UploadWidget() {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
+  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
+  const arrImg = []
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
         cloudName: "deiofeueo",
-        uploadPresent: "zpfmjchg",
+        uploadPreset: "zpfmjchg",
       },
-      function (error, result) {
-        console.log(result);
-      }
+      function (err, results) {
+        if (!err && results && results.event == "success") {
+          arrImg.push(results.info.url)
+             setCloudinaryImg(arrImg)
+        }
+      },
+
+      
     );
   });
-  return(
-  
-    <div className="upload-image-button" onClick={() => widgetRef.current.open()}>upload</div>
-
-  )
+  return (
+    <button type="button"
+      className="upload-image-button"
+      onClick={() => widgetRef.current.open()}
+    >
+            <div><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/FFFFFF/image.png" alt="image"/></div>
+      <div>Upload Image</div>
+    </button>
+  );
 }
 
 export default UploadWidget;

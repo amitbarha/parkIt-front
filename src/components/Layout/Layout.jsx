@@ -2,12 +2,16 @@ import { Link, Outlet } from "react-router-dom";
 import {modeContext} from "../../App"
 import "./layout.css";
 import { useState , useContext } from "react";
+import { slide as Menu } from 'react-burger-menu'
 
 function Layout() {
-  const [open, setOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State variable to track open/closed state
   const [switchMode, setSwitchMode] = useState("light");
   const  {colorMode , setColorMode}=useContext(modeContext)
-  
+  const handleClose = () => {
+    console.log('hii');
+  }
+
 
 const handleSwitch = () => {
   colorMode === 'light'? setColorMode('dark'): setColorMode('light')
@@ -16,43 +20,19 @@ const handleSwitch = () => {
 
   return (
     <div>
-      <nav className="navbar-container">
-        <div className="navbar">
-          <div className="logo-nav">LOGO</div>
-          <div className="right-element-nav">
-            <div className="switch-mode">
-              <label className="ui-switch">
-                <input type="checkbox" onChange={handleSwitch} />
-                <div className="slider">
-                  <div className="circle"></div>
-                </div>
-              </label>
-            </div>
-            <div className="hamburger">
-              <input type="checkbox" id="checkbox" checked={open} onChange={()=> setOpen(!open)} />
-              <label htmlFor="checkbox" className="toggle">
-                <div className="bars" id="bar1"></div>
-                <div className="bars" id="bar2"></div>
-                <div className="bars" id="bar3"></div>
-              </label>
-            </div>
-          </div>
-        </div>
-        {open&&
-          <div className="open-navbar">
-            <div className="open-links">
-              <Link className="open-link-style" to={'/homePage'} onClick={()=> setOpen(false)}>Home</Link>
-              <Link className="open-link-style" to={'/profile'} onClick={()=> setOpen(false)}>Profile</Link>
-              <Link className="open-link-style" to={'/addParking'}onClick={()=> setOpen(false)}>Add Parking</Link>
-            </div>
+           <div className="navbar-container">
 
-          </div>
-        }
-      </nav>
-     <div className="save-place-nav"></div>
+           </div>
+      <Menu isOpen={isSidebarOpen} width={"60%"} >
+        <div>hello David!</div>
+        <Link to={'/homePage'} id="home" className="menu-item" onClick={()=> setIsSidebarOpen(!isSidebarOpen)} >Home</Link>
+        <Link to={'/addParking'} id="about" className="menu-item" onClick={()=> setIsSidebarOpen(!isSidebarOpen)}>Add Parking</Link>
+        <Link to={'/profile'} id="contact" className="menu-item" onClick={()=> setIsSidebarOpen(!isSidebarOpen)}>Proflie</Link>
+        {/* <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a> */}
+      </Menu>
+      
       <Outlet />
       
-      <div className="footer">footer</div>
     </div>
   );
 }

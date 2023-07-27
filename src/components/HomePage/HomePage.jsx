@@ -1,9 +1,13 @@
 import "./home-page.css";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import Carousel from "./CarouselStat";
 import HistoryOneParking from "../SoloParking/HistoryOnePark";
+import axios from "axios";
+import { userDataContext } from "../../App";
+
+
 
 {
   /* <a  href="https://icons8.com/icon/OxNBUwEP7Vwa/parking">Parking</a> icon by <a href="https://icons8.com">Icons8</a> */
@@ -16,6 +20,13 @@ function HomePage() {
   const navigate = useNavigate();
   const [startTimer, setStartTimer] = useState(false);
   const [Time, setTime] = useState(false);
+  const {userData, setUserData} = useContext(userDataContext)
+  console.log(userData);
+
+
+  
+
+
   const parkingSpots = [
     {
       imgUrl: "https://img.icons8.com/fluency-systems-regular/48/parking.png",

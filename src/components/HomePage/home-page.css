@@ -125,7 +125,7 @@
 }
 
 .my-parking-section>h2{
-    font-size: 18px;
+    font-size: 20px;
     margin-left: 10px;
     margin-bottom: 8px;
 }
@@ -227,22 +227,24 @@ p{
 }
 
 
-.history-link{
-    height: 24vw;
-    width: 92vw;
-    background-color: #D6C6E1;
-    border-left: 6px solid;
-    border-left-color: #8B5FBF;
-    color: black;
+
+
+.last-history{
+    width: 100%;
 }
 
-.history-link >p{
-    margin-left: 10px;
+.last-history>h1{
+    font-size: 20px;
+    margin-left: 8%;
 }
 
-.history>h2{
-    font-size: 18px;
-    margin-bottom: 8px;
+.Statistics-container>h1{
+    font-size: 20px;
+    margin-left: 8%;
+}
+
+.Statistics-container{
+    width: 100%;
 }
 
 .first-pair-stat{

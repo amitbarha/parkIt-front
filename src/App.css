@@ -1,35 +1,36 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap");
 * {
   scroll-behavior: smooth;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   box-sizing: border-box;
 }
 
 .app-container {
-  --white-text:#FFFFFF ;
-  --black-text:#4A4A4A;
+  /* background-color: var(--light-background) ; */
+  background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1690439126/mekisucxfedeuxtrcm6w.png");
+  --white-text: #ffffff;
+  --black-text: #4a4a4a;
   --dark-header: #895896;
-  --light-header: #D7BBF5;
-  --light-background:#F5F3F7;
-  --dark-background:#4D3B64;
-  --bright-container: #D7BBF5;
-  --dark-container:#8B5FBF;
-  font-family: 'Roboto', sans-serif;
-  --middle: #A076F9;
-  --dark: #6528F7;
-  font-family: 'Roboto', sans-serif;
-  --primary-100:#8B5FBF;
-  background-color: var(--light-background) ;
-  --primary-200:#563763;
-  --primary-300:#D7C5DF;
-  --accent-100:#B794C0;
-  --accent-200:#895896;
-  --text-100:#FFFFFF;
-  --text-200:#909090;
-  --bg-100:#3B2D4D;
-  --bg-200:#E9E4ED;}
+  --light-header: #d7bbf5;
+  --light-background: #f5f3f7;
+  --dark-background: #4d3b64;
+  --bright-container: #d7bbf5;
+  --dark-container: #8b5fbf;
+  font-family: "Roboto", sans-serif;
+  --middle: #a076f9;
+  --dark: #6528f7;
+  font-family: "Roboto", sans-serif;
+  --primary-100: #8b5fbf;
+  --primary-200: #563763;
+  --primary-300: #d7c5df;
+  --accent-100: #b794c0;
+  --accent-200: #895896;
+  --text-100: #ffffff;
+  --text-200: #909090;
+  --bg-100: #3b2d4d;
+  --bg-200: #e9e4ed;
+}
 
 * {
   margin: 0;

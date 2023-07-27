@@ -1,5 +1,6 @@
 import "./add-parking.css";
 import { useEffect, useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -20,6 +21,7 @@ import {
 } from "../../App";
 
 const AddParking = () => {
+  const navigate = useNavigate()
   const { handleSubmit, control } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
 
@@ -56,7 +58,7 @@ const AddParking = () => {
         lat: formData.lat,
         ownerID: formData.ownerID,
       })
-      .then(({ data }) => alert('Create parking complete!'))
+      .then(({ data }) =>{ alert('Create parking complete!'); navigate('/homePage')})
       .catch((err) => console.log(err.message + "basa"));
   };
 

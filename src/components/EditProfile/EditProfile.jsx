@@ -1,130 +1,121 @@
 import "./EditProfile.css";
 import axios from "axios";
+import { useForm, useFieldArray } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 import { modeContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { TextField } from "@mui/material";
 function EditProfile() {
+
+  
+
   const { colorMode, setColorMode } = useContext(modeContext);
-  const { navigate } = useNavigate()
-  const [changeFirstName, setChangeFirstName] = useState("");
-  const [changeUsername, setChangeUsername] = useState("");
-  const [changeLastName, setChangeLastName] = useState("");
-  const [changeEmail, setChangeEmail] = useState("");
-  const [changePhoneNumber, setChangePhoneNumber] = useState("");
-  const [changePassword, setChangePassword] = useState("");
-  const [info, setUserInfoToEdit] = useState("");
 
-  useEffect(() => {
-    axios
-      .post("http://localhost:5000/user/translateToken",
+  const form = useForm({
+    defaultValues: {
+      firstname: "",
+      lastname: "",
+      username:"",
+      password:"",
+      email: "",
+      phone: "",
+      licenses: [
         {
-          token: localStorage.getItem("loggedUser")
-        })
-      .then(({ data }) => {
-        setUserInfoToEdit(data);
-        console.log(data);
-        setChangeFirstName(data.firstName)
-        setChangeUsername(data.username)
-        setChangeLastName(data.lastName)
-        setChangeEmail(data.email)
-        setChangePhoneNumber(data.phoneNumber)
-        setChangePassword(data.password)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+          onelicenses: "",
+        },
+      ],
+    },
+  });
 
-  function handleSubmitForm(event) {
-    event.preventDefault()
-    if (
-      changeFirstName != "" &&
-      changeLastName != "" &&
-      changePhoneNumber != "" &&
-      changeEmail != ""&&
-      changePassword !=""&&
-      changeUsername !=""
-    ) {
-      const editedInfo = {
-        username: changeUsername,
-        firstName: changeFirstName,
-        lastName: changeLastName,
-        phoneNumber: changePhoneNumber,
-        email: changeEmail,
-        password: changePassword,
-        _id: info._id
-      };
+  const { register, control, handleSubmit, formState, setValue, reset } = form;
+  const { errors } = formState;
 
-      axios
-        .patch("http://localhost:5000/user/updateUser", editedInfo)
-        .then(({ data }) => {
-          setUserInfoToEdit(data)
-           console.log(info);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-      // navigate("/Profile")
-    } else if (changeFirstName == "") {
-      alert("Please enter a valid first name");
-    } else if (changeLastName == "") {
-      alert("Please enter a valid last name");
-    } else if (changePhoneNumber == "") {
-      alert("Please enter a valid phone number");
-    } else if (changeEmail == "") {
-      alert("Please enter a valid mail address");
-    } else if (changePassword == "") {
-      alert("Please enter a valid password");
-    } 
-  }
+  const {fields: licensesFields,append: appendlicenses,remove: removelicenses,} = useFieldArray({
+    name: "licenses",
+    control,
+  });
 
+  const onSubmit = (data) => {
+    console.log("form submit!!!!!", data);
+  };
+ 
   return (
-    <div id={`${colorMode}-edit-profile-page`}>
-      <form
-        id={`${colorMode}-edit-profile-form`}
-        onSubmit={(e) => handleSubmitForm(e)}
-      >
-        <h1 id="edit-profile-header">Edit personal info</h1>
-        <input
-          onChange={(event) => setChangeFirstName(event.target.value)}
-          className={`${colorMode}-edit-input-bar`}
-          type="text"
-          placeholder="First Name"
+    <div className="info-container">
+      <form className="info-form" onSubmit={handleSubmit(onSubmit)}>
+        <h2 className="info-heading">EditProfile</h2>
+
+        <div className="all-div-of-label">
+
+        <div className="solo-info-container">
+        <TextField className="info-input" label="First name" id="firstname"{...register("firstname", { required: "firstname is required" })}/>
+        <p className="info-error">{errors.firstname?.message}</p>
+        </div>
+
+        <div className="solo-info-container">
+        <TextField className="info-input" label="Last name" id="lastname"{...register("lastname", { required: "lastname is required" })}/>
+        <p className="info-error">{errors.lastname?.message}</p>
+        </div>
+
+        <div className="solo-info-container">
+        <TextField className="info-input" label="User name" id="username"{...register("username", { required: "username is required" })}/>
+        <p className="info-error">{errors.username?.message}</p>
+        </div>
+
+        <div className="solo-info-container">
+        <TextField className="info-input" label="Password" id="password"{...register("password", { required: "password is required" })}/>
+        <p className="info-error">{errors.password?.message}</p>
+        </div>
+
+        <div className="solo-info-container">
+        <TextField className="info-input" label="Phone number" id="phonenumber"{...register("phonenumber", { required: "phonenumber is required" })}/>
+        <p className="info-error">{errors.phonenumber?.message}</p>
+        </div>
+         
+
+        <div className="solo-info-container">
+        <TextField className="info-input"  label="Email " id="email" {...register("email", {
+            required: "email is required",
+            pattern: {
+              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, //i need to add that empty is also not good
+              message: "Invalid email format",
+            },
+            validate: (fieldValue) => {
+              return ( 
+                fieldValue !== "admin@example.com" ||
+                "enter a different email address"
+              );
+            },
+          })}
         />
-        <input
-          onChange={(event) => setChangeLastName(event.target.value)}
-          className={`${colorMode}-edit-input-bar`}
-          type="text"
-          placeholder="Last Name"
-        />
-        <input
-          onChange={(event) => setChangePhoneNumber(event.target.value)}
-          className={`${colorMode}-edit-input-bar`}
-          type="text"
-          placeholder="Phone Number"
-        />
-        <input
-          onChange={(event) => setChangeEmail(event.target.value)}
-          className={`${colorMode}-edit-input-bar`}
-          type="Email"
-          placeholder="Email"
-        />
-        <input
-          onChange={(event) => setChangePassword(event.target.value)}
-          className={`${colorMode}-edit-input-bar`}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          onChange={(event) => setChangeUsername(event.target.value)}
-          className={`${colorMode}-edit-input-bar`}
-          type="text"
-          placeholder="username"
-        />
-        <button id="reg-btn" type="submit">
-          Edit
-        </button>
+        <p className="info-error">{errors.email?.message}</p>
+        </div>
+
+        <div className="solo-info-container">
+      
+        <div>
+          {licensesFields.map((field, index) => {
+            return (
+              <div key={field.index}>
+                <TextField className="info-input" label={`license No. ${index+1}`} placeholder="enter one license..."{...register(`licenses.${index}.onelicenses`, {required: "onelicenses is required",})}/>
+                {index > 0 && (
+                  <button className="info-button-delete" type="button" onClick={() => removelicenses(index)}>-</button>
+                )}
+                <p className="info-error">{errors.licenses?.[index]?.onelicenses?.message}</p>
+              </div>
+              
+            );
+          })}
+          <button className="info-button-add" type="button" onClick={() =>licensesFields.length < 5 &&appendlicenses({onelicenses: ""})}>+</button>
+        </div>
+        </div>
+       
+        <button className="submit-button" id="submit-css">Submit</button>
+
+        </div>
+
       </form>
+      <DevTool control={control}></DevTool>
     </div>
   );
 }

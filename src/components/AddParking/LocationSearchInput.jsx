@@ -17,28 +17,20 @@ function LocationSearchInput() {
   const handleSelect = (selectedAddress) => {
     geocodeByAddress(selectedAddress)
       .then((results) => {
-        console.log(results[0].formatted_address);
-        setGoogleLocation({
-          ...googleLocation,
-          fullAddress: results[0].formatted_address,
+        getLatLng(results[0]).then((latLng) => {
+          console.log(results[0].formatted_address);
+          setGoogleLocation({
+            ...googleLocation,
+            fullAddress: results[0].formatted_address,
+            lat: latLng?.lat,
+            lng: latLng?.lng,
+          });
         });
-        return getLatLng(results[0]);
-      })
-      .then((latLng) => {
-        console.log("Success", latLng);
-        setGoogleLocation({
-          ...googleLocation,
-          lat: latLng?.lat,
-          lng: latLng?.lng,
-          fullAddress: fullAddress
-        });
-        setSelectAdd(true)
       })
       .catch((error) => console.error("Error", error));
   };
-
+  console.log(googleLocation);
   return (
-  
     <PlacesAutocomplete
       value={address}
       onChange={handleChange}
@@ -46,9 +38,10 @@ function LocationSearchInput() {
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div>
-          <input
-          placeholder="Parking Address *"
-          onChange={()=> setSelectAdd(true)}
+          <TextField
+            id="google-search-input"
+            placeholder="Parking Address *"
+            onChange={() => setSelectAdd(true)}
             required
             className=""
             {...getInputProps({

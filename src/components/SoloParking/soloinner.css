@@ -1,9 +1,5 @@
-#solo-parking-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
+
 #solo-parking-name{
     display: flex;
     background-color: var(--primary-200);
@@ -16,6 +12,7 @@
     font-size: 5vw;
     border-radius: 10px ;
 }
+
 .solo-parking-detail{
     display: flex;
     background-color: var(--bg-200);
@@ -51,54 +48,29 @@
     margin-top: 5vw;
     margin-bottom: 5vh;
 }
-#Solo-parking-history-title{
-    display: flex;
-    width: 80%;
+
+@media screen and (min-width: 450px){
+    #solo-parking-name{
+        width: 30%;
+        font-size: 2vw;
+        height: 3.2vw;
+        margin: 1vw;
+    }
+    .solo-parking-detail{
+        width: 30%;
+        height: 3.2vw;
+        margin: 0.5vw;
+        border-radius: 15px;
+        font-size: 2vw;
+    }
+    .icon-con{
+        width: 2vw;
+    }
+    #solo-parking-img-container{
+        width: 60%;
+        display: flex;
+        height: 45vw;
+        margin-top: 3vw;
+        margin-bottom: 2vw;
+    }
 }
-.history-item-parking{
-    display: flex;
-    width: 90%;
-    background-color: var(--bg-200);
-    height: 5vh;
-    margin: 2vw;
-}
-.side-color-history{
-    width: 1%;
-    background-color: var(--dark-container);
-}
-.history-item-text{
-    width: 99%;
-    display: flex;
-    align-items: center;
-}
-.history-item-text-name{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.history-item-text-time{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.history-item-text-totalpay{
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-

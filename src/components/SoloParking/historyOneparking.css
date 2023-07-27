@@ -1,0 +1,80 @@
+.history-one-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 3vw;
+}
+.history-item-parking2{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    background-color: var(--bg-200);
+    height: 5vh;
+}
+.side-color-history{
+    width: 1%;
+    background-color: var(--dark-container);
+}
+.history-item-text{
+    width: 99%;
+    display: flex;
+    align-items: center;
+}
+.history-item-text-name{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.history-item-text-add{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.history-item-text-date{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.icon-history{
+    width: 6vw;
+    height: auto;
+}
+.moreeveryone{
+    display: flex;
+    align-items: center;
+}
+.history-more-a{
+    width:40% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.history-more-b{
+    width:40% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.history-more-c{
+    width:20% ;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+@media  screen and (min-width:450px) {
+    .history-one-container{
+        width: 50%;
+        margin: 1vw;
+    }
+    .icon-history{
+        width: 1.8vw;
+    }
+}

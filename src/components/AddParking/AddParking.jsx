@@ -13,44 +13,59 @@ import axios from "axios";
 import UploadWidget from "./UploadWidget";
 import Autocomplete from "react-google-autocomplete";
 import LocationSearchInput from "./LocationSearchInput";
-import { CloudinaryContext, gooleAutoLocation } from '../../App';
+import {
+  CloudinaryContext,
+  gooleAutoLocation,
+  userDataContext,
+} from "../../App";
 
 const AddParking = () => {
-  
   const { handleSubmit, control } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
-  
 
- 
-  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation)
-  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext)
+  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
+  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
+  const { userData, setUserData } = useContext(userDataContext);
+
   console.log(cloudinaryImg);
   useEffect(() => {
-    setSelectAdd(false)
+    setSelectAdd(false);
     console.log("mount");
-    if(googleLocation.fullAddress != "")
-    {
-      setSelectAdd(true)
+    if (googleLocation.fullAddress != "") {
+      setSelectAdd(true);
     }
   }, [googleLocation]);
   const onSubmit = (formData) => {
-    formData.lat = googleLocation.lat
-    formData.lng = googleLocation.lng
-    formData.fullAddress = googleLocation.fullAddress
-    formData.availableToPark = false;
-    formData.photos = cloudinaryImg
+    formData.lat = googleLocation.lat;
+    formData.lng = googleLocation.lng;
+    formData.parkingLocation = googleLocation.fullAddress;
+    formData.availableToPark = true;
+    formData.photos = cloudinaryImg;
+    formData.ownerID = userData._id;
     console.log(formData);
+    axios
+      .post("http://localhost:5000/parking/publishParking", {
+        parkingName: formData.parkingName,
+        parkingLocation: formData.parkingLocation,
+        photos: formData.photos,
+        availableToPark: formData.availableToPark,
+        availableStart: formData.availableStart,
+        availableEnd: formData.availableEnd,
+        pricePerHour: formData.pricePerHour,
+        lng: formData.lng,
+        lat: formData.lat,
+        ownerID: formData.ownerID,
+      })
+      .then(({ data }) => alert('Create parking complete!'))
+      .catch((err) => console.log(err.message + "basa"));
   };
 
   return (
     <div className="add-parking-container">
-     <br />
+      <br />
       <h1 className="add-parking-title">Add Parking</h1>
       <br />
       <form className={`form-container`} onSubmit={handleSubmit(onSubmit)}>
-      
-       
-      
         <Controller
           name="parkingName"
           control={control}
@@ -64,12 +79,17 @@ const AddParking = () => {
             />
           )}
         />
-        { !selectAdd&& <LocationSearchInput /> }
-       { selectAdd&&<div>
-         <TextField disabled label="Chosen Address" value={googleLocation.fullAddress} />
-         <button onClick={()=> setSelectAdd(false)}>change</button>
-       </div> 
-       }
+        {!selectAdd && <LocationSearchInput />}
+        {selectAdd && (
+          <div>
+            <TextField
+              disabled
+              label="Chosen Address"
+              value={googleLocation.fullAddress}
+            />
+            <button onClick={() => setSelectAdd(false)}>change</button>
+          </div>
+        )}
         <Controller
           name="pricePerHour"
           control={control}

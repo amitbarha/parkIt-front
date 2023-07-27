@@ -16,6 +16,19 @@
   flex-direction: column;
   width: 90%;
 }
+
+.light-info-heading{
+  text-align: center;
+  color: var(--dark-header);
+  font-weight: bold;
+}
+
+.dark-info-heading{
+  text-align: center;
+  color: var(--light-header);
+  font-weight: bold;
+}
+
 @media screen and (min-width: 450px){
   .info-form{
     width: 40%;

@@ -1,15 +1,32 @@
 import "./Profile.css";
-import { modeContext } from "../../App";
-import { useContext } from "react";
+import { modeContext } from "../../App"
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Profile() {
-  const { colorMode, setColorMode } = useContext(modeContext);
+  const { colorMode, setColorMode } = useContext(modeContext)
+  const [info, setInfo] = useState([])
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/user/translateToken",
+        {
+          token: localStorage.getItem("loggedUser")
+        })
+      .then(({ data }) => {
+        setData(data)
+      }
+      )
+      .catch((err) => console.log(err.message));
+  }, [])
+
   return (
     <div id={`${colorMode}-profile-page`}>
       <div id="profile-info-container">
         <h1 id={`${colorMode}-profile-page-header`}>Personal info</h1>
         <div id={`${colorMode}-profile-info`}>
+
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img className="icon-con" src="https://img.icons8.com/ios/50/user-male-circle--v1.png" alt="user-male-circle--v1"/>
@@ -65,3 +82,10 @@ function Profile() {
   );
 }
 export default Profile;
+
+{/* <h1>Personal info {colorMode}</h1>
+<div className="profile-personal-info">Name:{data.firstName}  {data.LastName}</div>
+<div className="profile-personal-info">Email:{data.email}</div>
+<div className="profile-personal-info">Phone:{data.phoneNumber}</div>
+<div className="profile-personal-info">username: {data.username}</div>
+<div className="profile-personal-info">Car liesence plate: XX-XXX-XX</div> */}

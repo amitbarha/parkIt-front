@@ -23,19 +23,26 @@ function HomePage() {
   const [Time, setTime] = useState(false);
   const [info, setInfo] = useState([])
   const [info1, setInfo1] = useState([])
+  const [data, setData] = useState([])
 
 
   useEffect(() => {
     if (userData) {
       getData()
     }
-  })
+    axios
+    .get("http://localhost:5000/parking/fetchParking")
+    .then(({ data }) => {
+      setData(data);
+    })
+    .catch((err) => console.log(err.message));
+    
+  }, [userData])
 
   const getData = () => {
     setInfo(userData?.myParking)
     setInfo1(userData?.myPayment)
   }
-
 
   const parkingSpots = [
     {
@@ -61,7 +68,6 @@ function HomePage() {
     navigate("/FindParking");
   };
 
-  console.log(info)
   return (
     <div className="home-page">
       <br />
@@ -142,11 +148,18 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        <HistoryOneParking 
-        price={info1[info1.length-1]?.pricePerHour} 
-        name={info[info.length-1]?.parkingName}
-         userData={userData}>
-         </HistoryOneParking>
+        {console.log(info1[info1.length - 1]?.date)}
+        {
+          info1 && <HistoryOneParking
+            price={info1[info1.length - 1]?.pricePerHour}
+            name={info1[info1.length - 1]?.parkName}
+            startTime={info1[info1.length - 1]?.startTime}
+            endTime={info1[info1.length - 1]?.endTime}
+            phoneTopay={info1[info1.length - 1]?.phoneToPay}
+            date1={info1[info1.length - 1]?.date}
+          >
+          </HistoryOneParking>
+        }
       </div>
       <br />
       <div className="Statistics-container">
@@ -156,7 +169,7 @@ function HomePage() {
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
               <div className="name-state"><p>Availible Parkings:</p></div>
-              <div className="info-state"><h1>588</h1>
+              <div className="info-state"><h1>{data.length}</h1>
               </div>
             </div>
             <div className="box-stat">

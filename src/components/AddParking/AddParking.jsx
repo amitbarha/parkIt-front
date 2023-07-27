@@ -1,5 +1,6 @@
 import "./add-parking.css";
 import { useEffect, useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -21,6 +22,7 @@ import {
 } from "../../App";
 
 const AddParking = () => {
+  const navigate = useNavigate()
   const { handleSubmit, control } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);

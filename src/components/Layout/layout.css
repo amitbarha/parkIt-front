@@ -3,6 +3,8 @@
 }
 .navbar-container {
   background-color: var(--primary-100);
+  position: sticky;
+  top: 0;
   color: white;
   width: 100%;
   z-index: 100;
@@ -203,7 +205,8 @@ background-color:  #af63ffb1 ;
 
   /* Position and sizing of burger button */
 .bm-burger-button {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   width: 36px;
   height: 30px;
   left: 36px;
@@ -212,7 +215,7 @@ background-color:  #af63ffb1 ;
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: var(--light-background);
 }
 
 /* Color/shape of burger icon bars on hover*/

@@ -85,7 +85,7 @@ function Profile() {
               |
             </div>
             <div className="profile-detail-divfortext">
-              Car liesence plate: XX-XXX-XX
+              Car liesence plate:{data?.licensePlates[0]}
             </div>
           </div>
         </div>

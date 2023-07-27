@@ -27,9 +27,18 @@ function HomePage() {
 
 
   useEffect(() => {
-    if (userData) {
-      getData()
+    if(localStorage.getItem('loggedUser'))
+    {
+        axios
+          .post("http://localhost:5000/user/translateToken",{token: localStorage.getItem('loggedUser') })
+          .then(({ data }) => setUserData(data))
+          .catch((err) => console.log(err.message));
+      
     }
+
+    },[])
+  
+    useEffect(() => {
     axios
     .get("http://localhost:5000/parking/fetchParking")
     .then(({ data }) => {
@@ -38,6 +47,7 @@ function HomePage() {
     .catch((err) => console.log(err.message));
     
   }, [userData])
+
 
   const getData = () => {
     setInfo(userData?.myParking)
@@ -67,6 +77,14 @@ function HomePage() {
   const goToFindParkingPage = () => {
     navigate("/FindParking");
   };
+
+
+  function handleGoToSoloParking(id){
+    console.log("get into goto func")
+    navigate(`/SoloParking/${id}`)
+  }
+
+  console.log(info)
 
   return (
     <div className="home-page">
@@ -107,7 +125,7 @@ function HomePage() {
         >
           {userData?.myParking && userData?.myParking.map((parking, index) => {
             return (
-              <div className="my-parking-box" key={index}>
+              <div className="my-parking-box" key={index} onClick={()=>handleGoToSoloParking(userData?.myParking[index]._id)}>
                 <div className="my-parking">
                   <div id="my-parking-img">
                     <img

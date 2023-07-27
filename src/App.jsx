@@ -64,7 +64,7 @@ function App() {
                 <Route path="addParking" element={<AddParking />}></Route>
                 <Route path="FindParking" element={<FindParking />}></Route>
                 <Route path="payingHistory" element={<PayingHistory />}></Route>
-                <Route path="SoloParking" element={<SoloParking />}></Route>
+                <Route path="SoloParking/:parkingId" element={<SoloParking />}></Route>
                 <Route path="Onepick" element={<Onepick />}></Route>
 
               </Route>

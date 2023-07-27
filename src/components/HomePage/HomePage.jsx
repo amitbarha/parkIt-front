@@ -1,6 +1,6 @@
 import "./home-page.css";
 import { Link } from "react-router-dom";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Carousel from "./CarouselStat";
 import HistoryOneParking from "../SoloParking/HistoryOnePark";
@@ -19,12 +19,22 @@ import { userDataContext } from "../../App";
 function HomePage() {
   const navigate = useNavigate();
   const [startTimer, setStartTimer] = useState(false);
+  const { userData, setUserData } = useContext(userDataContext)
   const [Time, setTime] = useState(false);
-  const {userData, setUserData} = useContext(userDataContext)
-  console.log(userData);
+  const [info, setInfo] = useState([])
+  const [info1, setInfo1] = useState([])
 
 
-  
+  useEffect(() => {
+    if (userData) {
+      getData()
+    }
+  })
+
+  const getData = () => {
+    setInfo(userData?.myParking)
+    setInfo1(userData?.myPayment)
+  }
 
 
   const parkingSpots = [
@@ -50,6 +60,8 @@ function HomePage() {
   const goToFindParkingPage = () => {
     navigate("/FindParking");
   };
+
+  console.log(info)
   return (
     <div className="home-page">
       <br />
@@ -82,13 +94,12 @@ function HomePage() {
       <div className="my-parking-section">
         <h2>My Parking:</h2>
         <div
-          className={`${
-            parkingSpots.length < 2
-              ? "boxes-my-parking-section-centered"
-              : "boxes-my-parking-section"
-          }`}
+          className={`${userData?.myParking.length < 2
+            ? "boxes-my-parking-section-centered"
+            : "boxes-my-parking-section"
+            }`}
         >
-          {parkingSpots.map((parking, index) => {
+          {userData?.myParking && userData?.myParking.map((parking, index) => {
             return (
               <div className="my-parking-box" key={index}>
                 <div className="my-parking">
@@ -97,17 +108,17 @@ function HomePage() {
                       width="100"
                       height="100"
                       src={
-                        "https://image.made-in-china.com/202f0j00jJOEDcGdwiqn/Home-Garage-Single-Post-Design-Auto-Parking-Lift.jpg"
+                        parking.photos[0]
                       }
                       alt="parking"
                     />
                   </div>
                   <div className="text-overlay">
                     <div>
-                      <p>parking name: {parking.name}</p>
+                      <p>parking name: {parking.parkingLocation}</p>
                     </div>
                     <div>
-                      <p>status: {parking.status}</p>
+                      <p>status: {parking.availableToPark ? 'yes' : 'no'}</p>
                     </div>
                   </div>
                 </div>
@@ -129,41 +140,46 @@ function HomePage() {
       </div>
       <br />
       <br />
-          <div className="last-history">
-          <h1>Last Parking:</h1>
-          <HistoryOneParking></HistoryOneParking>
-          </div>
+      <div className="last-history">
+        <h1>Last Parking:</h1>
+        <HistoryOneParking 
+        price={info1[info1.length-1]?.pricePerHour} 
+        name={info[info.length-1]?.parkingName}
+         userData={userData}>
+         </HistoryOneParking>
+      </div>
       <br />
-          <div className="Statistics-container">
-          <h1 >Statistics:</h1>
-      <Carousel>
-         <div className="first-pair-stat">
-           <div className="box-stat">
-             <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking"/></div>
-             <div className="name-state"><p>Availible Parkings:</p></div>
-             <div className="info-state"><h1>588</h1>
-            </div>
-           </div>
+      <div className="Statistics-container">
+        <h1 >Statistics:</h1>
+        <Carousel>
+          <div className="first-pair-stat">
             <div className="box-stat">
-              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/walking.png" alt="walking"/></div>
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
+              <div className="name-state"><p>Availible Parkings:</p></div>
+              <div className="info-state"><h1>588</h1>
+              </div>
+            </div>
+            <div className="box-stat">
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/walking.png" alt="walking" /></div>
               <div className="name-state"><p>closest parking:</p></div>
               <div className="info-state"><h1>378m</h1></div>
-           </div>
-         </div>
-         <div className="second-pair-stat">
-           <div className="box-stat">
-             <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/average-2.png" alt="average-2"/></div>
-             <div className="name-state"><p>Average P/H:</p></div>
-             <div className="info-state"><h1>15₪</h1></div>
-           </div>
-           <div className="box-stat">
-             <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking"/></div>
-             <div className="name-state"><p>Availible Parkings:</p></div>
-             <div className="info-state"><h1>588</h1></div>
-           </div>
+            </div>
           </div>
-          </Carousel>
+          <div className="second-pair-stat">
+            <div className="box-stat">
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/average-2.png" alt="average-2" /></div>
+              <div className="name-state"><p>Average P/H:</p></div>
+              <div className="info-state"><h1>15₪</h1></div>
+            </div>
+            <div className="box-stat">
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
+              <div className="name-state"><p>Availible Parkings:</p></div>
+              <div className="info-state"><h1>588</h1></div>
+            </div>
           </div>
+        </Carousel>
+      </div>
+      {userData?.username}
     </div>
   );
 }

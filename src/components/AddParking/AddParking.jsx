@@ -1,6 +1,5 @@
 import "./add-parking.css";
 import { useEffect, useState, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -28,7 +27,6 @@ const AddParking = () => {
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
   const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
   const { userData, setUserData } = useContext(userDataContext);
-  const navigate = useNavigate();
 
   console.log(cloudinaryImg);
   useEffect(() => {

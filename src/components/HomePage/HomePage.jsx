@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Carousel from "./CarouselStat";
+import HistoryOneParking from "../SoloParking/HistoryOnePark";
 
 {
   /* <a  href="https://icons8.com/icon/OxNBUwEP7Vwa/parking">Parking</a> icon by <a href="https://icons8.com">Icons8</a> */
@@ -117,16 +118,13 @@ function HomePage() {
       </div>
       <br />
       <br />
-      <div className="history">
-        <h2>Last Parking:</h2>
-        {/* <Link className="history-link" to={"/historyParking"}></Link> */}
-        <div className="history-link">
-          <p>Date: </p>
-          <p>Location: </p>
-        </div>
-      </div>
+          <div className="last-history">
+          <h1>Last Parking:</h1>
+          <HistoryOneParking></HistoryOneParking>
+          </div>
       <br />
-      
+          <div className="Statistics-container">
+          <h1 >Statistics:</h1>
       <Carousel>
          <div className="first-pair-stat">
            <div className="box-stat">
@@ -154,7 +152,7 @@ function HomePage() {
            </div>
           </div>
           </Carousel>
-     
+          </div>
     </div>
   );
 }

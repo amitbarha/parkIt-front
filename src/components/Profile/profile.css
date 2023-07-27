@@ -9,7 +9,6 @@
     height: 100vh;
     position: relative;
     color: var(--white-text);
-    background-color: var(--light-background);
 }
 
 #dark-profile-page{

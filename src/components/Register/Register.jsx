@@ -15,6 +15,7 @@ const Register = () => {
     const phoneNumber = target[3].value;
     const email = target[4].value;
     const password = target[5].value;
+    const licensePlates = target[6].value;
 
     try {
       const newuser = await axios.post(
@@ -40,6 +41,7 @@ const Register = () => {
           <input type="text" placeholder="Phone Number" />
           <input type="Email" placeholder="Email" />
           <input type="password" placeholder="Password" />
+          <input type="text" placeholder="licensePlates" />
           {errorMessage1 && <p className="error-message">{errorMessage1}</p>}
           <button id="reg-btn" type="submit">Register</button>
         </form>

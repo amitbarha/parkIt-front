@@ -12,7 +12,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 80px;
 }
 #dark-find-page{
     width: 100vw;
@@ -60,7 +59,7 @@
 
 #find-container-filters{
     width: 100%;
-    height: 28%;
+    height: 16%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -71,7 +70,7 @@
     width: 100%;
     height: 50%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 0px 2vw 0px 2vw;
@@ -86,25 +85,58 @@
     flex-direction: row;
 }
 
-#find-user-change-location{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-
 #light-find-change-location-BTN{
     border-radius: 10px;
-    border: 4px solid var(--dark-background);
+    border: 2px solid var(--dark-background);
+    background-color: var(--bright-container);
+}
+
+#around-find-anothr-location{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#find-anothr-location{
+    width: 300px ;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 900;
+    margin-left: -150px;
+    margin-top: -200px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    background-color: var(--dark-container);
+    border: 3px double black;
+    padding:20px ;
+}
+
+#find-anothr-location-process{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.find-anothr-location-process{
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid var(--dark-background);
     background-color: var(--bright-container);
 }
 
 #dark-find-change-location-BTN{
     border-radius: 10px;
-    border: 4px solid var(--bright-container);
+    border:22px solid var(--bright-container);
     background-color: var(--dark-background);
     color: var(--white-text);
 }
@@ -122,7 +154,7 @@
 
 #find-filters-switch-container{
     width: 100%;
-    height: 40%;
+    height: 100%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -179,15 +211,6 @@
     flex-direction: row;
 }
 
-/* .find-parking-tab{
-    height: 24vw;
-    width: 92vw;
-    border-left: 6px solid #8B5FBF;
-    background-color: #D6C6E1;
-    border-left-color: #8B5FBF;
-    color: black;
-} */
-
 
 .find-parking-tab{
     height: 24vw;
@@ -199,11 +222,10 @@
     border-left: 6px solid #8B5FBF;
     background-color: #D6C6E1;
     margin-bottom: 5px;
-    /* border: 1px solid black; */
 }
 
 .find-parking-tab-distance{
-    width: 16%;
+    width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -211,7 +233,7 @@
 }
 
 .find-parking-tab-price{
-    width: 16%;
+    width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -219,7 +241,7 @@
 }
 
 .find-parking-tab-hours{
-    width: 16%;
+    width: 23%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -227,7 +249,7 @@
 }
 
 .find-parking-tab-picture{
-    width: 16%;
+    width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;

@@ -14,6 +14,7 @@ import axios from "axios";
 import UploadWidget from "./UploadWidget";
 import Autocomplete from "react-google-autocomplete";
 import LocationSearchInput from "./LocationSearchInput";
+import { useNavigate } from "react-router-dom";
 import {
   CloudinaryContext,
   gooleAutoLocation,
@@ -24,10 +25,10 @@ const AddParking = () => {
   const navigate = useNavigate()
   const { handleSubmit, control } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
-
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
   const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
   const { userData, setUserData } = useContext(userDataContext);
+  const navigate = useNavigate();
 
   console.log(cloudinaryImg);
   useEffect(() => {
@@ -58,8 +59,18 @@ const AddParking = () => {
         lat: formData.lat,
         ownerID: formData.ownerID,
       })
-      .then(({ data }) =>{ alert('Create parking complete!'); navigate('/homePage')})
+      .then(({ data }) => {
+        alert("Create parking complete!");
+        setSelectAdd(false);
+        setGoogleLocation({
+          lat: "",
+          lng: "",
+          fullAddress: ""
+        });
+        navigate("/homePage");
+      })
       .catch((err) => console.log(err.message + "basa"));
+   
   };
 
   return (

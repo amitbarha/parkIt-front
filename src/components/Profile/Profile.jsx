@@ -1,9 +1,8 @@
 import "./Profile.css";
-<<<<<<< HEAD
 import { modeContext } from "../../App"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 
 function Profile() {
   const { colorMode, setColorMode } = useContext(modeContext)
@@ -21,27 +20,13 @@ function Profile() {
       )
       .catch((err) => console.log(err.message));
   }, [])
-=======
-import { modeContext } from "../../App";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
 
-function Profile() {
-  const { colorMode, setColorMode } = useContext(modeContext);
->>>>>>> 70f03ac7eee800857d44152c7a907379f16520a2
   return (
     <div id={`${colorMode}-profile-page`}>
       <div id="profile-info-container">
         <h1 id={`${colorMode}-profile-page-header`}>Personal info</h1>
         <div id={`${colorMode}-profile-info`}>
-<<<<<<< HEAD
-          <h1>Personal info {colorMode}</h1>
-          <div className="profile-personal-info">Name:{data.firstName}  {data.LastName}</div>
-          <div className="profile-personal-info">Email:{data.email}</div>
-          <div className="profile-personal-info">Phone:{data.phoneNumber}</div>
-          <div className="profile-personal-info">username: {data.username}</div>
-          <div className="profile-personal-info">Car liesence plate: XX-XXX-XX</div>
-=======
+
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img className="icon-con" src="https://img.icons8.com/ios/50/user-male-circle--v1.png" alt="user-male-circle--v1"/>
@@ -83,7 +68,6 @@ function Profile() {
               Car liesence plate: XX-XXX-XX
             </div>
           </div>
->>>>>>> 70f03ac7eee800857d44152c7a907379f16520a2
         </div>
       </div>
       <div id="profile-buttons-container">
@@ -98,3 +82,10 @@ function Profile() {
   );
 }
 export default Profile;
+
+{/* <h1>Personal info {colorMode}</h1>
+<div className="profile-personal-info">Name:{data.firstName}  {data.LastName}</div>
+<div className="profile-personal-info">Email:{data.email}</div>
+<div className="profile-personal-info">Phone:{data.phoneNumber}</div>
+<div className="profile-personal-info">username: {data.username}</div>
+<div className="profile-personal-info">Car liesence plate: XX-XXX-XX</div> */}

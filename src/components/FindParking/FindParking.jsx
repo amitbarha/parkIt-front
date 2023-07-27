@@ -2,15 +2,19 @@ import "./find-parking.css";
 import { modeContext } from "../../App";
 import { useContext, useState, useEffect } from "react";
 import data from "./demiParknigData.json";
+import LocationSearchInput from "../AddParking/LocationSearchInput"
+import { CloudinaryContext, gooleAutoLocation } from '../../App';
 
 function FindParking() {
+  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation)
   const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
   const [toggleHours, setToggleHours] = useState("");
   const [sortBy, setSortBy] = useState("distance");
   const [parkingsToMap, setParkingsToMap] = useState(data);
-  
+  const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
+console.log(googleLocation);
   useEffect(() => {
     if (sortBy === "distance") {
       setToggleDistance("chosen-");
@@ -40,8 +44,17 @@ function FindParking() {
       <div id={`${colorMode}-find-container`}>
         <div id="find-container-filters">
           <div id="find-location-filter">
-            <div>Your location:</div>
-            <button id={`${colorMode}-find-change-location-BTN`}>change</button>
+            <div id="find-current-location">
+              <div>Your location:</div>
+              <button
+                onClick={() => setWantToChangeLocation(!wantToChangeLocation)}
+                id={`${colorMode}-find-change-location-BTN`}
+              >
+                change
+              </button>
+            </div>
+            {wantToChangeLocation == true ? 
+            <div id="find-user-change-location">{<LocationSearchInput />}</div> : null}
           </div>
           <div id="find-filters">
             <div id="find-filteres-sorting-section">
@@ -62,10 +75,10 @@ function FindParking() {
                   onClick={() => setSortBy("hours")}
                   className={`${toggleHours}find-sort-by`}
                 >
-                  Hours
+                  Longest
                 </div>
               </div>
-              {toggleHours == "chosen-" ? (
+              {/* {toggleHours == "chosen-" ? (
                 <div id="find-hours-filter">
                   <h3>From</h3>{" "}
                   <input
@@ -80,7 +93,7 @@ function FindParking() {
                     type="time"
                   />
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
         </div>

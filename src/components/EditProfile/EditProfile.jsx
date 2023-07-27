@@ -9,17 +9,6 @@ import { TextField } from "@mui/material";
 function EditProfile() {
   const { colorMode, setColorMode } = useContext(modeContext);
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .post("http://localhost:5000/user/translateToken", {
-        token: localStorage.getItem("loggedUser"),
-      })
-      .then(({ data }) => {
-        setData(data);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
 
   const form = useForm({
     defaultValues: {

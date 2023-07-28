@@ -1,6 +1,6 @@
-import { Route, Routes } from "react-router-dom";
-import { useState, createContext } from "react";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { useState, createContext, useEffect } from "react";
 import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Layout from "./components/Layout/Layout";
@@ -11,8 +11,9 @@ import AddParking from "./components/AddParking/AddParking";
 import SoloParking from "./components/SoloParking/SoloParking";
 import FindParking from "./components/FindParking/FindParking";
 import PayingHistory from "./components/PayingHistory/PayingHistory";
+import NotFound from "./components/NotFound/NotFound";
 import Onepick from "./components/ChoosenParking/Onepick";
-import { useEffect } from "react";
+import * as React from "react"
 import axios from "axios";
 
 export const modeContext = createContext();
@@ -67,6 +68,7 @@ function App() {
                 <Route path="payingHistory" element={<PayingHistory />}></Route>
                 <Route path="SoloParking/:parkingId" element={<SoloParking />}></Route>
                 <Route path="Onepick" element={<Onepick />}></Route>
+                <Route path="*" element={<NotFound />}></Route>
               </Route>
             </Routes>
           </div>

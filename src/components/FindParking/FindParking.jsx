@@ -1,7 +1,8 @@
 import "./find-parking.css";
 import { modeContext } from "../../App";
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect } from "react";
 import LocationSearchInput from "../AddParking/LocationSearchInput";
+import MyLocation from "./MyLocation";
 import { CloudinaryContext, gooleAutoLocation } from "../../App";
 import axios from "axios";
 import ParkingMap from "./ParkingMap";
@@ -16,24 +17,23 @@ function FindParking() {
   const [toggleHours, setToggleHours] = useState("");
   const [sortBy, setSortBy] = useState("distance");
   const [parkingsToMap, setParkingsToMap] = useState([""]);
-  const [stillLoading , setStillLoading]=useState(true)
+  const [stillLoading, setStillLoading] = useState(true);
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
+  const [wantToLoadMore , setWantToLoadMore]=useState(false)
   const navigate = useNavigate();
 
-
-
-  useEffect(()=>{
+  useEffect(() => {
     axios
-    .get("http://localhost:5000/parking/fetchParking")
-    .then(({data})=>{
-      setParkingsToMap(data)
-      setStillLoading(false)
-    }) 
-    .catch((err)=>{
-      console.log(err.message);
-      setStillLoading(false)
-    })
-  },[])
+      .get("http://localhost:5000/parking/fetchParking")
+      .then(({ data }) => {
+        setParkingsToMap(data);
+        setStillLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setStillLoading(false);
+      });
+  }, []);
   console.log(parkingsToMap);
 
   useEffect(() => {
@@ -60,6 +60,9 @@ function FindParking() {
     <div id={`${colorMode}-find-page`}>
       <div>
         <ParkingMap />
+      </div>
+      <div>
+        <MyLocation />
       </div>
       {/* <div id="find-map-container">
         <img
@@ -89,14 +92,26 @@ function FindParking() {
                   ></div>
                   <div id="find-anothr-location">
                     {<LocationSearchInput></LocationSearchInput>}
-                  <div id="find-anothr-location-process">
-                    <button onClick={()=>setWantToChangeLocation(!wantToChangeLocation)} className="find-anothr-location-process">
-                      Cancel
-                    </button>
-                    <button onClick={()=>console.log("i chose something else but now we need to run a useState")+setWantToChangeLocation(!wantToChangeLocation)} className="find-anothr-location-process">
-                      Submit
-                    </button>
-                  </div>
+                    <div id="find-anothr-location-process">
+                      <button
+                        onClick={() =>
+                          setWantToChangeLocation(!wantToChangeLocation)
+                        }
+                        className="find-anothr-location-process"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() =>
+                          console.log(
+                            "i chose something else but now we need to run a useState"
+                          ) + setWantToChangeLocation(!wantToChangeLocation)
+                        }
+                        className="find-anothr-location-process"
+                      >
+                        Submit
+                      </button>
+                    </div>
                   </div>
                 </div>
               ) : null}
@@ -136,29 +151,47 @@ function FindParking() {
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          {stillLoading?
-        <div>loading</div>  
-        :
-        parkingsToMap.map((item, index) => {
-          return (
-            <div key={index} className="find-parking-tab" onClick={()=> handleChosenParking(item._id)}>
-              <div className="find-parking-tab-distance">
-                nigga
-              </div>
-              <div className="find-parking-tab-price">{item.pricePerHour}</div>
-              <div className="find-parking-tab-hours">
-                {item.availableStart}-<br />{item.availableEnd}
-              </div>
-              <div className="find-parking-tab-picture">
-                <img
-                  className="parking-tab-picture"
-                  src=""
-                  alt=""
-                />
-              </div>
+
+          {stillLoading ? (
+            <div>loading</div>
+          ) : (
+            parkingsToMap.map((item) => {
+              return (
+                <div className="find-parking-tab" onClick={()=> handleChosenParking(item._id)}>
+                  <div className="find-parking-tab-distance">nigga</div>
+                  <div className="find-parking-tab-price">
+                    {item.pricePerHour}
+                  </div>
+                  <div className="find-parking-tab-hours">
+                    {item.availableStart}-<br />
+                    {item.availableEnd}
+                  </div>
+                  <div className="find-parking-tab-picture">
+                    <img className="parking-tab-picture" src="" alt="" />
+                  </div>
+                </div>
+              );
+            })
+          )}
+          <div onClick={()=>setWantToLoadMore(!wantToLoadMore)+console.log(wantToLoadMore)} id="load-more-parkings-tab">
+            <div id="load-more-parkings-icon-container">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25%"
+                height="75%"
+                fill="currentColor"
+                class="bi bi-plus-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+              </svg>
+
             </div>
-          );
-        })}
+            <div id="load-more-parkings-header-container">
+            <h1 id="load-more-parkings-header">Load more</h1>
+            </div>
+          </div>
         </div>
       </div>
     </div>

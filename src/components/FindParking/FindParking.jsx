@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react"
 import LocationSearchInput from "../AddParking/LocationSearchInput";
 import { CloudinaryContext, gooleAutoLocation } from "../../App";
 import axios from "axios";
+import ParkingMap from "./ParkingMap";
 
 function FindParking() {
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
@@ -49,13 +50,16 @@ function FindParking() {
 
   return (
     <div id={`${colorMode}-find-page`}>
-      <div id="find-map-container">
+      <div>
+        <ParkingMap />
+      </div>
+      {/* <div id="find-map-container">
         <img
           id="find-map-place-holder"
           src="src\Pictures&Media\map-place-holder.jpg"
           alt=""
         />
-      </div>
+      </div> */}
       <div id={`${colorMode}-find-container`}>
         <div id="find-container-filters">
           <div id="find-location-filter">

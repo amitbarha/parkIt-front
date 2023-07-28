@@ -1,26 +1,42 @@
 import "./find-parking.css";
 import { modeContext } from "../../App";
-import { useContext, useState, useEffect } from "react";
-import data from "./demiParknigData.json";
-import LocationSearchInput from "../AddParking/LocationSearchInput"
-import { CloudinaryContext, gooleAutoLocation } from '../../App';
+import { useContext, useState, useEffect } from "react"
+import LocationSearchInput from "../AddParking/LocationSearchInput";
+import { CloudinaryContext, gooleAutoLocation } from "../../App";
+import axios from "axios";
+import ParkingMap from "./ParkingMap";
 
 function FindParking() {
-  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation)
+  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
   const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
   const [toggleHours, setToggleHours] = useState("");
   const [sortBy, setSortBy] = useState("distance");
-  const [parkingsToMap, setParkingsToMap] = useState(data);
+  const [parkingsToMap, setParkingsToMap] = useState([""]);
+  const [stillLoading , setStillLoading]=useState(true)
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
-console.log(googleLocation);
+
+  useEffect(()=>{
+    axios
+    .get("http://localhost:5000/parking/fetchParking")
+    .then(({data})=>{
+      setParkingsToMap(data)
+      setStillLoading(false)
+    }) 
+    .catch((err)=>{
+      console.log(err.message);
+      setStillLoading(false)
+    })
+  },[])
+  console.log(parkingsToMap);
+  console.log(`i think it is still loading ${stillLoading}`);
+
   useEffect(() => {
     if (sortBy === "distance") {
       setToggleDistance("chosen-");
       setTogglePrice("");
       setToggleHours("");
-      console.log(parkingsToMap);
     } else if (sortBy === "price") {
       setToggleDistance("");
       setTogglePrice("chosen-");
@@ -34,13 +50,16 @@ console.log(googleLocation);
 
   return (
     <div id={`${colorMode}-find-page`}>
-      <div id="find-map-container">
+      <div>
+        <ParkingMap />
+      </div>
+      {/* <div id="find-map-container">
         <img
           id="find-map-place-holder"
           src="src\Pictures&Media\map-place-holder.jpg"
           alt=""
         />
-      </div>
+      </div> */}
       <div id={`${colorMode}-find-container`}>
         <div id="find-container-filters">
           <div id="find-location-filter">
@@ -52,48 +71,53 @@ console.log(googleLocation);
               >
                 change
               </button>
+              {wantToChangeLocation ? (
+                <div>
+                  <div
+                    onClick={() =>
+                      setWantToChangeLocation(!wantToChangeLocation)
+                    }
+                    id="around-find-anothr-location"
+                  ></div>
+                  <div id="find-anothr-location">
+                    {<LocationSearchInput></LocationSearchInput>}
+                  <div id="find-anothr-location-process">
+                    <button onClick={()=>setWantToChangeLocation(!wantToChangeLocation)} className="find-anothr-location-process">
+                      Cancel
+                    </button>
+                    <button onClick={()=>console.log("i chose something else but now we need to run a useState")+setWantToChangeLocation(!wantToChangeLocation)} className="find-anothr-location-process">
+                      Submit
+                    </button>
+                  </div>
+                  </div>
+                </div>
+              ) : null}
             </div>
-            {wantToChangeLocation == true ? 
-            <div id="find-user-change-location">{<LocationSearchInput />}</div> : null}
           </div>
           <div id="find-filters">
             <div id="find-filteres-sorting-section">
-              <div id="find-filters-switch-container">
-                <div
-                  onClick={() => setSortBy("distance")}
-                  className={`${toggleDistance}find-sort-by`}
-                >
-                  Distance
+              {wantToChangeLocation ? null : (
+                <div id="find-filters-switch-container">
+                  <div
+                    onClick={() => setSortBy("distance")}
+                    className={`${toggleDistance}find-sort-by`}
+                  >
+                    Distance
+                  </div>
+                  <div
+                    onClick={() => setSortBy("price")}
+                    className={`${togglePrice}find-sort-by`}
+                  >
+                    Price
+                  </div>
+                  <div
+                    onClick={() => setSortBy("hours")}
+                    className={`${toggleHours}find-sort-by`}
+                  >
+                    Longest
+                  </div>
                 </div>
-                <div
-                  onClick={() => setSortBy("price")}
-                  className={`${togglePrice}find-sort-by`}
-                >
-                  Price
-                </div>
-                <div
-                  onClick={() => setSortBy("hours")}
-                  className={`${toggleHours}find-sort-by`}
-                >
-                  Longest
-                </div>
-              </div>
-              {/* {toggleHours == "chosen-" ? (
-                <div id="find-hours-filter">
-                  <h3>From</h3>{" "}
-                  <input
-                    id="find-parking-start-time"
-                    className="find-parking-time-input"
-                    type="time"
-                  />
-                  <h3>until</h3>{" "}
-                  <input
-                    id="find-parking-finish-time"
-                    className="find-parking-time-input"
-                    type="time"
-                  />
-                </div>
-              ) : null} */}
+              )}
             </div>
           </div>
         </div>
@@ -104,33 +128,29 @@ console.log(googleLocation);
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          {parkingsToMap.parkings.map((item, index) => {
-            const {
-              distanceFromMe,
-              priceForHour,
-              availableStartHour,
-              availableFinishHour,
-              parkingPicture,
-            } = item;
-            return (
-              <div className="find-parking-tab">
-                <div className="find-parking-tab-distance">
-                  {distanceFromMe}
-                </div>
-                <div className="find-parking-tab-price">{priceForHour}</div>
-                <div className="find-parking-tab-hours">
-                  {availableStartHour}-{availableFinishHour}
-                </div>
-                <div className="find-parking-tab-picture">
-                  <img
-                    className="parking-tab-picture"
-                    src={parkingPicture}
-                    alt=""
-                  />
-                </div>
+          {stillLoading?
+        <div>loading</div>  
+        :
+        parkingsToMap.map((item) => {
+          return (
+            <div className="find-parking-tab">
+              <div className="find-parking-tab-distance">
+                nigga
               </div>
-            );
-          })}
+              <div className="find-parking-tab-price">{item.pricePerHour}</div>
+              <div className="find-parking-tab-hours">
+                {item.availableStart}-<br />{item.availableEnd}
+              </div>
+              <div className="find-parking-tab-picture">
+                <img
+                  className="parking-tab-picture"
+                  src=""
+                  alt=""
+                />
+              </div>
+            </div>
+          );
+        })}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 function Carousel({ children }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [length, setLength] = useState(children.length);
+  const [length, setLength] = useState(children?.length);
   const [touchPosition, setTouchPosition] = useState(null);
   const next = () => {
     if (currentIndex < length - 1) {
@@ -43,7 +43,7 @@ function Carousel({ children }) {
 
   // Set the length to match current children from props
   useEffect(() => {
-    setLength(children.length);
+    setLength(children?.length);
   }, [children]);
   return (
     <div className="carousel-container" dir="ltr">

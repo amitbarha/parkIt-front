@@ -24,6 +24,7 @@ function HomePage() {
   const [info, setInfo] = useState([])
   const [info1, setInfo1] = useState([])
   const [data, setData] = useState([])
+  const [ownerID, setownerID] = useState([])
 
 
   useEffect(() => {
@@ -47,6 +48,8 @@ function HomePage() {
       setData(data);
       setInfo(userData?.myParking)
     setInfo1(userData?.myPayment)
+    setownerID(data.ownerID)
+
     })
     .catch((err) => console.log(err.message));
     
@@ -83,7 +86,7 @@ function HomePage() {
     navigate(`/SoloParking/${id}`)
   }
 
-  console.log(info)
+
 
   return (
     <div className="home-page">
@@ -165,7 +168,7 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        {console.log(info1)}
+        {/* {console.log(info1)} */}
         {
           info1 && <HistoryOneParking
             price={info1[info1.length - 1]?.pricePerHour}
@@ -203,8 +206,9 @@ function HomePage() {
             </div>
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
-              <div className="name-state"><p>Availible Parkings:</p></div>
-              <div className="info-state"><h1>588</h1></div>
+              <div className="name-state"><p>parking usage:</p></div>
+              <div className="info-state"><h1>ibbnl</h1></div>
+              
             </div>
           </div>
         </Carousel>

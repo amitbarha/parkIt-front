@@ -27,29 +27,28 @@ function HomePage() {
 
 
   useEffect(() => {
-    if(localStorage.getItem('loggedUser'))
-    {
-        axios
-          .post("http://localhost:5000/user/translateToken",{token: localStorage.getItem('loggedUser') })
-          .then(({ data }) =>
-           setUserData(data),
-           )
-          .catch((err) => console.log(err.message));
-      
+    if (localStorage.getItem('loggedUser')) {
+      axios
+        .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
+        .then(({ data }) =>
+          setUserData(data),
+        )
+        .catch((err) => console.log(err.message));
+
     }
 
-    },[])
-  
-    useEffect(() => {
+  }, [])
+
+  useEffect(() => {
     axios
-    .get("http://localhost:5000/parking/fetchParking")
-    .then(({ data }) => {
-      setData(data);
-      setInfo(userData?.myParking)
-    setInfo1(userData?.myPayment)
-    })
-    .catch((err) => console.log(err.message));
-    
+      .get("http://localhost:5000/parking/fetchParking")
+      .then(({ data }) => {
+        setData(data);
+        setInfo(userData?.myParking)
+        setInfo1(userData?.myPayment)
+      })
+      .catch((err) => console.log(err.message));
+
   }, [userData])
 
 
@@ -78,7 +77,7 @@ function HomePage() {
   };
 
 
-  function handleGoToSoloParking(id){
+  function handleGoToSoloParking(id) {
     console.log("get into goto func")
     navigate(`/SoloParking/${id}`)
   }
@@ -124,7 +123,7 @@ function HomePage() {
         >
           {userData?.myParking && userData?.myParking.map((parking, index) => {
             return (
-              <div className="my-parking-box" key={index} onClick={()=>handleGoToSoloParking(userData?.myParking[index]._id)}>
+              <div className="my-parking-box" key={index} onClick={() => handleGoToSoloParking(userData?.myParking[index]._id)}>
                 <div className="my-parking">
                   <div id="my-parking-img">
                     <img

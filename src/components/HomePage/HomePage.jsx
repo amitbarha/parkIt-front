@@ -24,12 +24,12 @@ function HomePage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem("loggedUser")) {
+    if (localStorage.getItem('loggedUser')) {
       axios
-        .post("http://localhost:5000/user/translateToken", {
-          token: localStorage.getItem("loggedUser"),
-        })
-        .then(({ data }) => setUserData(data))
+        .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
+        .then(({ data }) =>
+          setUserData(data),
+        )
         .catch((err) => console.log(err.message));
     }
   }, []);
@@ -39,11 +39,12 @@ function HomePage() {
       .get("http://localhost:5000/parking/fetchParking")
       .then(({ data }) => {
         setData(data);
-        setInfo(userData?.myParking);
-        setInfo1(userData?.myPayment);
+        setInfo(userData?.myParking)
+        setInfo1(userData?.myPayment)
       })
       .catch((err) => console.log(err.message));
-  }, [userData]);
+  }, [userData])
+
 
   const parkingSpots = [
     {
@@ -69,9 +70,10 @@ function HomePage() {
     navigate("/FindParking");
   };
 
+
   function handleGoToSoloParking(id) {
-    console.log("get into goto func");
-    navigate(`/SoloParking/${id}`);
+    console.log("get into goto func")
+    navigate(`/SoloParking/${id}`)
   }
 
   console.log(info);
@@ -135,24 +137,25 @@ function HomePage() {
               : "boxes-my-parking-section"
           }`}
         >
-          {userData?.myParking &&
-            userData?.myParking.map((parking, index) => {
-              return (
-                <div
-                  className="my-parking-box"
-                  key={index}
-                  onClick={() =>
-                    handleGoToSoloParking(userData?.myParking[index]._id)
-                  }
-                >
-                  <div className="my-parking">
-                    <div id="my-parking-img">
-                      <img
-                        width="100"
-                        height="100"
-                        src={parking.photos[0]}
-                        alt="parking"
-                      />
+
+          {userData?.myParking && userData?.myParking.map((parking, index) => {
+            return (
+              <div className="my-parking-box" key={index} onClick={() => handleGoToSoloParking(userData?.myParking[index]._id)}>
+                <div className="my-parking">
+                  <div id="my-parking-img">
+                    <img
+                      width="100"
+                      height="100"
+                      src={
+                        parking.photos[0]
+                      }
+                      alt="parking"
+                    />
+                  </div>
+                  <div className="text-overlay">
+                    <div>
+                      <p>parking name: {parking.parkingLocation}</p>
+
                     </div>
                     <div className="text-overlay">
                       <div>

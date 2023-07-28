@@ -73,7 +73,6 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">Password: EXAMPLE</div>
           </div>
-          <h6 id="license-pate-semi-header">License plate</h6>
           <div className={`${colorMode}-profile-detail`}>
             
             <div className="profile-detail-divforicon">

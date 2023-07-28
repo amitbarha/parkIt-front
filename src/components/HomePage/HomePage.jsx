@@ -33,7 +33,6 @@ function HomePage() {
           .post("http://localhost:5000/user/translateToken",{token: localStorage.getItem('loggedUser') })
           .then(({ data }) =>
            setUserData(data),
-           getData()
            )
           .catch((err) => console.log(err.message));
       
@@ -46,16 +45,13 @@ function HomePage() {
     .get("http://localhost:5000/parking/fetchParking")
     .then(({ data }) => {
       setData(data);
+      setInfo(userData?.myParking)
+    setInfo1(userData?.myPayment)
     })
     .catch((err) => console.log(err.message));
     
   }, [userData])
 
-
-  const getData = () => {
-    setInfo(userData?.myParking)
-    setInfo1(userData?.myPayment)
-  }
 
   const parkingSpots = [
     {
@@ -169,7 +165,7 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        {console.log(info1[info1.length - 1]?.date)}
+        {console.log(info1)}
         {
           info1 && <HistoryOneParking
             price={info1[info1.length - 1]?.pricePerHour}
@@ -190,7 +186,7 @@ function HomePage() {
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
               <div className="name-state"><p>Availible Parkings:</p></div>
-              <div className="info-state"><h1>{data.length}</h1>
+              <div className="info-state"><h1>{data?.length}</h1>
               </div>
             </div>
             <div className="box-stat">

@@ -30,7 +30,6 @@ function FindParking() {
     })
   },[])
   console.log(parkingsToMap);
-  console.log(`i think it is still loading ${stillLoading}`);
 
   useEffect(() => {
     if (sortBy === "distance") {

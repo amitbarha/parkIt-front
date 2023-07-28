@@ -25,7 +25,7 @@ function Soloinner({name,IsSomeOneParking,Address,StartHour,EndHour,Price,Photos
             <Carousel>
                 {Photos?.map((element,index)=>{
                     return(
-                   <img key={index} src={element}></img>  
+                   <img className='parking-img' key={index} src={element}></img>  
                     )
                 })}
                                    

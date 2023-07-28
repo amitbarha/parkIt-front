@@ -11,6 +11,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 function SoloParking() {
+
+  const [availableStartChange, setAvailableStartChange]=useState("");
+  const [availableEndChange,setAvailableEndChange]=useState("")
+  const [pricePerHourChange, setPricePerHourChange]=useState("")
+
   const { parkingId } = useParams();
   console.log(parkingId, "parkingId");
 
@@ -50,25 +55,49 @@ function SoloParking() {
 
   function handleParkingChange() {
     console.log("parking info change");
-    //need to add axios
-    //need to add no option for change if someone parking
+    console.log(availableStartChange,availableEndChange,pricePerHourChange)
+    if(oneParkingdata?.availableToPark==true){
+      return(
+        alert("can't change parking detail while someone is park")
+      )
+    }
+    else{
+       if(availableStartChange!=null&&availableEndChange!=null&&pricePerHourChange!=null){
+        const _id=parkingId;
+        axios
+        .patch("http://localhost:5000/parking/updateParking",
+         {_id:_id,availableStart:availableStartChange,availableEnd:availableEndChange,pricePerHour:pricePerHourChange})
+        .then((data) =>{
+        console.log("parking was update")
+        navigate(`/homePage`)     
+      })
+      .catch((err) => console.log(err));
+       }
+       else{
+        alert("you need to fill all fields")
+       }
+    }
   }
 
   function handleParkingDelete() {
-    const _id=parkingId
-    console.log(_id,"idididi")
-    console.log("parking delete");
-    axios
-    .delete("http://localhost:5000/parking/deleteParking", {data:{_id:_id}})
-    .then((data) =>{
-      console.log("parking was delete")
-      navigate(`/homePage`)     
-    })
-    .catch((err) => console.log(err));
-
-    //need to add axios
-    //need to make usenavigate to home page
-    //need to add no option to delete if someone parking
+    console.log(availableStart,availableEnd,pricePerHour)
+    if(oneParkingdata?.availableToPark==false){
+      return(
+        alert("can't delete parking while someone is park")
+      )
+    }
+    else{
+      const _id=parkingId
+      console.log(_id,"idididi")
+      console.log("parking delete");
+      axios
+      .delete("http://localhost:5000/parking/deleteParking", {data:{_id:_id}})
+      .then((data) =>{
+        console.log("parking was delete")
+        navigate(`/homePage`)     
+      })
+      .catch((err) => console.log(err));
+    }
   }
 
   return (
@@ -107,15 +136,15 @@ function SoloParking() {
             <div id="edit-delete-add-top">
               <div>
                 <div>start time:</div>
-                <input type="time"></input>
+                <input type="time" onChange={(e)=>setAvailableStartChange(e.target.value)}></input>
               </div>
               <div>
                 <div>end time:</div>
-                <input type="time"></input>
+                <input type="time" onChange={(e)=>setAvailableEndChange(e.target.value)}></input>
               </div>
             </div>
             <div id="edit-delete-add-bottom">
-              <TextField label="enter your new price"></TextField>
+              <TextField label="enter your new price" onChange={(e)=>setPricePerHourChange(e.target.value)}></TextField>
               <button id="savechange-btn" onClick={() => handleParkingChange()}>
                 save changes
               </button>

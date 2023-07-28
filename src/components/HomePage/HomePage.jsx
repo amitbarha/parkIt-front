@@ -19,9 +19,11 @@ function HomePage() {
   const [startTimer, setStartTimer] = useState(false);
   const { userData, setUserData } = useContext(userDataContext);
   const [Time, setTime] = useState(false);
-  const [info, setInfo] = useState([]);
-  const [info1, setInfo1] = useState([]);
-  const [data, setData] = useState([]);
+  const [info, setInfo] = useState([])
+  const [info1, setInfo1] = useState([])
+  const [data, setData] = useState([])
+  const [ownerID, setownerID] = useState([])
+
 
   useEffect(() => {
     if (localStorage.getItem('loggedUser')) {
@@ -36,13 +38,17 @@ function HomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
-      .then(({ data }) => {
-        setData(data);
-        setInfo(userData?.myParking)
-        setInfo1(userData?.myPayment)
-      })
-      .catch((err) => console.log(err.message));
+
+    .get("http://localhost:5000/parking/fetchParking")
+    .then(({ data }) => {
+      setData(data);
+      setInfo(userData?.myParking)
+    setInfo1(userData?.myPayment)
+    setownerID(data.ownerID)
+
+    })
+    .catch((err) => console.log(err.message));
+    
   }, [userData])
 
 
@@ -76,7 +82,7 @@ function HomePage() {
     navigate(`/SoloParking/${id}`)
   }
 
-  console.log(info);
+
 
   return (
     <div className="home-page">
@@ -186,9 +192,10 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        {console.log(info1)}
-        {info1 && (
-          <HistoryOneParking
+
+        {/* {console.log(info1)} */}
+        {
+          info1 && <HistoryOneParking
             price={info1[info1.length - 1]?.pricePerHour}
             name={info1[info1.length - 1]?.parkName}
             startTime={info1[info1.length - 1]?.startTime}
@@ -254,6 +261,9 @@ function HomePage() {
               </div>
             </div>
             <div className="box-stat">
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
+              <div className="name-state"><p>parking usage:</p></div>
+              <div className="info-state"><h1>ibbnl</h1></div>
               <div className="icon-state">
                 <img
                   width="50"

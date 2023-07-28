@@ -5,6 +5,8 @@ import LocationSearchInput from "../AddParking/LocationSearchInput";
 import { CloudinaryContext, gooleAutoLocation } from "../../App";
 import axios from "axios";
 import ParkingMap from "./ParkingMap";
+import { useNavigate } from "react-router";
+
 
 function FindParking() {
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
@@ -16,6 +18,9 @@ function FindParking() {
   const [parkingsToMap, setParkingsToMap] = useState([""]);
   const [stillLoading , setStillLoading]=useState(true)
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
+  const navigate = useNavigate();
+
+
 
   useEffect(()=>{
     axios
@@ -46,6 +51,10 @@ function FindParking() {
       setToggleHours("chosen-");
     }
   }, [sortBy]);
+
+  const handleChosenParking = (id) =>{
+    navigate(`/FindParking/${id}`)
+  }
 
   return (
     <div id={`${colorMode}-find-page`}>
@@ -130,9 +139,9 @@ function FindParking() {
           {stillLoading?
         <div>loading</div>  
         :
-        parkingsToMap.map((item) => {
+        parkingsToMap.map((item, index) => {
           return (
-            <div className="find-parking-tab">
+            <div key={index} className="find-parking-tab" onClick={()=> handleChosenParking(item._id)}>
               <div className="find-parking-tab-distance">
                 nigga
               </div>

@@ -31,7 +31,10 @@ function HomePage() {
     {
         axios
           .post("http://localhost:5000/user/translateToken",{token: localStorage.getItem('loggedUser') })
-          .then(({ data }) => setUserData(data))
+          .then(({ data }) =>
+           setUserData(data),
+           getData()
+           )
           .catch((err) => console.log(err.message));
       
     }

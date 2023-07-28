@@ -66,7 +66,6 @@ function App() {
                 <Route path="payingHistory" element={<PayingHistory />}></Route>
                 <Route path="SoloParking/:parkingId" element={<SoloParking />}></Route>
                 <Route path="Onepick" element={<Onepick />}></Route>
-
               </Route>
             </Routes>
           </div>

@@ -27,6 +27,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "cloudinary-react": "^1.8.1",
+    "google-distance-matrix": "^1.1.1",
     "google-map-react": "^2.2.1",
     "google-maps-react-markers": "^1.2.4",
     "mapbox-gl": "^2.15.0",

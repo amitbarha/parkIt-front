@@ -9,8 +9,7 @@ import ParkingMap from "./ParkingMap";
 import { useNavigate } from "react-router";
 import "react-spring-bottom-sheet/dist/style.css";
 import BottomSheet from "./BottomSheets";
-import NavigationIcon from '@mui/icons-material/Navigation';
-
+import NavigationIcon from "@mui/icons-material/Navigation";
 
 function FindParking() {
   const {
@@ -20,26 +19,30 @@ function FindParking() {
     setParkingId,
     parkingIdData,
     setParkingIdData,
-  } = useContext(ChosenParkingContext);  const { colorMode } = useContext(modeContext);
+    center,
+    setCenter,
+  } = useContext(ChosenParkingContext);
+  const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
   const [toggleHours, setToggleHours] = useState("");
   const [sortBy, setSortBy] = useState("distance");
   const [parkingsToMap, setParkingsToMap] = useState([""]);
   const [stillLoading, setStillLoading] = useState(true);
+  const [Loading, setLoading] = useState(true);
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
   const [wantToLoadMore, setWantToLoadMore] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleParkingClick = (id) => {
-    console.log(id,"dflkgjdkuhgu");
+    console.log(id, "dflkgjdkuhgu");
     setOpenSpring(!openSpring);
     setParkingId(id);
     console.log(id);
-    const parking = parkingsToMap?.find((park) => park._id === id)
-    setParkingIdData(parking)
+    const parking = parkingsToMap?.find((park) => park._id === id);
+    setParkingIdData(parking);
     console.log(parking);
   };
 
@@ -49,6 +52,7 @@ function FindParking() {
       .then(({ data }) => {
         setParkingsToMap(data);
         setStillLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -56,6 +60,14 @@ function FindParking() {
       });
   }, []);
   console.log(parkingsToMap);
+
+
+
+//   function calcTime(start, end) {
+//     let startHoursArr = parseInt(start);
+//     let endHoursArr = parseInt(end);
+//     console.log(startHoursArr, endHoursArr);
+//   }
 
   // function calcTime(start ,  end ){
   //   let parkingTime
@@ -96,13 +108,21 @@ function FindParking() {
       setToggleDistance("");
       setTogglePrice("chosen-");
       setToggleHours("");
-      setParkingsToMap(parkingsToMap.sort((a,b)=>a.pricePerHour-b.pricePerHour))
+      setParkingsToMap(
+        parkingsToMap.sort((a, b) => a.pricePerHour - b.pricePerHour)
+      );
       console.log(parkingsToMap);
     } else if (sortBy === "hours") {
       setToggleDistance("");
       setTogglePrice("");
       setToggleHours("chosen-");
-      setParkingsToMap(parkingsToMap.sort((a,b)=>calcTime(a.availableStart , a.availableEnd)-calcTime(b.availableStart , b.availableEnd)))
+      setParkingsToMap(
+        parkingsToMap.sort(
+          (a, b) =>
+            calcTime(a.availableStart, a.availableEnd) -
+            calcTime(b.availableStart, b.availableEnd)
+        )
+      );
     }
   }, [sortBy]);
 
@@ -205,57 +225,62 @@ function FindParking() {
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          <BottomSheet/>
+          <BottomSheet />
           <div id="find-showing-parking-container">
-          {stillLoading ? (
-            <div>loading</div>
+            {stillLoading ? (
+              <div>loading</div>
             ) : (
-            parkingsToMap.map((item) => {
-              return (
-                <div
-                  className="find-parking-tab"
-                  // onClick={() => handleChosenParking(item._id)}
-                  onClick={()=>handleParkingClick(item._id)}
-                >
-
-                  <div className="find-parking-tab-distance">nigga</div>
-                  <div className="find-parking-tab-price">
-                    {item.pricePerHour}
+              parkingsToMap.map((item, index) => {
+                return (
+                  <div
+                    className="find-parking-tab"
+                    // onClick={() => handleChosenParking(item._id)}
+                    onClick={() => handleParkingClick(item._id)}
+                  >
+                    <div className="find-parking-tab-distance">
+                      100
+                    </div>
+                    <div className="find-parking-tab-price">
+                      {item.pricePerHour}
+                    </div>
+                    <div className="find-parking-tab-hours">
+                      {item.availableStart}-<br />
+                      {item.availableEnd}
+                    </div>
+                    <div className="find-parking-tab-picture">
+                      <img
+                        className="parking-tab-picture"
+                        src={item.photos[0]}
+                        alt=""
+                      />
+                    </div>
                   </div>
-                  <div className="find-parking-tab-hours">
-                    {item.availableStart}-<br />
-                    {item.availableEnd}
-                  </div>
-                  <div className="find-parking-tab-picture">
-                    <img className="parking-tab-picture" src={item.photos[0]} alt="" />
-                  </div>
-                </div>
-              );
-            })
+                );
+              })
             )}
-          <div
-            onClick={() =>
-              setWantToLoadMore(!wantToLoadMore) + console.log(wantToLoadMore)
-            }
-            id="load-more-parkings-tab"
+            <div
+              onClick={() =>
+                setWantToLoadMore(!wantToLoadMore) + console.log(wantToLoadMore)
+              }
+              id="load-more-parkings-tab"
             >
-            <div id="load-more-parkings-icon-container">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25%"
-                height="75%"
-                fill="currentColor"
-                class="bi bi-plus-circle"
-                viewBox="0 0 16 16"
+              <div id="load-more-parkings-icon-container">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25%"
+                  height="75%"
+                  fill="currentColor"
+                  class="bi bi-plus-circle"
+                  viewBox="0 0 16 16"
                 >
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-              </svg>
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+              <div id="load-more-parkings-header-container">
+                <h1 id="load-more-parkings-header">Load more</h1>
+              </div>
             </div>
-            <div id="load-more-parkings-header-container">
-              <h1 id="load-more-parkings-header">Load more</h1>
-            </div>
-                </div>
           </div>
         </div>
       </div>

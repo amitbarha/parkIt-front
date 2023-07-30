@@ -1,5 +1,5 @@
 import "./find-parking.css";
-import { modeContext } from "../../App";
+import { ChosenParkingContext, modeContext } from "../../App";
 import { useContext, useState, useEffect } from "react";
 import LocationSearchInput from "../AddParking/LocationSearchInput";
 import MyLocation from "./MyLocation";
@@ -7,10 +7,13 @@ import { CloudinaryContext, gooleAutoLocation } from "../../App";
 import axios from "axios";
 import ParkingMap from "./ParkingMap";
 import { useNavigate } from "react-router";
+import "react-spring-bottom-sheet/dist/style.css";
+import BottomSheet from "./BottomSheets";
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 
 function FindParking() {
-  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
+  const {openSpring, setOpenSpring, parkingId, setParkingId} = useContext(ChosenParkingContext);
   const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
@@ -19,7 +22,9 @@ function FindParking() {
   const [parkingsToMap, setParkingsToMap] = useState([""]);
   const [stillLoading, setStillLoading] = useState(true);
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
-  const [wantToLoadMore , setWantToLoadMore]=useState(false)
+  const [wantToLoadMore, setWantToLoadMore] = useState(false);
+  const [open, setOpen] = useState(false)
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,9 +57,9 @@ function FindParking() {
     }
   }, [sortBy]);
 
-  const handleChosenParking = (id) =>{
-    navigate(`/FindParking/${id}`)
-  }
+  const handleChosenParking = (id) => {
+    navigate(`/FindParking/${id}`);
+  };
 
   return (
     <div id={`${colorMode}-find-page`}>
@@ -151,13 +156,16 @@ function FindParking() {
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-
+          <BottomSheet />
           {stillLoading ? (
             <div>loading</div>
           ) : (
             parkingsToMap.map((item) => {
               return (
-                <div className="find-parking-tab" onClick={()=> handleChosenParking(item._id)}>
+                <div
+                  className="find-parking-tab"
+                  onClick={() => handleChosenParking(item._id)}
+                >
                   <div className="find-parking-tab-distance">nigga</div>
                   <div className="find-parking-tab-price">
                     {item.pricePerHour}
@@ -173,7 +181,12 @@ function FindParking() {
               );
             })
           )}
-          <div onClick={()=>setWantToLoadMore(!wantToLoadMore)+console.log(wantToLoadMore)} id="load-more-parkings-tab">
+          <div
+            onClick={() =>
+              setWantToLoadMore(!wantToLoadMore) + console.log(wantToLoadMore)
+            }
+            id="load-more-parkings-tab"
+          >
             <div id="load-more-parkings-icon-container">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -186,10 +199,9 @@ function FindParking() {
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
               </svg>
-
             </div>
             <div id="load-more-parkings-header-container">
-            <h1 id="load-more-parkings-header">Load more</h1>
+              <h1 id="load-more-parkings-header">Load more</h1>
             </div>
           </div>
         </div>

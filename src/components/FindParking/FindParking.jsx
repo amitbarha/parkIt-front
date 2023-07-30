@@ -57,6 +57,13 @@ function FindParking() {
   }, []);
   console.log(parkingsToMap);
 
+  function calcTime(start ,  end ){
+    let startHoursArr=parseInt(start)
+    let endHoursArr=parseInt(end)
+    console.log(startHoursArr , endHoursArr );
+    
+  }
+
   useEffect(() => {
     if (sortBy === "distance") {
       setToggleDistance("chosen-");
@@ -66,10 +73,13 @@ function FindParking() {
       setToggleDistance("");
       setTogglePrice("chosen-");
       setToggleHours("");
+      setParkingsToMap(parkingsToMap.sort((a,b)=>a.pricePerHour-b.pricePerHour))
+      console.log(parkingsToMap);
     } else if (sortBy === "hours") {
       setToggleDistance("");
       setTogglePrice("");
       setToggleHours("chosen-");
+      setParkingsToMap(parkingsToMap.sort((a,b)=>calcTime(a.availableStart , a.availableEnd)-calcTime(b.availableStart , b.availableEnd)))
     }
   }, [sortBy]);
 
@@ -172,10 +182,11 @@ function FindParking() {
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          <BottomSheet />
+          <BottomSheet/>
+          <div id="find-showing-parking-container">
           {stillLoading ? (
             <div>loading</div>
-          ) : (
+            ) : (
             parkingsToMap.map((item) => {
               return (
                 <div
@@ -183,6 +194,7 @@ function FindParking() {
                   // onClick={() => handleChosenParking(item._id)}
                   onClick={()=>handleParkingClick(item._id)}
                 >
+
                   <div className="find-parking-tab-distance">nigga</div>
                   <div className="find-parking-tab-price">
                     {item.pricePerHour}
@@ -197,13 +209,13 @@ function FindParking() {
                 </div>
               );
             })
-          )}
+            )}
           <div
             onClick={() =>
               setWantToLoadMore(!wantToLoadMore) + console.log(wantToLoadMore)
             }
             id="load-more-parkings-tab"
-          >
+            >
             <div id="load-more-parkings-icon-container">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +224,7 @@ function FindParking() {
                 fill="currentColor"
                 class="bi bi-plus-circle"
                 viewBox="0 0 16 16"
-              >
+                >
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
               </svg>
@@ -220,6 +232,7 @@ function FindParking() {
             <div id="load-more-parkings-header-container">
               <h1 id="load-more-parkings-header">Load more</h1>
             </div>
+                </div>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Register/Register.css"
+import { Link} from 'react-router-dom';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,23 +32,71 @@ const Register = () => {
   };
 
   return (
-    <div className="main-page">
-      <div className="register-container">
-        <form className="form" onSubmit={(e) => handleSubmitForm(e)}>
-          <h1>Register</h1>
-          <input type="text" placeholder="username" />
-          <input type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
-          <input type="text" placeholder="Phone Number" />
-          <input type="Email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <input type="text" placeholder="licensePlates" />
-          {errorMessage1 && <p className="error-message">{errorMessage1}</p>}
-          <button id="reg-btn" type="submit">Register</button>
-        </form>
-      </div>
+    <div className="reg-background">
+          <div className="reg-container">
+	<form className="reg-screen" onSubmit={(e) => handleSubmitForm(e)}>
+		<div className="reg-screen__content">
+      <h1>Register</h1>
+				<div className="reg__field">
+					<input type="text" className="reg__input" placeholder="Username:"/>
+				</div>
+				<div className="reg__field">
+					<input type="text" className="reg__input" placeholder="First Name:"/>
+				</div>
+        <div className="reg__field">
+					<input type="text" className="reg__input" placeholder="Last Name:"/>
+				</div>
+        <div className="reg__field">
+					<input type="text" className="reg__input" placeholder="Phone Number:"/>
+				</div>
+        <div className="reg__field">
+					<input type="email" className="reg__input" placeholder="Email:"/>
+				</div>
+        <div className="reg__field">
+					<input type="password" className="reg__input" placeholder="Password:"/>
+				</div>
+        <div className="reg__field">
+					<input type="text" className="reg__input" placeholder="License Plates:"/>
+				</div>
+        {errorMessage1 && <p className="error-message">{errorMessage1}</p>}
+				<button type="submit" className="button reg__submit">
+					<span className="reg-button__text">Register Now</span>
+					<img className="reg-button__icon" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/7875b5/chevron-right.png" alt="chevron-right"/>
+				</button>
+        <Link className="link-to-login" to={"/"}>Back to Log In</Link>
+        </div>
+		<div className="screen__background">
+			<span className="reg-screen__background__shape reg-screen__background__shape4"></span>
+			<span className="reg-screen__background__shape reg-screen__background__shape3"></span>		
+			<span className="reg-screen__background__shape reg-screen__background__shape2"></span>
+			<span className="reg-screen__background__shape reg-screen__background__shape1"></span>
+		</div>		
+	</form>
+</div>
     </div>
   );
 };
 
 export default Register;
+
+
+
+
+
+{/* <div className="main-page">
+      <div className="register-container">
+        <form className="form" onSubmit={(e) => handleSubmitForm(e)}>
+          <h1>Register</h1>
+          <input type="text" placeholder="username:" />
+          <input type="text" placeholder="First Name:" />
+          <input type="text" placeholder="Last Name:" />
+          <input type="text" placeholder="Phone Number:" />
+          <input type="Email" placeholder="Email:" />
+          <input type="password" placeholder="Password:" />
+          <input type="text" placeholder="licensePlates:" />
+          {errorMessage1 && <p className="error-message">{errorMessage1}</p>}
+          <button id="reg-btn" type="submit">Register</button>
+          <Link to={"/"}>Back to Log In</Link>
+        </form>
+      </div>
+    </div> */}

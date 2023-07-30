@@ -1,0 +1,71 @@
+.bottom-sheet {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80%; /* Set the desired height of the bottom sheet */
+    background-color: #ffffff;
+    padding: 16px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  .close-button{
+    all: unset;
+    cursor: pointer;
+    width: 100%;
+  }
+  .image-and-title-parking{
+    display: flex;
+    justify-content: space-between;
+  }
+  .title-parking{
+    
+  }
+  .parking-name-chosen{
+    font-weight: bold;
+    font-size: 28px;
+  }
+  .image-chosen{
+    height: 100px;
+    width: 100px;
+  }
+  .price-div{
+    text-align: center;
+    font-size: 24px;
+    height: 15vw;
+    background-color: var( --light-header);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .price-bold{
+    font-weight: bold;
+  }
+  .line-icon{
+    display: flex;
+    align-items: center;
+  }
+  .text-for-icon{
+    width: 80%;
+    text-align: center;
+    font-size: 20px;
+  }
+  .parking-img-chosen{
+    height: 150px;
+    /* width: 150px; */
+    object-fit: contain;
+  }
+  .start-parking-button{
+    position: absolute;
+    bottom: 1%;
+    display: flex;
+    justify-content: center;
+  }
+  .button-parking{
+    width: 90vw;
+    height: 10vh;
+    font-size: 30px;
+  }
+  
+  /* Add any other styles as needed */
+  

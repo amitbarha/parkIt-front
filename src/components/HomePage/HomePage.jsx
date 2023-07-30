@@ -25,7 +25,7 @@ function HomePage() {
   const [Time, setTime] = useState(false);
   const [info, setInfo] = useState([])
   const [info1, setInfo1] = useState([])
-  const [data, setData] = useState([])
+  const [Data, setData] = useState([])
 
 
   useEffect(() => {
@@ -88,6 +88,11 @@ function HomePage() {
         )
         .catch((err) => console.log(err.response.data));  
   }
+=======
+  }  
+  // const permittedValues = Data?.map(value => value.pricePerHour);
+  // const snatch=permittedValues?.reduce((a,b)=>{return (a*1+b*1)/Data?.length}) 
+
 
   return (
     <div className="home-page">
@@ -169,7 +174,6 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        {console.log(info1)}
         {
           info1 && <HistoryOneParking
             price={info1[info1.length - 1]?.pricePerHour}
@@ -190,7 +194,7 @@ function HomePage() {
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
               <div className="name-state"><p>Availible Parkings:</p></div>
-              <div className="info-state"><h1>{data?.length}</h1>
+              <div className="info-state"><h1>{Data?.length}</h1>
               </div>
             </div>
             <div className="box-stat">
@@ -203,7 +207,7 @@ function HomePage() {
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/average-2.png" alt="average-2" /></div>
               <div className="name-state"><p>Average P/H:</p></div>
-              <div className="info-state"><h1>15₪</h1></div>
+              <div className="info-state"><h1>666₪</h1></div>
             </div>
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>

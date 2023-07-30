@@ -21,7 +21,7 @@ const Register = () => {
     try {
       const newuser = await axios.post(
         "http://localhost:5000/user/publishUser",
-        {username,firstName,lastName,phoneNumber,email,password }
+        {username,firstName,lastName,phoneNumber,email,password,licensePlates }
       );
       console.log(newuser);
       localStorage.setItem("loggedUser", newuser.data);
@@ -59,10 +59,12 @@ const Register = () => {
 					<input type="text" className="reg__input" placeholder="License Plates:"/>
 				</div>
         {errorMessage1 && <p className="error-message">{errorMessage1}</p>}
-				<button type="submit" className="button reg__submit">
-					<span className="reg-button__text">Register Now</span>
+        <Link className="link-to-continue" to={"/continue"}>
+        <button type="submit" className="button reg__submit">
+					<span className="reg-button__text">Continue</span>
 					<img className="reg-button__icon" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/7875b5/chevron-right.png" alt="chevron-right"/>
 				</button>
+        </Link>
         <Link className="link-to-login" to={"/"}>Back to Log In</Link>
         </div>
 		<div className="screen__background">

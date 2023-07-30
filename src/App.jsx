@@ -20,17 +20,29 @@ export const modeContext = createContext();
 export const gooleAutoLocation = createContext();
 export const CloudinaryContext = createContext();
 export const userDataContext = createContext();
+export const ChosenParkingContext = createContext();
 const croods = {
   lat: "",
   lng: "",
   fullAddress: "",
 };
 
+
 function App() {
   const [colorMode, setColorMode] = useState("light");
   const [googleLocation, setGoogleLocation] = useState(croods);
   const [cloudinaryImg, setCloudinaryImg] = useState([]);
   const [userData, setUserData] = useState();
+  const [openSpring, setOpenSpring] = useState(false);
+  const [parkingId, setParkingId] = useState();
+  const [parkingIdData, setParkingIdData] = useState();
+  const mapToSpring = 
+  {
+    openSpring: openSpring,
+    setOpenSpring: setOpenSpring,
+    parkingId: parkingId,
+    setParkingId: setParkingId
+  }
 
 
   useEffect(() => {
@@ -51,6 +63,7 @@ function App() {
     <modeContext.Provider value={{ colorMode, setColorMode }}>
       <gooleAutoLocation.Provider value={{ googleLocation, setGoogleLocation }}>
         <CloudinaryContext.Provider value={{ cloudinaryImg, setCloudinaryImg }}>
+          <ChosenParkingContext.Provider value={{openSpring, setOpenSpring, parkingId, setParkingId,parkingIdData, setParkingIdData}}>
           <div className="app-container">
             <Routes>
               <Route index element={<Login />}></Route>
@@ -72,6 +85,7 @@ function App() {
               </Route>
             </Routes>
           </div>
+          </ChosenParkingContext.Provider>
         </CloudinaryContext.Provider>
       </gooleAutoLocation.Provider>
     </modeContext.Provider>

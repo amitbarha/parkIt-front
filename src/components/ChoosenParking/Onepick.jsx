@@ -13,7 +13,6 @@ function Onepick() {
   const { parkingId } = useParams();
   console.log("id", parkingId);
   const [parkingData, setParkingData] = useState();
-
   const[ownerParkingData,setOwnerParkingData]=useState()
 
 

@@ -7,7 +7,6 @@ import HistoryOneParking from "../SoloParking/HistoryOnePark";
 import axios from "axios";
 import { userDataContext } from "../../App";
 import Timer from "./Timer";
-import Popup from "./Popup";
 
 
 
@@ -19,8 +18,6 @@ import Popup from "./Popup";
 }
 
 function HomePage() {
-
-  const notify = () => toast("Wow so easy!");
 
   const navigate = useNavigate();
   const [timerWork, setTimerWork] = useState();
@@ -83,6 +80,13 @@ function HomePage() {
 
   function stopParkingFunc(){
     console.log("stop")
+    axios
+        .patch("http://localhost:5000/payment/updatePayment", { token: localStorage.getItem('loggedUser') })
+        .then(({ data }) =>{
+          navigate("/Receipt");
+        }          
+        )
+        .catch((err) => console.log(err.response.data));  
   }
 
   return (
@@ -103,7 +107,6 @@ function HomePage() {
             <img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/>
             </div>
           </div>
-          <Popup></Popup>
         </div>
       )}
       {!timerWork && (

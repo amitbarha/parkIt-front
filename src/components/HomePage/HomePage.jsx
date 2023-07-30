@@ -88,8 +88,8 @@ function HomePage() {
         )
         .catch((err) => console.log(err.response.data));  
   }
-=======
-  }  
+
+   
   // const permittedValues = Data?.map(value => value.pricePerHour);
   // const snatch=permittedValues?.reduce((a,b)=>{return (a*1+b*1)/Data?.length}) 
 

@@ -6,6 +6,8 @@ import Carousel from "./CarouselStat";
 import HistoryOneParking from "../SoloParking/HistoryOnePark";
 import axios from "axios";
 import { userDataContext } from "../../App";
+import Timer from "./Timer";
+import Popup from "./Popup";
 
 
 
@@ -17,8 +19,11 @@ import { userDataContext } from "../../App";
 }
 
 function HomePage() {
+
+  const notify = () => toast("Wow so easy!");
+
   const navigate = useNavigate();
-  const [startTimer, setStartTimer] = useState(false);
+  const [timerWork, setTimerWork] = useState();
   const { userData, setUserData } = useContext(userDataContext)
   const [Time, setTime] = useState(false);
   const [info, setInfo] = useState([])
@@ -29,10 +34,13 @@ function HomePage() {
   useEffect(() => {
     if (localStorage.getItem("loggedUser")) {
       axios
-        .post("http://localhost:5000/user/translateToken", {
-          token: localStorage.getItem("loggedUser"),
-        })
-        .then(({ data }) => setUserData(data))
+        .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
+        .then(({ data }) =>{
+          setUserData(data)
+          setTimerWork(data.currentParking)
+        }          
+        )
+
         .catch((err) => console.log(err.message));
 
     }
@@ -63,14 +71,7 @@ function HomePage() {
       status: "available",
     },
   ];
-  // const handleStartTimer = () =>
-  // {
-  //   //this function will moved to start parking inside the parking page
-  //   setStartTimer(!startTimer)
-  //   const date = new Date();
-  //   const time = [date.getHours(), date.getMinutes()]
-  //   setTime(time)
-  // }
+ 
   const goToFindParkingPage = () => {
     navigate("/FindParking");
   };
@@ -80,17 +81,20 @@ function HomePage() {
     navigate(`/SoloParking/${id}`);
   }
 
-  console.log(info)
+  function stopParkingFunc(){
+    console.log("stop")
+  }
 
   return (
     <div className="home-page">
       <br />
       <br />
-      {/* {startTimer && (
+      {timerWork && (
+        
         <div className="timer-open-div">
           <div className="border-circle border-circle-timer">
-            <div className="circle circle-timer">
-              <h3>Start time: {`${Time[0]}:${Time[1]}`}</h3>
+            <div className="circle circle-timer" onClick={()=>stopParkingFunc()}>
+              <Timer startTime={userData.myPayment[userData.myPayment.length-1].date}/> 
               <div>Click to stop</div>
             </div>
           </div>
@@ -99,10 +103,10 @@ function HomePage() {
             <img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/>
             </div>
           </div>
+          <Popup></Popup>
         </div>
-      )} */}
-      {!startTimer && (
-        // <div className="border-circle" onClick={handleStartTimer}>
+      )}
+      {!timerWork && (
         <div className="border-circle">
           <div className="circle" onClick={goToFindParkingPage}>
             <h1>Find Parking Now!</h1>
@@ -206,7 +210,6 @@ function HomePage() {
           </div>
         </Carousel>
       </div>
-      {userData?.username}
     </div>
   );
 }

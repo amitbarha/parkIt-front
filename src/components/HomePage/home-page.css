@@ -7,8 +7,10 @@
 .home-page{
     width: 100vw;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
@@ -296,4 +298,16 @@ p{
   font-weight: 900;
   margin-left: 10px;
   margin-top: 10px;
+}
+.popup{
+  width: 70%;
+  height: 70%;
+  background-color: orange;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 70%;
 }

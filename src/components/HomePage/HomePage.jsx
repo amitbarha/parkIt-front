@@ -32,15 +32,15 @@ function HomePage() {
 
 
   useEffect(() => {
-    if (localStorage.getItem('loggedUser')) {
+    if (localStorage.getItem("loggedUser")) {
       axios
         .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
         .then(({ data }) =>{
           setUserData(data)
           setTimerWork(data.currentParking)
-        }
-          
+        }          
         )
+
         .catch((err) => console.log(err.message));
 
     }
@@ -52,12 +52,11 @@ function HomePage() {
       .get("http://localhost:5000/parking/fetchParking")
       .then(({ data }) => {
         setData(data);
-        setInfo(userData?.myParking)
-        setInfo1(userData?.myPayment)
+        setInfo(userData?.myParking);
+        setInfo1(userData?.myPayment);
       })
       .catch((err) => console.log(err.message));
-
-  }, [userData])
+  }, [userData]);
 
 
   const parkingSpots = [
@@ -77,10 +76,9 @@ function HomePage() {
     navigate("/FindParking");
   };
 
-
   function handleGoToSoloParking(id) {
-    console.log("get into goto func")
-    navigate(`/SoloParking/${id}`)
+    console.log("get into goto func");
+    navigate(`/SoloParking/${id}`);
   }
 
   function stopParkingFunc(){

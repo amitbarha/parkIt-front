@@ -136,15 +136,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Raleway, sans-serif;
   }
-  
-  body, html {
-    height: 100%;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-  }
+
   
   .reg-background {
     /* background: linear-gradient(90deg, #C7C5F4, #776BCC); */
@@ -163,6 +156,8 @@
     width: 100%;
     padding: 2rem;
     box-sizing: border-box;
+    overflow: hidden;
+    font-family: Raleway, sans-serif;
   }
   
   .reg-screen {

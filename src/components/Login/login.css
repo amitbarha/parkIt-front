@@ -272,6 +272,7 @@
   font-weight: 700;
   width: 75%;
   transition: .2s;
+  margin-top: 5px;
 }
 
 .login__input:active,

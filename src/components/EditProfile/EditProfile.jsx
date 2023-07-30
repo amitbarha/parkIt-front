@@ -8,14 +8,25 @@ import { useNavigate, useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
 function EditProfile() {
   const { colorMode, setColorMode } = useContext(modeContext);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/user/translateToken", {
+        token: localStorage.getItem("loggedUser"),
+      })
+      .then(({ data }) => {
+        setData(data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
 
   const form = useForm({
     defaultValues: {
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastNme: "",
       username: "",
-      password: "",
+      password:"",
       email: "",
       phone: "",
       licenses: [
@@ -26,6 +37,16 @@ function EditProfile() {
     },
   });
 
+  useEffect(() => {
+    form.setValue("firstName", data.firstName);
+    form.setValue("lastName", data.lastName);
+    form.setValue("username", data.username);
+    form.setValue("email", data.email);
+    form.setValue("phoneNumber", data.phoneNumber);
+  }, [data, form]);
+  const onFocus = () => {
+    setValue('firstName', ''); 
+  };
   const { register, control, handleSubmit, formState, setValue, reset } = form;
   const { errors } = formState;
 
@@ -37,6 +58,7 @@ function EditProfile() {
     name: "licenses",
     control,
   });
+  
 
   const onSubmit = (data) => {
     console.log("form submit!!!!!", data);
@@ -52,25 +74,28 @@ function EditProfile() {
             <TextField
               className="info-input"
               label="First name"
-              id="firstname"
-              {...register("firstname", { required: "firstname is required" })}
+              onFocus={onfocus}
+              id="firstName"
+              {...register("firstName", { required: "firstname is required" })}
             />
-            <p className="info-error">{errors.firstname?.message}</p>
+            <p className="info-error">{errors.firstName?.message}</p>
           </div>
 
           <div className="solo-info-container">
             <TextField
               className="info-input"
+              defaultValue={data.lastName}
               label="Last name"
-              id="lastname"
-              {...register("lastname", { required: "lastname is required" })}
+              id="lastName"
+              {...register("lastName", { required: "lastname is required" })}
             />
-            <p className="info-error">{errors.lastname?.message}</p>
+            <p className="info-error">{errors.lastName?.message}</p>
           </div>
 
           <div className="solo-info-container">
             <TextField
               className="info-input"
+              defaultValue={data.username}
               label="User name"
               id="username"
               {...register("username", { required: "username is required" })}
@@ -81,6 +106,7 @@ function EditProfile() {
           <div className="solo-info-container">
             <TextField
               className="info-input"
+              
               label="Password"
               id="password"
               {...register("password", { required: "password is required" })}
@@ -91,18 +117,20 @@ function EditProfile() {
           <div className="solo-info-container">
             <TextField
               className="info-input"
+              defaultValue={data.phoneNumber}
               label="Phone number"
-              id="phonenumber"
-              {...register("phonenumber", {
+              id="phoneNumber"
+              {...register("phoneNumber", {
                 required: "phonenumber is required",
               })}
             />
-            <p className="info-error">{errors.phonenumber?.message}</p>
+            <p className="info-error">{errors.phoneNumber?.message}</p>
           </div>
 
           <div className="solo-info-container">
             <TextField
               className="info-input"
+              defaultValue={data.email}
               label="Email "
               id="email"
               {...register("email", {

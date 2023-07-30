@@ -263,8 +263,9 @@
 }
 
 .parking-tab-picture{
-    width: 90%;
-    height: 90%;
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
 }
 
 #load-more-parkings-tab{

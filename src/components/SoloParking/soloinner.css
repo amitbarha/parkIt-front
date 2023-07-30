@@ -63,6 +63,12 @@
         border-radius: 15px;
         font-size: 2vw;
     }
+    .solo-parking-detail-comment{
+        width: 30%;
+        margin: 0.5vw;
+        border-radius: 15px;
+        font-size: 2vw;
+    }
     .icon-con{
         width: 2vw;
     }
@@ -76,4 +82,21 @@
 .parking-img{
     height: 30vh;
     object-fit: contain;
+}
+.solo-parking-detail-divfortext-comment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    word-wrap: break-word;
+    
+}
+.solo-parking-detail-comment{
+    display: flex;
+    background-color: var(--bg-200);
+    width: 80%;
+    margin: 2vw;
+    border-radius: 15px;
+    font-size: 4vw;
 }

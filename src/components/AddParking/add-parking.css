@@ -46,3 +46,6 @@
   .button-form:hover{
     background-color: #8c5fbfaf ;
   }
+  .addcomment{
+    min-height:300px ;
+  }

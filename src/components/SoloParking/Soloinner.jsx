@@ -1,6 +1,6 @@
 import Carousel from './Carousel';
 import './soloinner.css';
-function Soloinner({name,IsSomeOneParking,Address,StartHour,EndHour,Price,Photos}){
+function Soloinner({name,IsSomeOneParking,Address,StartHour,EndHour,Price,Photos,comments}){
    return(
     <>
         <div id='solo-parking-name'>{name}</div>
@@ -19,6 +19,10 @@ function Soloinner({name,IsSomeOneParking,Address,StartHour,EndHour,Price,Photos
         <div className='solo-parking-detail'>
             <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/ios/50/average-2.png" alt="average-2"/>|</div>
             <div className='solo-parking-detail-divfortext'>${Price} per hour</div>
+        </div>
+        <div className='solo-parking-detail-comment'>
+            <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/?size=512&id=38977&format=png" alt="average-2"/>|</div>
+            <div className='solo-parking-detail-divfortext-comment'>{comments}</div>
         </div>
 
         <div id='solo-parking-img-container'>

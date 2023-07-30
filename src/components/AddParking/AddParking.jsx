@@ -56,6 +56,7 @@ const AddParking = () => {
         lng: formData.lng,
         lat: formData.lat,
         ownerID: formData.ownerID,
+        comments:formData.comments
       })
       .then(({ data }) => {
         alert("Create parking complete!");
@@ -149,6 +150,26 @@ const AddParking = () => {
             />
           </div>
         </div>
+        <Controller
+          name="comments"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Enter further Comments: height,width and etc"
+              variant="outlined"
+              multiline='true'
+              inputProps={{
+                style: {
+                  height: "300px",
+                },
+              }}
+              required
+              type="text"
+            />
+          )}
+        />
         <br />
         <div>
           <UploadWidget />

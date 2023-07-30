@@ -110,6 +110,7 @@ function SoloParking() {
         EndHour={oneParkingdata?.availableEnd}
         Photos={oneParkingdata?.photos}
         Price={oneParkingdata?.pricePerHour}
+        comments={oneParkingdata?.comments}
       ></Soloinner>
       <div id="Solo-parking-history-title">History:</div>
       <HistoryOneParking></HistoryOneParking>

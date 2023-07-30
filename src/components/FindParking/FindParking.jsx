@@ -63,11 +63,41 @@ function FindParking() {
 
 
 
-  function calcTime(start, end) {
-    let startHoursArr = parseInt(start);
-    let endHoursArr = parseInt(end);
-    console.log(startHoursArr, endHoursArr);
-  }
+//   function calcTime(start, end) {
+//     let startHoursArr = parseInt(start);
+//     let endHoursArr = parseInt(end);
+//     console.log(startHoursArr, endHoursArr);
+//   }
+
+  // function calcTime(start ,  end ){
+  //   let parkingTime
+  //   let startTimeArr=start.split("")
+  //   let startHourInt=parseInt(`${startTimeArr[0]}${startTimeArr[1]}`)
+  //   let startMinuteInt=parseInt(`${startTimeArr[3]}${startTimeArr[4]}`)
+  //   let endTimeArr=end.split("")
+  //   let endHourInt=parseInt(`${endTimeArr[0]}${endTimeArr[1]}`)
+  //   let endMinuteInt=parseInt(`${endTimeArr[3]}${endTimeArr[4]}`)
+  //   const currentTime=new Date()
+  //   let currentHour=currentTime.getHours()
+  //   let currentMinute=currentTime.getMinutes()
+  //   if(startHourInt>=currentHour){
+  //     if(endMinuteInt>=startMinuteInt){
+  //       parkingTime=(endHourInt-startHourInt)*60+(endMinuteInt-startMinuteInt)
+  //     } else{
+  //       parkingTime=(endHourInt-startHourInt-1)*60+(60-startMinuteInt)+endMinuteInt
+  //     }
+  //   } else{ 
+  //     if(startMinuteInt>currentMinute){
+  //       if(endMinuteInt>=startMinuteInt){
+  //         parkingTime=(endHourInt-startHourInt)*60+(endMinuteInt-startMinuteInt)
+  //       } else{
+  //         parkingTime=(endHourInt-startHourInt-1)*60+(60-startMinuteInt)+endMinuteInt
+  //       }
+  //     } else if (currentMinute>)
+
+  //   }
+    
+  // }
 
   useEffect(() => {
     if (sortBy === "distance") {

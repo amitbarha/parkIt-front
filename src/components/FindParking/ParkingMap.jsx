@@ -6,6 +6,7 @@ import {
   Marker,
   MarkerF,
   MarkerClusterer,
+  DistanceMatrixService
 } from "@react-google-maps/api";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import IconLocation from "./../../assets/iconlocation.png";
@@ -48,9 +49,10 @@ function Map() {
     setParkingId,
     parkingIdData,
     setParkingIdData,
+    center,
+    setCenter
   } = useContext(ChosenParkingContext);
 
-  const [center, setCenter] = useState();
   const [allParking, setAllParking] = useState();
   useEffect(() => {
     const options = {

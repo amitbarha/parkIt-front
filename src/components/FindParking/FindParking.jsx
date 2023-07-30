@@ -13,8 +13,14 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 
 
 function FindParking() {
-  const {openSpring, setOpenSpring, parkingId, setParkingId} = useContext(ChosenParkingContext);
-  const { colorMode } = useContext(modeContext);
+  const {
+    openSpring,
+    setOpenSpring,
+    parkingId,
+    setParkingId,
+    parkingIdData,
+    setParkingIdData,
+  } = useContext(ChosenParkingContext);  const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
   const [toggleHours, setToggleHours] = useState("");
@@ -26,6 +32,16 @@ function FindParking() {
   const [open, setOpen] = useState(false)
 
   const navigate = useNavigate();
+
+  const handleParkingClick = (id) => {
+    console.log(id,"dflkgjdkuhgu");
+    setOpenSpring(!openSpring);
+    setParkingId(id);
+    console.log(id);
+    const parking = parkingsToMap?.find((park) => park._id === id)
+    setParkingIdData(parking)
+    console.log(parking);
+  };
 
   useEffect(() => {
     axios
@@ -164,7 +180,8 @@ function FindParking() {
               return (
                 <div
                   className="find-parking-tab"
-                  onClick={() => handleChosenParking(item._id)}
+                  // onClick={() => handleChosenParking(item._id)}
+                  onClick={()=>handleParkingClick(item._id)}
                 >
                   <div className="find-parking-tab-distance">nigga</div>
                   <div className="find-parking-tab-price">
@@ -175,7 +192,7 @@ function FindParking() {
                     {item.availableEnd}
                   </div>
                   <div className="find-parking-tab-picture">
-                    <img className="parking-tab-picture" src="" alt="" />
+                    <img className="parking-tab-picture" src={item.photos[0]} alt="" />
                   </div>
                 </div>
               );

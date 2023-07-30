@@ -4,8 +4,10 @@ import "./bottom-sheet.css"; // Import the CSS for styling
 import { ChosenParkingContext } from "../../App";
 import Carousel from "../SoloParking/Carousel";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const BottomSheet = () => {
+  const navigate = useNavigate()
   const [loggedUser, setLoggedUser] = useState();
   const [ownerParkingData, setOwnerParkingData] = useState();
   const {
@@ -16,6 +18,7 @@ const BottomSheet = () => {
     setParkingIdData,
   } = useContext(ChosenParkingContext);
   useEffect(() => {
+    console.log('mount');
     if (localStorage.getItem("loggedUser")) {
       axios
         .post("http://localhost:5000/user/translateToken", {
@@ -35,7 +38,7 @@ const BottomSheet = () => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [parkingId]);
   
   const [isOpen, setIsOpen] = useState(false);
   const height = screen.height;
@@ -74,10 +77,11 @@ const BottomSheet = () => {
     axios
       .post("http://localhost:5000/payment/publishPayment", payment)
       .then(({ data }) => {
-        console.log("new payment create");
+        alert("starting parking at time:")
+        navigate('/homePage')
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err.response.data);
       });
   }
 

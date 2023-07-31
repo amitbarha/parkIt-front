@@ -79,7 +79,7 @@ function Map() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setAllParking(data);
         console.log(data);

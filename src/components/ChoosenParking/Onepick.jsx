@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { HOST } from '../../Utils/host'
 function Onepick() {
 
   const[loggedUser,setLoggedUser]=useState()
@@ -19,7 +20,7 @@ function Onepick() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/parking/findOneParking", { _id : parkingId })
+      .post(`${HOST}/parking/findOneParking`, { _id : parkingId })
       .then(({ data }) => {
         setParkingData(data);
         setCheck(!check)
@@ -30,7 +31,7 @@ function Onepick() {
 
       if (localStorage.getItem('loggedUser')) {
         axios
-          .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
+          .post(`${HOST}/user/translateToken`, { token: localStorage.getItem('loggedUser') })
           .then(({ data }) =>
             setLoggedUser(data),
           )
@@ -41,7 +42,7 @@ function Onepick() {
   useEffect(()=>{
     if(check){
       axios
-      .post("http://localhost:5000/user/findUserById", { _id : parkingData?.ownerID })
+      .post(`${HOST}/user/findUserById`, { _id : parkingData?.ownerID })
       .then(({ data }) => {
         setOwnerParkingData(data);
       })
@@ -75,7 +76,7 @@ function Onepick() {
     console.log(payment,"payment")
 
     axios
-      .post("http://localhost:5000/payment/publishPayment", payment)
+      .post(`${HOST}/payment/publishPayment`, payment)
       .then(({ data }) => {
         console.log("new payment create");
       })

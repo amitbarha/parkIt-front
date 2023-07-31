@@ -48,7 +48,7 @@ function FindParking() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setParkingsToMap(data);
         setStillLoading(false);
@@ -60,6 +60,50 @@ function FindParking() {
       });
   }, []);
   console.log(parkingsToMap);
+
+  useEffect(() => {
+    // Function to calculate distance for each parking location
+    const calculateDistances = () => {
+      const service = new window.google.maps.DistanceMatrixService();
+      const origin = center; // Your fixed origin
+
+      // Create a copy of the parkingsToMap array to update it later
+      const updatedParkings = parkingsToMap.map(parking => ({ ...parking }));
+
+      parkingsToMap?.forEach((parking, index) => {
+        const lat = parking?.lat * 1;
+        const lng = parking?.lng * 1;
+        const destination = { lat, lng };
+
+        // Distance matrix request
+        service.getDistanceMatrix(
+          {
+            destinations: [destination],
+            origins: [origin],
+            travelMode: "DRIVING",
+          },
+          (response) => {
+            const distance = response.rows[0].elements[0].distance;
+            let distanceText = distance ? distance.text : "N/A";
+
+            // Update the distance property for the corresponding parking object
+            updatedParkings[index] = {
+              ...updatedParkings[index],
+              distance: distanceText,
+            };
+
+            // Check if all distances have been calculated
+            if (index === parkingsToMap.length - 1) {
+              // All distances are calculated, update the state with the new data
+              setParkingsToMap(updatedParkings);
+            }
+          }
+        );
+      });
+    };
+
+    calculateDistances();
+  }, [Loading]);
 
 
 
@@ -216,6 +260,7 @@ function calcTime(start, end) {
       <div>
         <MyLocation />
       </div>
+      <button onClick={()=> console.log(parkingsToMap)}>fdffdf</button>
       {/* <div id="find-map-container">
         <img
           id="find-map-place-holder"
@@ -308,7 +353,7 @@ function calcTime(start, end) {
             {stillLoading ? (
               <div>loading</div>
             ) : (
-              parkingsToMap.map((item, index) => {
+              parkingsToMap?.map((item, index) => {
                 return (
                   <div
                     className="find-parking-tab"
@@ -316,7 +361,7 @@ function calcTime(start, end) {
                     onClick={() => handleParkingClick(item._id)}
                   >
                     <div className="find-parking-tab-distance">
-                      100
+                      {item?.distance}
                     </div>
                     <div className="find-parking-tab-price">
                       {item.pricePerHour}

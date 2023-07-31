@@ -10,6 +10,7 @@ import { userDataContext } from "../../App";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { HOST } from "../../Utils/host";
 function SoloParking() {
 
   const [availableStartChange, setAvailableStartChange]=useState("");
@@ -27,7 +28,7 @@ function SoloParking() {
 
   useEffect(() => {
         axios
-        .post("http://localhost:5000/user/translateToken",{token: localStorage.getItem('loggedUser') })
+        .post(`${HOST}/user/translateToken`,{token: localStorage.getItem('loggedUser') })
         .then(({ data }) => {
             setData(data)
             const parking = data?.myParking.find(

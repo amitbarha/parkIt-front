@@ -1,0 +1,32 @@
+#receipt-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 95vh;
+}
+#page-title{
+    margin: 2vw;
+}
+#inner-container-receipt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6vw;
+}
+#back-to-homepage{
+    align-self: flex-end;
+    margin-right: 4vw;
+    font-size: 10vw;
+}
+
+@media screen and (min-width:450px){
+    #receipt-container{
+        height: 130vh;
+    }
+    #inner-container-receipt{
+        margin: 2.5vw;
+    }
+    #back-to-homepage{
+        margin-right: 10vw;
+    }
+}

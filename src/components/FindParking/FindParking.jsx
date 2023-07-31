@@ -19,6 +19,8 @@ function FindParking() {
     setParkingId,
     parkingIdData,
     setParkingIdData,
+    center,
+    setCenter,
   } = useContext(ChosenParkingContext);
   const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
@@ -27,6 +29,7 @@ function FindParking() {
   const [sortBy, setSortBy] = useState("distance");
   const [parkingsToMap, setParkingsToMap] = useState([""]);
   const [stillLoading, setStillLoading] = useState(true);
+  const [Loading, setLoading] = useState(true);
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
   const [wantToLoadMore, setWantToLoadMore] = useState(false);
   const [open, setOpen] = useState(false);
@@ -49,6 +52,7 @@ function FindParking() {
       .then(({ data }) => {
         setParkingsToMap(data);
         setStillLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -56,6 +60,14 @@ function FindParking() {
       });
   }, []);
   console.log(parkingsToMap);
+
+
+
+//   function calcTime(start, end) {
+//     let startHoursArr = parseInt(start);
+//     let endHoursArr = parseInt(end);
+//     console.log(startHoursArr, endHoursArr);
+//   }
 
   // function calcTime(start ,  end ){
   //   let parkingTime
@@ -217,14 +229,16 @@ function FindParking() {
             {stillLoading ? (
               <div>loading</div>
             ) : (
-              parkingsToMap.map((item) => {
+              parkingsToMap.map((item, index) => {
                 return (
                   <div
                     className="find-parking-tab"
                     // onClick={() => handleChosenParking(item._id)}
                     onClick={() => handleParkingClick(item._id)}
                   >
-                    <div className="find-parking-tab-distance">nigga</div>
+                    <div className="find-parking-tab-distance">
+                      100
+                    </div>
                     <div className="find-parking-tab-price">
                       {item.pricePerHour}
                     </div>

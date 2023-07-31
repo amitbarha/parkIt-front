@@ -13,6 +13,7 @@ import FindParking from "./components/FindParking/FindParking";
 import PayingHistory from "./components/PayingHistory/PayingHistory";
 import NotFound from "./components/NotFound/NotFound";
 import Onepick from "./components/ChoosenParking/Onepick";
+import Receipt from "./components/Receipt/Receipt";
 import * as React from "react"
 import axios from "axios";
 import Continue from "./components/Register/Continue";
@@ -37,13 +38,9 @@ function App() {
   const [openSpring, setOpenSpring] = useState(false);
   const [parkingId, setParkingId] = useState();
   const [parkingIdData, setParkingIdData] = useState();
-  const mapToSpring = 
-  {
-    openSpring: openSpring,
-    setOpenSpring: setOpenSpring,
-    parkingId: parkingId,
-    setParkingId: setParkingId
-  }
+  const [center, setCenter] = useState();
+
+  
 
 
   useEffect(() => {
@@ -64,7 +61,7 @@ function App() {
     <modeContext.Provider value={{ colorMode, setColorMode }}>
       <gooleAutoLocation.Provider value={{ googleLocation, setGoogleLocation }}>
         <CloudinaryContext.Provider value={{ cloudinaryImg, setCloudinaryImg }}>
-          <ChosenParkingContext.Provider value={{openSpring, setOpenSpring, parkingId, setParkingId,parkingIdData, setParkingIdData}}>
+          <ChosenParkingContext.Provider value={{openSpring, setOpenSpring, parkingId, setParkingId,parkingIdData, setParkingIdData,center, setCenter}}>
           <div className="app-container">
             <Routes>
               <Route index element={<Login />}></Route>
@@ -83,6 +80,7 @@ function App() {
                 <Route path="payingHistory" element={<PayingHistory />}></Route>
                 <Route path="SoloParking/:parkingId" element={<SoloParking />}></Route>
                 <Route path="Onepick" element={<Onepick />}></Route>
+                <Route path="Receipt" element={<Receipt/>}></Route>
                 <Route path="*" element={<NotFound />}></Route>
               </Route>
             </Routes>

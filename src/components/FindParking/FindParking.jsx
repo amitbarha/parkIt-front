@@ -125,6 +125,7 @@ function calcTime(start, end) {
   const currentTime = new Date();
   let currentHour = currentTime.getHours();
   let currentMinute = currentTime.getMinutes();
+  if(startHourInt>currentHour && currentHour>endHourInt)
   if (startHourInt > currentHour) {
     if (startHourInt > endHourInt) {
       if (endMinuteInt >= startMinuteInt) {

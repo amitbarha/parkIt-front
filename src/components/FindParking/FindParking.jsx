@@ -268,8 +268,10 @@ function calcTime(start, end) {
         }
       }
     }
+
   }
 }
+
 
   useEffect(() => {
     if (sortBy === "distance") {
@@ -481,5 +483,5 @@ function calcTime(start, end) {
       </div>
     </div>
   );
-}
+} 
 export default FindParking;

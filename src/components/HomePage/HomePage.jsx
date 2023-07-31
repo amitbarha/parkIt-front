@@ -180,8 +180,7 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-
-        {info1.length!==0 ? (
+        {info1?.length>0 ? (
           <HistoryOneParking
             price={info1[info1.length - 1]?.finalPrice}
             name={info1[info1.length - 1]?.parkName}

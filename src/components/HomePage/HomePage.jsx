@@ -28,7 +28,7 @@ function HomePage() {
   const [info1, setInfo1] = useState([])
   const [Data, setData] = useState([])
   const [activeParking, setActiveParking] = useState([])
-  
+
 
 
   useEffect(() => {
@@ -40,11 +40,8 @@ function HomePage() {
           setTimerWork(data.currentParking)
         }
         )
-
         .catch((err) => console.log(err.message));
-
     }
-
   }, [])
 
   useEffect(() => {
@@ -58,21 +55,7 @@ function HomePage() {
       .catch((err) => console.log(err.message));
   }, [userData]);
 
- 
-console.log(info1);
 
-  const parkingSpots = [
-    {
-      imgUrl: "https://img.icons8.com/fluency-systems-regular/48/parking.png",
-      name: "first parking",
-      status: "available",
-    },
-    {
-      imgUrl: "https://img.icons8.com/fluency-systems-regular/48/parking.png",
-      name: "first parking",
-      status: "available",
-    },
-  ];
 
   const goToFindParkingPage = () => {
     navigate("/FindParking");
@@ -106,19 +89,19 @@ console.log(info1);
       {timerWork && (
         <div className="timer-open-div">
           <div className="border-circle border-circle-timer">
-            <div className="circle circle-timer" onClick={()=>stopParkingFunc()}>
-             <h2> <Timer  startTime={userData.myPayment[userData.myPayment.length-1].date}/></h2> 
+            <div className="circle circle-timer" onClick={() => stopParkingFunc()}>
+              <h2> <Timer startTime={userData.myPayment[userData.myPayment.length - 1].date} /></h2>
               <div>Click to stop</div>
             </div>
           </div>
           <div className="mini-circles-div">
             <div className="mini-circle">
-            <a href={`tel:+${info1[info1.length - 1]?.phoneToPay}`}><img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/></a>
+              <a href={`tel:+${info1[info1.length - 1]?.phoneToPay}`}><img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1" /></a>
             </div>
             <div className="mini-circle">
-              <a  href={`https://www.google.com/maps?q=${encodeURIComponent(info1[info1.length - 1]?.parkingLocation)}`} target="_blank" rel="noopener noreferrer">
-                <img width="50" height="50" src="https://img.icons8.com/color/48/google-maps-new.png" alt="google-maps-new"/>
-                </a>
+              <a href={`https://www.google.com/maps?q=${encodeURIComponent(info1[info1.length - 1]?.parkingLocation)}`} target="_blank" rel="noopener noreferrer">
+                <img width="50" height="50" src="https://img.icons8.com/color/48/google-maps-new.png" alt="google-maps-new" />
+              </a>
             </div>
           </div>
         </div>
@@ -155,12 +138,12 @@ console.log(info1);
                     />
                   </div>
                   <div className="text-overlay">
-                    <div  className="parking-name-my-parking">
-                    <img id="icon-name-my-parking" width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png" alt="parking--v4"/>
+                    <div className="parking-name-my-parking">
+                      <img id="icon-name-my-parking" width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png" alt="parking--v4" />
                       <p>parking name: {parking.parkingName}</p>
                     </div>
                     <div className="parking-status-my-parking" >
-                    <img id="icon-status-my-parking" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok"/>
+                      <img id="icon-status-my-parking" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
                       <p>{parking.availableToPark ? 'Availible' : 'Not Availible'}</p>
                     </div>
                   </div>
@@ -185,7 +168,7 @@ console.log(info1);
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        {info1?.length>0 ? (
+        {info1?.length > 0 ? (
           <HistoryOneParking
             price={info1[info1.length - 1]?.finalPrice}
             name={info1[info1.length - 1]?.parkName}

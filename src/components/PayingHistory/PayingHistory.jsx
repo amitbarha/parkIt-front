@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import HistoryOneParking from '../SoloParking/HistoryOnePark'
 import './paying-history.css'
 import axios from 'axios'
-import { HOST } from '../../Utils/host'
 import { useContext } from 'react'
 
 
@@ -14,7 +13,7 @@ function PayingHistory() {
   useEffect(() => {
     if (localStorage.getItem('loggedUser')) {
       axios
-        .post(`${HOST}/user/translateToken`, { 
+        .post("http://localhost:5000/user/translateToken", { 
           token: localStorage.getItem('loggedUser')
          })
         .then(({ data }) =>
@@ -28,7 +27,7 @@ function PayingHistory() {
 
   useEffect(() => {
     axios
-      .get(`${HOST}/payment/fetchPayment`)
+      .get("http://localhost:5000/payment/fetchPayment")
       .then(({ data }) => {
         setData(data);
         setInfo1(userData?.myPayment)
@@ -41,13 +40,13 @@ function PayingHistory() {
     <div className='paying-history-container'>
       <br />
       <div className="paying-history-title">
-        <h1>Paying History</h1>
+        <h1 id='paying-history-page-header'>Paying History</h1>
         <br />
       </div>
       <div className='history-pay-list'>
         {info1 && info1?.map((park, index) => {
           return (
-          <div key={index}>
+          <div className='histoy-pay-event-tab' key={index}>
             <HistoryOneParking
               price={park?.pricePerHour}
               name={park?.parkName}

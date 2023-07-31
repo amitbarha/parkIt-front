@@ -5,7 +5,6 @@ import { DevTool } from "@hookform/devtools";
 import { modeContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TextField } from "@mui/material";
 function EditProfile() {
   const { colorMode, setColorMode } = useContext(modeContext);
   const [data, setData] = useState([]);
@@ -26,7 +25,6 @@ function EditProfile() {
       firstName: "",
       lastNme: "",
       username: "",
-      password:"",
       email: "",
       phone: "",
       licenses: [
@@ -37,13 +35,18 @@ function EditProfile() {
     },
   });
 
+  // useEffect(() => {
+  //   form.setValue("firstName", data.firstName);
+  //   form.setValue("lastName", data.lastName);
+  //   form.setValue("username", data.username);
+  //   form.setValue("email", data.email);
+  //   form.setValue("phoneNumber", data.phoneNumber);
+  // }, [data, form]);
+
   useEffect(() => {
-    form.setValue("firstName", data.firstName);
-    form.setValue("lastName", data.lastName);
-    form.setValue("username", data.username);
-    form.setValue("email", data.email);
-    form.setValue("phoneNumber", data.phoneNumber);
-  }, [data, form]);
+    reset(data);
+  }, [data]);
+
   const onFocus = () => {
     setValue('firstName', ''); 
   };
@@ -62,6 +65,7 @@ function EditProfile() {
 
   const onSubmit = (data) => {
     console.log("form submit!!!!!", data);
+
   };
 
   return (
@@ -71,7 +75,8 @@ function EditProfile() {
 
         <div className="all-div-of-label">
           <div className="solo-info-container">
-            <TextField
+            <div className="title-input">First name:</div>
+            <input
               className="info-input"
               label="First name"
               onFocus={onfocus}
@@ -82,7 +87,8 @@ function EditProfile() {
           </div>
 
           <div className="solo-info-container">
-            <TextField
+            <div className="title-input">Last name:</div>
+            <input
               className="info-input"
               defaultValue={data.lastName}
               label="Last name"
@@ -93,7 +99,8 @@ function EditProfile() {
           </div>
 
           <div className="solo-info-container">
-            <TextField
+            <div className="title-input">User Name:</div>
+            <input
               className="info-input"
               defaultValue={data.username}
               label="User name"
@@ -103,8 +110,9 @@ function EditProfile() {
             <p className="info-error">{errors.username?.message}</p>
           </div>
 
-          <div className="solo-info-container">
-            <TextField
+          {/* <div className="solo-info-container">
+            <div className="title-input">Password:</div>
+            <input
               className="info-input"
               
               label="Password"
@@ -112,10 +120,11 @@ function EditProfile() {
               {...register("password", { required: "password is required" })}
             />
             <p className="info-error">{errors.password?.message}</p>
-          </div>
+          </div> */}
 
           <div className="solo-info-container">
-            <TextField
+            <div className="title-input">Phone Number:</div>
+            <input
               className="info-input"
               defaultValue={data.phoneNumber}
               label="Phone number"
@@ -128,7 +137,8 @@ function EditProfile() {
           </div>
 
           <div className="solo-info-container">
-            <TextField
+            <div className="title-input">Email:</div>
+            <input
               className="info-input"
               defaultValue={data.email}
               label="Email "
@@ -151,11 +161,12 @@ function EditProfile() {
           </div>
 
           <div className="solo-info-container">
-            <div>
+            <div> 
               {licensesFields.map((field, index) => {
                 return (
                   <div key={field.index}>
-                    <TextField
+                    <div className="title-input">License Plates No.{index+1}:</div>
+                    <input
                       className="info-input"
                       label={`license No. ${index + 1}`}
                       placeholder="enter one license..."

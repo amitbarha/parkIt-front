@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Login/login.css"
 import { Link} from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 const Login = () => {
   const [registers, setRegisters] = useState([]);
   const [refresh, setRefresh] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+  const [userNameForgot,setUserNameForgot]=useState()
 
   useEffect(() => {
     axios
@@ -37,6 +40,30 @@ const Login = () => {
     }
   };
 
+  function ForgotPassword(){
+    if(userNameForgot==null||userNameForgot==undefined){
+      alert("You need to enter your user name before")
+    }else{
+      axios
+      .post("http://localhost:5000/user/findUserExists",{username:userNameForgot})
+      .then(({ data }) => {
+        if (data==null){
+          alert(`The user: ${userNameForgot} that not exists`)
+        }
+        else{
+          const mailObj = {email:data.email,password:data.password,firstName:data.firstName}
+          emailjs.send('service_mwr887e', 'template_ff36o7o', mailObj, 'WZFwcywx7NqBLytwt')
+         .then((result) => {
+          alert(data.firstName);
+      }, (error) => {
+          console.log(error.text);
+      });
+        }
+      })
+      .catch((err) => console.log(err.message));
+    }
+  }
+
   return (
     <div className="login-background">
           <div className="container">
@@ -45,7 +72,7 @@ const Login = () => {
       <h1>Log In</h1>
 				<div className="login__field">
         <img className="login__icon" width="25" height="25" src="https://img.icons8.com/ios-glyphs/30/7875b5/guest-male.png" alt="guest-male"/>
-					<input type="text" className="login__input" placeholder="Username:"/>
+					<input type="text" className="login__input" placeholder="Username:" onChange={(e)=>setUserNameForgot(e.target.value)}/>
 				</div>
 				<div className="login__field">
         <img className="login__icon" width="25" height="25" src="https://img.icons8.com/android/24/7875b5/lock.png" alt="lock"/>
@@ -57,6 +84,7 @@ const Login = () => {
 					<img className="button__icon" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/7875b5/chevron-right.png" alt="chevron-right"/>
 				</button>
         <Link className="link-to-register" to={"/Register"}>Not sign up yet?</Link>
+        <div onClick={()=>ForgotPassword()}>Forgot password?</div>
         </div>
 		<div className="screen__background">
 			<span className="screen__background__shape screen__background__shape4"></span>

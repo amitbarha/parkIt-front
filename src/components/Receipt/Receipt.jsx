@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
+import { HOST } from '../../Utils/host'
 function Receipt(){
 
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ function Receipt(){
 
     useEffect(()=>{
         axios
-        .post("http://localhost:5000/payment/getLastPayment", { token: localStorage.getItem('loggedUser') })
+        .post(`${HOST}/payment/getLastPayment`, { token: localStorage.getItem('loggedUser') })
         .then(({ data }) =>{
          setLocation(data.parkingLocation);
          setstartTime(data.startTime);

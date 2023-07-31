@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import HistoryOneParking from '../SoloParking/HistoryOnePark'
 import './paying-history.css'
 import axios from 'axios'
+import { HOST } from '../../Utils/host'
 import { useContext } from 'react'
 
 
@@ -13,7 +14,7 @@ function PayingHistory() {
   useEffect(() => {
     if (localStorage.getItem('loggedUser')) {
       axios
-        .post("http://localhost:5000/user/translateToken", { 
+        .post(`${HOST}/user/translateToken`, { 
           token: localStorage.getItem('loggedUser')
          })
         .then(({ data }) =>
@@ -27,7 +28,7 @@ function PayingHistory() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/payment/fetchPayment")
+      .get(`${HOST}/payment/fetchPayment`)
       .then(({ data }) => {
         setData(data);
         setInfo1(userData?.myPayment)

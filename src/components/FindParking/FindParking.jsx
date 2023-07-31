@@ -269,6 +269,7 @@ function calcTime(start, end) {
       }
     }
   }
+}
 
   useEffect(() => {
     if (sortBy === "distance") {

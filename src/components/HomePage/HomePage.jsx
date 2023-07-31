@@ -111,6 +111,8 @@ console.log(info1);
               <div>Click to stop</div>
             </div>
           </div>
+          {
+            info1&&
           <div className="mini-circles-div">
             <div className="mini-circle">
             <a href={`tel:+${info1[info1.length - 1]?.phoneToPay}`}><img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/></a>
@@ -121,6 +123,7 @@ console.log(info1);
                 </a>
             </div>
           </div>
+}
         </div>
       )}
       {!timerWork && (

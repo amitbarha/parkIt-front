@@ -40,13 +40,14 @@ function PayingHistory() {
     <div className='paying-history-container'>
       <br />
       <div className="paying-history-title">
-        <h1>Paying History</h1>
+        <h1 id='paying-history-page-header'>Paying History</h1>
         <br />
       </div>
       <div className='history-pay-list'>
         {info1 && info1?.map((park, index) => {
+          console.log(info1);
           return (
-          <div key={index}>
+          <div className='histoy-pay-event-tab' key={index}>
             <HistoryOneParking
               price={park?.pricePerHour}
               name={park?.parkName}

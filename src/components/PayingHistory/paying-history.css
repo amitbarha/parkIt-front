@@ -4,6 +4,16 @@
     justify-content: center;
     align-items: center;
 }
+.paying-history-container{
+    height: 100vh;
+}
+#history-have-no-header{
+    width: 100%;
+    text-align: center;
+}
+#history-link-to-go-find{
+    color: var(--accent-200);
+}
 .paying-history-title{
     text-align: center;
 }

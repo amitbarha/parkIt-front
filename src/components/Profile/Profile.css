@@ -109,6 +109,10 @@
     color: white;
 }
 
+#profile-no-plates-header{
+    color: black;
+}
+
 .profile-detail-divfortext{
     display: flex;
     justify-content: center;

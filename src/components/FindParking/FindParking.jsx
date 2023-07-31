@@ -11,6 +11,7 @@ import "react-spring-bottom-sheet/dist/style.css";
 import BottomSheet from "./BottomSheets";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { HOST } from "../../Utils/host";
+import { TextField } from "@mui/material";
 
 function FindParking() {
   const {
@@ -23,6 +24,8 @@ function FindParking() {
     center,
     setCenter,
   } = useContext(ChosenParkingContext);
+  const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
+  const [selectAdd, setSelectAdd] = useState(false);
   const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
@@ -46,6 +49,13 @@ function FindParking() {
     setParkingIdData(parking);
     console.log(parking);
   };
+  useEffect(() => {
+    setSelectAdd(false);
+    console.log("mount");
+    if (googleLocation.fullAddress != "") {
+      setSelectAdd(true);
+    }
+  }, [googleLocation]);
 
   useEffect(() => {
     axios
@@ -69,7 +79,7 @@ function FindParking() {
       const origin = center; // Your fixed origin
 
       // Create a copy of the parkingsToMap array to update it later
-      const updatedParkings = parkingsToMap.map(parking => ({ ...parking }));
+      const updatedParkings = parkingsToMap.map((parking) => ({ ...parking }));
 
       parkingsToMap?.forEach((parking, index) => {
         const lat = parking?.lat * 1;
@@ -106,121 +116,119 @@ function FindParking() {
     calculateDistances();
   }, [Loading]);
 
+  //   function calcTime(start, end) {
+  //     let startHoursArr = parseInt(start);
+  //     let endHoursArr = parseInt(end);
+  //     console.log(startHoursArr, endHoursArr);
+  //   }
 
-
-//   function calcTime(start, end) {
-//     let startHoursArr = parseInt(start);
-//     let endHoursArr = parseInt(end);
-//     console.log(startHoursArr, endHoursArr);
-//   }
-
-function calcTime(start, end) {
-  let parkingTime;
-  let startTimeArr = start.split("");
-  let startHourInt = parseInt(`${startTimeArr[0]}${startTimeArr[1]}`);
-  let startMinuteInt = parseInt(`${startTimeArr[3]}${startTimeArr[4]}`);
-  let endTimeArr = end.split("");
-  let endHourInt = parseInt(`${endTimeArr[0]}${endTimeArr[1]}`);
-  let endMinuteInt = parseInt(`${endTimeArr[3]}${endTimeArr[4]}`);
-  const currentTime = new Date();
-  let currentHour = currentTime.getHours();
-  let currentMinute = currentTime.getMinutes();
-  if (startHourInt > currentHour) {
-    if (startHourInt > endHourInt) {
-      if (endMinuteInt >= startMinuteInt) {
-        parkingTime =
-          (endHourInt + 24 - startHourInt) * 60 +
-          (endMinuteInt - startMinuteInt);
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      } else {
-        parkingTime =
-          (endHourInt + 24 - startHourInt - 1) * 60 +
-          (60 - startMinuteInt) +
-          endMinuteInt;
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      }
-    } else {
-      if (endMinuteInt >= startMinuteInt) {
-        parkingTime =
-          (endHourInt - startHourInt) * 60 + (endMinuteInt - startMinuteInt);
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      } else {
-        parkingTime =
-          (endHourInt - startHourInt - 1) * 60 +
-          (60 - startMinuteInt) +
-          endMinuteInt;
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      }
-    }
-  } else {
-    if (startMinuteInt > currentMinute) {
+  function calcTime(start, end) {
+    let parkingTime;
+    let startTimeArr = start.split("");
+    let startHourInt = parseInt(`${startTimeArr[0]}${startTimeArr[1]}`);
+    let startMinuteInt = parseInt(`${startTimeArr[3]}${startTimeArr[4]}`);
+    let endTimeArr = end.split("");
+    let endHourInt = parseInt(`${endTimeArr[0]}${endTimeArr[1]}`);
+    let endMinuteInt = parseInt(`${endTimeArr[3]}${endTimeArr[4]}`);
+    const currentTime = new Date();
+    let currentHour = currentTime.getHours();
+    let currentMinute = currentTime.getMinutes();
+    if (startHourInt > currentHour) {
       if (startHourInt > endHourInt) {
         if (endMinuteInt >= startMinuteInt) {
           parkingTime =
             (endHourInt + 24 - startHourInt) * 60 +
             (endMinuteInt - startMinuteInt);
-            console.log(start , end , parkingTime);
-            return (parkingTime)
+          console.log(start, end, parkingTime);
+          return parkingTime;
         } else {
           parkingTime =
             (endHourInt + 24 - startHourInt - 1) * 60 +
             (60 - startMinuteInt) +
             endMinuteInt;
-            console.log(start , end , parkingTime);
-            return (parkingTime)
+          console.log(start, end, parkingTime);
+          return parkingTime;
         }
       } else {
         if (endMinuteInt >= startMinuteInt) {
           parkingTime =
-            (endHourInt - startHourInt) * 60 +
-            (endMinuteInt - startMinuteInt);
-            console.log(start , end , parkingTime);
-            return (parkingTime)
+            (endHourInt - startHourInt) * 60 + (endMinuteInt - startMinuteInt);
+          console.log(start, end, parkingTime);
+          return parkingTime;
         } else {
           parkingTime =
             (endHourInt - startHourInt - 1) * 60 +
             (60 - startMinuteInt) +
             endMinuteInt;
-            console.log(start , end , parkingTime);
-            return (parkingTime)
+          console.log(start, end, parkingTime);
+          return parkingTime;
         }
       }
-    } else if (currentHour > endHourInt) {
-      if (endMinuteInt >= currentMinute) {
-        parkingTime =
-          (endHourInt + 24 - currentHour) * 60 +
-          (endMinuteInt - currentMinute);
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      } else {
-        parkingTime =
-          (endHourInt + 24 - currentHour - 1) * 60 +
-          (60 - currentMinute) +
-          endMinuteInt;
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      }
     } else {
-      if (endMinuteInt >= currentMinute) {
-        parkingTime =
-          (endHourInt - currentHour) * 60 + (endMinuteInt - currentMinute);
-          console.log(start , end , parkingTime);
-          return (parkingTime)
+      if (startMinuteInt > currentMinute) {
+        if (startHourInt > endHourInt) {
+          if (endMinuteInt >= startMinuteInt) {
+            parkingTime =
+              (endHourInt + 24 - startHourInt) * 60 +
+              (endMinuteInt - startMinuteInt);
+            console.log(start, end, parkingTime);
+            return parkingTime;
+          } else {
+            parkingTime =
+              (endHourInt + 24 - startHourInt - 1) * 60 +
+              (60 - startMinuteInt) +
+              endMinuteInt;
+            console.log(start, end, parkingTime);
+            return parkingTime;
+          }
+        } else {
+          if (endMinuteInt >= startMinuteInt) {
+            parkingTime =
+              (endHourInt - startHourInt) * 60 +
+              (endMinuteInt - startMinuteInt);
+            console.log(start, end, parkingTime);
+            return parkingTime;
+          } else {
+            parkingTime =
+              (endHourInt - startHourInt - 1) * 60 +
+              (60 - startMinuteInt) +
+              endMinuteInt;
+            console.log(start, end, parkingTime);
+            return parkingTime;
+          }
+        }
+      } else if (currentHour > endHourInt) {
+        if (endMinuteInt >= currentMinute) {
+          parkingTime =
+            (endHourInt + 24 - currentHour) * 60 +
+            (endMinuteInt - currentMinute);
+          console.log(start, end, parkingTime);
+          return parkingTime;
+        } else {
+          parkingTime =
+            (endHourInt + 24 - currentHour - 1) * 60 +
+            (60 - currentMinute) +
+            endMinuteInt;
+          console.log(start, end, parkingTime);
+          return parkingTime;
+        }
       } else {
-        parkingTime =
-          (endHourInt - currentHour - 1) * 60 +
-          (60 - currentMinute) +
-          endMinuteInt;
-          console.log(start , end , parkingTime);
-          return (parkingTime)
+        if (endMinuteInt >= currentMinute) {
+          parkingTime =
+            (endHourInt - currentHour) * 60 + (endMinuteInt - currentMinute);
+          console.log(start, end, parkingTime);
+          return parkingTime;
+        } else {
+          parkingTime =
+            (endHourInt - currentHour - 1) * 60 +
+            (60 - currentMinute) +
+            endMinuteInt;
+          console.log(start, end, parkingTime);
+          return parkingTime;
+        }
       }
     }
   }
-}
 
   useEffect(() => {
     if (sortBy === "distance") {
@@ -261,7 +269,6 @@ function calcTime(start, end) {
       <div>
         <MyLocation />
       </div>
-      <button onClick={()=> console.log(parkingsToMap)}>fdffdf</button>
       {/* <div id="find-map-container">
         <img
           id="find-map-place-holder"
@@ -269,12 +276,28 @@ function calcTime(start, end) {
           alt=""
         />
       </div> */}
+      <br />
+      <br />
       <div id={`${colorMode}-find-container`}>
         <div id="find-container-filters">
           <div id="find-location-filter">
             <div id="find-current-location">
-              <div>Your location:</div>
-              <button
+              <div className="loaction-find-input">
+                {!selectAdd && <LocationSearchInput />}
+                {selectAdd && (
+                  <div className="change-location-find-div">
+                    <TextField
+                      className="change-location-find"
+                      disabled
+                      label="Chosen Address"
+                      value={googleLocation.fullAddress}
+                    />
+                    <button className="button-in-change-loc" onClick={() => setSelectAdd(false)}><img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/change-direction.png" alt="change-direction"/></button>
+                    <button className="button-in-change-loc" onClick={() => setCenter({lat: googleLocation.lat, lng: googleLocation.lng})}><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png" alt="search--v1"/></button>
+                  </div>
+                )}{" "}
+              </div>
+              {/* <button
                 onClick={() => setWantToChangeLocation(!wantToChangeLocation)}
                 id={`${colorMode}-find-change-location-BTN`}
               >
@@ -282,6 +305,7 @@ function calcTime(start, end) {
               </button>
               {wantToChangeLocation ? (
                 <div>
+                  <br />
                   <div
                     onClick={() =>
                       setWantToChangeLocation(!wantToChangeLocation)
@@ -312,9 +336,11 @@ function calcTime(start, end) {
                     </div>
                   </div>
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
+          <br />
+          <br />
           <div id="find-filters">
             <div id="find-filteres-sorting-section">
               {wantToChangeLocation ? null : (
@@ -342,6 +368,10 @@ function calcTime(start, end) {
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
         <div id="find-container-parkings">
           <div id="find-parking-header">
             <div className="find-parking-tab-distance">Distance</div>

@@ -100,7 +100,7 @@ const AddParking = () => {
               label="Chosen Address"
               value={googleLocation.fullAddress}
             />
-            <button onClick={() => setSelectAdd(false)}>change</button>
+            <button onClick={() => setSelectAdd(false)}>Change</button>
           </div>
         )}
         <Controller
@@ -166,7 +166,7 @@ const AddParking = () => {
                   height: "300px",
                 },
               }}
-              required
+              
               type="text"
             />
           )}

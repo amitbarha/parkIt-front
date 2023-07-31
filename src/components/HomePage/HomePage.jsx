@@ -101,7 +101,6 @@ function HomePage() {
       <br />
       <br />
       {timerWork && (
-
         <div className="timer-open-div">
           <div className="border-circle border-circle-timer">
             <div className="circle circle-timer" onClick={()=>stopParkingFunc()}>

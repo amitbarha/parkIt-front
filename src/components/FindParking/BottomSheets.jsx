@@ -25,7 +25,7 @@ const BottomSheet = () => {
     console.log("mount");
     if (localStorage.getItem("loggedUser")) {
       axios
-        .post(`${HOST}/user/translateToken"`, {
+        .post(`${HOST}/user/translateToken`, {
           token: localStorage.getItem("loggedUser"),
         })
         .then(({ data }) => setLoggedUser(data))

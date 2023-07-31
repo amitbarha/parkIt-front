@@ -122,90 +122,25 @@ function FindParking() {
   //     console.log(startHoursArr, endHoursArr);
   //   }
 
+  //   function calcTime(start, end) {
+  //     let startHoursArr = parseInt(start);
+  //     let endHoursArr = parseInt(end);
+  //     console.log(startHoursArr, endHoursArr);
+  //   }
 
-//   function calcTime(start, end) {
-//     let startHoursArr = parseInt(start);
-//     let endHoursArr = parseInt(end);
-//     console.log(startHoursArr, endHoursArr);
-//   }
-
-function calcTime(start, end) {
-  let parkingTime;
-  let startTimeArr = start.split("");
-  let startHourInt = parseInt(`${startTimeArr[0]}${startTimeArr[1]}`);
-  let startMinuteInt = parseInt(`${startTimeArr[3]}${startTimeArr[4]}`);
-  let endTimeArr = end.split("");
-  let endHourInt = parseInt(`${endTimeArr[0]}${endTimeArr[1]}`);
-  let endMinuteInt = parseInt(`${endTimeArr[3]}${endTimeArr[4]}`);
-  const currentTime = new Date();
-  let currentHour = currentTime.getHours();
-  let currentMinute = currentTime.getMinutes();
-  if(startHourInt>currentHour && currentHour>endHourInt)
-  if (startHourInt > currentHour) {
-    if (startHourInt > endHourInt) {
-      if (endMinuteInt >= startMinuteInt) {
-        parkingTime =
-          (endHourInt + 24 - startHourInt) * 60 +
-          (endMinuteInt - startMinuteInt);
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      } else {
-        parkingTime =
-          (endHourInt + 24 - startHourInt - 1) * 60 +
-          (60 - startMinuteInt) +
-          endMinuteInt;
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      }
-    } else {
-      if (endMinuteInt >= startMinuteInt) {
-        parkingTime =
-          (endHourInt - startHourInt) * 60 + (endMinuteInt - startMinuteInt);
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      } else {
-        parkingTime =
-          (endHourInt - startHourInt - 1) * 60 +
-          (60 - startMinuteInt) +
-          endMinuteInt;
-          console.log(start , end , parkingTime);
-          return (parkingTime)
-      }
-    }
-  } else {
-    if (startMinuteInt > currentMinute) {
-      if (startHourInt > endHourInt) {
-        if (endMinuteInt >= startMinuteInt) {
-          parkingTime =
-            (endHourInt + 24 - startHourInt) * 60 +
-            (endMinuteInt - startMinuteInt);
-          console.log(start, end, parkingTime);
-          return parkingTime;
-        } else {
-          parkingTime =
-            (endHourInt + 24 - startHourInt - 1) * 60 +
-            (60 - startMinuteInt) +
-            endMinuteInt;
-          console.log(start, end, parkingTime);
-          return parkingTime;
-        }
-      } else {
-        if (endMinuteInt >= startMinuteInt) {
-          parkingTime =
-            (endHourInt - startHourInt) * 60 + (endMinuteInt - startMinuteInt);
-          console.log(start, end, parkingTime);
-          return parkingTime;
-        } else {
-          parkingTime =
-            (endHourInt - startHourInt - 1) * 60 +
-            (60 - startMinuteInt) +
-            endMinuteInt;
-          console.log(start, end, parkingTime);
-          return parkingTime;
-        }
-      }
-    } else {
-      if (startMinuteInt > currentMinute) {
+  function calcTime(start, end) {
+    let parkingTime;
+    let startTimeArr = start.split("");
+    let startHourInt = parseInt(`${startTimeArr[0]}${startTimeArr[1]}`);
+    let startMinuteInt = parseInt(`${startTimeArr[3]}${startTimeArr[4]}`);
+    let endTimeArr = end.split("");
+    let endHourInt = parseInt(`${endTimeArr[0]}${endTimeArr[1]}`);
+    let endMinuteInt = parseInt(`${endTimeArr[3]}${endTimeArr[4]}`);
+    const currentTime = new Date();
+    let currentHour = currentTime.getHours();
+    let currentMinute = currentTime.getMinutes();
+    if (startHourInt > currentHour && currentHour > endHourInt)
+      if (startHourInt > currentHour) {
         if (startHourInt > endHourInt) {
           if (endMinuteInt >= startMinuteInt) {
             parkingTime =
@@ -237,39 +172,106 @@ function calcTime(start, end) {
             return parkingTime;
           }
         }
-      } else if (currentHour > endHourInt) {
-        if (endMinuteInt >= currentMinute) {
-          parkingTime =
-            (endHourInt + 24 - currentHour) * 60 +
-            (endMinuteInt - currentMinute);
-          console.log(start, end, parkingTime);
-          return parkingTime;
-        } else {
-          parkingTime =
-            (endHourInt + 24 - currentHour - 1) * 60 +
-            (60 - currentMinute) +
-            endMinuteInt;
-          console.log(start, end, parkingTime);
-          return parkingTime;
-        }
       } else {
-        if (endMinuteInt >= currentMinute) {
-          parkingTime =
-            (endHourInt - currentHour) * 60 + (endMinuteInt - currentMinute);
-          console.log(start, end, parkingTime);
-          return parkingTime;
+        if (startMinuteInt > currentMinute) {
+          if (startHourInt > endHourInt) {
+            if (endMinuteInt >= startMinuteInt) {
+              parkingTime =
+                (endHourInt + 24 - startHourInt) * 60 +
+                (endMinuteInt - startMinuteInt);
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            } else {
+              parkingTime =
+                (endHourInt + 24 - startHourInt - 1) * 60 +
+                (60 - startMinuteInt) +
+                endMinuteInt;
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            }
+          } else {
+            if (endMinuteInt >= startMinuteInt) {
+              parkingTime =
+                (endHourInt - startHourInt) * 60 +
+                (endMinuteInt - startMinuteInt);
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            } else {
+              parkingTime =
+                (endHourInt - startHourInt - 1) * 60 +
+                (60 - startMinuteInt) +
+                endMinuteInt;
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            }
+          }
         } else {
-          parkingTime =
-            (endHourInt - currentHour - 1) * 60 +
-            (60 - currentMinute) +
-            endMinuteInt;
-          console.log(start, end, parkingTime);
-          return parkingTime;
+          if (startMinuteInt > currentMinute) {
+            if (startHourInt > endHourInt) {
+              if (endMinuteInt >= startMinuteInt) {
+                parkingTime =
+                  (endHourInt + 24 - startHourInt) * 60 +
+                  (endMinuteInt - startMinuteInt);
+                console.log(start, end, parkingTime);
+                return parkingTime;
+              } else {
+                parkingTime =
+                  (endHourInt + 24 - startHourInt - 1) * 60 +
+                  (60 - startMinuteInt) +
+                  endMinuteInt;
+                console.log(start, end, parkingTime);
+                return parkingTime;
+              }
+            } else {
+              if (endMinuteInt >= startMinuteInt) {
+                parkingTime =
+                  (endHourInt - startHourInt) * 60 +
+                  (endMinuteInt - startMinuteInt);
+                console.log(start, end, parkingTime);
+                return parkingTime;
+              } else {
+                parkingTime =
+                  (endHourInt - startHourInt - 1) * 60 +
+                  (60 - startMinuteInt) +
+                  endMinuteInt;
+                console.log(start, end, parkingTime);
+                return parkingTime;
+              }
+            }
+          } else if (currentHour > endHourInt) {
+            if (endMinuteInt >= currentMinute) {
+              parkingTime =
+                (endHourInt + 24 - currentHour) * 60 +
+                (endMinuteInt - currentMinute);
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            } else {
+              parkingTime =
+                (endHourInt + 24 - currentHour - 1) * 60 +
+                (60 - currentMinute) +
+                endMinuteInt;
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            }
+          } else {
+            if (endMinuteInt >= currentMinute) {
+              parkingTime =
+                (endHourInt - currentHour) * 60 +
+                (endMinuteInt - currentMinute);
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            } else {
+              parkingTime =
+                (endHourInt - currentHour - 1) * 60 +
+                (60 - currentMinute) +
+                endMinuteInt;
+              console.log(start, end, parkingTime);
+              return parkingTime;
+            }
+          }
         }
       }
-    }
   }
-}
 
   useEffect(() => {
     if (sortBy === "distance") {
@@ -331,8 +333,33 @@ function calcTime(start, end) {
                       label="Chosen Address"
                       value={googleLocation.fullAddress}
                     />
-                    <button className="button-in-change-loc" onClick={() => setSelectAdd(false)}><img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/change-direction.png" alt="change-direction"/></button>
-                    <button className="button-in-change-loc" onClick={() => setCenter({lat: googleLocation.lat, lng: googleLocation.lng})}><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png" alt="search--v1"/></button>
+                    <button
+                      className="button-in-change-loc"
+                      onClick={() => setSelectAdd(false)}
+                    >
+                      <img
+                        width="30"
+                        height="30"
+                        src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/change-direction.png"
+                        alt="change-direction"
+                      />
+                    </button>
+                    <button
+                      className="button-in-change-loc"
+                      onClick={() =>
+                        setCenter({
+                          lat: googleLocation.lat,
+                          lng: googleLocation.lng,
+                        })
+                      }
+                    >
+                      <img
+                        width="30"
+                        height="30"
+                        src="https://img.icons8.com/ios-filled/50/FFFFFF/search--v1.png"
+                        alt="search--v1"
+                      />
+                    </button>
                   </div>
                 )}{" "}
               </div>
@@ -477,6 +504,6 @@ function calcTime(start, end) {
       </div>
     </div>
   );
-            }
 }
+
 export default FindParking;

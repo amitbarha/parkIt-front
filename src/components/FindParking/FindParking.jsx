@@ -48,7 +48,7 @@ function FindParking() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setParkingsToMap(data);
         setStillLoading(false);

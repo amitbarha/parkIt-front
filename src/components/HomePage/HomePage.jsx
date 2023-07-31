@@ -7,6 +7,7 @@ import HistoryOneParking from "../SoloParking/HistoryOnePark";
 import axios from "axios";
 import { userDataContext } from "../../App";
 import Timer from "./Timer";
+import { HOST } from "../../Utils/host";
 
 
 
@@ -31,7 +32,7 @@ function HomePage() {
   useEffect(() => {
     if (localStorage.getItem("loggedUser")) {
       axios
-        .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
+        .post(`${HOST}/user/translateToken`, { token: localStorage.getItem('loggedUser') })
         .then(({ data }) =>{
           setUserData(data)
           setTimerWork(data.currentParking)
@@ -46,7 +47,7 @@ function HomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setData(data);
         setInfo(userData?.myParking);
@@ -81,7 +82,7 @@ function HomePage() {
   function stopParkingFunc(){
     console.log("stop")
     axios
-        .patch("http://localhost:5000/payment/updatePayment", { token: localStorage.getItem('loggedUser') })
+        .patch(`${HOST}/payment/updatePayment`, { token: localStorage.getItem('loggedUser') })
         .then(({ data }) =>{
           navigate("/Receipt");
         }          

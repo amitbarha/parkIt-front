@@ -101,7 +101,6 @@ function HomePage() {
       <br />
       <br />
       {timerWork && (
-
         <div className="timer-open-div">
           <div className="border-circle border-circle-timer">
             <div className="circle circle-timer" onClick={()=>stopParkingFunc()}>
@@ -181,6 +180,7 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
+
         {info1.length!==0 ? (
           <HistoryOneParking
             price={info1[info1.length - 1]?.finalPrice}

@@ -7,6 +7,17 @@
 .paying-history-title{
     text-align: center;
 }
+
+#paying-history-page-header{
+    text-align: center;
+    color: var(--accent-200);
+    font-weight: bold;
+  }
+
+  .histoy-pay-event-tab{
+    width: 100%;
+  }
+
 .one-paying{
     display: flex;
     width: 80%;

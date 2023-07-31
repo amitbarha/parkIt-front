@@ -271,6 +271,10 @@ function FindParking() {
           }
         }
       }
+    }
+  }
+}
+
 
     useEffect(() => {
       if (sortBy === "distance") {
@@ -507,7 +511,8 @@ function FindParking() {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+} 
+
 export default FindParking;

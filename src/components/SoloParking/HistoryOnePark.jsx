@@ -29,7 +29,7 @@ function HistoryOneParking({ name, price, startTime, endTime, phoneTopay, date1 
                             <img className='icon-history' src="https://img.icons8.com/ios/50/time--v1.png" alt="time--v1" /> {startTime}- {endTime}
                         </div>
                         <div className='history-more-b moreeveryone'>
-                            <img className='icon-history' src="https://img.icons8.com/ios/50/money-bag.png" alt="money-bag" />{price}
+                            <img className='icon-history' src="https://img.icons8.com/ios/50/money-bag.png" alt="money-bag" />{Math.floor(price)}
                         </div>
                         <div className='history-more-c moreeveryone'>
                             <a href={`tel:+${phoneTopay}`}><img className='icon-history' src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1" /></a>

@@ -13,6 +13,7 @@ import IconLocation from "./../../assets/iconlocation.png";
 import ParkingLocationIcon from "./../../assets/parking-location.png";
 import axios from "axios";
 import { ChosenParkingContext } from "../../App";
+import { HOST } from "../../Utils/host";
 
 function ParkingMap() {
   const { isLoaded } = useLoadScript({
@@ -79,7 +80,7 @@ function Map() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setAllParking(data);
         console.log(data);

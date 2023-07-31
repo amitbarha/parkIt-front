@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import "react-spring-bottom-sheet/dist/style.css";
 import BottomSheet from "./BottomSheets";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import { HOST } from "../../Utils/host";
 
 function FindParking() {
   const {
@@ -48,7 +49,7 @@ function FindParking() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setParkingsToMap(data);
         setStillLoading(false);
@@ -61,6 +62,50 @@ function FindParking() {
   }, []);
   console.log(parkingsToMap);
 
+  useEffect(() => {
+    // Function to calculate distance for each parking location
+    const calculateDistances = () => {
+      const service = new window.google.maps.DistanceMatrixService();
+      const origin = center; // Your fixed origin
+
+      // Create a copy of the parkingsToMap array to update it later
+      const updatedParkings = parkingsToMap.map(parking => ({ ...parking }));
+
+      parkingsToMap?.forEach((parking, index) => {
+        const lat = parking?.lat * 1;
+        const lng = parking?.lng * 1;
+        const destination = { lat, lng };
+
+        // Distance matrix request
+        service.getDistanceMatrix(
+          {
+            destinations: [destination],
+            origins: [origin],
+            travelMode: "DRIVING",
+          },
+          (response) => {
+            const distance = response.rows[0].elements[0].distance;
+            let distanceText = distance ? distance.text : "N/A";
+
+            // Update the distance property for the corresponding parking object
+            updatedParkings[index] = {
+              ...updatedParkings[index],
+              distance: distanceText,
+            };
+
+            // Check if all distances have been calculated
+            if (index === parkingsToMap.length - 1) {
+              // All distances are calculated, update the state with the new data
+              setParkingsToMap(updatedParkings);
+            }
+          }
+        );
+      });
+    };
+
+    calculateDistances();
+  }, [Loading]);
+
 
 
 //   function calcTime(start, end) {
@@ -69,34 +114,114 @@ function FindParking() {
 //     console.log(startHoursArr, endHoursArr);
 //   }
 
-  // function calcTime(start ,  end ){
-  //   let parkingTime
-  //   let startTimeArr=start.split("")
-  //   let startHourInt=parseInt(`${startTimeArr[0]}${startTimeArr[1]}`)
-  //   let startMinuteInt=parseInt(`${startTimeArr[3]}${startTimeArr[4]}`)
-  //   let endTimeArr=end.split("")
-  //   let endHourInt=parseInt(`${endTimeArr[0]}${endTimeArr[1]}`)
-  //   let endMinuteInt=parseInt(`${endTimeArr[3]}${endTimeArr[4]}`)
-  //   const currentTime=new Date()
-  //   let currentHour=currentTime.getHours()
-  //   let currentMinute=currentTime.getMinutes()
-  //   if(startHourInt>=currentHour){
-  //     if(endMinuteInt>=startMinuteInt){
-  //       parkingTime=(endHourInt-startHourInt)*60+(endMinuteInt-startMinuteInt)
-  //     } else{
-  //       parkingTime=(endHourInt-startHourInt-1)*60+(60-startMinuteInt)+endMinuteInt
-  //     }
-  //   } else{
-  //     if(startMinuteInt>currentMinute){
-  //       if(endMinuteInt>=startMinuteInt){
-  //         parkingTime=(endHourInt-startHourInt)*60+(endMinuteInt-startMinuteInt)
-  //       } else{
-  //         parkingTime=(endHourInt-startHourInt-1)*60+(60-startMinuteInt)+endMinuteInt
-  //       }
-  //     } else if (currentMinute>)
-
-  //   }
-  // }
+function calcTime(start, end) {
+  let parkingTime;
+  let startTimeArr = start.split("");
+  let startHourInt = parseInt(`${startTimeArr[0]}${startTimeArr[1]}`);
+  let startMinuteInt = parseInt(`${startTimeArr[3]}${startTimeArr[4]}`);
+  let endTimeArr = end.split("");
+  let endHourInt = parseInt(`${endTimeArr[0]}${endTimeArr[1]}`);
+  let endMinuteInt = parseInt(`${endTimeArr[3]}${endTimeArr[4]}`);
+  const currentTime = new Date();
+  let currentHour = currentTime.getHours();
+  let currentMinute = currentTime.getMinutes();
+  if(startHourInt>currentHour && currentHour>endHourInt)
+  if (startHourInt > currentHour) {
+    if (startHourInt > endHourInt) {
+      if (endMinuteInt >= startMinuteInt) {
+        parkingTime =
+          (endHourInt + 24 - startHourInt) * 60 +
+          (endMinuteInt - startMinuteInt);
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      } else {
+        parkingTime =
+          (endHourInt + 24 - startHourInt - 1) * 60 +
+          (60 - startMinuteInt) +
+          endMinuteInt;
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      }
+    } else {
+      if (endMinuteInt >= startMinuteInt) {
+        parkingTime =
+          (endHourInt - startHourInt) * 60 + (endMinuteInt - startMinuteInt);
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      } else {
+        parkingTime =
+          (endHourInt - startHourInt - 1) * 60 +
+          (60 - startMinuteInt) +
+          endMinuteInt;
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      }
+    }
+  } else {
+    if (startMinuteInt > currentMinute) {
+      if (startHourInt > endHourInt) {
+        if (endMinuteInt >= startMinuteInt) {
+          parkingTime =
+            (endHourInt + 24 - startHourInt) * 60 +
+            (endMinuteInt - startMinuteInt);
+            console.log(start , end , parkingTime);
+            return (parkingTime)
+        } else {
+          parkingTime =
+            (endHourInt + 24 - startHourInt - 1) * 60 +
+            (60 - startMinuteInt) +
+            endMinuteInt;
+            console.log(start , end , parkingTime);
+            return (parkingTime)
+        }
+      } else {
+        if (endMinuteInt >= startMinuteInt) {
+          parkingTime =
+            (endHourInt - startHourInt) * 60 +
+            (endMinuteInt - startMinuteInt);
+            console.log(start , end , parkingTime);
+            return (parkingTime)
+        } else {
+          parkingTime =
+            (endHourInt - startHourInt - 1) * 60 +
+            (60 - startMinuteInt) +
+            endMinuteInt;
+            console.log(start , end , parkingTime);
+            return (parkingTime)
+        }
+      }
+    } else if (currentHour > endHourInt) {
+      if (endMinuteInt >= currentMinute) {
+        parkingTime =
+          (endHourInt + 24 - currentHour) * 60 +
+          (endMinuteInt - currentMinute);
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      } else {
+        parkingTime =
+          (endHourInt + 24 - currentHour - 1) * 60 +
+          (60 - currentMinute) +
+          endMinuteInt;
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      }
+    } else {
+      if (endMinuteInt >= currentMinute) {
+        parkingTime =
+          (endHourInt - currentHour) * 60 + (endMinuteInt - currentMinute);
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      } else {
+        parkingTime =
+          (endHourInt - currentHour - 1) * 60 +
+          (60 - currentMinute) +
+          endMinuteInt;
+          console.log(start , end , parkingTime);
+          return (parkingTime)
+      }
+    }
+  }
+}
 
   useEffect(() => {
     if (sortBy === "distance") {
@@ -137,6 +262,7 @@ function FindParking() {
       <div>
         <MyLocation />
       </div>
+      <button onClick={()=> console.log(parkingsToMap)}>fdffdf</button>
       {/* <div id="find-map-container">
         <img
           id="find-map-place-holder"
@@ -229,7 +355,7 @@ function FindParking() {
             {stillLoading ? (
               <div>loading</div>
             ) : (
-              parkingsToMap.map((item, index) => {
+              parkingsToMap?.map((item, index) => {
                 return (
                   <div
                     className="find-parking-tab"
@@ -237,7 +363,7 @@ function FindParking() {
                     onClick={() => handleParkingClick(item._id)}
                   >
                     <div className="find-parking-tab-distance">
-                      100
+                      {item?.distance}
                     </div>
                     <div className="find-parking-tab-price">
                       {item.pricePerHour}

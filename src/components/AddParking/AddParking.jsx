@@ -19,6 +19,7 @@ import {
   gooleAutoLocation,
   userDataContext,
 } from "../../App";
+import { HOST } from '../../Utils/host'
 
 const AddParking = () => {
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ const AddParking = () => {
     formData.ownerID = userData._id;
     console.log(formData);
     axios
-      .post("http://localhost:5000/parking/publishParking", {
+      .post(`${HOST}/parking/publishParking`, {
         parkingName: formData.parkingName,
         parkingLocation: formData.parkingLocation,
         photos: formData.photos,

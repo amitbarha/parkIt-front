@@ -3,17 +3,20 @@ import { modeContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { HOST } from "../../Utils/host";
 
 function Profile() {
   const { colorMode, setColorMode } = useContext(modeContext);
   const [data, setData] = useState([]);
+  const [platesArr,setPlatesArr]=useState([])
   useEffect(() => {
     axios
-      .post("http://localhost:5000/user/translateToken", {
+      .post(`${HOST}/user/translateToken`, {
         token: localStorage.getItem("loggedUser"),
       })
       .then(({ data }) => {
         setData(data);
+        setPlatesArr(data.licensePlates)
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -35,7 +38,7 @@ function Profile() {
               |
             </div>
             <div className="profile-detail-divfortext">
-            {data.firstName} {data.LastName}
+              {data.firstName} {data.LastName}
             </div>
           </div>
           <div className={`${colorMode}-profile-detail`}>
@@ -47,9 +50,7 @@ function Profile() {
               />
               |
             </div>
-            <div className="profile-detail-divfortext">
-            {data.email}
-            </div>
+            <div className="profile-detail-divfortext">{data.email}</div>
           </div>
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
@@ -73,20 +74,24 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">Password: EXAMPLE</div>
           </div>
-          <div className={`${colorMode}-profile-detail`}>
-            
-            <div className="profile-detail-divforicon">
-              <img
-                className="icon-con"
-                src="https://img.icons8.com/ios/50/licence-plate.png"
-                alt="licence-plate"
-              />
-              |
-            </div>
-            <div className="profile-detail-divfortext">
-              Car liesence plate:{data?.licensePlates}
-            </div>
-          </div>
+          <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
+          {platesArr.map((index, plate) => {
+            return (
+              <div className={`${colorMode}-profile-detail index`}>
+                <div className="profile-detail-divforicon">
+                  <img
+                    className="icon-con"
+                    src="https://img.icons8.com/ios/50/licence-plate.png"
+                    alt="licence-plate"
+                  />
+                  |
+                </div>
+                <div className="profile-detail-divfortext">
+                  {platesArr[plate]}
+                </div>
+              </div>
+             );
+          })} 
         </div>
       </div>
       <div id="profile-buttons-container">

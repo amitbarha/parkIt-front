@@ -7,6 +7,7 @@ import HistoryOneParking from "../SoloParking/HistoryOnePark";
 import axios from "axios";
 import { userDataContext } from "../../App";
 import Timer from "./Timer";
+import { HOST } from "../../Utils/host";
 
 
 
@@ -26,12 +27,13 @@ function HomePage() {
   const [info, setInfo] = useState([])
   const [info1, setInfo1] = useState([])
   const [Data, setData] = useState([])
+  
 
 
   useEffect(() => {
     if (localStorage.getItem("loggedUser")) {
       axios
-        .post("http://localhost:5000/user/translateToken", { token: localStorage.getItem('loggedUser') })
+        .post(`${HOST}/user/translateToken`, { token: localStorage.getItem('loggedUser') })
         .then(({ data }) =>{
           setUserData(data)
           setTimerWork(data.currentParking)
@@ -46,7 +48,7 @@ function HomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/parking/fetchParking")
+      .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
         setData(data);
         setInfo(userData?.myParking);
@@ -81,7 +83,7 @@ function HomePage() {
   function stopParkingFunc(){
     console.log("stop")
     axios
-        .patch("http://localhost:5000/payment/updatePayment", { token: localStorage.getItem('loggedUser') })
+        .patch(`${HOST}/payment/updatePayment`, { token: localStorage.getItem('loggedUser') })
         .then(({ data }) =>{
           navigate("/Receipt");
         }          
@@ -103,13 +105,16 @@ function HomePage() {
         <div className="timer-open-div">
           <div className="border-circle border-circle-timer">
             <div className="circle circle-timer" onClick={()=>stopParkingFunc()}>
-              <Timer startTime={userData.myPayment[userData.myPayment.length-1].date}/> 
+             <h2> <Timer  startTime={userData.myPayment[userData.myPayment.length-1].date}/></h2> 
               <div>Click to stop</div>
             </div>
           </div>
           <div className="mini-circles-div">
             <div className="mini-circle">
-            <img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/>
+            <a href={`tel:+${info1?.phoneToPay}`}><img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/></a>
+            </div>
+            <div className="mini-circle">
+            <img width="50" height="50" src="https://img.icons8.com/color/48/google-maps-new.png" alt="google-maps-new"/>
             </div>
           </div>
         </div>
@@ -146,11 +151,13 @@ function HomePage() {
                     />
                   </div>
                   <div className="text-overlay">
-                    <div>
-                      <p>parking name: {parking.parkingLocation}</p>
+                    <div  className="parking-name-my-parking">
+                    <img id="icon-name-my-parking" width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png" alt="parking--v4"/>
+                      <p>parking name: {parking.parkingName}</p>
                     </div>
-                    <div>
-                      <p>status: {parking.availableToPark ? 'yes' : 'no'}</p>
+                    <div className="parking-status-my-parking" >
+                    <img id="icon-status-my-parking" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok"/>
+                      <p>{parking.availableToPark ? 'Availible' : 'Not Availible'}</p>
                     </div>
                   </div>
                 </div>
@@ -159,7 +166,7 @@ function HomePage() {
           })}
           <div className="add-parking-box">
             <Link className="add-parking" to={"/addParking"}>
-              Add New Parking{" "}
+              <h5>Add New Parking:</h5>{" "}
               <img
                 width="72"
                 height="72"
@@ -176,7 +183,7 @@ function HomePage() {
         <h1>Last Parking:</h1>
         {
           info1 && <HistoryOneParking
-            price={info1[info1.length - 1]?.pricePerHour}
+            price={info1[info1.length - 1]?.finalPrice}
             name={info1[info1.length - 1]?.parkName}
             startTime={info1[info1.length - 1]?.startTime}
             endTime={info1[info1.length - 1]?.endTime}
@@ -217,6 +224,7 @@ function HomePage() {
           </div>
         </Carousel>
       </div>
+      <br />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../Login/login.css"
 import { Link} from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-
+import { HOST } from "../../Utils/host";
 const Login = () => {
   const [registers, setRegisters] = useState([]);
   const [refresh, setRefresh] = useState(0);
@@ -15,7 +15,7 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/user/fetchUser")
+      .get(`${HOST}/user/fetchUser`)
       .then(({ data }) => setRegisters(data))
       .catch((err) => console.log(err.message));
   }, [refresh]);
@@ -29,7 +29,7 @@ const Login = () => {
 
     try {
       const { data: newRegister } = await axios.post(
-        "http://localhost:5000/user/loginFunc",
+        `${HOST}/user/loginFunc`,
         { username, password }
       );
       localStorage.setItem("loggedUser", newRegister);

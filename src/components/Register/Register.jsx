@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Register/Register.css"
 import { Link} from 'react-router-dom';
+import { HOST } from "../../Utils/host";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Register = () => {
 
     try {
       const newuser = await axios.post(
-        "http://localhost:5000/user/publishUser",
+        `${HOST}/user/publishUser`,
         {username,firstName,lastName,phoneNumber,email,password,licensePlates }
       );
       console.log(newuser);

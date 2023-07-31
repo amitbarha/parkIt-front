@@ -5,12 +5,14 @@ import { DevTool } from "@hookform/devtools";
 import { modeContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { TextField } from "@mui/material";
+import { HOST } from "../../Utils/host";
 function EditProfile() {
   const { colorMode, setColorMode } = useContext(modeContext);
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .post("http://localhost:5000/user/translateToken", {
+      .post(`${HOST}/user/translateToken`, {
         token: localStorage.getItem("loggedUser"),
       })
       .then(({ data }) => {

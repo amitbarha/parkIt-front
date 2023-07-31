@@ -5,9 +5,10 @@ import { ChosenParkingContext } from "../../App";
 import Carousel from "../SoloParking/Carousel";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { HOST } from "../../Utils/host";
 
 const BottomSheet = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState();
   const [ownerParkingData, setOwnerParkingData] = useState();
   const [parksDistance, setParksDistance] = useState([]);
@@ -18,13 +19,13 @@ const BottomSheet = () => {
     parkingId,
     parkingIdData,
     setParkingIdData,
-    center
+    center,
   } = useContext(ChosenParkingContext);
   useEffect(() => {
-    console.log('mount');
+    console.log("mount");
     if (localStorage.getItem("loggedUser")) {
       axios
-        .post("http://localhost:5000/user/translateToken", {
+        .post(`${HOST}/user/translateToken"`, {
           token: localStorage.getItem("loggedUser"),
         })
         .then(({ data }) => setLoggedUser(data))
@@ -32,7 +33,7 @@ const BottomSheet = () => {
     }
 
     axios
-      .post("http://localhost:5000/user/findUserById", {
+      .post(`${HOST}/user/findUserById`, {
         _id: parkingIdData?.ownerID,
       })
       .then(({ data }) => {
@@ -50,43 +51,40 @@ const BottomSheet = () => {
       const origin = center; // Your fixed origin
       const distanceArr = [];
 
-      
-        const lat = parkingIdData?.lat * 1;
-        const lng = parkingIdData?.lng * 1;
-        const destination = { lat, lng };
+      const lat = parkingIdData?.lat * 1;
+      const lng = parkingIdData?.lng * 1;
+      const destination = { lat, lng };
 
-        // Distance matrix request
-        service.getDistanceMatrix(
-          {
-            destinations: [destination],
-            origins: [origin],
-            travelMode: "DRIVING",
-          },
-          (response) => {
-            console.log(response, "dist");
-            console.log("hii");
-            const distance = response.rows[0].elements[0].distance;
-            console.log(distance, "dis");
-            let obj;
-            distance ? (obj = distance) : (obj = 0);
-            distanceArr.push(obj);
-            setParkingIdData(
-              {
-                ...parkingIdData,
-                distance: distance.text
-              }
-            )
-            // Handle the distance matrix response here
-            // You can update your state or perform any other action with the data
-          }
-        );
+      // Distance matrix request
+      service.getDistanceMatrix(
+        {
+          destinations: [destination],
+          origins: [origin],
+          travelMode: "DRIVING",
+        },
+        (response) => {
+          console.log(response, "dist");
+          console.log("hii");
+          const distance = response.rows[0].elements[0].distance;
+          console.log(distance, "dis");
+          let obj;
+          distance ? (obj = distance) : (obj = 0);
+          distanceArr.push(obj);
+          setParkingIdData({
+            ...parkingIdData,
+            distance: distance.text,
+          });
+          // Handle the distance matrix response here
+          // You can update your state or perform any other action with the data
+        }
+      );
       console.log(distanceArr, "dddii");
       return distanceArr;
     };
     setParksDistance(calculateDistances());
-  }, [ownerParkingData]);
+  }, [openSpring]);
+  useEffect(() => () => setOpenSpring(false), []); //unmount
 
-  
   const [isOpen, setIsOpen] = useState(false);
   const height = screen.height;
   const size = height * 0.8;
@@ -99,38 +97,41 @@ const BottomSheet = () => {
   const toggleBottomSheet = () => {
     setOpenSpring(!openSpring);
   };
-  const handleStartParking = ()=>{
-    console.log(ownerParkingData,"ownerparkingdata")
-    const date = new Date()
-    const time = [date.getHours(),date.getMinutes()]
-    const strTime = time.join(":")
+  const handleStartParking = () => {
+    console.log(ownerParkingData, "ownerparkingdata");
+    const date = new Date();
+    const time = [date.getHours(), date.getMinutes()];
+    if (time[0] * 1 < 10) time[0] = "0" + time[0];
+    if (time[1] * 1 < 10) time[1] = "0" + time[1];
+    console.log(time);
+    const strTime = time.join(":");
     console.log(strTime);
 
     const payment = {
-      token:localStorage.getItem('loggedUser'),
-      parkingId:parkingIdData._id,
-      parkName:parkingIdData.parkingName,
+      token: localStorage.getItem("loggedUser"),
+      parkingId: parkingIdData._id,
+      parkName: parkingIdData.parkingName,
       startTime: strTime,
       endTime: null,
       pricePerHour: parkingIdData.pricePerHour,
       parkingLocation: parkingIdData.parkingLocation,
       phoneToPay: ownerParkingData.phoneNumber,
       clientPhone: loggedUser.phoneNumber,
-      finalPrice:null
-    }
+      finalPrice: null,
+    };
 
-    console.log(payment,"payment")
+    console.log(payment, "payment");
 
     axios
       .post("http://localhost:5000/payment/publishPayment", payment)
       .then(({ data }) => {
-        alert("starting parking at time:")
-        navigate('/homePage')
+        alert("starting parking at time:");
+        navigate("/homePage");
       })
       .catch((err) => {
         console.log(err.response.data);
       });
-  }
+  };
 
   return (
     <div>
@@ -211,7 +212,11 @@ const BottomSheet = () => {
             </Carousel>
           </div>
           <div className="start-parking-button">
-            <button onClick={handleStartParking} type="submit" className="button-form button-parking">
+            <button
+              onClick={handleStartParking}
+              type="submit"
+              className="button-form button-parking"
+            >
               Start Parking
             </button>
           </div>

@@ -176,7 +176,7 @@ function HomePage() {
         <h1>Last Parking:</h1>
         {
           info1 && <HistoryOneParking
-            price={info1[info1.length - 1]?.pricePerHour}
+            price={info1[info1.length - 1]?.finalPrice}
             name={info1[info1.length - 1]?.parkName}
             startTime={info1[info1.length - 1]?.startTime}
             endTime={info1[info1.length - 1]?.endTime}

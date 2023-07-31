@@ -27,6 +27,7 @@ function HomePage() {
   const [info, setInfo] = useState([])
   const [info1, setInfo1] = useState([])
   const [Data, setData] = useState([])
+  const [activeParking, setActiveParking] = useState([])
   
 
 
@@ -57,6 +58,8 @@ function HomePage() {
       .catch((err) => console.log(err.message));
   }, [userData]);
 
+ 
+console.log(info1);
 
   const parkingSpots = [
     {
@@ -111,10 +114,12 @@ function HomePage() {
           </div>
           <div className="mini-circles-div">
             <div className="mini-circle">
-            <a href={`tel:+${info1?.phoneToPay}`}><img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/></a>
+            <a href={`tel:+${info1[info1.length - 1]?.phoneToPay}`}><img width="50" height="50" src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1"/></a>
             </div>
             <div className="mini-circle">
-            <img width="50" height="50" src="https://img.icons8.com/color/48/google-maps-new.png" alt="google-maps-new"/>
+              <a  href={`https://www.google.com/maps?q=${encodeURIComponent(info1[info1.length - 1]?.parkingLocation)}`} target="_blank" rel="noopener noreferrer">
+                <img width="50" height="50" src="https://img.icons8.com/color/48/google-maps-new.png" alt="google-maps-new"/>
+                </a>
             </div>
           </div>
         </div>

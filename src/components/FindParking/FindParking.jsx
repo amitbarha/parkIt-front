@@ -86,7 +86,7 @@ function FindParking() {
   //     } else{
   //       parkingTime=(endHourInt-startHourInt-1)*60+(60-startMinuteInt)+endMinuteInt
   //     }
-  //   } else{ 
+  //   } else{
   //     if(startMinuteInt>currentMinute){
   //       if(endMinuteInt>=startMinuteInt){
   //         parkingTime=(endHourInt-startHourInt)*60+(endMinuteInt-startMinuteInt)
@@ -96,7 +96,6 @@ function FindParking() {
   //     } else if (currentMinute>)
 
   //   }
-    
   // }
 
   useEffect(() => {

@@ -477,5 +477,6 @@ function calcTime(start, end) {
       </div>
     </div>
   );
+            }
 }
 export default FindParking;

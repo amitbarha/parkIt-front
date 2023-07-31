@@ -17,6 +17,7 @@ import Receipt from "./components/Receipt/Receipt";
 import * as React from "react"
 import axios from "axios";
 import Continue from "./components/Register/Continue";
+import Verifymail from "./components/Verifymail.jsx/Verifymail";
 
 export const modeContext = createContext();
 export const gooleAutoLocation = createContext();
@@ -67,6 +68,7 @@ function App() {
               <Route index element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/continue" element={<Continue />}></Route>
+              <Route path="Verifymail" element={<Verifymail/>}></Route>
               <Route element={<Layout />}>
                 <Route index element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>

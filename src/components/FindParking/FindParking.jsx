@@ -317,8 +317,6 @@ function calcTime(start, end) {
           alt=""
         />
       </div> */}
-      <br />
-      <br />
       <div id={`${colorMode}-find-container`}>
         <div id="find-container-filters">
           <div id="find-location-filter">
@@ -409,8 +407,6 @@ function calcTime(start, end) {
             </div>
           </div>
         </div>
-        <br />
-        <br />
         <br />
         <br />
         <div id="find-container-parkings">

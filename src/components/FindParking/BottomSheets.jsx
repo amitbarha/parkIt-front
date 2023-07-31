@@ -123,7 +123,7 @@ const BottomSheet = () => {
     console.log(payment, "payment");
 
     axios
-      .post("http://localhost:5000/payment/publishPayment", payment)
+      .post(`${HOST}/payment/publishPayment, payment`)
       .then(({ data }) => {
         alert("starting parking at time:");
         navigate("/homePage");

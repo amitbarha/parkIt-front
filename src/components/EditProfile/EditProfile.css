@@ -43,6 +43,7 @@
 .info-input{
   width: 100%;
   background-color: var(--bg-200);
+  height: 10vw;
 }
 .info-error{
   color: red;

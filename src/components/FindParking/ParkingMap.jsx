@@ -13,6 +13,7 @@ import IconLocation from "./../../assets/iconlocation.png";
 import ParkingLocationIcon from "./../../assets/parking-location.png";
 import axios from "axios";
 import { ChosenParkingContext } from "../../App";
+import { HOST } from "../../Utils/host";
 
 function ParkingMap() {
   const { isLoaded } = useLoadScript({

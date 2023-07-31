@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import "react-spring-bottom-sheet/dist/style.css";
 import BottomSheet from "./BottomSheets";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import { HOST } from "../../Utils/host";
 
 function FindParking() {
   const {

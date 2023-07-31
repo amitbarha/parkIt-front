@@ -47,5 +47,9 @@
     background-color: #8c5fbfaf ;
   }
   .addcomment{
-    min-height:300px ;
+    margin-top: 20px;
+    min-height:200px ;
+  }
+  .comment{
+    margin-top: 20px;
   }

@@ -34,10 +34,10 @@ function HomePage() {
     if (localStorage.getItem("loggedUser")) {
       axios
         .post(`${HOST}/user/translateToken`, { token: localStorage.getItem('loggedUser') })
-        .then(({ data }) =>{
+        .then(({ data }) => {
           setUserData(data)
           setTimerWork(data.currentParking)
-        }          
+        }
         )
 
         .catch((err) => console.log(err.message));
@@ -70,7 +70,7 @@ function HomePage() {
       status: "available",
     },
   ];
- 
+
   const goToFindParkingPage = () => {
     navigate("/FindParking");
   };
@@ -80,18 +80,18 @@ function HomePage() {
     navigate(`/SoloParking/${id}`);
   }
 
-  function stopParkingFunc(){
+  function stopParkingFunc() {
     console.log("stop")
     axios
-        .patch(`${HOST}/payment/updatePayment`, { token: localStorage.getItem('loggedUser') })
-        .then(({ data }) =>{
-          navigate("/Receipt");
-        }          
-        )
-        .catch((err) => console.log(err.response.data));  
+      .patch(`${HOST}/payment/updatePayment`, { token: localStorage.getItem('loggedUser') })
+      .then(({ data }) => {
+        navigate("/Receipt");
+      }
+      )
+      .catch((err) => console.log(err.response.data));
   }
 
-   
+
   // const permittedValues = Data?.map(value => value.pricePerHour);
   // const snatch=permittedValues?.reduce((a,b)=>{return (a*1+b*1)/Data?.length}) 
 
@@ -101,7 +101,7 @@ function HomePage() {
       <br />
       <br />
       {timerWork && (
-        
+
         <div className="timer-open-div">
           <div className="border-circle border-circle-timer">
             <div className="circle circle-timer" onClick={()=>stopParkingFunc()}>
@@ -181,17 +181,18 @@ function HomePage() {
       <br />
       <div className="last-history">
         <h1>Last Parking:</h1>
-        {
-          info1 && <HistoryOneParking
+        {info1 ? (
+          <HistoryOneParking
             price={info1[info1.length - 1]?.finalPrice}
             name={info1[info1.length - 1]?.parkName}
             startTime={info1[info1.length - 1]?.startTime}
             endTime={info1[info1.length - 1]?.endTime}
             phoneTopay={info1[info1.length - 1]?.phoneToPay}
             date1={info1[info1.length - 1]?.date}
-          >
-          </HistoryOneParking>
-        }
+          />
+        ) : (
+          <h1>There is no last parking</h1>
+        )}
       </div>
       <br />
       <div className="Statistics-container">

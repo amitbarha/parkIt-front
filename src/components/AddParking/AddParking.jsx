@@ -57,7 +57,7 @@ const AddParking = () => {
         lng: formData.lng,
         lat: formData.lat,
         ownerID: formData.ownerID,
-        comments:formData.comments
+        comments: formData.comments
       })
       .then(({ data }) => {
         alert("Create parking complete!");
@@ -70,7 +70,7 @@ const AddParking = () => {
         navigate("/homePage");
       })
       .catch((err) => console.log(err.message + "basa"));
-   
+
   };
 
   return (
@@ -155,6 +155,7 @@ const AddParking = () => {
           name="comments"
           control={control}
           defaultValue=""
+          className="comment"
           render={({ field }) => (
             <TextField
               {...field}
@@ -163,11 +164,12 @@ const AddParking = () => {
               multiline='true'
               inputProps={{
                 style: {
-                  height: "300px",
+                  height: "100px",
                 },
               }}
               required
               type="text"
+              style={{ marginTop:"20px" }}
             />
           )}
         />

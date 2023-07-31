@@ -6,7 +6,6 @@
 
 #light-find-page{
     width: 100vw;
-    height: 100vh;
     background-color: var(--light-background);
     display: flex;
     justify-content: center;
@@ -217,7 +216,7 @@
 
 #find-container-parkings{
     width: 92%;
-    height: 80%;
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: start;

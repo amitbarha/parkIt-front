@@ -12,7 +12,13 @@
     width: 90%;
     background-color: var(--bg-200);
     height: 5vh;
+    transition: sigma 3s linear;
 }
+
+/* @keyframes sigma {
+    from{height: 0px;}
+    to{height: 5vh;}
+} */
 .side-color-history{
     width: 1%;
     background-color: var(--dark-container);

@@ -87,7 +87,7 @@ const Verifymail = () => {
         console.log(true)
         const { data: newRegister } = await axios.post(`http://localhost:5000/user/loginFuncFromVerify`,{username: saveUserAterMail});
         localStorage.setItem("loggedUser", newRegister);
-        navigate("/homePage");
+        navigate("/ChangePassword");
     }else{
         alert("Numbers are inncorrect")
     }

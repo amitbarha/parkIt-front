@@ -23,6 +23,7 @@ function FindParking() {
     setParkingIdData,
     center,
     setCenter,
+    myLocation,
   } = useContext(ChosenParkingContext);
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
   const [selectAdd, setSelectAdd] = useState(false);
@@ -327,6 +328,17 @@ function FindParking() {
                 {!selectAdd && <LocationSearchInput />}
                 {selectAdd && (
                   <div className="change-location-find-div">
+                    <button
+                      className="button-in-change-loc"
+                      onClick={() => {setCenter(myLocation); setSelectAdd(false) }}
+                    >
+                      <img
+                        width="30"
+                        height="30"
+                        src="https://img.icons8.com/ios-filled/50/FFFFFF/center-direction.png"
+                        alt="center-direction"
+                      />
+                    </button>
                     <TextField
                       className="change-location-find"
                       disabled

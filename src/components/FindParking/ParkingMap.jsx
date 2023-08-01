@@ -51,7 +51,8 @@ function Map() {
     parkingIdData,
     setParkingIdData,
     center,
-    setCenter
+    setCenter,
+    myLocation, setMyLocation
   } = useContext(ChosenParkingContext);
 
   const [allParking, setAllParking] = useState();
@@ -69,6 +70,7 @@ function Map() {
         lng: crd.longitude,
       };
       setCenter(croods);
+      setMyLocation(croods);
     }
 
     function error(err) {

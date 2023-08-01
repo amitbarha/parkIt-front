@@ -34,13 +34,27 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border: 1px solid black;
   margin: 4px;
   box-shadow: -5px -2px 1px grey;
 }
 
+.layout-lisence-palate-picture{
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
 .layout-lisence-palate-number{
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: black;
 }
 

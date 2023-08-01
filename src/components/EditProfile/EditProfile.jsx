@@ -66,8 +66,13 @@ function EditProfile() {
   
 
   const onSubmit = (data) => {
-    console.log("form submit!!!!!", data);
-
+    console.log(data, "dd");
+    axios 
+    .patch(`${HOST}/user/updateUser`,data)
+    .then(({ data }) => {
+      console.log(data);
+    })
+    .catch((err) => console.log(response.data));
   };
 
   return (

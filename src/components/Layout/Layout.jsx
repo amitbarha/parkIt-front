@@ -3,13 +3,13 @@ import { modeContext, userDataContext } from "../../App";
 import "./layout.css";
 import { useState, useContext, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
-import axios from "axios";
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State variable to track open/closed state
   const [switchMode, setSwitchMode] = useState("light");
   const { colorMode, setColorMode } = useContext(modeContext);
   const { userData, setUserData } = useContext(userDataContext);
+  const [liesencePlateToShow ,setLiesencePlateToShow]=useState("")
 
   console.log(userData);
   const handleClose = () => {
@@ -52,14 +52,26 @@ function Layout() {
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">Liesence plates</h5>
-          {userData?.licensePlates.map((plate, index) => {
-            return (
-            <div className="layout-lisence-palate-container">
-              <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
-              <div className="layout-lisence-palate-number">- {plate}</div>
-              </div>
-            )
-          })}
+          {/* {userData?.licensePlates.map((plate, index) => {
+            setLiesencePlateToShow(plate.trim().replaceAll("-", ""))
+            if(liesencePlateToShow==7){
+              return (
+              <div className="layout-lisence-palate-container">
+                <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
+                <div className="layout-lisence-palate-number">- {plate[0]}{plate[1]}-{plate[2]}{plate[3]}{plate[4]}-{plate[5]}{plate[6]}</div>
+                {console.log(`the lentgh is ${liesencePlateToShow}`)}
+                </div>
+              )
+            } else if(liesencePlateToShow==8){
+              return (
+                <div className="layout-lisence-palate-container">
+                  <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
+                  <div className="layout-lisence-palate-number">- {plate[0]}{plate[1]}{plate[2]}-{plate[3]}{plate[4]}{plate[5]}-{plate[6]}{plate[7]}</div>
+                  {console.log(`the lentgh is ${liesencePlateToShow}`)}
+                  </div>
+                )
+            }
+          })} */}
         </div>
         <div id="layout-place-holder-for-log-out"></div>
         <div

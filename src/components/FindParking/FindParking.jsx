@@ -458,7 +458,7 @@ function FindParking() {
                     <div className="find-parking-tab-distance">
                       {item?.distance}
                     </div>
-                    <div className="find-parking-tab-price">
+                    <div className="find-parking-tab-price">₪
                       {item.pricePerHour}
                     </div>
                     <div className="find-parking-tab-hours">

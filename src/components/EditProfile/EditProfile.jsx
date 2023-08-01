@@ -29,7 +29,7 @@ function EditProfile() {
       username: "",
       email: "",
       phone: "",
-      licenses: [
+      licensePlates: [
         {
           onelicenses: "",
         },
@@ -37,15 +37,10 @@ function EditProfile() {
     },
   });
 
-  // useEffect(() => {
-  //   form.setValue("firstName", data.firstName);
-  //   form.setValue("lastName", data.lastName);
-  //   form.setValue("username", data.username);
-  //   form.setValue("email", data.email);
-  //   form.setValue("phoneNumber", data.phoneNumber);
-  // }, [data, form]);
-
   useEffect(() => {
+    data.licensePlates = data?.licensePlates?.map(v => {
+      return {onelicenses: v}
+    })
     reset(data);
   }, [data]);
 
@@ -60,19 +55,20 @@ function EditProfile() {
     append: appendlicenses,
     remove: removelicenses,
   } = useFieldArray({
-    name: "licenses",
+    name: "licensePlates",
     control,
   });
   
 
   const onSubmit = (data) => {
     console.log(data, "dd");
+    data.licensePlates = data.licensePlates.map(v => v.onelicenses)
     axios 
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
     })
-    .catch((err) => console.log(response.data));
+    .catch((err) => console.log(err.response.data));
   };
 
   return (
@@ -169,7 +165,7 @@ function EditProfile() {
 
           <div className="solo-info-container">
             <div> 
-              {licensesFields.map((field, index) => {
+              {licensesFields?.map((field, index) => {
                 return (
                   <div key={field.index}>
                     <div className="title-input">License Plates No.{index+1}:</div>
@@ -177,7 +173,7 @@ function EditProfile() {
                       className="info-input"
                       label={`license No. ${index + 1}`}
                       placeholder="enter one license..."
-                      {...register(`licenses.${index}.onelicenses`, {
+                      {...register(`licensePlates.${index}.onelicenses`, {
                         required: "onelicenses is required",
                       })}
                     />

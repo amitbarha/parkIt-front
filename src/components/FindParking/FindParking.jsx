@@ -479,7 +479,7 @@ function FindParking() {
                     onClick={() => handleParkingClick(item._id)}
                   >
                     <div className="find-parking-tab-distance">
-                    {distancesLoaded ? item?.distance : 'Calculating...'}
+                    {distancesLoaded ? item?.distance : 'Calculating..'}
                     </div>
                     <div className="find-parking-tab-price">
                       {item.pricePerHour}

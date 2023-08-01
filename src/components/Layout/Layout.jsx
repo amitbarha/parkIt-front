@@ -48,6 +48,14 @@ function Layout() {
         >
           Proflie
         </Link>
+        <div
+          to={"/profile"}
+          id="contact"
+          className="menu-item"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          Log out 
+        </div>
         {/* <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a> */}
       </Menu>
       <Outlet />

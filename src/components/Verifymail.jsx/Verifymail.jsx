@@ -11,7 +11,7 @@ import emailjs from '@emailjs/browser';
 
 const Verifymail = () => {
 
-  const [openVerify,setOpenVerify]=useState(true);
+  const [openVerify,setOpenVerify]=useState(false);
 
   const [registers, setRegisters] = useState([]);
   const [refresh, setRefresh] = useState(0);
@@ -19,6 +19,24 @@ const Verifymail = () => {
   const navigate = useNavigate();
 
   const [userNameForgot,setUserNameForgot]=useState()
+  const [saveUserAterMail,setSaveUserAfterMail]=useState()
+
+  const [input1,setInput1]=useState();
+  const [input2,setInput2]=useState();
+  const [input3,setInput3]=useState();
+  const [input4,setInput4]=useState();
+  const [randomStringSave,setRandomStringSave]=useState()
+
+  function randomString() {
+    const letters = '0123456789';
+    let result = '';
+    for (let i = 0; i < 4; i++) {
+      const randomIndex = Math.floor(Math.random() * letters.length);
+      result += letters.charAt(randomIndex);
+    }
+    return result;
+  }
+
 
   useEffect(() => {
     axios
@@ -42,7 +60,10 @@ const Verifymail = () => {
          alert(`The user: ${username} that not exists`)
         }
         else{
-         const mailObj = {email:data.email,password:data.password,firstName:data.firstName}
+        const randomNumber = randomString()
+        setRandomStringSave(randomNumber)
+
+         const mailObj = {email:data.email,password: randomNumber ,firstName:data.firstName}
          emailjs.send('service_mwr887e', 'template_ff36o7o', mailObj, 'WZFwcywx7NqBLytwt')
          .then((result) => {
             alert("please enter the numbers from the mail");
@@ -56,25 +77,50 @@ const Verifymail = () => {
     }
   };
 
+  async function verifyFunc(){
+    console.log(randomStringSave,"randomstringsave")
+    console.log(saveUserAterMail,"saveuseraftermail")
+    console.log(input1,input2,input3,input4, "allinputs")
+    const digits = randomStringSave.split('');
+    console.log(digits)
+    if(input1 == digits[0] && input2 == digits[1] && input3 == digits[2] && input4 == digits[3]){
+        console.log(true)
+        const { data: newRegister } = await axios.post(`http://localhost:5000/user/loginFuncFromVerify`,{username: saveUserAterMail});
+        localStorage.setItem("loggedUser", newRegister);
+        navigate("/ChangePassword");
+    }else{
+        alert("Numbers are inncorrect")
+    }
+  }
+
   return (
     <div className="login-background">
           <div className="container">
 	<form className="screen" onSubmit={(e) => handleSubmitForm(e)}>
 		<div className="screen__content">
-      <h1>Verify password</h1>
+      <h1>Verify</h1>
 				<div className="login__field">
         <img className="login__icon" width="25" height="25" src="https://img.icons8.com/ios-glyphs/30/7875b5/guest-male.png" alt="guest-male"/>
 					<input type="text" className="login__input" placeholder="Username:" onChange={(e)=>setUserNameForgot(e.target.value)}/>
 				</div>
 				
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-				<button type="submit" className="button login__submit">
+				<button type="submit" className="button login__submit" onClick={()=>setSaveUserAfterMail(userNameForgot)}>
 					<span className="button__text">Get a mail</span>
 					<img className="button__icon" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/7875b5/chevron-right.png" alt="chevron-right"/>
 				</button>
         <div><Link className="link-to-register" to={"/"}>Back to Login </Link></div>
         {openVerify&&
-          <div id="inputs-verify-screen">hiii</div>
+          <div id="input-verify-container">
+           <h6>Enter to key number:</h6>
+           <div id="inputs-verify-screen">
+            <input className="verify-box-input" onChange={(e)=>setInput1(e.target.value)}></input>-
+            <input className="verify-box-input" onChange={(e)=>setInput2(e.target.value)}></input>-
+            <input className="verify-box-input" onChange={(e)=>setInput3(e.target.value)}></input>-
+            <input className="verify-box-input" onChange={(e)=>setInput4(e.target.value)}></input>
+           </div>
+           <button type="button" id="veify-btn" onClick={()=>verifyFunc()}>Verify</button>
+          </div>
         }
         </div>
 		<div className="screen__background">

@@ -23,9 +23,11 @@ function FindParking() {
     setParkingIdData,
     center,
     setCenter,
+    myLocation,
   } = useContext(ChosenParkingContext);
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
   const [selectAdd, setSelectAdd] = useState(false);
+  const [finishDistance, setFinishDistance] = useState(false);
   const { colorMode } = useContext(modeContext);
   const [toggleDistance, setToggleDistance] = useState("chosen-");
   const [togglePrice, setTogglePrice] = useState("");
@@ -36,6 +38,7 @@ function FindParking() {
   const [Loading, setLoading] = useState(true);
   const [wantToChangeLocation, setWantToChangeLocation] = useState(false);
   const [wantToLoadMore, setWantToLoadMore] = useState(false);
+  const [distancesLoaded, setDistancesLoaded] = useState(false);
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -95,7 +98,7 @@ function FindParking() {
           },
           (response) => {
             const distance = response.rows[0].elements[0].distance;
-            let distanceText = distance ? distance.text : "N/A";
+            let distanceText = distance ? distance.text : "100000000";
 
             // Update the distance property for the corresponding parking object
             updatedParkings[index] = {
@@ -114,7 +117,10 @@ function FindParking() {
     };
 
     calculateDistances();
+    setDistancesLoaded(true)
   }, [Loading]);
+
+ 
 
   //   function calcTime(start, end) {
   //     let startHoursArr = parseInt(start);
@@ -278,6 +284,12 @@ function FindParking() {
       setToggleDistance("chosen-");
       setTogglePrice("");
       setToggleHours("");
+      setParkingsToMap(
+        parkingsToMap.sort((a, b) => a.distance*1 - b.distance*1)
+      );
+      console.log(parkingsToMap, "parki");
+
+      
     } else if (sortBy === "price") {
       setToggleDistance("");
       setTogglePrice("chosen-");
@@ -327,6 +339,17 @@ function FindParking() {
                 {!selectAdd && <LocationSearchInput />}
                 {selectAdd && (
                   <div className="change-location-find-div">
+                    <button
+                      className="button-in-change-loc"
+                      onClick={() => {setCenter(myLocation); setSelectAdd(false) }}
+                    >
+                      <img
+                        width="30"
+                        height="30"
+                        src="https://img.icons8.com/ios-filled/50/FFFFFF/center-direction.png"
+                        alt="center-direction"
+                      />
+                    </button>
                     <TextField
                       className="change-location-find"
                       disabled
@@ -456,7 +479,7 @@ function FindParking() {
                     onClick={() => handleParkingClick(item._id)}
                   >
                     <div className="find-parking-tab-distance">
-                      {item?.distance}
+                    {distancesLoaded ? item?.distance : 'Calculating..'}
                     </div>
                     <div className="find-parking-tab-price">₪
                       {item.pricePerHour}
@@ -502,6 +525,7 @@ function FindParking() {
           </div>
         </div>
       </div>
+      <br />
     </div>
   );
 }

@@ -23,6 +23,26 @@
   font-size: 25px;
   border-bottom: solid;
 }
+/* #layout-place-holder-for-log-out{
+  height: 220px;
+} */
+#layout-show-me-all-liesence-plates{
+  height: 480px;
+}
+
+.layout-lisence-palate-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 4px;
+  box-shadow: -5px -2px 1px grey;
+}
+
+.layout-lisence-palate-number{
+  color: black;
+}
 
 .open-navbar{
     height: 40vw;
@@ -43,16 +63,6 @@
 .open-link-style:hover{
 background-color:  #af63ffb1 ;
 }
-
-
-
-
-
-
-
-
-
-
 
 #checkbox {
   display: none;

@@ -92,6 +92,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   margin: 15px;
 }
 #edit-delete-add-bottom{
     width: 80%;
@@ -117,20 +118,27 @@
     }
 }
 #real-delete-btn{
+    all: unset;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     color: white;
-    padding: 1vw;
+    padding: 6px;
     margin: 2vw;
     background-color: red;
 }
 #savechange-btn{
-    margin: 1vw;
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
-    background-color: rgb(9, 218, 9);
     color: white;
+    padding: 6px;
+    margin: 2vw;
+    margin-top: 10px;
+    background-color: rgb(12, 235, 12);
     width: 60%;
 
 }

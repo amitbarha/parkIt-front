@@ -63,9 +63,16 @@
     justify-content: center;
   }
   .button-parking{
+    all: unset;
     width: 90vw;
     height: 10vh;
     font-size: 30px;
+    background-color: var(--primary-100);
+    text-align: center;
+    color: white;
+  }
+  .button-parking:hover{
+    background-color: #8c5fbfaf ;
   }
   
   /* Add any other styles as needed */

@@ -177,13 +177,15 @@
     width: 100%;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    font-size: 20px;
+    height: 6vh;
 }
 
 .find-sort-by{
     height: 100%;
-    width: 24%;
+    width: 29%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,7 +194,7 @@
 
 .chosen-find-sort-by{
     height: 100%;
-    width: 24%;
+    width: 29%;
     display: flex;
     justify-content: center;
     align-items: center;

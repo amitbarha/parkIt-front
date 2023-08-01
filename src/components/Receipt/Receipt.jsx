@@ -45,7 +45,7 @@ function Receipt(){
             <div id="inner-container-receipt">
                 <div><img width="100" height="100" src="https://img.icons8.com/plasticine/100/price-tag.png" alt="price-tag"/></div>
                 <div style={{ fontWeight: 'bold' }}>Total price:</div>
-                <div className='detail-con'>${totalPrice}</div>
+                <div className='detail-con'>₪{totalPrice}</div>
             </div>
             <br></br>
             <PayPalScriptProvider options={{"client-id": "AdiZsXZbq7_NeUl1QtlbyUNJgaQ3kAerhATGX3GUcfy5qml6U1cx-fQGXUF2EKOsBoPWbHhisTcGytcQ"}}>

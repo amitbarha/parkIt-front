@@ -163,7 +163,7 @@ const BottomSheet = () => {
           </div>
           <br />
           <div className="price-div">
-            <span className="price-bold">{parkingIdData?.pricePerHour}$</span>
+            <span className="price-bold">{parkingIdData?.pricePerHour}₪</span>
             <span>&nbsp;Per Hour</span>
           </div>
           <br />
@@ -198,7 +198,7 @@ const BottomSheet = () => {
             </div>
           </div>
           <br />
-          <div id="solo-parking-img-container">
+          <div className="img-bottom-carousel" id="solo-parking-img-container" >
             <Carousel>
               {parkingIdData?.photos.map((element, index) => {
                 return (

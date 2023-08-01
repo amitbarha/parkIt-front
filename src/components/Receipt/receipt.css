@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 95vh;
+    /* height: 95vh; */
 }
 #page-title{
     margin: 2vw;

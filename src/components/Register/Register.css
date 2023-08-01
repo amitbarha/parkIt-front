@@ -313,9 +313,9 @@
     padding-left: 10px;
   }
 
-  .link-to-continue{
+  /* .link-to-continue{
     text-decoration: none;
-  }
+  } */
   
   /* Media Query for Responsive Layout */
   @media screen and (max-width: 480px) {

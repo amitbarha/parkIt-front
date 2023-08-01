@@ -215,7 +215,7 @@ const BottomSheet = () => {
             <button
               onClick={handleStartParking}
               type="submit"
-              className="button-form button-parking"
+              className="button-parking"
             >
               Start Parking
             </button>

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { HOST } from '../../Utils/host'
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 function Receipt(){
 
     const navigate = useNavigate()
@@ -46,7 +47,10 @@ function Receipt(){
                 <div style={{ fontWeight: 'bold' }}>Total price:</div>
                 <div className='detail-con'>${totalPrice}</div>
             </div>
-            <br></br><br></br>
+            <br></br>
+            <PayPalScriptProvider options={{"client-id": "AdiZsXZbq7_NeUl1QtlbyUNJgaQ3kAerhATGX3GUcfy5qml6U1cx-fQGXUF2EKOsBoPWbHhisTcGytcQ"}}>
+                <PayPalButtons/>
+            </PayPalScriptProvider>
         </div>
     )
     

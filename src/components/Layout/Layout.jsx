@@ -52,26 +52,30 @@ function Layout() {
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">Liesence plates</h5>
-          {/* {userData?.licensePlates.map((plate, index) => {
-            setLiesencePlateToShow(plate.trim().replaceAll("-", ""))
-            if(liesencePlateToShow==7){
+          {userData?.licensePlates.map((plate, index) => {
+            if(plate.length==7){
               return (
               <div className="layout-lisence-palate-container">
                 <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
-                <div className="layout-lisence-palate-number">- {plate[0]}{plate[1]}-{plate[2]}{plate[3]}{plate[4]}-{plate[5]}{plate[6]}</div>
-                {console.log(`the lentgh is ${liesencePlateToShow}`)}
+                <div className="layout-lisence-palate-number"> {plate[0]}{plate[1]}-{plate[2]}{plate[3]}{plate[4]}-{plate[5]}{plate[6]}</div>
                 </div>
               )
-            } else if(liesencePlateToShow==8){
+            } else if(plate.length==8){
               return (
                 <div className="layout-lisence-palate-container">
                   <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
-                  <div className="layout-lisence-palate-number">- {plate[0]}{plate[1]}{plate[2]}-{plate[3]}{plate[4]}{plate[5]}-{plate[6]}{plate[7]}</div>
-                  {console.log(`the lentgh is ${liesencePlateToShow}`)}
+                  <div className="layout-lisence-palate-number"> {plate[0]}{plate[1]}{plate[2]}-{plate[3]}{plate[4]}{plate[5]}-{plate[6]}{plate[7]}</div>
+                  </div>
+                )
+            } else {
+              return (
+                <div className="layout-lisence-palate-container">
+                  <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
+                  <div className="layout-lisence-palate-number">- {plate}</div>
                   </div>
                 )
             }
-          })} */}
+          })}
         </div>
         <div id="layout-place-holder-for-log-out"></div>
         <div

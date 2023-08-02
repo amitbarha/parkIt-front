@@ -65,7 +65,7 @@ function Layout() {
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">Liesence plates</h5>
-          {console.log(userData?.licenses)}
+          {/* {console.log(userData?.licenses)}
           {userData?.licenses[0] != "" ? (
             <div className="layout-lisence-palate-container">
               <div className="layout-lisence-palate-picture">
@@ -82,7 +82,7 @@ function Layout() {
                 {userData?.licenses[0][1]}
               </div>
             </div>
-          ) : null}
+          ) : null} */}
           {/* {userData?.licensePlates[0] != "" ? (
             <div className="layout-lisence-palate-container">
               <div className="layout-lisence-palate-picture">

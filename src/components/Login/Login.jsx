@@ -12,7 +12,20 @@ const Login = () => {
 
   const [userNameForgot,setUserNameForgot]=useState()
 
+
   useEffect(() => {
+    const storedToken = localStorage.getItem('loggedUser') || "NoTokenBefore";
+    console.log(storedToken,"storedtoken")
+
+    if(storedToken!="NoTokenBefore"){
+      axios
+      .post(`${HOST}/user/loginFuncFromToken`,{token:storedToken})
+      .then(() =>{
+         navigate("/homePage")
+        })
+      .catch((err) => console.log("eror"));
+    }
+
     axios
       .get(`${HOST}/user/fetchUser`)
       .then(({ data }) => setRegisters(data))

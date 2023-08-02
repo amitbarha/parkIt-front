@@ -5,6 +5,24 @@
   /* background-color: green; */
 }
 
+#navbar-logo-container{
+  height: 100%;
+  width: 150px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#navbar-logo-picture{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .save-place-nav{
   height: 64px;
 }

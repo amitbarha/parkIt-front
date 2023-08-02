@@ -12,8 +12,25 @@ import BottomSheet from "./BottomSheets";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { HOST } from "../../Utils/host";
 import { TextField } from "@mui/material";
+import io from 'socket.io-client';
 
 function FindParking() {
+
+ useEffect(() => {
+    const socket = io('http://localhost:3000');
+    socket.on('know-publish', newPayment => {
+      console.log('know-publish',newPayment);
+    })
+  }, [])
+
+  useEffect(() => {
+    const socket = io('http://localhost:3000');
+    socket.on('know-update', (parkingID) => {
+      console.log('know-update',parkingID);
+    })
+  }, [])
+
+
   const {
     openSpring,
     setOpenSpring,
@@ -73,7 +90,7 @@ function FindParking() {
         setStillLoading(false);
       });
   }, []);
-  console.log(parkingsToMap);
+  // console.log(parkingsToMap);
 
   useEffect(() => {
     // Function to calculate distance for each parking location

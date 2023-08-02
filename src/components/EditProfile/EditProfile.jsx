@@ -70,6 +70,7 @@ function EditProfile() {
       console.log(data);
       alert("User edited successefully!")
       navigate("/Profile")
+
     })
     .catch((err) => 
     console.log(err.response.data));

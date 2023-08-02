@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { modeContext, userDataContext } from "../../App";
 import "./layout.css";
 import { useState, useContext, useEffect } from "react";
@@ -9,9 +9,9 @@ function Layout() {
   const [switchMode, setSwitchMode] = useState("light");
   const { colorMode, setColorMode } = useContext(modeContext);
   const { userData, setUserData } = useContext(userDataContext);
-  const [liesencePlateToShow ,setLiesencePlateToShow]=useState("")
+  const [liesencePlateToShow, setLiesencePlateToShow] = useState("");
+  const navigate = useNavigate();
 
-  console.log(userData);
   const handleClose = () => {
     console.log("hii");
   };
@@ -21,10 +21,23 @@ function Layout() {
     console.log(colorMode);
   };
 
+  function logOutUser() {
+    alert(`Goodby! hoping to see you soon!`);
+    localStorage.setItem("loggedUser", "");
+    navigate("/");
+  }
+
   return (
     <div>
-      <div className="navbar-container"></div>
-      <Menu isOpen={isSidebarOpen} width={"60%"}>
+      <div className="navbar-container">
+        <div id="navbar-switch-container">
+        </div>
+      </div>
+      <Menu
+        isOpen={isSidebarOpen}
+        onStateChange={({ isOpen }) => setIsSidebarOpen(isOpen)}
+        width={"60%"}
+      >
         <div>Hello {userData?.firstName}!</div>
         <Link
           to={"/homePage"}
@@ -52,37 +65,142 @@ function Layout() {
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">Liesence plates</h5>
-          {userData?.licensePlates.map((plate, index) => {
-            if(plate.length==7){
-              return (
-              <div className="layout-lisence-palate-container">
-                <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
-                <div className="layout-lisence-palate-number"> {plate[0]}{plate[1]}-{plate[2]}{plate[3]}{plate[4]}-{plate[5]}{plate[6]}</div>
-                </div>
-              )
-            } else if(plate.length==8){
+          {console.log(userData?.licenses)}
+          {userData?.licenses[0] != "" ? (
+            <div className="layout-lisence-palate-container">
+              <div className="layout-lisence-palate-picture">
+                <img
+                  width="34px"
+                  height="34px"
+                  src="https://img.icons8.com/color/48/israel.png"
+                  alt="israel"
+                />
+              </div>
+              <div className="layout-lisence-palate-number">
+                {" "}
+                {userData?.licenses[0][0]}
+                {userData?.licenses[0][1]}
+              </div>
+            </div>
+          ) : null}
+          {/* {userData?.licensePlates[0] != "" ? (
+            <div className="layout-lisence-palate-container">
+              <div className="layout-lisence-palate-picture">
+                <img
+                  width="34px"
+                  height="34px"
+                  src="https://img.icons8.com/color/48/israel.png"
+                  alt="israel"
+                />
+              </div>
+              <div className="layout-lisence-palate-number">
+                {" "}
+                {userData?.licensePlates[0][0]}
+                {userData?.licensePlates[0][1]}
+              </div>
+            </div>
+          ) : null}
+          {userData?.licenses[1] != "" ? (
+            <div className="layout-lisence-palate-container">
+              <div className="layout-lisence-palate-picture">
+                <img
+                  width="34px"
+                  height="34px"
+                  src="https://img.icons8.com/color/48/israel.png"
+                  alt="israel"
+                />
+              </div>
+              <div className="layout-lisence-palate-number">
+                {" "}
+                {userData?.licenses[1][0]}
+                {userData?.licenses[1][1]}
+              </div>
+            </div>
+          ) : null}
+          {userData?.licenses[2] != "" ? (
+            <div className="layout-lisence-palate-container">
+              <div className="layout-lisence-palate-picture">
+                <img
+                  width="34px"
+                  height="34px"
+                  src="https://img.icons8.com/color/48/israel.png"
+                  alt="israel"
+                />
+              </div>
+              <div className="layout-lisence-palate-number">
+                {" "}
+                {userData.licenses[2][0]}
+                {userData.licenses[2][1]}
+              </div>
+            </div>
+          ) : null} */}
+          {/* {licensePlate[0].plate[1]}-{licensePlate[0].plate[2]}{licensePlate[0].plate[3]}{licensePlate[0].plate[4]}-{licensePlate[0].plate[5]}{licensePlate[0].plate[6]} */}
+          {/* {userData?.licenses.map((plate, index) => {
+            if (plate.length == 7) {
               return (
                 <div className="layout-lisence-palate-container">
-                  <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
-                  <div className="layout-lisence-palate-number"> {plate[0]}{plate[1]}{plate[2]}-{plate[3]}{plate[4]}{plate[5]}-{plate[6]}{plate[7]}</div>
+                  <div className="layout-lisence-palate-picture">
+                    <img
+                      width="34px"
+                      height="34px"
+                      src="https://img.icons8.com/color/48/israel.png"
+                      alt="israel"
+                    />
                   </div>
-                )
+                  <div className="layout-lisence-palate-number">
+                    {" "}
+                    {plate[0]}
+                    {plate[1]}-{plate[2]}
+                    {plate[3]}
+                    {plate[4]}-{plate[5]}
+                    {plate[6]}
+                  </div>
+                </div>
+              );
+            } else if (plate.length == 8) {
+              return (
+                <div className="layout-lisence-palate-container">
+                  <div className="layout-lisence-palate-picture">
+                    <img
+                      width="34px"
+                      height="34px"
+                      src="https://img.icons8.com/color/48/israel.png"
+                      alt="israel"
+                    />
+                  </div>
+                  <div className="layout-lisence-palate-number">
+                    {" "}
+                    {plate[0]}
+                    {plate[1]}
+                    {plate[2]}-{plate[3]}
+                    {plate[4]}
+                    {plate[5]}-{plate[6]}
+                    {plate[7]}
+                  </div>
+                </div>
+              );
             } else {
               return (
                 <div className="layout-lisence-palate-container">
-                  <div className="layout-lisence-palate-picture"><img width="34px" height="34px" src="https://img.icons8.com/color/48/israel.png" alt="israel"/></div>
-                  <div className="layout-lisence-palate-number">- {plate}</div>
+                  <div className="layout-lisence-palate-picture">
+                    <img
+                      width="34px"
+                      height="34px"
+                      src="https://img.icons8.com/color/48/israel.png"
+                      alt="israel"
+                    />
                   </div>
-                )
+                  <div className="layout-lisence-palate-number">- {plate}</div>
+                </div>
+              );
             }
-          })}
+          })} */}
         </div>
-        <div id="layout-place-holder-for-log-out"></div>
         <div
           to={"/profile"}
-          id="contact"
+          id="button-for-log-out"
           className="menu-item"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          onClick={() => logOutUser() + setIsSidebarOpen(!isSidebarOpen)}
         >
           Log out
         </div>

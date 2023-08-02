@@ -68,9 +68,12 @@ function EditProfile() {
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
-      navigate("/profile");
+      alert("User edited successefully!")
+      navigate("/Profile")
+
     })
-    .catch((err) => console.log(err.response.data));
+    .catch((err) => 
+    console.log(err.response.data));
   };
 
   return (
@@ -198,7 +201,7 @@ function EditProfile() {
                 className="info-button-add"
                 type="button"
                 onClick={() =>
-                  licensesFields.length < 5 &&
+                  licensesFields.length < 3 &&
                   appendlicenses({ onelicenses: "" })
                 }
               >

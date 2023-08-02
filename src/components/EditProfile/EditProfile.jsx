@@ -10,6 +10,7 @@ import { HOST } from "../../Utils/host";
 function EditProfile() {
   const { colorMode, setColorMode } = useContext(modeContext);
   const [data, setData] = useState([]);
+  const navigate=useNavigate()
   useEffect(() => {
     axios
       .post(`${HOST}/user/translateToken`, {
@@ -67,8 +68,11 @@ function EditProfile() {
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
+      alert("User edited successefully!")
+      navigate("/Profile")
     })
-    .catch((err) => console.log(err.response.data));
+    .catch((err) => 
+    console.log(err.response.data));
   };
 
   return (
@@ -196,7 +200,7 @@ function EditProfile() {
                 className="info-button-add"
                 type="button"
                 onClick={() =>
-                  licensesFields.length < 5 &&
+                  licensesFields.length < 3 &&
                   appendlicenses({ onelicenses: "" })
                 }
               >

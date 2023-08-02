@@ -1,3 +1,10 @@
+#navbar-switch-container{
+  width: 100px;
+  height: 100%;
+  margin-left: 100px;
+  /* background-color: green; */
+}
+
 .save-place-nav{
   height: 64px;
 }

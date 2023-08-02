@@ -34,7 +34,7 @@ function Layout() {
         <div id="navbar-switch-container">
         </div>
         <div id="navbar-logo-container">
-          <img id="navbar-logo-picture" src="src\Pictures&Media\final-project-logo.jpeg" alt="" />
+          <img id="navbar-logo-picture" src="src\Pictures&Media\final-project-logo.jpeg" alt="logo" />
         </div>
       </div>
       <Menu

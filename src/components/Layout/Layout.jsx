@@ -69,6 +69,7 @@ function Layout() {
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">Liesence plates</h5>
+
           {/* {console.log(userData?.licenses)} */}
           {/* {userData?.licenses[0] != "" ? (
             <div className="layout-lisence-palate-container">

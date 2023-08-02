@@ -11,12 +11,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { HOST } from "../../Utils/host";
+import UploadWidget from "../AddParking/UploadWidget";
 function SoloParking() {
 
   const [availableStartChange, setAvailableStartChange] = useState("");
   const [availableEndChange, setAvailableEndChange] = useState("")
   const [pricePerHourChange, setPricePerHourChange] = useState("")
-
+  const [photoChange, setphotoChange] = useState("")
+  function handlePhotoChange(newPhoto) {
+    setphotoChange(newPhoto);
+  }
   const { parkingId } = useParams();
   console.log(parkingId, "parkingId");
 
@@ -45,7 +49,7 @@ function SoloParking() {
     axios
       .get(`${HOST}/payment/fetchPayment`)
       .then(({ data }) => {
-        const payments =data?.filter(
+        const payments = data?.filter(
           (payments) => payments.parkingId == parkingId
         );
         console.log(payments, "payments");
@@ -178,6 +182,9 @@ function SoloParking() {
             </div>
             <div id="edit-delete-add-bottom">
               <TextField label="enter your new price" onChange={(e) => setPricePerHourChange(e.target.value)}></TextField>
+              <div>
+                <UploadWidget onPhotoChange={handlePhotoChange}/>
+              </div>
               <button id="savechange-btn" onClick={() => handleParkingChange()}>
                 save changes
               </button>

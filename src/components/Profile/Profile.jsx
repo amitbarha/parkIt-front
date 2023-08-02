@@ -74,7 +74,7 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">Password: EXAMPLE</div>
           </div>
-          <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
+          {/* <h5 id="profile-liesence-plate-header">Car liesence plate:</h5> */}
           {platesArr.length!=0?
           (platesArr.map((index, plate) => {
             return (

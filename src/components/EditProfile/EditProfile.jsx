@@ -10,6 +10,7 @@ import { HOST } from "../../Utils/host";
 function EditProfile() {
   const { colorMode, setColorMode } = useContext(modeContext);
   const [data, setData] = useState([]);
+  const navigate=useNavigate()
   useEffect(() => {
     axios
       .post(`${HOST}/user/translateToken`, {
@@ -67,6 +68,7 @@ function EditProfile() {
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
+      navigate("/profile");
     })
     .catch((err) => console.log(err.response.data));
   };

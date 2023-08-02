@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import "./upload-widget.css";
 import { CloudinaryContext } from "../../App";
-function UploadWidget() {
+function UploadWidget({ onPhotoChange }) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
@@ -23,7 +23,9 @@ function UploadWidget() {
 
       
     );
-  });
+  },[onPhotoChange]);
+
+  
   return (
     <button type="button"
       className="upload-image-button"

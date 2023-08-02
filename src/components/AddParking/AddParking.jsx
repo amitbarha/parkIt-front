@@ -130,7 +130,9 @@ const AddParking = () => {
                   required
                   type="time"
                   className="time-picker-form"
+                  style={{ border:"medium, solid, black;" }}
                 />
+                
               )}
             />
           </div>
@@ -146,6 +148,7 @@ const AddParking = () => {
                   required
                   type="time"
                   className="time-picker-form"
+                  style={{ border:"medium, solid, black;" }}
                 />
               )}
             />

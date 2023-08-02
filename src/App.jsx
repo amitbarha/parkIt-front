@@ -1,6 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useState, createContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Layout from "./components/Layout/Layout";
@@ -19,6 +20,7 @@ import axios from "axios";
 // import Continue from "./components/Register/Continue";
 import Verifymail from "./components/Verifymail.jsx/Verifymail";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
+import { HOST } from "./Utils/host";
 
 export const modeContext = createContext();
 export const gooleAutoLocation = createContext();
@@ -42,6 +44,7 @@ function App() {
   const [parkingIdData, setParkingIdData] = useState();
   const [center, setCenter] = useState();
   const [myLocation, setMyLocation] = useState();
+  const navigate = useNavigate()
 
   
 
@@ -50,12 +53,16 @@ function App() {
   if(localStorage.getItem('loggedUser'))
   {
       axios
-        .post("http://localhost:5000/user/translateToken",{token: localStorage.getItem('loggedUser') })
+        .post(`${HOST}/user/translateToken`,{token: localStorage.getItem('loggedUser') })
         .then(({ data }) => setUserData(data))
-        .catch((err) => console.log(err.message));
+        .catch((err) => {console.log(err.message); navigate('/')});
     ;
   }
+  else{
+    navigate('/')
+  }
   },[])
+  
 
 
 

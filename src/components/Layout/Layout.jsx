@@ -3,8 +3,6 @@ import { modeContext, userDataContext } from "../../App";
 import "./layout.css";
 import { useState, useContext, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
-// import {logo} from "../../Pictures&Media/final-project-logo.jpeg"
-// \final-project-logo.jpeg
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State variable to track open/closed state
   const [switchMode, setSwitchMode] = useState("light");

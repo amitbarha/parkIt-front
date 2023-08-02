@@ -20,6 +20,8 @@ import { HOST } from "../../Utils/host";
 
 function HomePage() {
 
+  const [avg,setAvg]=useState("")
+
   const navigate = useNavigate();
   const [timerWork, setTimerWork] = useState();
   const { userData, setUserData } = useContext(userDataContext)
@@ -45,6 +47,13 @@ function HomePage() {
   }, [])
 
   useEffect(() => {
+    axios
+    .get(`${HOST}/payment/avgPerHour`)
+    .then(({ data }) => {
+      setAvg(data)
+    })
+    .catch((err) => console.log(err.message));
+
     axios
       .get(`${HOST}/parking/fetchParking`)
       .then(({ data }) => {
@@ -205,12 +214,12 @@ function HomePage() {
             <div className="box-stat">
               <div className="icon-state"><img width="48" height="48" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/shekel.png" alt="shekel"/></div>
               <div className="name-state"><p>Average P/H:</p></div>
-              <div className="info-state"><h1>666₪</h1></div>
+              <div className="info-state"><h1>{avg}₪</h1></div>
             </div>
             <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
-              <div className="name-state"><p>Availible Parkings:</p></div>
-              <div className="info-state"><h1>588</h1></div>
+              <div className="name-state"><p>Your profit</p></div>
+              <div className="info-state"><h1>{userData?.totalEarn}₪</h1></div>
             </div>
           </div>
         </Carousel>

@@ -110,6 +110,7 @@ const BottomSheet = () => {
     const payment = {
       token: localStorage.getItem("loggedUser"),
       parkingId: parkingIdData._id,
+      ownerParkingId: parkingIdData.ownerID,
       parkName: parkingIdData.parkingName,
       startTime: strTime,
       endTime: null,

@@ -28,7 +28,7 @@ const Register = () => {
       localStorage.setItem("loggedUser", newuser.data);
       navigate("/homepage");
     } catch (err) {
-      setErrorMessage1("Incorrect Phone Number or password");
+      console.log(err.response.data);
     }
   };
 

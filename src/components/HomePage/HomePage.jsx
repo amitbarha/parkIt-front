@@ -190,7 +190,7 @@ function HomePage() {
             date1={info1[info1.length - 1]?.date}
           />
         ) : (
-          <h1>There is no last parking</h1>
+          <h1>There is no last parking </h1>
         )}
       </div>
       <br />

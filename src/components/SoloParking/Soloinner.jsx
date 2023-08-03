@@ -1,12 +1,31 @@
 import Carousel from './Carousel';
+import { HOST } from "../../Utils/host";
 import './soloinner.css';
-function Soloinner({ name, Available, Address, StartHour, EndHour, Price, Photos, comments }) {
+import axios from 'axios';
+function Soloinner({ name, Available, Address, StartHour, EndHour, Price, Photos, comments, parkingID }) {
+
+   function changeStatus (){
+    axios
+          .patch(`${HOST}/parking/changeStatus`,{_id:parkingID })
+          .then((data) => {
+            console.log("function work")
+          })
+          .catch((err) => console.log(err));
+   }
+
     return (
         <>
+
             <div id='solo-parking-name'>{name}</div>
+
             <div className='solo-parking-detail'>
                 <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/pastel-glyph/64/parking--v4.png" alt="parking--v4" />|</div>
-                <div className='solo-parking-detail-divfortext'>{Available ? "Available" : "Unavailble"}</div>
+                <div className='solo-parking-detail-divfortext'>{Available ? "Available" : "Unavailble"}
+                <div class="checkbox-apple">
+                  <input class="yep" id="check-apple" type="checkbox" onChange={()=>changeStatus(parkingID)}></input>
+                  <label for="check-apple"></label>
+                </div>
+                </div>
             </div>
             <div className='solo-parking-detail'>
                 <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/ios/50/marker--v1.png" alt="marker--v1" />|</div>

@@ -55,14 +55,27 @@
   height: 480px;
 }
 
-.layout-lisence-palate-container{
+.-layout-lisence-palate-container{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
-  margin: 4px;
-  box-shadow: -5px -2px 1px grey;
+  margin: 8px;
+  /* box-shadow: -5px -2px 1px grey; */
+}
+.chosen-layout-lisence-palate-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px double black;
+  margin: 6px;
+  box-shadow: -5px -2px 5px grey;
+  /* box-shadow: inset 0px 0px 10px green; */
+  background-color: snow;
+  transform: translateX(5px)translateY(2px);
+  /* transform: translateY(2px); */
 }
 
 .layout-lisence-palate-picture{

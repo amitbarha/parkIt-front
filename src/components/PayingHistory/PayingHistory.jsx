@@ -33,7 +33,7 @@ function PayingHistory() {
     <div className="paying-history-container">
       <br />
       <div className="paying-history-title">
-        <h1 id="paying-history-page-header">Paying History</h1>
+        <h1 id="paying-history-page-header">Parking History</h1>
         <br />
       </div>
       <div className="history-pay-list">

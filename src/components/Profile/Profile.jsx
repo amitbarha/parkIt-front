@@ -63,17 +63,6 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">{data.phoneNumber}</div>
           </div>
-          <div className={`${colorMode}-profile-detail`}>
-            <div className="profile-detail-divforicon">
-              <img
-                className="icon-con"
-                src="https://img.icons8.com/ios/50/password--v1.png"
-                alt="password--v1"
-              />
-              |
-            </div>
-            <div className="profile-detail-divfortext">Password: EXAMPLE</div>
-          </div>
           <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
           {/* {platesArr?.length!=0?
           (platesArr.map((index, plate) => {

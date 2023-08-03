@@ -246,13 +246,6 @@ function FindParking() {
       <div>
         <MyLocation />
       </div>
-      {/* <div id="find-map-container">
-        <img
-          id="find-map-place-holder"
-          src="src\Pictures&Media\map-place-holder.jpg"
-          alt=""
-        />
-      </div> */}
       <div id={`${colorMode}-find-container`}>
         <div id="find-container-filters">
           <div id="find-location-filter">

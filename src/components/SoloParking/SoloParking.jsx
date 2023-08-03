@@ -132,6 +132,7 @@ function SoloParking() {
         Photos={oneParkingdata?.photos}
         Price={oneParkingdata?.pricePerHour}
         comments={oneParkingdata?.comments}
+        parkingID={oneParkingdata?._id}
       ></Soloinner>
       <div id="Solo-parking-history-title">History:</div>
       <div className="all-history-parking">

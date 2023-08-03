@@ -44,45 +44,7 @@ const BottomSheet = () => {
       });
   }, [parkingId]);
 
-  useEffect(() => {
-    // Function to calculate distance for each parking location
-    const calculateDistances = () => {
-      const service = new window.google.maps.DistanceMatrixService();
-      const origin = center; // Your fixed origin
-      const distanceArr = [];
-
-      const lat = parkingIdData?.lat * 1;
-      const lng = parkingIdData?.lng * 1;
-      const destination = { lat, lng };
-
-      // Distance matrix request
-      service.getDistanceMatrix(
-        {
-          destinations: [destination],
-          origins: [origin],
-          travelMode: "DRIVING",
-        },
-        (response) => {
-          console.log(response, "dist");
-          console.log("hii");
-          const distance = response.rows[0].elements[0].distance;
-          console.log(distance, "dis");
-          let obj;
-          distance ? (obj = distance) : (obj = 0);
-          distanceArr.push(obj);
-          setParkingIdData({
-            ...parkingIdData,
-            distance: distance.text,
-          });
-          // Handle the distance matrix response here
-          // You can update your state or perform any other action with the data
-        }
-      );
-      console.log(distanceArr, "dddii");
-      return distanceArr;
-    };
-    setParksDistance(calculateDistances());
-  }, [openSpring]);
+ 
   useEffect(() => () => setOpenSpring(false), []); //unmount
 
   const [isOpen, setIsOpen] = useState(false);
@@ -194,7 +156,7 @@ const BottomSheet = () => {
                 />
               </div>
               <div className="text-for-icon">
-                <b>{parkingIdData?.distance}</b> from destination
+                <b>{parkingIdData?.distanceText}</b> from destination
               </div>
             </div>
           </div>

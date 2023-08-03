@@ -55,7 +55,7 @@ function App() {
       axios
         .post(`${HOST}/user/translateToken`,{token: localStorage.getItem('loggedUser') })
         .then(({ data }) => setUserData(data))
-        .catch((err) => {console.log(err.message); navigate('/')});
+        .catch((err) => {console.log(err.message)});
     ;
   }
   else{

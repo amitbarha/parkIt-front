@@ -23,7 +23,7 @@ function UploadWidget({ onPhotoChange }) {
 
       
     );
-  },[onPhotoChange]);
+  },[]);
 
   
   return (

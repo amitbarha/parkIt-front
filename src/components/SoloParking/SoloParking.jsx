@@ -6,7 +6,7 @@ import { useState } from "react";
 import { TextField } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import { userDataContext } from "../../App";
+import { CloudinaryContext, userDataContext } from "../../App";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -17,13 +17,14 @@ function SoloParking() {
   const [availableStartChange, setAvailableStartChange] = useState("");
   const [availableEndChange, setAvailableEndChange] = useState("")
   const [pricePerHourChange, setPricePerHourChange] = useState("")
-  const [photoChange, setphotoChange] = useState("")
-  function handlePhotoChange(newPhoto) {
-    setphotoChange(newPhoto);
-  }
+  const [photoChange, setphotoChange] = useState([])
   const { parkingId } = useParams();
   console.log(parkingId, "parkingId");
+  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
 
+ function handlePhotoChange(newPhoto) {
+    setphotoChange(newPhoto);
+  }
   const navigate = useNavigate()
 
   const [oneParkingdata, setOneParkingdata] = useState({});
@@ -75,7 +76,7 @@ function SoloParking() {
   function handleParkingChange() {
     console.log("parking info change");
     console.log(availableStartChange, availableEndChange, pricePerHourChange)
-    if (oneParkingdata?.availableToPark == true) {
+    if (!oneParkingdata?.availableToPark) {
       return (
         alert("can't change parking detail while someone is park")
       )
@@ -84,8 +85,8 @@ function SoloParking() {
       if (availableStartChange != null && availableEndChange != null && pricePerHourChange != null) {
         const _id = parkingId;
         axios
-          .patch("http://localhost:5000/parking/updateParking",
-            { _id: _id, availableStart: availableStartChange, availableEnd: availableEndChange, pricePerHour: pricePerHourChange })
+          .patch(`${HOST}/parking/updateParking`,
+            { _id: _id, availableStart: availableStartChange, availableEnd: availableEndChange, pricePerHour: pricePerHourChange,photos:cloudinaryImg})
           .then((data) => {
             console.log("parking was update")
             navigate(`/homePage`)
@@ -124,7 +125,7 @@ function SoloParking() {
       <Soloinner
         name={oneParkingdata?.parkingName}
         Address={oneParkingdata?.parkingLocation}
-        IsSomeOneParking={oneParkingdata?.availableToPark}
+        Available={oneParkingdata?.availableToPark}
         StartHour={oneParkingdata?.availableStart}
         EndHour={oneParkingdata?.availableEnd}
         Photos={oneParkingdata?.photos}

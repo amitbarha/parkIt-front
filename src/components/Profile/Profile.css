@@ -79,7 +79,7 @@
 
 .light-profile-detail{
     display: flex;
-    background-color: var(--dark-container);
+    background-color: var(--accent-100);
     width: 90%;
     height: 10vw;
     margin: 2vw;

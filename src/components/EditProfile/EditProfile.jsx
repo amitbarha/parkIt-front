@@ -1,7 +1,6 @@
 import "./EditProfile.css";
 import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import { modeContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -215,7 +214,6 @@ function EditProfile() {
           </button>
         </div>
       </form>
-      <DevTool control={control}></DevTool>
     </div>
   );
 }

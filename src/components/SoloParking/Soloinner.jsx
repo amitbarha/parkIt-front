@@ -37,6 +37,7 @@ function Soloinner({ name, IsSomeOneParking, Address, StartHour, EndHour, Price,
                             <img className='parking-img' key={index} src={element}></img>
                         )
                     })}
+                    <img className='parking-img' src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg" alt="parking--v4" />
 
                 </Carousel>
             </div>

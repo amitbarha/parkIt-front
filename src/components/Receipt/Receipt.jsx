@@ -46,7 +46,7 @@ function Receipt() {
                 <div className='detail-con'> {typeof newTotal === 'number' ? `₪${newTotal.toFixed(1)}` : ''}</div>
             </div>
             <br></br>
-            <PayPalScriptProvider options={{ "client-id": "AdiZsXZbq7_NeUl1QtlbyUNJgaQ3kAerhATGX3GUcfy5qml6U1cx-fQGXUF2EKOsBoPWbHhisTcGytcQ" }}>
+            <PayPalScriptProvider >
                 <PayPalButtons />
             </PayPalScriptProvider>
         </div>

@@ -55,6 +55,11 @@
     display: flex;
     width: 80%;
 }
+.all-history-parking{
+    overflow-y: scroll;
+    height: 30vw;
+    width: 90vw;
+}
 #edit-delete-container{
     margin: 1vw;
     margin-bottom: 4vw;

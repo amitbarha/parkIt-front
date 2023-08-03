@@ -1,12 +1,12 @@
 import Carousel from './Carousel';
 import './soloinner.css';
-function Soloinner({ name, IsSomeOneParking, Address, StartHour, EndHour, Price, Photos, comments }) {
+function Soloinner({ name, Available, Address, StartHour, EndHour, Price, Photos, comments }) {
     return (
         <>
             <div id='solo-parking-name'>{name}</div>
             <div className='solo-parking-detail'>
                 <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/pastel-glyph/64/parking--v4.png" alt="parking--v4" />|</div>
-                <div className='solo-parking-detail-divfortext'>{IsSomeOneParking ? "Unavailble" : "Availble"}</div>
+                <div className='solo-parking-detail-divfortext'>{Available ? "Available" : "unavailble"}</div>
             </div>
             <div className='solo-parking-detail'>
                 <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/ios/50/marker--v1.png" alt="marker--v1" />|</div>

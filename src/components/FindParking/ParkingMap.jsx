@@ -81,14 +81,20 @@ function Map() {
   }, []);
 
   useEffect(() => {
+    if (center) {
+      const lng = center.lng
+      const lat = center.lat
+    
     axios
-      .get(`${HOST}/parking/fetchParking`)
+      .post(`${HOST}/parking/availableParkingAndDistance`, {lat,lng})
       .then(({ data }) => {
         setAllParking(data);
-        console.log(data);
       })
-      .catch((err) => console.log(err.message));
-  }, []);
+      .catch((err) => {
+        console.log(err.message);
+      });
+    }
+  }, [center]);
 
   const handleParkingClick = (id) => {
     setOpenSpring(!openSpring);

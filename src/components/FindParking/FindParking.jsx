@@ -62,6 +62,7 @@ function FindParking() {
 
   const handleParkingClick = (id) => {
     console.log(id, "dflkgjdkuhgu");
+    console.log(parkingsToMap);
     setOpenSpring(!openSpring);
     setParkingId(id);
     console.log(id);
@@ -69,6 +70,7 @@ function FindParking() {
     setParkingIdData(parking);
     console.log(parking);
   };
+  
   useEffect(() => {
     setSelectAdd(false);
     console.log("mount");
@@ -78,8 +80,13 @@ function FindParking() {
   }, [googleLocation]);
 
   useEffect(() => {
+   
+    if (center) {
+      const lng = center.lng
+      const lat = center.lat
+    
     axios
-      .get(`${HOST}/parking/fetchParking`)
+      .post(`${HOST}/parking/availableParkingAndDistance`, {lat,lng})
       .then(({ data }) => {
         setParkingsToMap(data);
         setStillLoading(false);
@@ -89,53 +96,13 @@ function FindParking() {
         console.log(err.message);
         setStillLoading(false);
       });
-  }, []);
+    }
+  }, [center]);
   // console.log(parkingsToMap);
 
   useEffect(() => {
     // Function to calculate distance for each parking location
-    const calculateDistances = () => {
-      const service = new window.google.maps.DistanceMatrixService();
-      const origin = center; // Your fixed origin
-
-      // Create a copy of the parkingsToMap array to update it later
-      const updatedParkings = parkingsToMap.map((parking) => ({ ...parking }));
-
-      parkingsToMap?.forEach((parking, index) => {
-        const lat = parking?.lat * 1;
-        const lng = parking?.lng * 1;
-        const destination = { lat, lng };
-
-        // Distance matrix request
-        service.getDistanceMatrix(
-          {
-            destinations: [destination],
-            origins: [origin],
-            travelMode: "DRIVING",
-          },
-          (response) => {
-            const distance = response.rows[0].elements[0].distance;
-            let distanceText = distance ? distance.text : "100000000";
-
-            // Update the distance property for the corresponding parking object
-            updatedParkings[index] = {
-              ...updatedParkings[index],
-              distance: distanceText,
-            };
-
-            // Check if all distances have been calculated
-            if (index === parkingsToMap.length - 1) {
-              // All distances are calculated, update the state with the new data
-              setParkingsToMap(updatedParkings);
-            }
-          }
-        );
-      });
-    };
-
-    calculateDistances();
-    setDistancesLoaded(true)
-  }, [Loading]);
+  }, []);
 
  
 
@@ -392,7 +359,7 @@ function FindParking() {
                     onClick={() => handleParkingClick(item._id)}
                   >
                     <div className="find-parking-tab-distance">
-                    {distancesLoaded ? item?.distance : 'Calculating.'}
+                    { item?.distanceText }
                     </div>
                     <div className="find-parking-tab-price">₪
                       {item.pricePerHour}

@@ -156,7 +156,7 @@ function HomePage() {
                     </div>
                     <div className="parking-status-my-parking" >
                       <img id="icon-status-my-parking" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
-                      <p>{parking.availableToPark ? 'Availible' : 'Unavailble'}</p>
+                      <p>{parking.availableToPark ? 'Availible' : 'Unavailble '}</p>
                     </div>
                   </div>
                 </div>

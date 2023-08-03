@@ -65,7 +65,7 @@ function Profile() {
           </div>
 
           <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
-          {/* {platesArr?.length!=0?
+           {platesArr?.length!=0?
 
           (platesArr.map((index, plate) => {
             return (

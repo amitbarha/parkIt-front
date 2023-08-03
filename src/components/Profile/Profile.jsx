@@ -74,8 +74,9 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">Password: EXAMPLE</div>
           </div>
-          <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
-          {/* {platesArr?.length!=0?
+          <h5 id="profile-liesence-plate-header">Car license plates:</h5>
+          
+          {platesArr?.length!=0?
           (platesArr.map((index, plate) => {
             return (
               <div className={`${colorMode}-profile-detail index`}>
@@ -94,7 +95,8 @@ function Profile() {
              );
           }))
         :
-        <div id="profile-no-plates-header">You do not have any liesence plates</div>}  */}
+        <div id="profile-no-plates-header">You do not have any liesence plates</div>} 
+        
         </div>
       </div>
       <div id="profile-buttons-container">

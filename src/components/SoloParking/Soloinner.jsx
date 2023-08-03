@@ -21,7 +21,7 @@ function Soloinner({ name, Available, Address, StartHour, EndHour, Price, Photos
                 <div className='solo-parking-detail-divfortext'>${Price} per hour</div>
             </div>
             {comments ? (
-                <div className='solo-parking-detail-comment'>
+                <div className='solo-parking-detail'>
                     <div className='solo-parking-detail-divforicon'>
                         <img className='icon-con' src="https://img.icons8.com/?size=512&id=38977&format=png" alt="average-2" />|
                     </div>

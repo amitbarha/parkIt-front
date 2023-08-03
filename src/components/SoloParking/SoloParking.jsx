@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { HOST } from "../../Utils/host";
 import UploadWidget from "../AddParking/UploadWidget";
+import { element } from "prop-types";
 function SoloParking() {
 
   const [availableStartChange, setAvailableStartChange] = useState("");
@@ -28,7 +29,7 @@ function SoloParking() {
   const navigate = useNavigate()
 
   const [oneParkingdata, setOneParkingdata] = useState({});
-  const [paymentdata, setPaymentdata] = useState({});
+  const [paymentdata, setPaymentdata] = useState([]);
 
   const [data, setData] = useState([])
 
@@ -133,25 +134,29 @@ function SoloParking() {
         comments={oneParkingdata?.comments}
       ></Soloinner>
       <div id="Solo-parking-history-title">History:</div>
-      {paymentdata[paymentdata.length - 1] && (
-        <HistoryOneParking
-          price={paymentdata[paymentdata.length - 1]?.finalPrice}
-          name={paymentdata[paymentdata.length - 1]?.parkName}
-          startTime={paymentdata[paymentdata.length - 1]?.startTime}
-          endTime={paymentdata[paymentdata.length - 1]?.endTime}
-          phoneTopay={paymentdata[paymentdata.length - 1]?.phoneToPay}
-          date1={paymentdata[paymentdata.length - 1]?.date}
+      <div className="all-history-parking">
+      {paymentdata.map((element,index)=>{
+        return(
+          <HistoryOneParking
+          price={element?.finalPrice}
+          name={element?.clientPhone}
+          startTime={element?.startTime}
+          endTime={element?.endTime}
+          phoneTopay={element?.clientPhone}
+          date1={element?.date}
         />
-      )}
-      {paymentdata[paymentdata.length - 2] ? (
-        <HistoryOneParking
-          price={paymentdata[paymentdata.length - 2]?.finalPrice}
-          name={paymentdata[paymentdata.length - 2]?.parkName}
-          startTime={paymentdata[paymentdata.length - 2]?.startTime}
-          endTime={paymentdata[paymentdata.length - 2]?.endTime}
-          phoneTopay={paymentdata[paymentdata.length - 2]?.phoneToPay}
-          date1={paymentdata[paymentdata.length - 2]?.date}
-        />) : ("there is no history")}
+          )
+          // {paymentdata[paymentdata.length - 2] ? (
+          //   <HistoryOneParking
+          //     price={paymentdata[paymentdata.length - 2]?.finalPrice}
+          //     name={paymentdata[paymentdata.length - 2]?.parkName}
+          //     startTime={paymentdata[paymentdata.length - 2]?.startTime}
+          //     endTime={paymentdata[paymentdata.length - 2]?.endTime}
+          //     phoneTopay={paymentdata[paymentdata.length - 2]?.phoneToPay}
+          //     date1={paymentdata[paymentdata.length - 2]?.date}
+          //   />) : ("there is no history")}
+          })}
+      </div>
       <div id="edit-delete-container">
         <div id="edit-delete-icon">
           <div id="edit-div-btn" onClick={() => handleEdit()}>

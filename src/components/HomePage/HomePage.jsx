@@ -33,6 +33,7 @@ function HomePage() {
 
 
 
+
   useEffect(() => {
     if (localStorage.getItem("loggedUser")) {
       axios
@@ -62,7 +63,15 @@ function HomePage() {
         setInfo1(userData?.myPayment);
       })
       .catch((err) => console.log(err.message));
+
+      axios
+      .get(`${HOST}/parking/availableParking`)
+      .then(({ data }) => {
+        setActiveParking(data);
+      })
+      .catch((err) => console.log(err.message));
   }, [userData]);
+
 
 
 
@@ -198,23 +207,30 @@ function HomePage() {
         <h1 >Statistics:</h1>
         <Carousel>
           <div className="first-pair-stat">
-            <div className="box-stat">
-              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
-              <div className="name-state"><p>Parkings in the app:</p></div>
-              <div className="info-state"><h1>{Data?.length}</h1>
-              </div>
-            </div>
-            <div className="box-stat">
+          <div className="box-stat">
               <div className="icon-state"><img width="50" height="50" src="data:image/png;base64,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" alt="walking" /></div>
               <div className="name-state"><p>Available now:</p></div>
-              <div className="info-state"><h1>378m</h1></div>
+              <div className="info-state"><h1>{activeParking?.length}</h1></div>
             </div>
+            <div className="box-stat">
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/shekel.png" alt="parking" /></div>
+              <div className="name-state"><p>Your profit</p></div>
+              <div className="info-state"><h1>{parseFloat(userData?.totalEarn.toFixed(2))}₪</h1></div>
+            </div>
+            </div>
+            <div className="second-pair-stat">
             <div className="box-stat">
               <div className="icon-state"><img width="48" height="48" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/shekel.png" alt="shekel"/></div>
               <div className="name-state"><p>Average P/H:</p></div>
               <div className="info-state"><h1>{avg}₪</h1></div>
             </div>
-          </div>
+            <div className="box-stat">
+              <div className="icon-state"><img width="50" height="50" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/parking.png" alt="parking" /></div>
+              <div className="name-state"><p>Parkings in the app:</p></div>
+              <div className="info-state"><h1>{Data?.length}</h1></div>
+              </div>
+            </div>
+          
         </Carousel>
       </div>
       <br />

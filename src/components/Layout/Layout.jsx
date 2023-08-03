@@ -9,11 +9,31 @@ function Layout() {
   const { colorMode, setColorMode } = useContext(modeContext);
   const { userData, setUserData } = useContext(userDataContext);
   const [liesencePlateToShow, setLiesencePlateToShow] = useState("");
+  const [licensePlateOne , setLicensePlateOne]=useState("")
+  const [licensePlateTwo , setLicensePlateTwo]=useState("")
+  const [licensePlateThree , setLicensePlateThree]=useState("")
+  const [chosenLicensePlate , setChosenLicensePlate]=useState("")
   const navigate = useNavigate();
 
-  const handleClose = () => {
-    console.log("hii");
-  };
+  
+  function choosePlate(chooseThis){
+    if(chooseThis=="one"){
+      setLicensePlateOne("chosen")
+      setLicensePlateTwo("")
+      setLicensePlateThree("")
+      setChosenLicensePlate(userData?.licensePlates[0])
+    } else if(chooseThis=="two"){
+      setLicensePlateOne("")
+      setLicensePlateTwo("chosen")
+      setLicensePlateThree("")
+      setChosenLicensePlate(userData?.licensePlates[1])
+    } else if(chooseThis=="three"){
+      setLicensePlateOne("")
+      setLicensePlateTwo("")
+      setLicensePlateThree("chosen")
+      setChosenLicensePlate(userData?.licensePlates[2])
+    } 
+  }
 
   const handleSwitch = () => {
     colorMode === "light" ? setColorMode("dark") : setColorMode("light");
@@ -29,11 +49,14 @@ function Layout() {
   return (
     <div>
       <div className="navbar-container">
-        <div id="navbar-switch-container">
-        </div>
-        <div id="navbar-logo-container">
-          <img id="navbar-logo-picture" src="src\Pictures&Media\final-project-logo.jpeg" alt="" />
-        </div>
+        <div id="navbar-switch-container"></div>
+        <Link id="navbar-logo-container" to={"/HomePage"}>
+          <img
+            id="navbar-logo-picture"
+            src="src\Pictures&Media\final-project-logo.jpeg"
+            alt=""
+          />
+        </Link>
       </div>
       <Menu
         isOpen={isSidebarOpen}
@@ -67,9 +90,9 @@ function Layout() {
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">Liesence plates</h5>
-          {/* {console.log(userData?.licenses)} */}
-          {/* {userData?.licenses[0] != "" ? (
-            <div className="layout-lisence-palate-container">
+          {console.log(userData?.licensePlates[0])}
+          {userData?.licensePlates[0] != "" ? (
+            <div onClick={(()=>choosePlate("one"))} className={`${licensePlateOne}-layout-lisence-palate-container`}>
               <div className="layout-lisence-palate-picture">
                 <img
                   width="34px"
@@ -79,31 +102,13 @@ function Layout() {
                 />
               </div>
               <div className="layout-lisence-palate-number">
-                {" "}
-                {userData?.licenses[0][0]}
-                {userData?.licenses[0][1]}
-              </div>
-            </div>
-          ) : null} */}
-          {/* {userData?.licensePlates[0] != "" ? (
-            <div className="layout-lisence-palate-container">
-              <div className="layout-lisence-palate-picture">
-                <img
-                  width="34px"
-                  height="34px"
-                  src="https://img.icons8.com/color/48/israel.png"
-                  alt="israel"
-                />
-              </div>
-              <div className="layout-lisence-palate-number">
-                {" "}
-                {userData?.licensePlates[0][0]}
-                {userData?.licensePlates[0][1]}
+    {userData?.licensePlates[0]}
+                
               </div>
             </div>
           ) : null}
-          {userData?.licenses[1] != "" ? (
-            <div className="layout-lisence-palate-container">
+          {userData?.licensePlates[1] != undefined ? (
+            <div onClick={(()=>choosePlate("two"))} className={`${licensePlateTwo}-layout-lisence-palate-container`}>
               <div className="layout-lisence-palate-picture">
                 <img
                   width="34px"
@@ -113,14 +118,12 @@ function Layout() {
                 />
               </div>
               <div className="layout-lisence-palate-number">
-                {" "}
-                {userData?.licenses[1][0]}
-                {userData?.licenses[1][1]}
+                {userData?.licensePlates[1]}
               </div>
             </div>
           ) : null}
-          {userData?.licenses[2] != "" ? (
-            <div className="layout-lisence-palate-container">
+          {userData?.licensePlates[2] != undefined ? (
+            <div onClick={(()=>choosePlate("three"))} className={`${licensePlateThree}-layout-lisence-palate-container`}>
               <div className="layout-lisence-palate-picture">
                 <img
                   width="34px"
@@ -130,73 +133,10 @@ function Layout() {
                 />
               </div>
               <div className="layout-lisence-palate-number">
-                {" "}
-                {userData.licenses[2][0]}
-                {userData.licenses[2][1]}
+                {userData?.licensePlates[2]}
               </div>
             </div>
-          ) : null} */}
-          {/* {licensePlate[0].plate[1]}-{licensePlate[0].plate[2]}{licensePlate[0].plate[3]}{licensePlate[0].plate[4]}-{licensePlate[0].plate[5]}{licensePlate[0].plate[6]} */}
-          {/* {userData?.licenses.map((plate, index) => {
-            if (plate.length == 7) {
-              return (
-                <div className="layout-lisence-palate-container">
-                  <div className="layout-lisence-palate-picture">
-                    <img
-                      width="34px"
-                      height="34px"
-                      src="https://img.icons8.com/color/48/israel.png"
-                      alt="israel"
-                    />
-                  </div>
-                  <div className="layout-lisence-palate-number">
-                    {" "}
-                    {plate[0]}
-                    {plate[1]}-{plate[2]}
-                    {plate[3]}
-                    {plate[4]}-{plate[5]}
-                    {plate[6]}
-                  </div>
-                </div>
-              );
-            } else if (plate.length == 8) {
-              return (
-                <div className="layout-lisence-palate-container">
-                  <div className="layout-lisence-palate-picture">
-                    <img
-                      width="34px"
-                      height="34px"
-                      src="https://img.icons8.com/color/48/israel.png"
-                      alt="israel"
-                    />
-                  </div>
-                  <div className="layout-lisence-palate-number">
-                    {" "}
-                    {plate[0]}
-                    {plate[1]}
-                    {plate[2]}-{plate[3]}
-                    {plate[4]}
-                    {plate[5]}-{plate[6]}
-                    {plate[7]}
-                  </div>
-                </div>
-              );
-            } else {
-              return (
-                <div className="layout-lisence-palate-container">
-                  <div className="layout-lisence-palate-picture">
-                    <img
-                      width="34px"
-                      height="34px"
-                      src="https://img.icons8.com/color/48/israel.png"
-                      alt="israel"
-                    />
-                  </div>
-                  <div className="layout-lisence-palate-number">- {plate}</div>
-                </div>
-              );
-            }
-          })} */}
+          ) : null}
         </div>
         <div
           to={"/profile"}

@@ -63,9 +63,10 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">{data.phoneNumber}</div>
           </div>
+          
 
           <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
-          {/* {platesArr?.length!=0?
+          {platesArr?.length!=0? 
 
           (platesArr.map((index, plate) => {
             return (
@@ -102,11 +103,4 @@ function Profile() {
 }
 export default Profile;
 
-{
-  /* <h1>Personal info {colorMode}</h1>
-<div className="profile-personal-info">Name:{data.firstName}  {data.LastName}</div>
-<div className="profile-personal-info">Email:{data.email}</div>
-<div className="profile-personal-info">Phone:{data.phoneNumber}</div>
-<div className="profile-personal-info">username: {data.username}</div>
-<div className="profile-personal-info">Car liesence plate: XX-XXX-XX</div> */
-}
+

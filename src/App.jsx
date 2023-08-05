@@ -58,9 +58,9 @@ function App() {
         .catch((err) => {console.log(err.message)});
     ;
   }
-  else{
-    navigate('/')
-  }
+  // else{
+  //   navigate('/')
+  // }
   },[])
   
 

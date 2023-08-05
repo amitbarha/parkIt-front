@@ -167,7 +167,7 @@ function FindParking() {
       setTogglePrice("");
       setToggleHours("");
       setParkingsToMap(
-        parkingsToMap.sort((a, b) => a.distance*1 - b.distance*1)
+        parkingsToMap.sort((a, b) => a.distanceValue*1 - b.distanceValue*1)
       );
       console.log(parkingsToMap, "parki");
 

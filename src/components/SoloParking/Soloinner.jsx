@@ -4,6 +4,8 @@ import './soloinner.css';
 import axios from 'axios';
 function Soloinner({ name, Available, Address, StartHour, EndHour, Price, Photos, comments, parkingID }) {
 
+    const temparr = [true,true,false,false,true,true,false]
+
    function changeStatus (){
     axios
           .patch(`${HOST}/parking/changeStatus`,{_id:parkingID })
@@ -35,6 +37,28 @@ function Soloinner({ name, Available, Address, StartHour, EndHour, Price, Photos
                 <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/ios/50/time--v1.png" alt="time--v1" />|</div>
                 <div className='solo-parking-detail-divfortext'>{StartHour} - {EndHour}</div>
             </div>
+           
+            <div className='solo-parking-detail'>
+                <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/external-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto/64/external-calender-time-and-date-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto.png"/>|</div>
+                <div className='solo-parking-detail-divfortext'>
+                    <table className='table-of-days'>
+                        <tr>
+                        <th>Sun</th><th>Mon</th><th>Tue</th><th>Wen</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                        </tr>
+                        <tr>
+                         <td>{temparr[0] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td>
+                         <td>{temparr[1] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td> 
+                         <td>{temparr[2] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td>
+                         <td>{temparr[3] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td>
+                         <td>{temparr[4] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td>
+                         <td>{temparr[5] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td>
+                         <td>{temparr[6] ? <img className='icon-con' src="https://img.icons8.com/color/48/000000/ok--v1.png" alt="ok--v1"/>:<img className='icon-con' src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"/>}</td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    
             <div className='solo-parking-detail'>
                 <div className='solo-parking-detail-divforicon'><img className='icon-con' src="https://img.icons8.com/ios/50/average-2.png" alt="average-2" />|</div>
                 <div className='solo-parking-detail-divfortext'>${Price} per hour</div>

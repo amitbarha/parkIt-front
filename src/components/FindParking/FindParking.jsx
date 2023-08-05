@@ -12,28 +12,16 @@ import BottomSheet from "./BottomSheets";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { HOST } from "../../Utils/host";
 import { TextField } from "@mui/material";
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 
 function FindParking() {
-//   // const [availableToPark, setAvailableToPark] = useState(false);
-//   const socket = io('http://localhost:3000');
-  
-//   socket.emit("howdy","body")
-// socket.on("hi",(arg)=>{console.log(arg)})
-// //  useEffect(() => {
-// //     const socket = io('http://localhost:3000');
-// //     socket.on('know-publish', availableToParkUpdate => {
-// //       setAvailableToPark(availableToParkUpdate.availableToPark);
-     
-// //     })
-// //   }, [])
+  const payment={}
+  const socket = io('http://localhost:5000');
+ useEffect(() => {
+  socket.on('paymentPublished',(payment))
+  // socket.on('updatepark',(info))
+  }, [])
 
-// //   useEffect(() => {
-// //     const socket = io('http://localhost:3000');
-// //     socket.on('know-update', availableToParkUpdateb => {
-// //       console.log("blala");
-// //     })
-// //   }, [])
 
 
   const {
@@ -351,7 +339,7 @@ function FindParking() {
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          <BottomSheet />
+          <BottomSheet payment={payment} />
           <div id="find-showing-parking-container">
             {stillLoading ? (
               <div>loading</div>

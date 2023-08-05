@@ -6,8 +6,10 @@ import Carousel from "../SoloParking/Carousel";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { HOST } from "../../Utils/host";
+import io from 'socket.io-client';
 
-const BottomSheet = () => {
+const BottomSheet = ({payment}) => {
+  const socket = io('http://localhost:5000');
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState();
   const [ownerParkingData, setOwnerParkingData] = useState();
@@ -69,7 +71,7 @@ const BottomSheet = () => {
     const strTime = time.join(":");
     console.log(strTime);
 
-    const payment = {
+     payment = {
       token: localStorage.getItem("loggedUser"),
       parkingId: parkingIdData._id,
       ownerParkingId: parkingIdData.ownerID,
@@ -90,6 +92,7 @@ const BottomSheet = () => {
       .then(({ data }) => {
         alert("starting parking at time:");
         navigate("/homePage");
+      socket.emit('paymentPublished',(payment))
       })
       .catch((err) => {
         console.log(err.response.data);

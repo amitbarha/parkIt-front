@@ -90,6 +90,7 @@ function HomePage() {
       .patch(`${HOST}/payment/updatePayment`, { token: localStorage.getItem('loggedUser') })
       .then(({ data }) => {
         navigate("/Receipt");
+        // socket.emit('updatepark',(info))
       }
       )
       .catch((err) => console.log(err.response.data));

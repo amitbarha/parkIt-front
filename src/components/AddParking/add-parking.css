@@ -53,3 +53,27 @@
   .comment{
     margin-top: 20px;
   }
+
+  .day-checkboxes {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .day-checkbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  
+  .day-checkbox input[type="checkbox"] {
+    margin-right: 2px;
+  }
+  .short-or-long{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .chosen-short{
+    display: flex;
+    justify-content: space-evenly;
+  }

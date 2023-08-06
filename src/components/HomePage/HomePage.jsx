@@ -145,6 +145,7 @@ function HomePage() {
             : "boxes-my-parking-section"
             }`}
         >
+          <div className="all-parking-map">
           {userData?.myParking && userData?.myParking.map((parking, index) => {
             return (
               <div className="my-parking-box" key={index} onClick={() => handleGoToSoloParking(userData?.myParking[index]._id)}>
@@ -154,7 +155,7 @@ function HomePage() {
                       width="100"
                       height="100"
                       src={
-                        parking.photos[0]
+                        parking.photos[0]? parking.photos[0] : "http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg" 
                       }
                       alt="parking"
                     />
@@ -162,7 +163,7 @@ function HomePage() {
                   <div className="text-overlay">
                     <div className="parking-name-my-parking">
                       <img id="icon-name-my-parking" width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png" alt="parking--v4" />
-                      <p>parking name: {parking.parkingName}</p>
+                      <p>Parking Name: {parking.parkingName}</p>
                     </div>
                     <div className="parking-status-my-parking" >
                       <img id="icon-status-my-parking" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
@@ -173,6 +174,7 @@ function HomePage() {
               </div>
             );
           })}
+          </div>
           <div className="add-parking-box">
             <Link className="add-parking" to={"/addParking"}>
               <h5>Add New Parking:</h5>{" "}

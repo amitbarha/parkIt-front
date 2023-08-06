@@ -134,6 +134,7 @@ function SoloParking() {
         comments={oneParkingdata?.comments}
         parkingID={oneParkingdata?._id}
         whoParking={oneParkingdata?.whoIsParking}
+        selectedDays={oneParkingdata?.selectedDays}
       ></Soloinner>
       <div id="Solo-parking-history-title">History:</div>
       <div className="all-history-parking">

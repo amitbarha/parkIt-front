@@ -31,7 +31,7 @@ function Profile() {
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img
-                className="icon-con"
+                className="icon-con-profile"
                 src="https://img.icons8.com/ios/50/user-male-circle--v1.png"
                 alt="user-male-circle--v1"
               />
@@ -44,7 +44,7 @@ function Profile() {
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img
-                className="icon-con"
+                className="icon-con-profile"
                 src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/external-email-social-media-ui-tanah-basah-glyph-tanah-basah.png"
                 alt="external-email-social-media-ui-tanah-basah-glyph-tanah-basah"
               />
@@ -55,7 +55,7 @@ function Profile() {
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img
-                className="icon-con"
+                className="icon-con-profile"
                 src="https://img.icons8.com/external-others-inmotus-design/67/external-Phone-game-play-others-inmotus-design-2.png"
                 alt="external-Phone-game-play-others-inmotus-design-2"
               />
@@ -63,16 +63,17 @@ function Profile() {
             </div>
             <div className="profile-detail-divfortext">{data.phoneNumber}</div>
           </div>
+          
 
           <h5 id="profile-liesence-plate-header">Car liesence plate:</h5>
-          {/* {platesArr?.length!=0?
+          {platesArr?.length!=0? 
 
           (platesArr.map((index, plate) => {
             return (
               <div className={`${colorMode}-profile-detail index`}>
                 <div className="profile-detail-divforicon">
                   <img
-                    className="icon-con"
+                    className="icon-con-profile"
                     src="https://img.icons8.com/ios/50/licence-plate.png"
                     alt="licence-plate"
                   />
@@ -101,12 +102,3 @@ function Profile() {
   );
 }
 export default Profile;
-
-{
-  /* <h1>Personal info {colorMode}</h1>
-<div className="profile-personal-info">Name:{data.firstName}  {data.LastName}</div>
-<div className="profile-personal-info">Email:{data.email}</div>
-<div className="profile-personal-info">Phone:{data.phoneNumber}</div>
-<div className="profile-personal-info">username: {data.username}</div>
-<div className="profile-personal-info">Car liesence plate: XX-XXX-XX</div> */
-}

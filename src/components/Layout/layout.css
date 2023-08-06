@@ -43,16 +43,33 @@
     justify-content: space-evenly;
 }
 .menu-item{
+  width: 150px;
+  height: 37.5px;
   text-decoration: none;
   color: var(--primary-100);
   font-size: 25px;
   border-bottom: solid;
 }
+
+#log-out-menu-item{
+  width: 150px;
+  height: 37.5px;
+  position: absolute;
+  bottom: 130px;
+  left: 42px;
+  text-decoration: none;
+  color: var(--primary-100);
+  font-size: 25px;
+  border-bottom: solid;
+}
+
+
+
 /* #layout-place-holder-for-log-out{
   height: 220px;
 } */
 #layout-show-me-all-liesence-plates{
-  height: 480px;
+  width: 150px;
 }
 
 .-layout-lisence-palate-container{
@@ -62,7 +79,6 @@
   justify-content: space-between;
   border: 1px solid black;
   margin: 8px;
-  /* box-shadow: -5px -2px 1px grey; */
 }
 .chosen-layout-lisence-palate-container{
   display: flex;
@@ -72,10 +88,8 @@
   border: 2px double black;
   margin: 6px;
   box-shadow: -5px -2px 5px grey;
-  /* box-shadow: inset 0px 0px 10px green; */
   background-color: snow;
   transform: translateX(5px)translateY(2px);
-  /* transform: translateY(2px); */
 }
 
 .layout-lisence-palate-picture{

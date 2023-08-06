@@ -135,6 +135,16 @@ function HomePage() {
           </div>
         </div>
       )}
+
+      <div className="web-top-page">
+        <div className="border-circle-web">
+          <div className="circle-web">
+          <img src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg" alt="" />
+          <p>You can search for parkings only from mobile!</p>
+          </div>
+        </div>
+      </div>
+
       <br />
       <br />
       <div className="my-parking-section">
@@ -185,6 +195,53 @@ function HomePage() {
                 alt="external-plus-essentials-ui-line-adri-ansyah"
               />
             </Link>
+          </div>
+
+          <div className="my-parking-section-web">
+          <h2>My Parking:</h2>
+          <div className="all-parking-main-web">
+          <div className="all-parking-map-web">
+          {userData?.myParking && userData?.myParking.map((parking, index) => {
+            return (
+              <div className="my-parking-box-web" key={index} onClick={() => handleGoToSoloParking(userData?.myParking[index]._id)}>
+                <div className="my-parking-web">
+                  <div id="my-parking-img-web">
+                    <img
+                      width="100"
+                      height="100"
+                      src={
+                        parking.photos[0]? parking.photos[0] : "http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg" 
+                      }
+                      alt="parking"
+                    />
+                  </div>
+                  <div className="text-overlay-web">
+                    <div className="parking-name-my-parking-web">
+                      <img id="icon-name-my-parking-web" width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png" alt="parking--v4" />
+                      <p>Parking Name: {parking.parkingName}</p>
+                    </div>
+                    <div className="parking-status-my-parking-web" >
+                      <img id="icon-status-my-parking-web" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
+                      <p>{parking.availableToPark ? 'Availible' : 'Unavailble '}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          </div>
+          <div className="add-parking-box-web">
+            <Link className="add-parking-web" to={"/addParking"}>
+              <h5>Add New Parking:</h5>{" "}
+              <img
+                width="72"
+                height="72"
+                src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
+                alt="external-plus-essentials-ui-line-adri-ansyah"
+              />
+            </Link>
+          </div>
+          </div>
           </div>
         </div>
       </div>

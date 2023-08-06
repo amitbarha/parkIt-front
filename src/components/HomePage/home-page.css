@@ -65,6 +65,9 @@
   display: flex;
   flex-direction: row-reverse;
 }
+.bottom-icon-parking{
+  margin-top: 12vw;
+}
 
 .border-circle {
     height: 58vw;

@@ -53,7 +53,7 @@ function Layout() {
         <Link id="navbar-logo-container" to={"/HomePage"}>
           <img
             id="navbar-logo-picture"
-            src="src\Pictures&Media\final-project-logo.jpeg"
+            src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
             alt=""
           />
         </Link>

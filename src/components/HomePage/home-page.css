@@ -103,37 +103,6 @@
     color: white;
 }
 
-/* @keyframes car {
-    0% {
-      left: -50px;
-    }
-    100% {
-      right: calc(100% + 50px);
-    }
-  } */
-
-
-/* .car {
-    position: absolute;
-    left: -60px;
-    height: 60px; 
-    width: auto;
-    transition: left 2s linear; 
-  }
-
-  @keyframes car {
-    0% {
-      left: -50px;
-    }
-
-    100%{
-        right: calc(100% + 50px);
-    }
-  }
-  
-  .find-circle.drive-animation .car {
-    left: calc(100% + 50px); 
-  } */
 
 
 .my-parking-section{
@@ -347,4 +316,85 @@ p{
   align-items: center;
   margin: auto;
   margin-bottom: 70%;
+}
+
+.web-stat{
+  display: none;
+}
+
+.first-pair-stat-web{
+  display: flex;
+  justify-content: space-evenly;
+}
+.second-pair-stat-web{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.box-stat-web{
+  height: 230px;
+    width: 180px;
+  border-radius: 10px;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-200);
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.icon-state-web{
+  border-radius: 50%;
+  background-color: #8B5FBF;
+  height: 28%;
+  width: 38%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.name-state-web > p{
+  margin-left: 8%;
+  margin-top: 6%;
+}
+
+#data-p{
+  font-weight: 900;
+  margin-left: 8%;
+  margin-top: 6%;
+  font-size: 200%;
+}
+
+
+@media screen and (min-width: 450px){
+  .Statistics-container{
+      display: none;
+  }
+
+  .web-stat{
+      display: block;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 90%;
+  }
+
+  .last-history{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .last-history>h1{
+  margin-left:0;
+ }
+
+ .history-item-text-add{
+  cursor: pointer;
+ }
 }

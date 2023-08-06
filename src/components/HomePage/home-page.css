@@ -370,6 +370,77 @@ p{
   font-size: 200%;
 }
 
+.border-circle-web{
+  display: none;
+}
+
+.circle-web{
+  display: none;
+}
+
+.circle-web >img{
+  display: none;
+}
+
+.web-top-page{
+  display: none;
+}
+
+.all-parking-map-web{
+  display: none;
+}
+
+.my-parking-web{
+  display: none;
+}
+
+.my-parking-box-web{
+  display: none;
+}
+
+#my-parking-img-web{
+  display: none;
+}
+
+.text-overlay-web{
+  display: none;
+}
+
+.parking-name-my-parking-web{
+  display: none;
+}
+
+#icon-name-my-parking-web{
+  display: none;
+}
+
+.parking-status-my-parking{
+  display: none;
+}
+
+#icon-status-my-parking-web{
+  display: none;
+}
+
+.add-parking-box-web{
+  display: none;
+}
+
+.add-parking-web{
+  display: none;
+}
+
+.my-parking-section-web{
+  display: none;
+}
+
+.my-parking-section >h2{
+  display:none;
+}
+
+.all-parking-main-web{
+  display: none;
+}
 
 @media screen and (min-width: 450px){
   .Statistics-container{
@@ -400,4 +471,198 @@ p{
  .history-item-text-add{
   cursor: pointer;
  }
+
+ .timer-open-div{
+  display: none;
+}
+
+.border-circle{
+  display: none;
+}
+
+.circle{
+  display: none;
+}
+
+.web-top-page{
+  display: block;
+}
+
+.web-top-page >img{
+  border-radius: 100%;
+  display: block;
+}
+
+.border-circle-web{
+  height: 43vw;
+  width: 43vw;
+  background-color: #b396d38f;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.circle-web{
+  height: 92%;
+  width: 40vw;
+  border-radius: 100%;
+  text-align: center;
+  flex-direction: column;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-100);
+}
+
+.circle-web >p{
+  font-size: 75%;
+}
+
+.circle-web >img{
+  height: 43%;
+  display: block;
+}
+
+.all-parking-map{
+  display: none;
+}
+
+.add-parking-box{
+  display: none;
+}
+
+.boxes-my-parking-section-centered {
+  overflow-x: hidden;
+}
+
+.all-parking-map-web{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .add-parking-box-web{
+      display: flex;
+      flex-direction: column;
+      display: block;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 90%;
+  }
+
+  .my-parking-web{
+    position: relative;
+    height: 250px;
+    width: 200px;
+    border-left: 3px solid;
+    border-color: var(--primary-200);
+    margin-left: 10px;
+    overflow: hidden;
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .my-parking-box-web{
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  #my-parking-img-web{
+    height: 100%;
+    object-fit: fill;
+    position: relative;
+    z-index: 0;
+    display: block;
+    
+  }
+
+  #my-parking-img-web >img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .text-overlay-web{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(81 80 80 / 66%);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .parking-name-my-parking-web{
+    display: flex;
+  }
+  
+  #icon-name-my-parking-web{
+    width: 25px;
+      height: 25px;
+      display: block;
+  }
+  
+  .parking-status-my-parking-web{
+    display: flex;
+      justify-content: center;
+  }
+  
+  #icon-status-my-parking-web{
+    width: 25px;
+    height: 25px;
+    display: block;
+  }
+
+  .add-parking-web{
+    height: 250px;
+    width: 200px;
+    border-left: 3px solid;
+    border-color: var(--primary-200);
+    background-color:var(--bg-200);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left:10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.add-parking-box-web{
+  display: flex;
+  flex-direction: column;
+}
+
+.my-parking-section-web{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.all-parking-main-web{
+  display: flex;
+  width: 80%;
+  justify-content: space-evenly;
+}
+
+}
+
+
+
+
+@media screen and (min-width: 700px){
+  .circle-web >p{
+    font-size: 100%;
+  }
 }

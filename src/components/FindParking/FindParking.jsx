@@ -15,20 +15,13 @@ import { TextField } from "@mui/material";
 import io from 'socket.io-client';
 
 function FindParking() {
-
+  const payment={}
+  const socket = io('http://localhost:5000');
  useEffect(() => {
-    const socket = io('http://localhost:3000');
-    socket.on('know-publish', newPayment => {
-      console.log('know-publish',newPayment);
-    })
+  socket.on('paymentPublished',(payment))
+  // socket.on('updatepark',(info))
   }, [])
 
-  useEffect(() => {
-    const socket = io('http://localhost:3000');
-    socket.on('know-update', (parkingID) => {
-      console.log('know-update',parkingID);
-    })
-  }, [])
 
 
   const {
@@ -174,7 +167,7 @@ function FindParking() {
       setTogglePrice("");
       setToggleHours("");
       setParkingsToMap(
-        parkingsToMap.sort((a, b) => a.distance*1 - b.distance*1)
+        parkingsToMap.sort((a, b) => a.distanceValue*1 - b.distanceValue*1)
       );
       console.log(parkingsToMap, "parki");
 
@@ -346,7 +339,7 @@ function FindParking() {
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          <BottomSheet />
+          <BottomSheet payment={payment} />
           <div id="find-showing-parking-container">
             {stillLoading ? (
               <div>loading</div>

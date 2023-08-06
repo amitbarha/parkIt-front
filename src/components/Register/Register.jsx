@@ -29,7 +29,7 @@ const Register = () => {
       localStorage.setItem("loggedUser", newuser.data);
       navigate("/homepage");
     } catch (err) {
-      setErrorMessage1("Incorrect Phone Number or password");
+      console.log(err.response.data);
     }
   };
 
@@ -84,23 +84,3 @@ const Register = () => {
 export default Register;
 
 
-
-
-
-{/* <div className="main-page">
-      <div className="register-container">
-        <form className="form" onSubmit={(e) => handleSubmitForm(e)}>
-          <h1>Register</h1>
-          <input type="text" placeholder="username:" />
-          <input type="text" placeholder="First Name:" />
-          <input type="text" placeholder="Last Name:" />
-          <input type="text" placeholder="Phone Number:" />
-          <input type="Email" placeholder="Email:" />
-          <input type="password" placeholder="Password:" />
-          <input type="text" placeholder="licensePlates:" />
-          {errorMessage1 && <p className="error-message">{errorMessage1}</p>}
-          <button id="reg-btn" type="submit">Register</button>
-          <Link to={"/"}>Back to Log In</Link>
-        </form>
-      </div>
-    </div> */}

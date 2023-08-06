@@ -13,7 +13,6 @@ import SoloParking from "./components/SoloParking/SoloParking";
 import FindParking from "./components/FindParking/FindParking";
 import PayingHistory from "./components/PayingHistory/PayingHistory";
 import NotFound from "./components/NotFound/NotFound";
-import Onepick from "./components/ChoosenParking/Onepick";
 import Receipt from "./components/Receipt/Receipt";
 import * as React from "react"
 import axios from "axios";
@@ -58,9 +57,9 @@ function App() {
         .catch((err) => {console.log(err.message)});
     ;
   }
-  else{
-    navigate('/')
-  }
+  // else{
+  //   navigate('/')
+  // }
   },[])
   
 
@@ -88,10 +87,8 @@ function App() {
                 <Route path="Profile" element={<Profile />}></Route>
                 <Route path="addParking" element={<AddParking />}></Route>
                 <Route path="FindParking" element={<FindParking />}></Route>
-                <Route path="FindParking/:parkingId" element={<Onepick />}></Route>
                 <Route path="payingHistory" element={<PayingHistory />}></Route>
                 <Route path="SoloParking/:parkingId" element={<SoloParking />}></Route>
-                <Route path="Onepick" element={<Onepick />}></Route>
                 <Route path="Receipt" element={<Receipt/>}></Route>
                 <Route path="*" element={<NotFound />}></Route>
               </Route>

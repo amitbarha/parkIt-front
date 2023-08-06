@@ -1,6 +1,6 @@
 .history-pay-list{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
 }
@@ -45,3 +45,13 @@
 }
 
 
+@media screen and (min-width: 450px){
+    .history-pay-list{
+        display: flex;
+        text-align: -webkit-center;
+    }
+
+    .paying-history-container{
+        height: auto;
+    }
+}

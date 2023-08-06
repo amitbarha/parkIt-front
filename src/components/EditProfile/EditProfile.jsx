@@ -118,18 +118,6 @@ function EditProfile() {
             <p className="info-error">{errors.username?.message}</p>
           </div>
 
-          {/* <div className="solo-info-container">
-            <div className="title-input">Password:</div>
-            <input
-              className="info-input"
-              
-              label="Password"
-              id="password"
-              {...register("password", { required: "password is required" })}
-            />
-            <p className="info-error">{errors.password?.message}</p>
-          </div> */}
-
           <div className="solo-info-container">
             <div className="title-input">Phone Number:</div>
             <input
@@ -139,6 +127,10 @@ function EditProfile() {
               id="phoneNumber"
               {...register("phoneNumber", {
                 required: "phonenumber is required",
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: "Invalid phone number. Please use only numbers.",
+                },
               })}
             />
             <p className="info-error">{errors.phoneNumber?.message}</p>
@@ -174,12 +166,13 @@ function EditProfile() {
                 return (
                   <div key={field.index}>
                     <div className="title-input">License Plates No.{index+1}:</div>
+                    <div className="input-and-minus">
                     <input
                       className="info-input"
                       label={`license No. ${index + 1}`}
                       placeholder="enter one license..."
                       {...register(`licensePlates.${index}.onelicenses`, {
-                        required: "onelicenses is required",
+                        required: "license Plate is required",
                       })}
                     />
                     {index > 0 && (
@@ -191,6 +184,7 @@ function EditProfile() {
                         -
                       </button>
                     )}
+                    </div>
                     <p className="info-error">
                       {errors.licenses?.[index]?.onelicenses?.message}
                     </p>

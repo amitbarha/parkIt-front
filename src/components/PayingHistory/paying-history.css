@@ -45,3 +45,13 @@
 }
 
 
+@media screen and (min-width: 450px){
+    .history-pay-list{
+        display: flex;
+        text-align: -webkit-center;
+    }
+
+    .paying-history-container{
+        height: auto;
+    }
+}

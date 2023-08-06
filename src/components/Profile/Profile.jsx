@@ -31,7 +31,7 @@ function Profile() {
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img
-                className="icon-con"
+                className="icon-con-profile"
                 src="https://img.icons8.com/ios/50/user-male-circle--v1.png"
                 alt="user-male-circle--v1"
               />
@@ -44,7 +44,7 @@ function Profile() {
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img
-                className="icon-con"
+                className="icon-con-profile"
                 src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/external-email-social-media-ui-tanah-basah-glyph-tanah-basah.png"
                 alt="external-email-social-media-ui-tanah-basah-glyph-tanah-basah"
               />
@@ -55,7 +55,7 @@ function Profile() {
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img
-                className="icon-con"
+                className="icon-con-profile"
                 src="https://img.icons8.com/external-others-inmotus-design/67/external-Phone-game-play-others-inmotus-design-2.png"
                 alt="external-Phone-game-play-others-inmotus-design-2"
               />
@@ -73,7 +73,7 @@ function Profile() {
               <div className={`${colorMode}-profile-detail index`}>
                 <div className="profile-detail-divforicon">
                   <img
-                    className="icon-con"
+                    className="icon-con-profile"
                     src="https://img.icons8.com/ios/50/licence-plate.png"
                     alt="licence-plate"
                   />
@@ -102,4 +102,3 @@ function Profile() {
   );
 }
 export default Profile;
-

@@ -3,37 +3,71 @@ import { modeContext, userDataContext } from "../../App";
 import "./layout.css";
 import { useState, useContext, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
+import { HOST } from "../../Utils/host";
+import axios from "axios";
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State variable to track open/closed state
   const [switchMode, setSwitchMode] = useState("light");
   const { colorMode, setColorMode } = useContext(modeContext);
   const { userData, setUserData } = useContext(userDataContext);
-  const [liesencePlateToShow, setLiesencePlateToShow] = useState("");
-  const [licensePlateOne , setLicensePlateOne]=useState("")
-  const [licensePlateTwo , setLicensePlateTwo]=useState("")
-  const [licensePlateThree , setLicensePlateThree]=useState("")
-  const [chosenLicensePlate , setChosenLicensePlate]=useState("")
+  const [userId, setUserID] = useState(userData?._id);
+  const [licensePlateOne, setLicensePlateOne] = useState("");
+  const [licensePlateTwo, setLicensePlateTwo] = useState("");
+  const [licensePlateThree, setLicensePlateThree] = useState("");
+  const [activeLicense, setActiveLicense] = useState("");
   const navigate = useNavigate();
 
-  
-  function choosePlate(chooseThis){
-    if(chooseThis=="one"){
-      setLicensePlateOne("chosen")
-      setLicensePlateTwo("")
-      setLicensePlateThree("")
-      setChosenLicensePlate(userData?.licensePlates[0])
-    } else if(chooseThis=="two"){
-      setLicensePlateOne("")
-      setLicensePlateTwo("chosen")
-      setLicensePlateThree("")
-      setChosenLicensePlate(userData?.licensePlates[1])
-    } else if(chooseThis=="three"){
-      setLicensePlateOne("")
-      setLicensePlateTwo("")
-      setLicensePlateThree("chosen")
-      setChosenLicensePlate(userData?.licensePlates[2])
-    } 
+  const changePlate = () => {
+    const data1 = {
+      activeLicense: activeLicense,
+      _id: userData?._id,
+    };
+    console.log(data1)
+    axios
+      .patch(`${HOST}/user/updateUser`, data1)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err.response.data));
+    console.log("it failed");
+  };
+
+  function choosePlate(chooseThis) {
+    if (chooseThis == "one") {
+      setLicensePlateOne("chosen");
+      setLicensePlateTwo("");
+      setLicensePlateThree("");
+      console.log(userData?.licensePlates[0]);
+      setActiveLicense(userData?.licensePlates[0]);
+      console.log(`this is active ${userData?.licensePlates[0]}`);
+      changePlate();
+    } else if (chooseThis == "two") {
+      setLicensePlateOne("");
+      setLicensePlateTwo("chosen");
+      setLicensePlateThree("");
+      setActiveLicense(userData?.licensePlates[1]);
+      changePlate();
+    } else if (chooseThis == "three") {
+      setLicensePlateOne("");
+      setLicensePlateTwo("");
+      setLicensePlateThree("chosen");
+      setActiveLicense(userData?.licensePlates[2]);
+      changePlate();
+    }
   }
+
+  useEffect(() => {
+    if (userData?.activeLicense == userData?.licensePlates[0]) {
+      console.log("on mount this is one");
+      choosePlate("one");
+    } else if (userData?.activeLicense == userData?.licensePlates[1]) {
+      console.log("on mount this is two");
+      choosePlate("two");
+    } else if (userData?.activeLicense == userData?.licensePlates[2]) {
+      console.log("on mount this is three");
+      choosePlate("three");
+    }
+  }, []);
 
   const handleSwitch = () => {
     colorMode === "light" ? setColorMode("dark") : setColorMode("light");
@@ -61,7 +95,7 @@ function Layout() {
       <Menu
         isOpen={isSidebarOpen}
         onStateChange={({ isOpen }) => setIsSidebarOpen(isOpen)}
-        width={"60%"}
+        width={"250px"}
       >
         <div>Hello {userData?.firstName}!</div>
         <Link
@@ -89,10 +123,12 @@ function Layout() {
           Proflie
         </Link>
         <div id="layout-show-me-all-liesence-plates">
-          <h5 className="menu-item">Liesence plates</h5>
-          {console.log(userData?.licensePlates[0])}
+          <h5 className="menu-item">Liesence</h5>
           {userData?.licensePlates[0] != "" ? (
-            <div onClick={(()=>choosePlate("one"))} className={`${licensePlateOne}-layout-lisence-palate-container`}>
+            <div
+              onClick={() => choosePlate("one")}
+              className={`${licensePlateOne}-layout-lisence-palate-container`}
+            >
               <div className="layout-lisence-palate-picture">
                 <img
                   width="34px"
@@ -102,13 +138,15 @@ function Layout() {
                 />
               </div>
               <div className="layout-lisence-palate-number">
-    {userData?.licensePlates[0]}
-                
+                {userData?.licensePlates[0]}
               </div>
             </div>
           ) : null}
           {userData?.licensePlates[1] != undefined ? (
-            <div onClick={(()=>choosePlate("two"))} className={`${licensePlateTwo}-layout-lisence-palate-container`}>
+            <div
+              onClick={() => choosePlate("two")}
+              className={`${licensePlateTwo}-layout-lisence-palate-container`}
+            >
               <div className="layout-lisence-palate-picture">
                 <img
                   width="34px"
@@ -123,7 +161,10 @@ function Layout() {
             </div>
           ) : null}
           {userData?.licensePlates[2] != undefined ? (
-            <div onClick={(()=>choosePlate("three"))} className={`${licensePlateThree}-layout-lisence-palate-container`}>
+            <div
+              onClick={() => choosePlate("three")}
+              className={`${licensePlateThree}-layout-lisence-palate-container`}
+            >
               <div className="layout-lisence-palate-picture">
                 <img
                   width="34px"
@@ -140,8 +181,7 @@ function Layout() {
         </div>
         <div
           to={"/profile"}
-          id="button-for-log-out"
-          className="menu-item"
+          id="log-out-menu-item"
           onClick={() => logOutUser() + setIsSidebarOpen(!isSidebarOpen)}
         >
           Log out

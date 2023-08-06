@@ -18,11 +18,12 @@ const Register = () => {
     const email = target[4].value;
     const password = target[5].value;
     const licensePlates = target[6].value;
+    // const activeLicense = target[6].value;
 
     try {
       const newuser = await axios.post(
         `${HOST}/user/publishUser`,
-        {username,firstName,lastName,phoneNumber,email,password,licensePlates }
+        {username,firstName,lastName,phoneNumber,email,password,licensePlates,activeLicense }
       );
       console.log(newuser);
       localStorage.setItem("loggedUser", newuser.data);

@@ -61,7 +61,10 @@
   align-items: center;
   justify-content: center;
 }
-
+.all-parking-map{
+  display: flex;
+  flex-direction: row-reverse;
+}
 
 .border-circle {
     height: 58vw;

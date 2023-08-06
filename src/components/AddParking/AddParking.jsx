@@ -19,15 +19,26 @@ import {
   gooleAutoLocation,
   userDataContext,
 } from "../../App";
-import { HOST } from '../../Utils/host'
+import { HOST } from "../../Utils/host";
+const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
 
 const AddParking = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { handleSubmit, control } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
+  const [shortTerm, setShortTerm] = useState(false);
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
   const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
   const { userData, setUserData } = useContext(userDataContext);
+  const [selectedDays, setSelectedDays] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+  ]);
 
   console.log(cloudinaryImg);
   useEffect(() => {
@@ -44,6 +55,8 @@ const AddParking = () => {
     formData.availableToPark = true;
     formData.photos = cloudinaryImg;
     formData.ownerID = userData._id;
+    formData.selectedDays = selectedDays;
+    formData.shortTerm = shortTerm
     console.log(formData);
     axios
       .post(`${HOST}/parking/publishParking`, {
@@ -57,7 +70,11 @@ const AddParking = () => {
         lng: formData.lng,
         lat: formData.lat,
         ownerID: formData.ownerID,
-        comments: formData.comments
+        comments: formData.comments,
+        selectedDays: formData.selectedDays,
+        shortTerm: formData.shortTerm,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
       })
       .then(({ data }) => {
         alert("Create parking complete!");
@@ -65,12 +82,19 @@ const AddParking = () => {
         setGoogleLocation({
           lat: "",
           lng: "",
-          fullAddress: ""
+          fullAddress: "",
         });
         navigate("/homePage");
       })
-      .catch((err) => console.log(err.message + "basa"));
-
+      .catch((err) => console.log(err.response.data + "basa"));
+  };
+  const handleDaySelection = (index) => {
+    const updatedSelectedDays = [...selectedDays];
+    updatedSelectedDays[index] = !updatedSelectedDays[index];
+    setSelectedDays(updatedSelectedDays);
+  };
+  const handleTermSelection = () => {
+    setShortTerm(!shortTerm);
   };
 
   return (
@@ -117,6 +141,88 @@ const AddParking = () => {
             />
           )}
         />
+        <div className="short-or-long">
+          <div>
+            <label>
+              <input
+                type="radio"
+                value="long-term"
+                checked={!shortTerm} // Set the checked state based on the shortTerm state
+                onChange={handleTermSelection} // Toggle the shortTerm state on change
+              />
+              Long term
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                value="short-term"
+                checked={shortTerm} // Set the checked state based on the shortTerm state
+                onChange={handleTermSelection} // Toggle the shortTerm state on change
+              />
+              Short term
+            </label>
+          </div>
+        </div>
+        <br />
+        { !shortTerm &&
+          <div className="chosen-long">
+            <div>Available days:</div>
+            <div className="day-checkboxes">
+              {" "}
+              {daysOfWeek.map((day, index) => (
+                <label key={index} className="day-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={selectedDays[index]}
+                    onChange={() => handleDaySelection(index)}
+                  />
+                  {day}
+                </label>
+              ))}
+            </div>
+          </div>
+        }
+        {
+          shortTerm &&
+          <div className="chosen-short">
+          <div>
+            <Controller
+              name="startDate"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <input
+                  {...field}
+                  required
+                  type="date"
+                  className="time-picker-form"
+                  style={{ border: "medium, solid, black;", width: "30vw" }}
+                />
+              )}
+            />
+          </div>
+          <div>-</div>
+          <div>
+            <Controller
+              name="endDate"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <input
+                  {...field}
+                  required
+                  type="date"
+                  className="time-picker-form"
+                  style={{ border: "medium, solid, black;", width: "30vw" }}
+                />
+              )}
+            />
+          </div>
+        </div>
+        }
+        <br />
         <div className="time-picker-line">
           <div>
             <div>Start Time:</div>
@@ -130,9 +236,8 @@ const AddParking = () => {
                   required
                   type="time"
                   className="time-picker-form"
-                  style={{ border:"medium, solid, black;" }}
+                  style={{ border: "medium, solid, black;" }}
                 />
-                
               )}
             />
           </div>
@@ -148,7 +253,7 @@ const AddParking = () => {
                   required
                   type="time"
                   className="time-picker-form"
-                  style={{ border:"medium, solid, black;" }}
+                  style={{ border: "medium, solid, black;" }}
                 />
               )}
             />
@@ -164,15 +269,14 @@ const AddParking = () => {
               {...field}
               label="Enter further Comments: height,width and etc"
               variant="outlined"
-              multiline='true'
+              multiline="true"
               inputProps={{
                 style: {
                   height: "100px",
                 },
               }}
-              
               type="text"
-              style={{ marginTop:"20px" }}
+              style={{ marginTop: "20px" }}
             />
           )}
         />

@@ -91,9 +91,16 @@ function Profile() {
         </div>
       </div>
       <div id="profile-buttons-container">
-        <Link to={"/editProfile"} id="profile-edit-info">
+        {data?.currentParking?
+        <div onClick={()=>alert("Please end parking before editing profile")} className="profile-edit-info">
+          Edit Profile
+        </div>
+        :
+        <Link to={"/editProfile"} className="profile-edit-info">
           Edit Profile
         </Link>
+      }
+        
         <Link to={"/payingHistory"} id="profile-parking-history">
           Parking history
         </Link>

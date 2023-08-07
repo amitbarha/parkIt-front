@@ -92,7 +92,7 @@ function Soloinner({
           {StartHour} - {EndHour}
         </div>
       </div>
-      <div className="solo-parking-detail" id="bigdiv-oftable">
+      <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
           <img
             className="icon-con"
@@ -103,7 +103,7 @@ function Soloinner({
         </div>
         <div className="solo-parking-detail-divfortext ">
           {!shortTerm?
-          <table className="table-of-days">
+          <table className="table-of-days" id="bigdiv-oftable">
             <tr>
               <th>Sun</th>
               <th>Mon</th>
@@ -144,14 +144,14 @@ function Soloinner({
         <div className="solo-parking-detail-divforicon">
           <img
             className="icon-con"
-            src="https://img.icons8.com/ios/50/average-2.png"
+            src="https://img.icons8.com/fluency-systems-regular/48/shekel.png"
             alt="average-2"
           />
+
           |
         </div>
-        <div className="solo-parking-detail-divfortext">${Price} per hour</div>
+        <div className="solo-parking-detail-divfortext">₪{Price} per hour</div>
       </div>
-      {comments ? (
         <div className="solo-parking-detail">
           <div className="solo-parking-detail-divforicon">
             <img
@@ -162,12 +162,9 @@ function Soloinner({
             |
           </div>
           <div className="solo-parking-detail-divfortext-comment">
-            {comments}
+            {comments ? comments : "Nothing to mention"}
           </div>
         </div>
-      ) : (
-        ""
-      )}
       <div id="solo-parking-img-container">
         <Carousel>
           {Photos?.map((element, index) => {

@@ -33,15 +33,7 @@ function SoloParking() {
   };
 
   const [shortTerm, setShortTerm] = useState(false);
-  const [selectedDays, setSelectedDays] = useState([
-    true,
-    true,
-    true,
-    true,
-    true,
-    false,
-    false,
-  ]);
+ 
   const [pricePerHour, setPricePerhour] = useState();
   const [availableStart, setAvailableStart] = useState();
   const [availableEnd, setAvailableEnd] = useState();
@@ -58,6 +50,12 @@ function SoloParking() {
     setOpen(false);
   };
   const handleEditParking = () => {
+    if(pricePerHour>99 ){
+      return(
+        alert('Price per hour must be 99 or lower')
+      )
+    }
+
     const objForSend = {
       _id: oneParkingdata._id,
       pricePerHour: pricePerHour,
@@ -80,13 +78,21 @@ function SoloParking() {
     setOpen(false);
   };
 
-  const [availableStartChange, setAvailableStartChange] = useState("");
-  const [availableEndChange, setAvailableEndChange] = useState("");
-  const [pricePerHourChange, setPricePerHourChange] = useState("");
   const [photoChange, setphotoChange] = useState([]);
   const { parkingId } = useParams();
   console.log(parkingId, "parkingId");
   const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
+  const [selectedDays, setSelectedDays] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+  ]);
+
+  
 
   function handlePhotoChange(newPhoto) {
     setphotoChange(newPhoto);
@@ -150,37 +156,6 @@ function SoloParking() {
             navigate(`/homePage`);
           })
           .catch((err) => console.log(err));
-      }
-    }
-  }
-
-  function handleParkingChange() {
-    console.log("parking info change");
-    console.log(availableStartChange, availableEndChange, pricePerHourChange);
-    if (!oneParkingdata?.availableToPark) {
-      return alert("can't change parking detail while someone is park");
-    } else {
-      if (
-        availableStartChange != null &&
-        availableEndChange != null &&
-        pricePerHourChange != null
-      ) {
-        const _id = parkingId;
-        axios
-          .patch(`${HOST}/parking/updateParking`, {
-            _id: _id,
-            availableStart: availableStartChange,
-            availableEnd: availableEndChange,
-            pricePerHour: pricePerHourChange,
-            photos: cloudinaryImg,
-          })
-          .then((data) => {
-            console.log("parking was update");
-            navigate(`/homePage`);
-          })
-          .catch((err) => console.log(err));
-      } else {
-        alert("you need to fill all fields");
       }
     }
   }

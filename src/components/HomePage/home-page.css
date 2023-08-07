@@ -5,7 +5,6 @@
 }
 
 .home-page{
-    width: 100vw;
     display: flex;
     position: relative;
     flex-direction: column;

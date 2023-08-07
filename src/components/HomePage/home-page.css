@@ -417,9 +417,9 @@ p{
   display: none;
 }
 
-.parking-status-my-parking{
+/* .parking-status-my-parking{
   display: none;
-}
+} */
 
 #icon-status-my-parking-web{
   display: none;
@@ -437,9 +437,6 @@ p{
   display: none;
 }
 
-.my-parking-section >h2{
-  display:none;
-}
 
 .all-parking-main-web{
   display: none;
@@ -544,6 +541,10 @@ p{
 .all-parking-map-web{
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
   }
 
   .add-parking-box-web{
@@ -551,10 +552,9 @@ p{
       flex-direction: column;
       display: block;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-evenly;
       align-items: center;
-      width: 90%;
+      margin: 10px;
   }
 
   .my-parking-web{
@@ -573,6 +573,7 @@ p{
     display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 10px;
   }
   
   #my-parking-img-web{
@@ -651,14 +652,36 @@ p{
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 90%;
+}
+
+.my-parking-section-web >h2{
+  margin-bottom: 15px;
 }
 
 .all-parking-main-web{
   display: flex;
-  width: 80%;
-  justify-content: space-evenly;
+  width: 90%;
+  flex-wrap: wrap;
 }
 
+.my-parking-section >h2{
+  display:none;
+}
+
+.boxes-my-parking-section{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  justify-content: center;
+  width: 90vw;
+}
+
+.bottom-icon-parking{
+  display: flex;
+  flex-direction: column;
+}
 }
 
 

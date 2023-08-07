@@ -281,17 +281,34 @@ function HomePage() {
                       <img id="icon-name-my-parking-web" width="64" height="64" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png" alt="parking--v4" />
                       <p>Parking Name: {parking.parkingName}</p>
                     </div>
-                    <div className="parking-status-my-parking-web" >
+                   <div className="bottom-icon-parking">
+                   <div className="parking-status-my-parking-web" >
                       <img id="icon-status-my-parking-web" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
                       <p>{parking.availableToPark ? 'Availible' : 'Unavailble '}</p>
-                    </div>
+                          </div>
+                    {
+                      parking.currentLicense &&
+                      <div className="parking-status-my-parking-web">
+                              <img
+                                id="icon-status-my-parking"
+                                width="10"
+                                height="10"
+                                src="https://img.icons8.com/material-outlined/24/FFFFFF/sedan.png"
+                                alt="sedan"
+                                />
+                              <p> 
+                              &nbsp;
+                                {parking.currentLicense}
+                              </p>
+                            </div>
+                          }
+                   </div>
                   </div>
                 </div>
               </div>
             );
           })}
-          </div>
-          <div className="add-parking-box-web">
+                    <div className="add-parking-box-web">
             <Link className="add-parking-web" to={"/addParking"}>
               <h5>Add New Parking:</h5>{" "}
               <img
@@ -301,6 +318,7 @@ function HomePage() {
                 alt="external-plus-essentials-ui-line-adri-ansyah"
               />
             </Link>
+          </div>
           </div>
           </div>
           </div>

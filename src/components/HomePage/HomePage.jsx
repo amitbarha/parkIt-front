@@ -80,7 +80,6 @@ function HomePage() {
   };
 
   function handleGoToSoloParking(id) {
-    console.log("get into goto func");
     navigate(`/SoloParking/${id}`);
   }
 

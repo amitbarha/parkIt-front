@@ -10,7 +10,7 @@ function Layout() {
   const [switchMode, setSwitchMode] = useState("light");
   const { colorMode, setColorMode } = useContext(modeContext);
   const { userData, setUserData } = useContext(userDataContext);
-  const [userId, setUserID] = useState(userData?._id);
+  const [renderLayout , setRenderLayout]=useState(false)
   const [licensePlateOne, setLicensePlateOne] = useState("");
   const [licensePlateTwo, setLicensePlateTwo] = useState("");
   const [licensePlateThree, setLicensePlateThree] = useState("");
@@ -58,13 +58,10 @@ function Layout() {
 
   useEffect(() => {
     if (userData?.activeLicense == userData?.licensePlates[0]) {
-      console.log("on mount this is one");
       choosePlate("one");
     } else if (userData?.activeLicense == userData?.licensePlates[1]) {
-      console.log("on mount this is two");
       choosePlate("two");
     } else if (userData?.activeLicense == userData?.licensePlates[2]) {
-      console.log("on mount this is three");
       choosePlate("three");
     }
   }, []);

@@ -17,7 +17,6 @@ function EditProfile() {
       })
       .then(({ data }) => {
         setData(data);
-        console.log(`the statment is ${HOST}/user/translateToken`);
       })
       .catch((err) => console.log(err.message));
   }, []);

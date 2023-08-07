@@ -83,7 +83,7 @@ function HomePage() {
       })
       .then(({ data }) => {
         navigate("/Receipt");
-        // socket.emit('updatepark',(info))
+        socket.emit('updatepark',(info))
       })
       .catch((err) => console.log(err.response.data));
   }

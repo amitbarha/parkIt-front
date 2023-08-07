@@ -34,25 +34,28 @@ function Layout() {
 
   function choosePlate(chooseThis) {
     if (chooseThis == "one") {
+       changePlate();
       setLicensePlateOne("chosen");
       setLicensePlateTwo("");
       setLicensePlateThree("");
       console.log(userData?.licensePlates[0]);
       setActiveLicense(userData?.licensePlates[0]);
       console.log(`this is active ${userData?.licensePlates[0]}`);
-      changePlate();
+     
     } else if (chooseThis == "two") {
+      changePlate();
       setLicensePlateOne("");
       setLicensePlateTwo("chosen");
       setLicensePlateThree("");
       setActiveLicense(userData?.licensePlates[1]);
-      changePlate();
+      
     } else if (chooseThis == "three") {
+      changePlate();
       setLicensePlateOne("");
       setLicensePlateTwo("");
       setLicensePlateThree("chosen");
       setActiveLicense(userData?.licensePlates[2]);
-      changePlate();
+      
     }
   }
 
@@ -139,7 +142,7 @@ function Layout() {
               </div>
             </div>
           ) : null}
-          {userData?.licensePlates[1] ? (
+          {userData?.licensePlates[1]!= "" ? (
             <div onClick={() => choosePlate("two")}
               className={`${licensePlateTwo === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
             >
@@ -157,7 +160,7 @@ function Layout() {
             </div>
           ) : null}
           {userData?.licensePlates[2] != undefined ? (
-            <div onClick={() => choosePlate("three")}
+            <div onClick={() => choosePlate("three")+setActiveLicense()} 
               className={`${licensePlateThree === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">

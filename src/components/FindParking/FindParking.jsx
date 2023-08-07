@@ -44,11 +44,13 @@ function FindParking() {
   const [distancesLoaded, setDistancesLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const [parkav, setParkav] = useState(true);
-// useEffect(() => {
-  // socket.on('updatepark',(info))
-  // }, [parkingsToMap])
+
 socket.on('know-publish',(payment)=>{
-  console.log(payment);
+ setParkav(!parkav);
+ console.log(!parkav);
+})
+socket.on('know-update',()=>{
+ setParkav(!parkav);
 })
   const navigate = useNavigate();
 
@@ -89,7 +91,7 @@ socket.on('know-publish',(payment)=>{
         setStillLoading(false);
       });
     }
-  }, [center]);
+  }, [center,parkav]);
   // console.log(parkingsToMap);
 
   useEffect(() => {

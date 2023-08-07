@@ -33,6 +33,7 @@ function Layout() {
       .catch((err) => console.log(err.response.data));
   }
 
+
   function handlePlateTwo() {
     setLicensePlateOne("");
     setLicensePlateTwo("chosen");
@@ -152,6 +153,7 @@ function Layout() {
               </div>
             </div>
           ) : null}
+
           {userData?.licensePlates[1] ? (
             <div
               onClick={() =>userData?.currentParking? alert("Cannot change license plate while parking"):handlePlateTwo()}
@@ -173,6 +175,7 @@ function Layout() {
             </div>
           ) : null}
           {userData?.licensePlates[2] != undefined ? (
+
             <div
               onClick={() =>userData?.currentParking? alert("Cannot change license plate while parking"):handlePlateThree()}
               className={`${

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { HOST } from "../../Utils/host";
 import io from 'socket.io-client';
 
-const BottomSheet = ({payment}) => {
+const BottomSheet = ({ payment }) => {
   const socket = io('http://localhost:5000');
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState();
@@ -46,7 +46,7 @@ const BottomSheet = ({payment}) => {
       });
   }, [parkingId]);
 
- 
+
   useEffect(() => () => setOpenSpring(false), []); //unmount
 
   const [isOpen, setIsOpen] = useState(false);
@@ -71,7 +71,7 @@ const BottomSheet = ({payment}) => {
     const strTime = time.join(":");
     console.log(strTime);
 
-     payment = {
+    payment = {
       token: localStorage.getItem("loggedUser"),
       parkingId: parkingIdData._id,
       ownerParkingId: parkingIdData.ownerID,
@@ -83,6 +83,7 @@ const BottomSheet = ({payment}) => {
       phoneToPay: ownerParkingData.phoneNumber,
       clientPhone: loggedUser.phoneNumber,
       finalPrice: null,
+      availableToPark: parkingIdData.availableToPark
     };
 
     console.log(payment, "payment");
@@ -92,7 +93,7 @@ const BottomSheet = ({payment}) => {
       .then(({ data }) => {
         alert("starting parking at time:");
         navigate("/homePage");
-      socket.emit('paymentPublished',(payment))
+        socket.emit('paymentPublished', (payment))
       })
       .catch((err) => {
         console.log(err.response.data);

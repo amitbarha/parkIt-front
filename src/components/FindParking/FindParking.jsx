@@ -297,7 +297,7 @@ socket.on('know-update',()=>{
           <div id="find-parking-header">
             <div className="find-parking-tab-distance">Distance</div>
             <div className="find-parking-tab-price">Price/H</div>
-            <div className="find-parking-tab-hours">Hours</div>
+            <div className="find-parking-tab-hours">End-Hour</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
           <BottomSheet payment={payment} />
@@ -319,7 +319,6 @@ socket.on('know-update',()=>{
                       {item.pricePerHour}
                     </div>
                     <div className="find-parking-tab-hours">
-                      {item.availableStart}-<br />
                       {item.availableEnd}
                     </div>
                     <div className="find-parking-tab-picture">
@@ -333,7 +332,7 @@ socket.on('know-update',()=>{
                 );
               })
             )}
-            <div
+            {/* <div
               onClick={() =>
                 setWantToLoadMore(!wantToLoadMore) + console.log(wantToLoadMore)
               }
@@ -354,8 +353,8 @@ socket.on('know-update',()=>{
               </div>
               <div id="load-more-parkings-header-container">
                 <h1 id="load-more-parkings-header">Load more</h1>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

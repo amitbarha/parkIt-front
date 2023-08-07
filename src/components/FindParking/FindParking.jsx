@@ -260,46 +260,6 @@ socket.on('know-publish',(payment)=>{
                   </div>
                 )}{" "}
               </div>
-              {/* <button
-                onClick={() => setWantToChangeLocation(!wantToChangeLocation)}
-                id={`${colorMode}-find-change-location-BTN`}
-              >
-                change
-              </button>
-              {wantToChangeLocation ? (
-                <div>
-                  <br />
-                  <div
-                    onClick={() =>
-                      setWantToChangeLocation(!wantToChangeLocation)
-                    }
-                    id="around-find-anothr-location"
-                  ></div>
-                  <div id="find-anothr-location">
-                    {<LocationSearchInput></LocationSearchInput>}
-                    <div id="find-anothr-location-process">
-                      <button
-                        onClick={() =>
-                          setWantToChangeLocation(!wantToChangeLocation)
-                        }
-                        className="find-anothr-location-process"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={() =>
-                          console.log(
-                            "i chose something else but now we need to run a useState"
-                          ) + setWantToChangeLocation(!wantToChangeLocation)
-                        }
-                        className="find-anothr-location-process"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ) : null} */}
             </div>
           </div>
           <br />

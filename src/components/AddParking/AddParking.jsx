@@ -57,6 +57,11 @@ const AddParking = () => {
     formData.ownerID = userData._id;
     formData.selectedDays = selectedDays;
     formData.shortTerm = shortTerm
+    if(!shortTerm)
+    {
+      formData.startDate=null
+      formData.endDate=null
+    }
     console.log(formData);
     axios
       .post(`${HOST}/parking/publishParking`, {

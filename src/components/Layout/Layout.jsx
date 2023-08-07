@@ -24,7 +24,7 @@ function Layout() {
     };
     console.log(data1)
     axios
-      .patch(`${HOST}/user/updateUser`, data1)
+      .patch(`${HOST}/user/updatelicense`, data1)
       .then(({ data }) => {
         console.log(data);
       })
@@ -67,7 +67,8 @@ function Layout() {
       console.log("on mount this is three");
       choosePlate("three");
     }
-  }, []);
+    console.log(activeLicense);
+  },  [userData?.activeLicense, userData?.licensePlates]);
 
   const handleSwitch = () => {
     colorMode === "light" ? setColorMode("dark") : setColorMode("light");
@@ -123,11 +124,10 @@ function Layout() {
           Proflie
         </Link>
         <div id="layout-show-me-all-liesence-plates">
-          <h5 className="menu-item">Liesence</h5>
+          <h5 className="menu-item">License</h5>
           {userData?.licensePlates[0] != "" ? (
-            <div
-              onClick={() => choosePlate("one")}
-              className={`${licensePlateOne}-layout-lisence-palate-container`}
+            <div onClick={() => choosePlate("one")}
+              className={`${licensePlateOne === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">
                 <img
@@ -142,10 +142,9 @@ function Layout() {
               </div>
             </div>
           ) : null}
-          {userData?.licensePlates[1] != undefined ? (
-            <div
-              onClick={() => choosePlate("two")}
-              className={`${licensePlateTwo}-layout-lisence-palate-container`}
+          {userData?.licensePlates[1] ? (
+            <div onClick={() => choosePlate("two")}
+              className={`${licensePlateTwo === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">
                 <img
@@ -161,9 +160,8 @@ function Layout() {
             </div>
           ) : null}
           {userData?.licensePlates[2] != undefined ? (
-            <div
-              onClick={() => choosePlate("three")}
-              className={`${licensePlateThree}-layout-lisence-palate-container`}
+            <div onClick={() => choosePlate("three")}
+              className={`${licensePlateThree === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">
                 <img

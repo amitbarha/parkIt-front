@@ -17,13 +17,6 @@ import io from 'socket.io-client';
 function FindParking() {
   const payment={}
   const socket = io('http://localhost:5000');
- useEffect(() => {
-  socket.on('paymentPublished',(payment))
-  // socket.on('updatepark',(info))
-  }, [])
-
-
-
   const {
     openSpring,
     setOpenSpring,
@@ -50,7 +43,13 @@ function FindParking() {
   const [wantToLoadMore, setWantToLoadMore] = useState(false);
   const [distancesLoaded, setDistancesLoaded] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const [parkav, setParkav] = useState(true);
+// useEffect(() => {
+  // socket.on('updatepark',(info))
+  // }, [parkingsToMap])
+socket.on('know-publish',(payment)=>{
+  console.log(payment);
+})
   const navigate = useNavigate();
 
   const handleParkingClick = (id) => {
@@ -60,7 +59,7 @@ function FindParking() {
     setParkingId(id);
     console.log(id);
     const parking = parkingsToMap?.find((park) => park._id === id);
-    setParkingIdData(parking);
+    setParkingIdData(parking)
     console.log(parking);
   };
   

@@ -86,7 +86,7 @@ function Profile() {
              );
           }))
         :
-        <div id="profile-no-plates-header">You do not have any liesence plates</div>} 
+        <div id="profile-no-plates-header">You do not have any license plates</div>} 
         
         </div>
       </div>

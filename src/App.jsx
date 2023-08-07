@@ -14,6 +14,7 @@ import FindParking from "./components/FindParking/FindParking";
 import PayingHistory from "./components/PayingHistory/PayingHistory";
 import NotFound from "./components/NotFound/NotFound";
 import Receipt from "./components/Receipt/Receipt";
+import Contact from "./components/Contact/Contact";
 import * as React from "react"
 import axios from "axios";
 // import Continue from "./components/Register/Continue";
@@ -90,6 +91,7 @@ function App() {
                 <Route path="payingHistory" element={<PayingHistory />}></Route>
                 <Route path="SoloParking/:parkingId" element={<SoloParking />}></Route>
                 <Route path="Receipt" element={<Receipt/>}></Route>
+                <Route path="Contact" element={<Contact/>}></Route>
                 <Route path="*" element={<NotFound />}></Route>
               </Route>
             </Routes>

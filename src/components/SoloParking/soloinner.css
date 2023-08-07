@@ -60,11 +60,12 @@
         margin: 1vw;
     }
     .solo-parking-detail{
-        width: 30%;
-        height: 3.2vw;
-        margin: 0.5vw;
-        border-radius: 15px;
-        font-size: 2vw;
+      width: 30%;
+      height: auto;
+      margin: 0.5vw;
+      border-radius: 15px;
+      font-size: 2vw;
+      min-height: 3.2vw;
     }
     .solo-parking-detail-comment{
         width: 30%;

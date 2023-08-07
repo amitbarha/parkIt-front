@@ -10,62 +10,72 @@ function Layout() {
   const [switchMode, setSwitchMode] = useState("light");
   const { colorMode, setColorMode } = useContext(modeContext);
   const { userData, setUserData } = useContext(userDataContext);
-  const [renderLayout , setRenderLayout]=useState(false)
   const [licensePlateOne, setLicensePlateOne] = useState("");
   const [licensePlateTwo, setLicensePlateTwo] = useState("");
   const [licensePlateThree, setLicensePlateThree] = useState("");
-  const [activeLicense, setActiveLicense] = useState("");
   const navigate = useNavigate();
+  
 
-  const changePlate = () => {
+  function handlePlateOne() {
+    setLicensePlateOne("chosen");
+    setLicensePlateTwo("");
+    setLicensePlateThree("");
     const data1 = {
-      activeLicense: activeLicense,
+      activeLicense: userData?.licensePlates[0],
       _id: userData?._id,
     };
-    console.log(data1)
+    console.log(data1);
     axios
       .patch(`${HOST}/user/updatelicense`, data1)
       .then(({ data }) => {
         console.log(data);
       })
       .catch((err) => console.log(err.response.data));
-    console.log("it failed");
-  };
+  }
 
-  function choosePlate(chooseThis) {
-    if (chooseThis == "one") {
-      setLicensePlateOne("chosen");
-      setLicensePlateTwo("");
-      setLicensePlateThree("");
-      console.log(userData?.licensePlates[0]);
-      setActiveLicense(userData?.licensePlates[0]);
-      console.log(`this is active ${userData?.licensePlates[0]}`);
-      changePlate();
-    } else if (chooseThis == "two") {
-      setLicensePlateOne("");
-      setLicensePlateTwo("chosen");
-      setLicensePlateThree("");
-      setActiveLicense(userData?.licensePlates[1]);
-      changePlate();
-    } else if (chooseThis == "three") {
-      setLicensePlateOne("");
-      setLicensePlateTwo("");
-      setLicensePlateThree("chosen");
-      setActiveLicense(userData?.licensePlates[2]);
-      changePlate();
-    }
+  function handlePlateTwo() {
+    setLicensePlateOne("");
+    setLicensePlateTwo("chosen");
+    setLicensePlateThree("");
+    const data1 = {
+      activeLicense: userData?.licensePlates[1],
+      _id: userData?._id,
+    };
+    console.log(data1);
+    axios
+      .patch(`${HOST}/user/updatelicense`, data1)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err.response.data));
+  }
+
+  function handlePlateThree() {
+    setLicensePlateOne("");
+    setLicensePlateTwo("");
+    setLicensePlateThree("chosen");
+    const data1 = {
+      activeLicense: userData?.licensePlates[2],
+      _id: userData?._id,
+    };
+    console.log(data1);
+    axios
+      .patch(`${HOST}/user/updatelicense`, data1)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err.response.data));
   }
 
   useEffect(() => {
     if (userData?.activeLicense == userData?.licensePlates[0]) {
-      choosePlate("one");
+      handlePlateOne();
     } else if (userData?.activeLicense == userData?.licensePlates[1]) {
-      choosePlate("two");
+      handlePlateTwo();
     } else if (userData?.activeLicense == userData?.licensePlates[2]) {
-      choosePlate("three");
+      handlePlateThree();
     }
-    console.log(activeLicense);
-  },  [userData?.activeLicense, userData?.licensePlates]);
+  }, [userData?.activeLicense, userData?.licensePlates]);
 
   const handleSwitch = () => {
     colorMode === "light" ? setColorMode("dark") : setColorMode("light");
@@ -123,8 +133,11 @@ function Layout() {
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">License</h5>
           {userData?.licensePlates[0] != "" ? (
-            <div onClick={() => choosePlate("one")}
-              className={`${licensePlateOne === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
+            <div
+              onClick={() => userData?.currentParking? alert("Cannot change license plate while parking") :handlePlateOne()}
+              className={`${
+                licensePlateOne === "chosen" ? "chosen" : ""
+              }-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">
                 <img
@@ -140,8 +153,11 @@ function Layout() {
             </div>
           ) : null}
           {userData?.licensePlates[1] ? (
-            <div onClick={() => choosePlate("two")}
-              className={`${licensePlateTwo === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
+            <div
+              onClick={() =>userData?.currentParking? alert("Cannot change license plate while parking"):handlePlateTwo()}
+              className={`${
+                licensePlateTwo === "chosen" ? "chosen" : ""
+              }-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">
                 <img
@@ -157,8 +173,11 @@ function Layout() {
             </div>
           ) : null}
           {userData?.licensePlates[2] != undefined ? (
-            <div onClick={() => choosePlate("three")}
-              className={`${licensePlateThree === "chosen" ? "chosen" : ""}-layout-lisence-palate-container`}
+            <div
+              onClick={() =>userData?.currentParking? alert("Cannot change license plate while parking"):handlePlateThree()}
+              className={`${
+                licensePlateThree === "chosen" ? "chosen" : ""
+              }-layout-lisence-palate-container`}
             >
               <div className="layout-lisence-palate-picture">
                 <img

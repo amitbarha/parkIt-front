@@ -139,7 +139,7 @@
     justify-content: start;
 }
 
-#profile-edit-info{
+.profile-edit-info{
     cursor: pointer;
     text-align: center;
     background-color: var(--primary-100);
@@ -208,7 +208,7 @@
         height: 45px;
     }
     
-    #profile-edit-info{
+    .profile-edit-info{
         width: 70%;
     }
     
@@ -253,7 +253,7 @@
         height: 45px;
     }
     
-    #profile-edit-info{
+    .profile-edit-info{
         width: 70%;
     }
     
@@ -298,7 +298,7 @@
         height: 45px;
     }
     
-    #profile-edit-info{
+    .profile-edit-info{
         width: 70%;
     }
     
@@ -344,7 +344,7 @@
         width: 15%;
     }
     
-    #profile-edit-info{
+    .profile-edit-info{
         width: 60%;
     }
     

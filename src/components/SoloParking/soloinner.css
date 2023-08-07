@@ -22,18 +22,21 @@
     border-radius: 15px;
     font-size: 4vw;
 }
+#bigdiv-oftable{
+  font-size: clamp(8px, 1vw, 14px);
+}
 .solo-parking-detail-divforicon{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
+    width: 15%;
 }
 .solo-parking-detail-divfortext{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 90%;
+    width: 85%;
 }
 #solo-parking-body{
     width: 100%;

@@ -199,16 +199,15 @@ function SoloParking() {
         parkingID={oneParkingdata?._id}
         whoParking={oneParkingdata?.whoIsParking}
         selectedDays={oneParkingdata?.selectedDays}
+        shortTerm={oneParkingdata?.shortTerm}
+        startDate={oneParkingdata?.startDate}
+        endDate={oneParkingdata?.endDate}
       ></Soloinner>
       <div id="edit-delete-container">
         <div id="edit-delete-icon">
           <div id="edit-div-btn" onClick={() => handleEdit()}>
             <Button onClick={handleClickOpen}>
-              <img
-                className="icon-edit-delete-size"
-                src="https://img.icons8.com/ios/50/edit--v1.png"
-                alt="edit--v1"
-              />
+              <img className="icon-edit-delete-size" src="https://img.icons8.com/dotty/80/C850F2/create-new.png" alt="create-new"/>
             </Button>
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle>Edit</DialogTitle>
@@ -226,14 +225,22 @@ function SoloParking() {
                     type="number"
                     fullWidth
                   />
-                  <input
+                  <div id="container-0f-time-soloparking">
+                  <div>
+                  <div>Start Time:</div>
+                  <input className="back-time"
                     type="time"
                     onChange={(e) => setAvailableStart(e.target.value)}
                   ></input>
-                  <input
-                    type="time"
+                  </div>
+                  <div>
+                  <div>End Time:</div>
+                  <input className="back-time"
+                    type="time" 
                     onChange={(e) => setAvailableEnd(e.target.value)}
                   ></input>
+                  </div>
+                  </div>
                   <div className="short-or-long">
                     <div>
                       <label>
@@ -280,10 +287,10 @@ function SoloParking() {
                   {shortTerm && (
                     <div className="chosen-short">
                       <div>
-                        <input
+                        <input 
                           onChange={(e) => setStartDate(e.target.value)}
                           type="date"
-                          className="time-picker-form"
+                          className="time-picker-form back-time"
                           style={{
                             border: "medium, solid, black;",
                             width: "30vw",
@@ -295,7 +302,7 @@ function SoloParking() {
                         <input
                           onChange={(e) => setEndDate(e.target.value)}
                           type="date"
-                          className="time-picker-form"
+                          className="time-picker-form back-time"
                           style={{
                             border: "medium, solid, black;",
                             width: "30vw",
@@ -313,16 +320,16 @@ function SoloParking() {
             </Dialog>
           </div>
           <div id="delete-div-btn" onClick={() => handleDelete()}>
-            <img
-              className="icon-edit-delete-size"
-              src="https://img.icons8.com/ios-glyphs/30/filled-trash.png"
-              alt="filled-trash"
-            />
+            {/* <img  className="icon-edit-delete-size" src="https://img.icons8.com/bubbles/50/trash.png" alt="trash"/> */}
+            <img className="icon-edit-delete-size" src="https://img.icons8.com/color/48/trash--v1.png" alt="trash--v1"/>
+            {/* <img className="icon-edit-delete-size" src="https://img.icons8.com/clouds/100/trash.png" alt="trash"/> */}
           </div>
         </div>
-        <div></div>
-
+        <div id="history-part-solo">
         <div id="Solo-parking-history-title">History:</div>
+        {(paymentdata==null || paymentdata==undefined || paymentdata.length==0)&&
+        <div>No one has parked yet...</div>
+        }
         <div className="all-history-parking">
           {paymentdata.map((element, index) => {
             return (
@@ -337,6 +344,7 @@ function SoloParking() {
             );
           })}
         </div>
+      </div>
       </div>
     </div>
   );

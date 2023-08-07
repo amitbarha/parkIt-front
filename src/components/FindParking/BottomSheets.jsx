@@ -9,7 +9,7 @@ import { HOST } from "../../Utils/host";
 import io from "socket.io-client";
 
 const BottomSheet = ({ payment }) => {
-  const socket = io("http://localhost:5000");
+  const socket = io('http://localhost:5000');
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState();
   const [ownerParkingData, setOwnerParkingData] = useState();
@@ -46,6 +46,7 @@ const BottomSheet = ({ payment }) => {
         console.log(err.message);
       });
   }, [parkingId]);
+
 
   useEffect(() => () => setOpenSpring(false), []); //unmount
 
@@ -84,6 +85,7 @@ const BottomSheet = ({ payment }) => {
       phoneToPay: ownerParkingData.phoneNumber,
       clientPhone: loggedUser.phoneNumber,
       finalPrice: null,
+      availableToPark: parkingIdData.availableToPark
     };
 
     console.log(payment, "payment");
@@ -94,7 +96,7 @@ const BottomSheet = ({ payment }) => {
         setLoader(false)
         alert("starting parking at time:");
         navigate("/homePage");
-        socket.emit("paymentPublished", payment);
+        socket.emit('paymentPublished', (payment))
       })
       .catch((err) => {
         setLoader(false)

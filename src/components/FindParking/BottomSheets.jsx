@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { HOST } from "../../Utils/host";
 import io from "socket.io-client";
 
-const BottomSheet = ({ payment }) => {
+const BottomSheet = ({ payment}) => {
   const socket = io('http://localhost:5000');
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState();
@@ -100,7 +100,9 @@ const BottomSheet = ({ payment }) => {
       })
       .catch((err) => {
         setLoader(false)
+        setOpenSpring(!openSpring)
         alert(err.response.data);
+        window.location.reload()
       });
   };
 
@@ -123,13 +125,6 @@ const BottomSheet = ({ payment }) => {
               <div className="parking-address-chosen">
                 {parkingIdData?.parkingLocation}
               </div>
-            </div>
-            <div className="image-chosen">
-              <img
-                className="image-chosen"
-                src={parkingIdData?.photos[0]}
-                alt=""
-              />
             </div>
           </div>
           <br />

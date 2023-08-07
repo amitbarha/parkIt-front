@@ -300,7 +300,7 @@ socket.on('know-update',()=>{
             <div className="find-parking-tab-hours">Hours</div>
             <div className="find-parking-tab-picture">Picture</div>
           </div>
-          <BottomSheet payment={payment} />
+          <BottomSheet payment={payment}/>
           <div id="find-showing-parking-container">
             {stillLoading ? (
               <div>loading</div>

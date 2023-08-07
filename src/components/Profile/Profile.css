@@ -7,7 +7,6 @@
 
 #light-profile-page{
     width: 100vw;
-    height: 100vh;
     position: relative;
     color: var(--white-text);
 }
@@ -260,8 +259,13 @@
     #profile-parking-history{
         width: 70%;
     }
+    #profile-buttons-container{
+        margin-top: 30px;
+    }
 }
 @media screen and (min-width: 650px){
+
+
     #profile-info-container{
         width: 100vw;
         height: 500px;
@@ -304,6 +308,9 @@
     
     #profile-parking-history{
         width: 70%;
+    }
+    #profile-buttons-container{
+        margin-top: 30px;
     }
 }
 @media screen and (min-width: 750px){
@@ -351,6 +358,8 @@
     #profile-parking-history{
         width: 60%;
     }
-    
 
+    #profile-buttons-container{
+        margin-top: 30px;
+    }
 }

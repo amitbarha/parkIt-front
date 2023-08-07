@@ -29,7 +29,7 @@ function Receipt() {
     return (
         <div id="receipt-container">
             <div id="back-to-homepage" onClick={() => navigate("/homePage")}><img width="50" height="50" src="https://img.icons8.com/ios/50/cancel.png" alt="cancel" /></div>
-            <h1 id="page-title">Summery of your parking</h1>
+            <h1 id="page-title">Summary of your parking</h1>
             <div id="inner-container-receipt">
                 <div><img width="64" height="64" src="https://img.icons8.com/cotton/64/location--v2.png" alt="location--v2" /></div>
                 <div style={{ fontWeight: 'bold' }}>Location:</div>

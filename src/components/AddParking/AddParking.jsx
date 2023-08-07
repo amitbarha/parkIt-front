@@ -202,8 +202,8 @@ const AddParking = () => {
                   {...field}
                   required
                   type="date"
-                  className="time-picker-form"
-                  style={{ border: "medium, solid, black;", width: "30vw" }}
+                  className="time-picker-form back-time"
+                  style={{ border: "medium, solid, black;", width: "135px" }}
                 />
               )}
             />
@@ -219,8 +219,8 @@ const AddParking = () => {
                   {...field}
                   required
                   type="date"
-                  className="time-picker-form"
-                  style={{ border: "medium, solid, black;", width: "30vw" }}
+                  className="time-picker-form back-time"
+                  style={{ border: "medium, solid, black;", width: "135px" }}
                 />
               )}
             />
@@ -240,7 +240,7 @@ const AddParking = () => {
                   {...field}
                   required
                   type="time"
-                  className="time-picker-form"
+                  className="time-picker-form back-time"
                   style={{ border: "medium, solid, black;" }}
                 />
               )}
@@ -257,7 +257,7 @@ const AddParking = () => {
                   {...field}
                   required
                   type="time"
-                  className="time-picker-form"
+                  className="time-picker-form back-time"
                   style={{ border: "medium, solid, black;" }}
                 />
               )}

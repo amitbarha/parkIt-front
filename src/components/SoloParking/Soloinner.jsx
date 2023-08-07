@@ -16,6 +16,9 @@ function Soloinner({
   parkingID,
   whoParking,
   selectedDays,
+  shortTerm,
+  startDate,
+  endDate
 }) {
   const [available, setAvailable] = useState(Available);
   const temparr = [true, true, false, false, true, true, false];
@@ -89,7 +92,7 @@ function Soloinner({
           {StartHour} - {EndHour}
         </div>
       </div>
-      <div className="solo-parking-detail">
+      <div className="solo-parking-detail" id="bigdiv-oftable">
         <div className="solo-parking-detail-divforicon">
           <img
             className="icon-con"
@@ -99,6 +102,7 @@ function Soloinner({
           |
         </div>
         <div className="solo-parking-detail-divfortext ">
+          {!shortTerm?
           <table className="table-of-days">
             <tr>
               <th>Sun</th>
@@ -131,6 +135,9 @@ function Soloinner({
               })}
             </tr>
           </table>
+          :
+          <div>{startDate} <b>-</b> {endDate}</div>
+          }
         </div>
       </div>
       <div className="solo-parking-detail">

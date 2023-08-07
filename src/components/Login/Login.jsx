@@ -7,6 +7,7 @@ import { HOST } from "../../Utils/host";
 const Login = () => {
   const [registers, setRegisters] = useState([]);
   const [refresh, setRefresh] = useState(0);
+  const [loader, setLoader] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -37,17 +38,19 @@ const Login = () => {
     const username = target[0].value;
     const password = target[1].value;
     console.log(username, password);
-
+    setLoader(true);
     try {
       const { data: newRegister } = await axios.post(`${HOST}/user/loginFunc`, {
         username,
         password,
       });
+      setLoader(false);
       localStorage.setItem("loggedUser", newRegister);
       setRefresh((obj) => obj + 1);
       navigate("/homePage");
     } catch (err) {
       setErrorMessage(err.response.data);
+      setLoader(false);
     }
   };
 
@@ -87,16 +90,30 @@ const Login = () => {
               />
             </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button type="submit" className="button login__submit">
-              <span className="button__text">Log In Now</span>
-              <img
-                className="button__icon"
-                width="30"
-                height="30"
-                src="https://img.icons8.com/ios-glyphs/30/7875b5/chevron-right.png"
-                alt="chevron-right"
-              />
-            </button>
+            {loader && (
+              <div>
+                <div class="wrapper">
+                  <div class="circle-loader"></div>
+                  <div class="circle-loader"></div>
+                  <div class="circle-loader"></div>
+                  <div class="shadow"></div>
+                  <div class="shadow"></div>
+                  <div class="shadow"></div>
+                </div>
+              </div>
+            )}
+            {!loader && (
+              <button type="submit" className="button login__submit">
+                <span className="button__text">Log In Now</span>
+                <img
+                  className="button__icon"
+                  width="30"
+                  height="30"
+                  src="https://img.icons8.com/ios-glyphs/30/7875b5/chevron-right.png"
+                  alt="chevron-right"
+                />
+              </button>
+            )}
             <div>
               <Link className="link-to-register" to={"/Register"}>
                 Not sign up yet?

@@ -6,14 +6,15 @@ import Carousel from "../SoloParking/Carousel";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { HOST } from "../../Utils/host";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
-const BottomSheet = ({payment}) => {
-  const socket = io('http://localhost:5000');
+const BottomSheet = ({ payment }) => {
+  const socket = io("http://localhost:5000");
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState();
   const [ownerParkingData, setOwnerParkingData] = useState();
   const [parksDistance, setParksDistance] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const {
     openSpring,
@@ -46,7 +47,6 @@ const BottomSheet = ({payment}) => {
       });
   }, [parkingId]);
 
- 
   useEffect(() => () => setOpenSpring(false), []); //unmount
 
   const [isOpen, setIsOpen] = useState(false);
@@ -70,8 +70,9 @@ const BottomSheet = ({payment}) => {
     console.log(time);
     const strTime = time.join(":");
     console.log(strTime);
+    setLoader(true)
 
-     payment = {
+    payment = {
       token: localStorage.getItem("loggedUser"),
       parkingId: parkingIdData._id,
       ownerParkingId: parkingIdData.ownerID,
@@ -90,12 +91,14 @@ const BottomSheet = ({payment}) => {
     axios
       .post(`${HOST}/payment/publishPayment`, payment)
       .then(({ data }) => {
+        setLoader(false)
         alert("starting parking at time:");
         navigate("/homePage");
-      socket.emit('paymentPublished',(payment))
+        socket.emit("paymentPublished", payment);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        setLoader(false)
+        alert(err.response.data);
       });
   };
 
@@ -164,7 +167,7 @@ const BottomSheet = ({payment}) => {
             </div>
           </div>
           <br />
-          <div className="img-bottom-carousel" id="solo-parking-img-container" >
+          <div className="img-bottom-carousel" id="solo-parking-img-container">
             <Carousel>
               {parkingIdData?.photos.map((element, index) => {
                 return (
@@ -178,13 +181,29 @@ const BottomSheet = ({payment}) => {
             </Carousel>
           </div>
           <div className="start-parking-button">
-            <button
-              onClick={handleStartParking}
-              type="submit"
-              className="button-parking"
-            >
-              Start Parking
-            </button>
+            {
+              loader &&
+              <div>
+                <div class="wrapper">
+                  <div class="circle-loader"></div>
+                  <div class="circle-loader"></div>
+                  <div class="circle-loader"></div>
+                  <div class="shadow"></div>
+                  <div class="shadow"></div>
+                  <div class="shadow"></div>
+                </div>
+              </div>
+            }
+            {
+              !loader &&
+              <button
+                onClick={handleStartParking}
+                type="submit"
+                className="button-parking"
+              >
+                Start Parking
+              </button>
+            }
           </div>
         </div>
       </animated.div>

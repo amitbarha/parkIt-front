@@ -141,7 +141,7 @@ function Layout() {
           className="menu-item"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          Contact
+          Contact Us
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">License</h5>

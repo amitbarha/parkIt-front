@@ -51,6 +51,9 @@
     margin-top: 5vw;
     margin-bottom: 5vw;
 }
+.place-holder-logo{
+  width: 90vw; 
+}
 
 @media screen and (min-width: 450px){
     #solo-parking-name{

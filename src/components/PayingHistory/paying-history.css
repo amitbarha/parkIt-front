@@ -5,7 +5,8 @@
     align-items: center;
 }
 .paying-history-container{
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
 }
 #history-have-no-header{
     width: 100%;
@@ -51,7 +52,4 @@
         text-align: -webkit-center;
     }
 
-    .paying-history-container{
-        height: auto;
-    }
 }

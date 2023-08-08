@@ -92,7 +92,12 @@ function Layout() {
   return (
     <div>
       <div className="navbar-container">
-        <div id="navbar-switch-container"></div>
+        <div id="navbar-switch-container">
+        <label class="switch-container">
+          <input type="checkbox"></input>
+           <span class="slider"></span>
+        </label>
+        </div>
         <Link id="navbar-logo-container" to={"/HomePage"}>
           <img
             id="navbar-logo-picture"

@@ -23,8 +23,9 @@ import { HOST } from "../../Utils/host";
 const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
 
 const AddParking = () => {
+
   const navigate = useNavigate();
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, formState: { errors }} = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
   const [shortTerm, setShortTerm] = useState(false);
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
@@ -132,20 +133,26 @@ const AddParking = () => {
             <button onClick={() => setSelectAdd(false)}>Change</button>
           </div>
         )}
-        <Controller
-          name="pricePerHour"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Enter Price Per Hour"
-              variant="outlined"
-              required
-              type="number"
-            />
-          )}
-        />
+       <Controller
+        name="pricePerHour"
+        control={control}
+        defaultValue=""
+        rules={{
+          required: 'Price per hour is required',
+          validate: value => parseFloat(value) <= 99 || 'Price per hour must be 99 or lower',
+        }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Enter Price Per Hour"
+            variant="outlined"
+            required
+            type="number"
+            error={Boolean(errors.pricePerHour)}
+            helperText={errors.pricePerHour?.message}
+          />
+        )}
+      />
         <div className="short-or-long">
           <div>
             <label>

@@ -67,10 +67,9 @@ function EditProfile() {
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
-      alert("User edited successefully!")
-      navigate("/Profile")
-
     })
+    alert("User edited successefully!")
+    navigate("/Profile")
     .catch((err) => 
     console.log(err.response.data));
 

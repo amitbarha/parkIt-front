@@ -36,7 +36,7 @@ function Receipt() {
                 <div className='detail-con'>{location}</div>
             </div>
             <div id="inner-container-receipt">
-                <div><img width="100" height="100" src="https://img.icons8.com/plasticine/100/time.png" alt="time" /></div>
+                <div><img onClick={() => navigate("/homePage")} width="100" height="100" src="https://img.icons8.com/plasticine/100/time.png" alt="time" /></div>
                 <div style={{ fontWeight: 'bold' }}>Total time:</div>
                 <div className='detail-con'>{starttime}-{endtime}</div>
             </div>
@@ -47,7 +47,7 @@ function Receipt() {
             </div>
             <br></br>
             <PayPalScriptProvider >
-                <PayPalButtons />
+                <PayPalButtons  />
             </PayPalScriptProvider>
         </div>
     )

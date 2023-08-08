@@ -21,6 +21,7 @@ function Receipt() {
                 setstartTime(data.startTime);
                 setendTime(data.endTime);
                 setPrice(data.finalPrice)
+                console.log(data);
 
             }
             )

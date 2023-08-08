@@ -63,6 +63,15 @@ const AddParking = () => {
       formData.startDate=null
       formData.endDate=null
     }
+    if (shortTerm) {
+      const dateStart = new Date(formData.startDate)
+      const dateEnd = new Date(formData.endDate)
+      if(dateStart> dateEnd)
+      {
+        return alert("The date is not valid ")
+      }
+      
+    }
     console.log(formData);
     axios
       .post(`${HOST}/parking/publishParking`, {

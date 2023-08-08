@@ -72,7 +72,7 @@ function App() {
       <gooleAutoLocation.Provider value={{ googleLocation, setGoogleLocation }}>
         <CloudinaryContext.Provider value={{ cloudinaryImg, setCloudinaryImg }}>
           <ChosenParkingContext.Provider value={{openSpring, setOpenSpring, parkingId, setParkingId,parkingIdData, setParkingIdData,center, setCenter, myLocation, setMyLocation}}>
-          <div className="app-container">
+          <div className={`${colorMode}-app-container`}>
             <Routes>
               <Route index element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>

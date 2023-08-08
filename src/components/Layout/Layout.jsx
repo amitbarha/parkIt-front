@@ -80,7 +80,6 @@ function Layout() {
 
   const handleSwitch = () => {
     colorMode === "light" ? setColorMode("dark") : setColorMode("light");
-    console.log(colorMode);
   };
 
   function logOutUser() {
@@ -94,7 +93,7 @@ function Layout() {
       <div className="navbar-container">
         <div id="navbar-switch-container">
         <label class="switch-container">
-          <input type="checkbox"></input>
+          <input onChange={()=>handleSwitch()} type="checkbox"></input>
            <span class="slider"></span>
         </label>
         </div>
@@ -135,6 +134,14 @@ function Layout() {
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           Proflie
+        </Link>
+        <Link
+          to={"/contact"}
+          id="contact"
+          className="menu-item"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          Contact
         </Link>
         <div id="layout-show-me-all-liesence-plates">
           <h5 className="menu-item">License</h5>

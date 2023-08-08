@@ -39,6 +39,7 @@ function SoloParking() {
   const [availableEnd, setAvailableEnd] = useState();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+  const [comments, setcomments] = useState();
 
   const [open, setOpen] = React.useState(false);
 
@@ -65,6 +66,7 @@ function SoloParking() {
       endDate: endDate,
       selectedDays: selectedDays,
       shortTerm: shortTerm,
+      comments:comments
     };
     console.log(objForSend, "objForSend");
 
@@ -286,6 +288,16 @@ function SoloParking() {
                       </div>
                     </div>
                   )}
+                  <TextField
+                    onChange={(e) => setcomments(e.target.value)}
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="New comment:"
+                    type="text"
+                    fullWidth
+                    inputProps={{ maxLength: 40 }}
+                  />
                 </form>
               </DialogContent>
               <DialogActions>
@@ -310,7 +322,7 @@ function SoloParking() {
             return (
               <HistoryOneParking
                 price={element?.finalPrice}
-                name={element?.clientPhone}
+                name={element?.clientName}
                 startTime={element?.startTime}
                 endTime={element?.endTime}
                 phoneTopay={element?.clientPhone}

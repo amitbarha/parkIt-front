@@ -26,7 +26,7 @@ function Soloinner({
   function changeStatus(id) {
     if (whoParking == undefined || whoParking == null || whoParking == "") {
       if (
-        window.confirm("Are you sure you want to unavailable your parking?")
+        window.confirm("Are you sure you want to change the parking status?")
       ) {
         setAvailable(!available);
         axios

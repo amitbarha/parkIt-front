@@ -83,7 +83,7 @@ function HomePage() {
       })
       .then(({ data }) => {
         navigate("/Receipt");
-        socket.emit('updatepark',(info))
+        socket.emit("updatepark", info);
       })
       .catch((err) => console.log(err.response.data));
   }
@@ -156,8 +156,11 @@ function HomePage() {
       <div className="web-top-page">
         <div className="border-circle-web">
           <div className="circle-web">
-          <img src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg" alt="" />
-          <p>You can search for parkings only from mobile!</p>
+            <img
+              src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
+              alt=""
+            />
+            <p>You can search for parkings only from mobile!</p>
           </div>
         </div>
       </div>
@@ -214,17 +217,21 @@ function HomePage() {
                               id="icon-status-my-parking"
                               width="64"
                               height="64"
-                              src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                              src={
+                                parking.availableToPark
+                                  ? "https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                                  : "https://img.icons8.com/material-outlined/24/FFFFFF/close-window.png" 
+                              }
                               alt="ok"
-                            />
+                            />{" "}
                             <p>
+                            &nbsp;
                               {parking.availableToPark
                                 ? "Available"
                                 : "Unavailable "}
                             </p>
                           </div>
-                          {
-                            parking.currentLicense &&
+                          {parking.currentLicense && (
                             <div className="parking-status-my-parking">
                               <img
                                 id="icon-status-my-parking"
@@ -233,12 +240,12 @@ function HomePage() {
                                 src="https://img.icons8.com/material-outlined/24/FFFFFF/sedan.png"
                                 alt="sedan"
                               />
-                              <p id="licensenumber-current"> 
-                              &nbsp;
+                              <p id="licensenumber-current">
+                                &nbsp;
                                 {parking.currentLicense}
                               </p>
                             </div>
-                          }
+                          )}
                         </div>
                       </div>
                     </div>
@@ -286,41 +293,70 @@ function HomePage() {
                       <img id="icon-status-my-parking-web" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
                       <p>{parking.availableToPark ? 'Available' : 'Unavailable '}</p>
                           </div>
-                    {
-                      parking.currentLicense &&
-                      <div className="parking-status-my-parking-web">
+                          <div className="text-overlay-web">
+                            <div className="parking-name-my-parking-web">
                               <img
-                                id="icon-status-my-parking"
-                                width="10"
-                                height="10"
-                                src="https://img.icons8.com/material-outlined/24/FFFFFF/sedan.png"
-                                alt="sedan"
-                                />
-                              <p> 
-                              &nbsp;
-                                {parking.currentLicense}
-                              </p>
+                                id="icon-name-my-parking-web"
+                                width="64"
+                                height="64"
+                                src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png"
+                                alt="parking--v4"
+                              />
+                              <p>Parking Name: {parking.parkingName}</p>
                             </div>
-                          }
-                   </div>
-                  </div>
+                            <div className="bottom-icon-parking">
+                              <div className="parking-status-my-parking-web">
+                                <img
+                                  id="icon-status-my-parking-web"
+                                  width="64"
+                                  height="64"
+                                  src={
+                                    parking.availableToPark
+                                      ? "https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                                      : "https://img.icons8.com/material-outlined/24/FFFFFF/close-window.png" 
+                                  }
+                                  alt="ok"
+                                />
+                                <p>
+                                  {parking.availableToPark
+                                    ? "Availible"
+                                    : "Unavailble "}
+                                </p>
+                              </div>
+                              {parking.currentLicense && (
+                                <div className="parking-status-my-parking-web">
+                                  <img
+                                    id="icon-status-my-parking"
+                                    width="10"
+                                    height="10"
+                                    src="https://img.icons8.com/material-outlined/24/FFFFFF/sedan.png"
+                                    alt="sedan"
+                                  />
+                                  <p>
+                                    &nbsp;
+                                    {parking.currentLicense}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                <div className="add-parking-box-web">
+                  <Link className="add-parking-web" to={"/addParking"}>
+                    <h5>Add New Parking:</h5>{" "}
+                    <img
+                      width="72"
+                      height="72"
+                      src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
+                      alt="external-plus-essentials-ui-line-adri-ansyah"
+                    />
+                  </Link>
                 </div>
               </div>
-            );
-          })}
-                    <div className="add-parking-box-web">
-            <Link className="add-parking-web" to={"/addParking"}>
-              <h5>Add New Parking:</h5>{" "}
-              <img
-                width="72"
-                height="72"
-                src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
-                alt="external-plus-essentials-ui-line-adri-ansyah"
-              />
-            </Link>
-          </div>
-          </div>
-          </div>
+            </div>
           </div>
         </div>
       </div>

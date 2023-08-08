@@ -84,6 +84,7 @@ const BottomSheet = ({ payment}) => {
       parkingLocation: parkingIdData.parkingLocation,
       phoneToPay: ownerParkingData.phoneNumber,
       clientPhone: loggedUser.phoneNumber,
+      clientName: loggedUser.firstName,
       finalPrice: null,
       availableToPark: parkingIdData.availableToPark
     };

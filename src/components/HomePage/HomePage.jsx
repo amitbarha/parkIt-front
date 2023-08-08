@@ -165,7 +165,7 @@ function HomePage() {
       <br />
       <br />
       <div className="my-parking-section">
-        <h2>My Parking:</h2>
+        <h2>My Parking spots:</h2>
         <div
           className={`${
             userData?.myParking.length < 2
@@ -219,8 +219,8 @@ function HomePage() {
                             />
                             <p>
                               {parking.availableToPark
-                                ? "Availible"
-                                : "Unavailble "}
+                                ? "Available"
+                                : "Unavailable "}
                             </p>
                           </div>
                           {
@@ -259,7 +259,7 @@ function HomePage() {
           </div>
 
           <div className="my-parking-section-web">
-          <h2>My Parking:</h2>
+          <h2>My Parking spots:</h2>
           <div className="all-parking-main-web">
           <div className="all-parking-map-web">
           {userData?.myParking && userData?.myParking.map((parking, index) => {
@@ -284,7 +284,7 @@ function HomePage() {
                    <div className="bottom-icon-parking">
                    <div className="parking-status-my-parking-web" >
                       <img id="icon-status-my-parking-web" width="64" height="64" src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png" alt="ok" />
-                      <p>{parking.availableToPark ? 'Availible' : 'Unavailble '}</p>
+                      <p>{parking.availableToPark ? 'Available' : 'Unavailable '}</p>
                           </div>
                     {
                       parking.currentLicense &&

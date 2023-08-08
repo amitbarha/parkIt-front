@@ -1,33 +1,35 @@
 import "./contact.css";
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+import emailjs from '@emailjs/browser';
+
+
 function Contact() {
-    const navigate=useNavigate()
-    const [contactName , setContactName]=useState("")
-    const [contactEmail , setContactEmail]=useState("")
-    const [contactComplaint , setContactComplaint]=useState("")
 
-    const complaint={
-        userName:contactName,
-        userEmail:contactEmail,
-        userComplaint:contactComplaint
-    }
 
-    function contactedUs(){
-        if(contactName!="" && contactEmail!="" && contactComplaint!=""){
-            console.log(complaint);
-            alert("Complaint submited successfully,we will contact you as soon as possible!")
-            navigate("/homepage")
-        } else {
-            alert("Please enter all fields")
-        }
-    }
+  const form = useRef();
+
+  const navigate=useNavigate()
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_mwr887e', 'template_a9mrwwn', form.current, 'WZFwcywx7NqBLytwt')
+      .then((result) => {
+         alert("The email has been sent")
+          navigate("/homepage");
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+   
   return (
     <div id="contact-page">
+      <form ref={form} onSubmit={sendEmail}>
       <div id="contact-header-container">
-        <h1 id="contact-header">Contact</h1>
+        <h1 id="contact-header">Contact Us...</h1>
       </div>
       <div id="contact-container">
         <div id="contact-inputs">
@@ -39,38 +41,39 @@ function Contact() {
               variant="outlined"
               required
               type="text"
-              onChange={(event)=>setContactName(event.target.value)}
+              name="from_name"
             />
           </div>
           <div id="contact-Email-input">
             <h3>Give us a way to call back</h3>
             <TextField
-              label="Enter your Email"
+              label="Enter your Email"  
               className="contact-input-field"
               variant="outlined"
               required
               type="text"
-              onChange={(event)=>setContactEmail(event.target.value)}
+              name="reply_to"
             />
           </div>
           <div id="contact-complaint-input">
-            <h3>Tell us what's wrong</h3>
+            <h3>What do you want to tell us</h3>
             <TextField
-              label="Enter your complaint"
+              label="Enter your text"
               className={"contact-input-field"}
               variant="outlined"
               required
               type="text"
               multiline="true"
               rows={5}
-              onChange={(event)=>setContactComplaint(event.target.value)}
+              name="message"
             />
           </div>
         </div>
         <div id="contact-button-container">
-          <button type="submit" onClick={()=>contactedUs()} id="contact-submit-complaint">Submit</button>
+          <button type="submit" id="contact-submit-complaint">Submit</button>
         </div>
       </div>
+      </form>
     </div>
   );
 }

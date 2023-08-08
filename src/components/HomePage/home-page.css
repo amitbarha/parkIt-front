@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-100);
+    background-color: var(--button-background);
 }
 
 .circle >h2{
@@ -68,6 +68,10 @@
   margin-top: 12vw;
 }
 
+.home-page-sub-header{
+  color: var(--page-header);
+}
+
 .border-circle {
     height: 58vw;
     width: 58vw;
@@ -102,12 +106,11 @@
     /* margin-bottom: 10px; */
   }
 
-
-.circle>h1{
-    font-size: 25px;
-    color: white;
+#home-big-circle-inner-header{
+  font-size: 25px;
+  color: white;
+  
 }
-
 
 
 .my-parking-section{
@@ -235,7 +238,7 @@ p{
     width: 40vw;
     border-left: 3px solid;
     border-color: var(--primary-200);
-    background-color:var(--bg-200);
+    background-color:var(--home-statistics);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -243,7 +246,7 @@ p{
     margin-left:10px;
     border-radius: 10px;
     text-decoration: none;
-    color: black;
+    color: var(--regular-text);
 }
 
 .add-parking >h5 {
@@ -283,9 +286,11 @@ p{
   width: 40vw;
   border-radius: 10px;
   border: 2px solid;
+  border-color: var(--container);
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-200);
+  background-color: var(--home-statistics);
+  color: var(--regular-text);
 }
 
 .icon-state{

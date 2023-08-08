@@ -22,12 +22,12 @@ function Profile() {
   }, []);
 
   return (
-    <div id={`${colorMode}-profile-page`}>
+    <div id="profile-page">
       <div id="profile-info-container">
         <div id="profile-page-header-container">
-          <h1 id={`${colorMode}-profile-page-header`}>Personal info</h1>
+          <h1 id="profile-page-header">Personal info</h1>
         </div>
-        <div id={`${colorMode}-profile-info`}>
+        <div id="profile-info">
           <div className={`${colorMode}-profile-detail`}>
             <div className="profile-detail-divforicon">
               <img

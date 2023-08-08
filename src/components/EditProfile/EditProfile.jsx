@@ -93,7 +93,7 @@ function EditProfile() {
   return (
     <div className="info-container">
       <form className="info-form" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="light-info-heading">Edit Profile</h1>
+        <h1 className="info-heading">Edit Profile</h1>
 
         <div className="all-div-of-label">
           <div className="solo-info-container">

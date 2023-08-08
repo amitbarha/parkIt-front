@@ -18,8 +18,8 @@
 }
 
 #not-found-header{
-    font-size: var(font-family);
-    color: var(--dark-header);
+    font-size: var(--font-family);
+    color: var(--page-header);
 }
 
 #not-found-back-home-button{
@@ -27,7 +27,7 @@
     bottom: 15vw;
     right: 10vw;
     padding: 10px;
-    background-color: purple;
-    color: snow;
+    background-color: var(--button-background);
+    color: var(--button-text);
     text-decoration: none;
 }

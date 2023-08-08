@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     width: 90%;
-    background-color: var(--bg-200);
+    background-color: var(--parking-tab);
     height: 5vh;
     transition: sigma 3s linear;
 }
@@ -21,7 +21,8 @@
 } */
 .side-color-history{
     width: 1%;
-    background-color: var(--dark-container);
+    background-color: black;
+    /* background-color: #8b5fbf; */
 }
 .history-item-text{
     width: 99%;

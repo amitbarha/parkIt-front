@@ -148,7 +148,7 @@ function HomePage() {
       {!timerWork && (
         <div className="border-circle">
           <div className="circle" onClick={goToFindParkingPage}>
-            <h1>Find Parking Now!</h1>
+            <h1 id="home-big-circle-inner-header">Find Parking Now!</h1>
           </div>
         </div>
       )}
@@ -165,7 +165,7 @@ function HomePage() {
       <br />
       <br />
       <div className="my-parking-section">
-        <h2>My Parking:</h2>
+        <h2 className="home-page-sub-header">My Parking:</h2>
         <div
           className={`${
             userData?.myParking.length < 2
@@ -259,7 +259,7 @@ function HomePage() {
           </div>
 
           <div className="my-parking-section-web">
-          <h2>My Parking:</h2>
+          <h2 className="home-page-sub-header">My Parking:</h2>
           <div className="all-parking-main-web">
           <div className="all-parking-map-web">
           {userData?.myParking && userData?.myParking.map((parking, index) => {
@@ -327,7 +327,7 @@ function HomePage() {
       <br />
       <br />
       <div className="last-history">
-        <h1>Last Parking:</h1>
+        <h1 className="home-page-sub-header">Last Parking:</h1>
         {info1?.length > 0 ? (
           <HistoryOneParking
             price={info1[info1.length - 1]?.finalPrice}
@@ -343,7 +343,7 @@ function HomePage() {
       </div>
       <br />
       <div className="Statistics-container">
-        <h1>Statistics:</h1>
+        <h1 className="home-page-sub-header">Statistics:</h1>
         <Carousel>
           <div className="first-pair-stat">
             <div className="box-stat">

@@ -9,6 +9,84 @@
 .light-app-container {
   /* background-color: var(--light-background) ; */
   background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1690439126/mekisucxfedeuxtrcm6w.png");
+  --regular-text: black;
+  --container: #b794c0; 
+  --button-background: #8b5fbf;
+  --button-text: snow;
+  --cloudnery-button:#b794c0;
+  --cloudnery-button-text:snow;
+  --page-header: #895896 ;
+  --layout-top:#8b5fbf;
+  --layout-right: snow;
+  --layout-plate: white ; 
+  --layout-chosen-plate: white;
+  --parking-tab:#e9e4ed;
+  --home-statistics: #e9e4ed; 
+
+  --white-text: #ffffff;
+  --black-text: #4a4a4a;
+  --dark-header: #895896;
+  --light-header: #d7bbf5;
+  --light-background: #f5f3f7;
+  --dark-background: #4d3b64;
+  --bright-container: #d7bbf5;
+  --dark-container: #8b5fbf;
+  font-family: "Roboto", sans-serif;
+  --middle: #a076f9;
+  --dark: #6528f7;
+  --primary-100: #8b5fbf;
+  --primary-200: #563763;
+  --primary-300: #d7c5df;
+  --accent-100: #b794c0;
+  --accent-200: #895896;
+  --text-100: #ffffff;
+  --text-200: #909090;
+  --bg-100: #3b2d4d;
+  --bg-200: #e9e4ed;
+}
+.dark-app-container {
+  /* background-color: var(--light-background) ; */
+  background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1691497691/ftvnhk7imtgvlt9kazsr.png");
+  --regular-text: snow;
+  --container: #b794c0; 
+  --button-background: #563763;
+  --button-text: #d7bbf5;
+  --cloudnery-button:#8b5fbf;
+  --cloudnery-button-text:#cec0ef;
+  --page-header: #d7bbf5 ;
+  --layout-top:#8b5fbf;
+  --layout-right: #4d3b64;
+  --layout-plate:  #b18bd9; 
+  --layout-chosen-plate: #cec0ef;
+  --parking-tab:#895896;
+  --home-statistics: #563763; 
+  
+  /* --white-text: #4a4a4a;
+  --black-text: #ffffff;
+  --dark-header: #d7bbf5;
+  --light-header:#895896 ;
+  --light-background: #4d3b64;
+  --dark-background:#f5f3f7 ;
+  --bright-container: #8b5fbf;
+  --dark-container:#d7bbf5 ;
+  font-family: "Roboto", sans-serif;
+  
+  --middle: #a076f9;
+  --dark: #6528f7;
+  font-family: "Roboto", sans-serif;
+  --primary-100: #8b5fbf;
+  --primary-200: #563763;
+  --primary-300: #d7c5df;
+  --accent-100: #b794c0;
+  --accent-200: #895896;
+  --text-100: #ffffff;
+  --text-200: #909090;
+  --bg-100: #3b2d4d;
+  --bg-200: #e9e4ed; */
+}
+/* .light-app-container { */
+  /* background-color: var(--light-background) ; */
+  /* background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1690439126/mekisucxfedeuxtrcm6w.png");
   --white-text: #ffffff;
   --black-text: #4a4a4a;
   --dark-header: #895896;
@@ -31,9 +109,9 @@
   --bg-100: #3b2d4d;
   --bg-200: #e9e4ed;
 }
-.dark-app-container {
+.dark-app-container { */
   /* background-color: var(--light-background) ; */
-  background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1690439126/mekisucxfedeuxtrcm6w.png");
+  /* background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1690439126/mekisucxfedeuxtrcm6w.png");
   --white-text: #4a4a4a;
   --black-text: #ffffff;
   --dark-header: #d7bbf5;
@@ -43,7 +121,7 @@
   --bright-container: #8b5fbf;
   --dark-container:#d7bbf5 ;
   font-family: "Roboto", sans-serif;
-  
+
   --middle: #a076f9;
   --dark: #6528f7;
   font-family: "Roboto", sans-serif;
@@ -56,7 +134,7 @@
   --text-200: #909090;
   --bg-100: #3b2d4d;
   --bg-200: #e9e4ed;
-}
+} */
 
 * {
   margin: 0;

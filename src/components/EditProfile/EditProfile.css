@@ -20,17 +20,12 @@
   align-items: center;
 }
 
-.light-info-heading{
+.info-heading{
   text-align: center;
-  color: var(--dark-header);
+  color: var(--page-header);
   font-weight: bold;
 }
 
-.dark-info-heading{
-  text-align: center;
-  color: var(--light-header);
-  font-weight: bold;
-}
 
 @media screen and (min-width: 450px){
   .info-form{
@@ -62,8 +57,8 @@
 .info-button-delete{
   width: 30px;
   height: 30px;
-  background-color: var(--dark-container);
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -75,16 +70,16 @@
   margin: 0.5vw;
   margin-left: 1vw;
   border-radius: 10px;
-  background-color: var(--dark-container);
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .submit-button{
-  background-color: var(--dark-container);
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   display: flex;
   justify-content: center;
   align-items: center;

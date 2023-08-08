@@ -302,8 +302,10 @@ socket.on('know-update',()=>{
                </div>
             ) : (
               parkingsToMap?.map((item, index) => {
-                return (
-                  <div
+               
+                  if(item.distanceValue<5000){
+                    return (
+                    <div
                     className="find-parking-tab"
                     onClick={() => handleParkingClick(item._id)}
                   >
@@ -334,7 +336,9 @@ socket.on('know-update',()=>{
                       
                     </div>
                   </div>
+                 
                 );
+                    }
               })
             )}
           </div>

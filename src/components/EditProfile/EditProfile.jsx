@@ -67,28 +67,33 @@ function EditProfile() {
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
-    })
-    alert("User edited successefully!")
+       alert("User edited successefully!")
+    updateLicense(data)
     navigate("/Profile")
+    })
     .catch((err) => 
     console.log(err.response.data));
 
-   const license=data?.licensePlates.length
-   console.log(license);
-   if (license>=1) {
-     const data1 = {
-    activeLicense: data?.licensePlates[0],
-    _id: data?._id,
+   
   };
+
+  const updateLicense = (data) => {
+    const license = data?.licensePlates.length;
+    const doesIndexExist = data?.licensePlates.findIndex(item => item === data?.activeLicense);
+
+    const data1 = {
+      activeLicense: doesIndexExist === -1 ? data?.licensePlates[license - 1] : data?.activeLicense,
+      _id: data?._id,
+    };
+
     axios
       .patch(`${HOST}/user/updatelicense`, data1)
       .then(({ data }) => {
         console.log(data);
       })
       .catch((err) => console.log(err.response.data));
-   }
-  
   };
+
 
   return (
     <div className="info-container">

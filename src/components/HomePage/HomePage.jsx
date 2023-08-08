@@ -224,7 +224,7 @@ function HomePage() {
                             </p>
                           </div>
                           {
-                            !parking.currentLicense &&
+                            parking.currentLicense &&
                             <div className="parking-status-my-parking">
                               <img
                                 id="icon-status-my-parking"
@@ -233,7 +233,7 @@ function HomePage() {
                                 src="https://img.icons8.com/material-outlined/24/FFFFFF/sedan.png"
                                 alt="sedan"
                               />
-                              <p> 
+                              <p id="licensenumber-current"> 
                               &nbsp;
                                 {parking.currentLicense}
                               </p>

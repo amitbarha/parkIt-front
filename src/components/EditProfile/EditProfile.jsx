@@ -67,12 +67,39 @@ function EditProfile() {
     .patch(`${HOST}/user/updateUser`,data)
     .then(({ data }) => {
       console.log(data);
-      alert("User edited successefully!")
-      navigate("/Profile")
-
     })
+    alert("User edited successefully!")
+    navigate("/Profile")
     .catch((err) => 
     console.log(err.response.data));
+    // let doesIndexExists=data.licensePlates.findIndex(item=>item==data.activeLicense)
+    // console.log(doesIndexExists);
+    // let data2=""
+    // if(doesIndexExists==(-1)){
+    //   data2 = {
+    //     activeLicense: data.licensePlates[0],
+    //     _id: data?._id,
+    //   }; 
+    //   console.log(`data one is -${data2}`);
+    //   axios
+    //   .patch(`${HOST}/user/updatelicense`, data2)
+    //   .then(({ data }) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => console.log(err.response.data));
+    // } else {
+    //   data2 = {
+    //     activeLicense: data.licensePlates[doesIndexExists],
+    //     _id: data?._id,
+    //   }; 
+    //   axios
+    //   .patch(`${HOST}/user/updatelicense`, data2)
+    //   .then(({ data }) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => console.log(err.response.data));
+    // }
+    
   };
 
   return (

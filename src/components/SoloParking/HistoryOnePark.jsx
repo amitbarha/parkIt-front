@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import './historyOneParking.css'
-function HistoryOneParking({ name, price, startTime, endTime, phoneTopay, date1 }) {
-    const [open, setOpen] = useState(false)
-    const day = new Date(date1).getDate()
-    const month = new Date(date1).getMonth() + 1
-    const year = new Date(date1).getFullYear()
+import React, { useState } from 'react';
+import './historyOneParking.css';
 
+function HistoryOneParking({ name, price, startTime, endTime, phoneTopay, date1 }) {
+    const [open, setOpen] = useState(false);
+    const day = new Date(date1).getDate();
+    const month = new Date(date1).getMonth() + 1;
+    const year = new Date(date1).getFullYear();
     const formattedDate = `${day}/${month}/${year}`;
- 
 
     return (
         <div className='history-one-container'>
@@ -15,21 +14,22 @@ function HistoryOneParking({ name, price, startTime, endTime, phoneTopay, date1 
                 <div className='side-color-history'></div>
                 <div className='history-item-text'>
                     <div className='history-item-text-name'>{name}</div>
-                    <div className='history-item-text-date'>{formattedDate && formattedDate}</div>
+                    <div className='history-item-text-date'>{formattedDate}</div>
                     <div className='history-item-text-add' onClick={() => setOpen(!open)}>
                         <img className='icon-history' src="https://img.icons8.com/material-rounded/24/more.png" alt="more" />
                     </div>
                 </div>
             </div>
-            {open &&
+            {open && (
                 <div className='history-item-parking2'>
                     <div className='side-color-history'></div>
                     <div className='history-item-text'>
                         <div className='history-more-a moreeveryone'>
-                            <img className='icon-history' src="https://img.icons8.com/ios/50/time--v1.png" alt="time--v1" /> {startTime}- {endTime}
+                            <img className='icon-history' src="https://img.icons8.com/ios/50/time--v1.png" alt="time--v1" /> {startTime} - {endTime}
                         </div>
                         <div className='history-more-b moreeveryone'>
-                        <img className='icon-history' width="48" height="48" src="https://img.icons8.com/fluency-systems-regular/48/shekel.png" alt="shekel"/>{Math.floor(price)}
+                            <img className='icon-history' width="48" height="48" src="https://img.icons8.com/fluency-systems-regular/48/shekel.png" alt="shekel" />
+                            {parseFloat(price).toFixed(2)}
                         </div>
                         <div className='history-more-c moreeveryone'>
                             <a href={`tel:+${phoneTopay}`}><img className='icon-history' src="https://img.icons8.com/ios/50/phone--v1.png" alt="phone--v1" /></a>
@@ -37,8 +37,9 @@ function HistoryOneParking({ name, price, startTime, endTime, phoneTopay, date1 
                         </div>
                     </div>
                 </div>
-            }
+            )}
         </div>
-    )
+    );
 }
+
 export default HistoryOneParking;

@@ -97,7 +97,7 @@
   width: 150px;
   height: 37.5px;
   text-decoration: none;
-  color: var(--primary-100);
+  color: var(--page-header);
   font-size: 25px;
   border-bottom: solid;
 }
@@ -109,7 +109,7 @@
   bottom: 130px;
   left: 42px;
   text-decoration: none;
-  color: var(--primary-100);
+  color: var(--page-header);
   font-size: 25px;
   border-bottom: solid;
   cursor: pointer;

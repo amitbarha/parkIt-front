@@ -21,7 +21,7 @@
 
 #paying-history-page-header{
     text-align: center;
-    color: var(--accent-200);
+    color: var(--page-header);
     font-weight: bold;
   }
 
@@ -38,7 +38,7 @@
 }
 .side-color-history{
     width: 1%;
-    background-color: var(--dark-container);
+    background-color: var(--layout-top);
 }
 .history-item-text{
     width: 99%;

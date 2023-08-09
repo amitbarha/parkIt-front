@@ -124,6 +124,7 @@ const AddParking = () => {
       <br />
       <form className={`form-container`} onSubmit={handleSubmit(onSubmit)}>
         <Controller
+        className="find-parking-input"
           name="parkingName"
           control={control}
           defaultValue=""
@@ -132,6 +133,7 @@ const AddParking = () => {
               {...field}
               label="Enter Parking Name"
               variant="outlined"
+              className="find-parking-input"
               required
             />
           )}
@@ -141,6 +143,7 @@ const AddParking = () => {
           <div className="change-address-div">
             <TextField
               disabled
+              className="add-parking-input"
               label="Chosen Address"
               value={googleLocation.fullAddress}
             />
@@ -175,8 +178,9 @@ const AddParking = () => {
         />
         <div className="short-or-long">
           <div>
-            <label>
+            <label className="add-parking-inputs-outside">
               <input
+              className="add-parking-inputs"
                 type="radio"
                 value="long-term"
                 checked={!shortTerm} // Set the checked state based on the shortTerm state
@@ -186,7 +190,7 @@ const AddParking = () => {
             </label>
           </div>
           <div>
-            <label>
+            <label className="add-parking-inputs-outside">
               <input
                 type="radio"
                 value="short-term"
@@ -200,7 +204,7 @@ const AddParking = () => {
         <br />
         {!shortTerm && (
           <div className="chosen-long">
-            <div>Available days:</div>
+            <div className="sub-titile-to-change-color">Available days:</div>
             <div className="day-checkboxes">
               {" "}
               {daysOfWeek.map((day, index) => (
@@ -256,7 +260,7 @@ const AddParking = () => {
         <br />
         <div className="time-picker-line">
           <div>
-            <div>Start Time:</div>
+            <div className="sub-titile-to-change-color">Start Time:</div>
             <Controller
               name="availableStart"
               control={control}
@@ -273,7 +277,7 @@ const AddParking = () => {
             />
           </div>
           <div>
-            <div>End Time:</div>
+            <div className="sub-titile-to-change-color">End Time:</div>
             <Controller
               name="availableEnd"
               control={control}

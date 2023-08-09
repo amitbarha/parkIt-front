@@ -78,7 +78,7 @@
   height: 64px;
 }
 .navbar-container {
-  background-color: var(--primary-100);
+  background-color: var(--layout-top);
   position: sticky;
   top: 0;
   color: white;
@@ -131,6 +131,7 @@
   justify-content: space-between;
   border: 1px solid black;
   margin: 8px;
+  background-color: var(--layout-plate);
 }
 .chosen-layout-lisence-palate-container{
   display: flex;
@@ -139,8 +140,8 @@
   justify-content: space-between;
   border: 2px double black;
   margin: 6px;
+  background-color: var(--layout-chosen-plate);
   box-shadow: -5px -2px 5px grey;
-  background-color: snow;
   transform: translateX(5px)translateY(2px);
 }
 
@@ -343,7 +344,7 @@ background-color:  #af63ffb1 ;
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: var(--light-background);
+  background: var(--layout-right);
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -372,7 +373,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: var(--light-background);
+  background: var(--layout-right);
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }

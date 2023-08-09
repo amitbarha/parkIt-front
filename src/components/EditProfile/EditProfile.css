@@ -6,6 +6,7 @@
 
 .info-container{
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,17 +21,12 @@
   align-items: center;
 }
 
-.light-info-heading{
+.info-heading{
   text-align: center;
-  color: var(--dark-header);
+  color: var(--page-header);
   font-weight: bold;
 }
 
-.dark-info-heading{
-  text-align: center;
-  color: var(--light-header);
-  font-weight: bold;
-}
 
 @media screen and (min-width: 450px){
   .info-form{
@@ -46,15 +42,23 @@
 }
 .title-input{
   display: flex;
-  align-self:flex-start
+  align-self:flex-start;
+  color: var(--regular-text);
 }
 
 .info-input{
   width: 100%;
-  background-color: var(--bg-200);
+  background-color: var(--add-parking-container);
   height: 10vw;
   max-height: 30px;
   max-width: 400px;
+  color: var(--regular-text);
+  padding-left: 7px;
+  margin-bottom: 8px;
+}
+
+.info-input::placeholder{
+  color: var(--regular-text);
 }
 .info-error{
   color: red;
@@ -62,8 +66,8 @@
 .info-button-delete{
   width: 30px;
   height: 30px;
-  background-color: var(--dark-container);
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -75,16 +79,16 @@
   margin: 0.5vw;
   margin-left: 1vw;
   border-radius: 10px;
-  background-color: var(--dark-container);
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .submit-button{
-  background-color: var(--dark-container);
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   display: flex;
   justify-content: center;
   align-items: center;

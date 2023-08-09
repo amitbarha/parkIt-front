@@ -1,5 +1,6 @@
 import "./contact.css";
 import { TextField } from "@mui/material";
+import { green } from "@mui/material/colors";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +35,7 @@ function Contact() {
       <div id="contact-container">
         <div id="contact-inputs">
           <div id="contact-name-input">
-            <h3>Tell us who you are </h3>
+            <h3 className="contact-sub-titile">Tell us who you are </h3>
             <TextField
               label="Enter your name"
               className="contact-input-field"
@@ -45,7 +46,7 @@ function Contact() {
             />
           </div>
           <div id="contact-Email-input">
-            <h3>Give us a way to call back</h3>
+            <h3 className="contact-sub-titile">Give us a way to call back</h3>
             <TextField
               label="Enter your Email"  
               className="contact-input-field"
@@ -56,7 +57,7 @@ function Contact() {
             />
           </div>
           <div id="contact-complaint-input">
-            <h3>What do you want to tell us</h3>
+            <h3 className="contact-sub-titile">What do you want to tell us</h3>
             <TextField
               label="Enter your text"
               className={"contact-input-field"}

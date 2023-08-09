@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { HOST } from "../../Utils/host";
 function EditProfile() {
-  const { colorMode, setColorMode } = useContext(modeContext);
+  const { colorMode, setColorMode,setForRestart,forRestart } = useContext(modeContext);
   const [data, setData] = useState([]);
   const navigate=useNavigate()
   useEffect(() => {
@@ -70,6 +70,7 @@ function EditProfile() {
        alert("User edited successefully!")
     updateLicense(data)
     navigate("/Profile")
+    setForRestart(!forRestart)
     })
     .catch((err) => 
     console.log(err.response.data));
@@ -98,7 +99,7 @@ function EditProfile() {
   return (
     <div className="info-container">
       <form className="info-form" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="light-info-heading">Edit Profile</h1>
+        <h1 className="info-heading">Edit Profile</h1>
 
         <div className="all-div-of-label">
           <div className="solo-info-container">

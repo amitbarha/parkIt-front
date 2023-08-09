@@ -6,6 +6,20 @@
 }
 #page-title{
     margin: 2vw;
+    color: var(--page-header);
+}
+
+.above-detail-con{
+    font-weight: bold;
+    color: var(--regular-text);
+}
+
+.detail-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--regular-text);
 }
 #inner-container-receipt{
     display: flex;
@@ -29,10 +43,4 @@
     #back-to-homepage{
         margin-right: 10vw;
     }
-}
-.detail-con{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }

@@ -1,9 +1,9 @@
 
 .upload-image-button{
     all: unset;
-    background-color: var(--accent-100);
+    background-color: var(--cloudnery-button);
     border-radius: 6px;
-    color: white;
+    color: var(--cloudnery-button-text);
     display: flex;
     justify-content: space-evenly;
     

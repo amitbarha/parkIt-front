@@ -11,4 +11,6 @@
 }
 .location-search-input{
     width: 100%;
+    /* color: var(--regular-text); */
+    color: white;
 }

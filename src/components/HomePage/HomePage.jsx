@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import Carousel from "./CarouselStat";
 import HistoryOneParking from "../SoloParking/HistoryOnePark";
 import axios from "axios";
+import { modeContext } from "../../App";
 import { userDataContext } from "../../App";
 import Timer from "./Timer";
 import { HOST } from "../../Utils/host";
@@ -27,7 +28,7 @@ function HomePage() {
   const [info1, setInfo1] = useState([]);
   const [Data, setData] = useState([]);
   const [activeParking, setActiveParking] = useState([]);
-
+  const { colorMode, setColorMode } = useContext(modeContext);
   useEffect(() => {
     if (localStorage.getItem("loggedUser")) {
       axios
@@ -125,12 +126,21 @@ function HomePage() {
             <div className="mini-circles-div">
               <div className="mini-circle">
                 <a href={`tel:+${info1[info1.length - 1]?.phoneToPay}`}>
-                  <img
-                    width="50"
-                    height="50"
-                    src="https://img.icons8.com/ios/50/phone--v1.png"
-                    alt="phone--v1"
-                  />
+                  {colorMode == "light" ? (
+                    <img
+                      width="50"
+                      height="50"
+                      src="https://img.icons8.com/ios/50/phone--v1.png"
+                      alt="phone--v1"
+                    />
+                  ) : (
+                    <img
+                      width="50"
+                      height="50"
+                      src="https://img.icons8.com/ios/50/FFFFFF/phone--v1.png"
+                      alt="phone--v1"
+                    />
+                  )}
                 </a>
               </div>
               <div className="mini-circle">
@@ -156,7 +166,7 @@ function HomePage() {
       {!timerWork && (
         <div className="border-circle">
           <div className="circle" onClick={goToFindParkingPage}>
-            <h1>Find Parking Now!</h1>
+            <h1 id="home-big-circle-inner-header">Find Parking Now!</h1>
           </div>
         </div>
       )}
@@ -176,7 +186,7 @@ function HomePage() {
       <br />
       <br />
       <div className="my-parking-section">
-        <h2>My Parking:</h2>
+        <h2 className="home-page-sub-header">My Parking:</h2>
         <div
           className={`${
             userData?.myParking.length < 2
@@ -264,17 +274,21 @@ function HomePage() {
           <div className="add-parking-box">
             <Link className="add-parking" to={"/addParking"}>
               <h5>Add New Parking:</h5>{" "}
-              <img
-                width="72"
-                height="72"
-                src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
-                alt="external-plus-essentials-ui-line-adri-ansyah"
-              />
+              {colorMode == "light" ? (
+                <img
+                  width="72"
+                  height="72"
+                  src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
+                  alt="external-plus-essentials-ui-line-adri-ansyah"
+                />
+              ) : (
+                <img width="96" height="96" src="https://img.icons8.com/ios/50/FFFFFF/plus-math--v1.png" alt="plus-math--v1"/>
+              )}
             </Link>
           </div>
 
           <div className="my-parking-section-web">
-            <h2>My Parking:</h2>
+            <h2 className="home-page-sub-header">My Parking:</h2>
             <div className="all-parking-main-web">
               <div className="all-parking-map-web">
                 {userData?.myParking &&
@@ -370,7 +384,7 @@ function HomePage() {
       <br />
       <br />
       <div className="last-history">
-        <h1>Last Parking:</h1>
+        <h1 className="home-page-sub-header">Last Parking:</h1>
         {info1?.length > 0 ? (
           <HistoryOneParking
             price={info1[info1.length - 1]?.finalPrice}
@@ -386,7 +400,7 @@ function HomePage() {
       </div>
       <br />
       <div className="Statistics-container">
-        <h1>Statistics:</h1>
+        <h1 className="home-page-sub-header">Statistics:</h1>
         <Carousel>
           <div className="first-pair-stat">
             <div className="box-stat">

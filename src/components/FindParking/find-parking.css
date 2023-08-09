@@ -4,23 +4,13 @@
     box-sizing: border-box;
 }
 
-#light-find-page{
+#find-page{
     width: 100vw;
     background-color: var(--light-background);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-#dark-find-page{
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--dark-background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 80px;
 }
 
 #find-map-container{
@@ -34,7 +24,7 @@
 }
 
 
-#light-find-container{
+#find-container{
     width: 100%;
     height: 100%;
     background-color: var(--light-container);
@@ -45,16 +35,6 @@
     overflow: hidden;
 }
 
-#dark-find-container{
-    width: 100%;
-    height: auto;
-    background-color: var(--dark-container);
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-direction: column;
-    overflow: hidden;
-}
 
 #find-container-filters{
     width: 100%;
@@ -94,7 +74,8 @@
     text-align: center;
     
 }
-.change-location-find{
+
+.change-location-nd{
     width: 60%;
     margin-top: 100vw;
 }
@@ -187,9 +168,11 @@
     height: 100%;
     width: 29%;
     display: flex;
+    background-color: var(--container);
     justify-content: center;
     align-items: center;
     border: 1px solid black ;
+    color: var(--regular-text);
 }
 
 .chosen-find-sort-by{
@@ -198,7 +181,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #B794C0;
+    /* background-color: #B794C0; */
+    background-color: var(--page-header);
     box-shadow: inset 0px 0px 8px 2px black ;
 }
 
@@ -247,12 +231,15 @@
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-    border-left: 6px solid #8B5FBF;
-    background-color: #D6C6E1;
+    border-left: 6px solid ;
+    background-color: var(--find-parking-tab);
     margin-bottom: 5px;
 }
 .loaction-find-input{
     width: 99%;
+    border: 1px solid var(--regular-border);
+    color: var(--regular-text);
+    background-color: var(--add-parking-container);
 }
 
 .find-parking-tab-distance{
@@ -261,6 +248,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--regular-text);
 }
 
 .find-parking-tab-price{
@@ -269,6 +257,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--regular-text);
 }
 
 .find-parking-tab-hours{
@@ -277,6 +266,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--regular-text);
 }
 
 .find-parking-tab-picture{
@@ -285,6 +275,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--regular-text);
 }
 
 .parking-tab-picture{

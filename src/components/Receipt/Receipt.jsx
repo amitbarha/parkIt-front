@@ -33,17 +33,17 @@ function Receipt() {
             <h1 id="page-title">Summary of your parking</h1>
             <div id="inner-container-receipt">
                 <div><img width="64" height="64" src="https://img.icons8.com/cotton/64/location--v2.png" alt="location--v2" /></div>
-                <div style={{ fontWeight: 'bold' }}>Location:</div>
+                <div className='above-detail-con'>Location:</div>
                 <div className='detail-con'>{location}</div>
             </div>
             <div id="inner-container-receipt">
                 <div><img onClick={() => navigate("/homePage")} width="100" height="100" src="https://img.icons8.com/plasticine/100/time.png" alt="time" /></div>
-                <div style={{ fontWeight: 'bold' }}>Total time:</div>
+                <div className='above-detail-con'>Total time:</div>
                 <div className='detail-con'>{starttime}-{endtime}</div>
             </div>
             <div id="inner-container-receipt">
                 <div><img width="100" height="100" src="https://img.icons8.com/plasticine/100/price-tag.png" alt="price-tag" /></div>
-                <div style={{ fontWeight: 'bold' }}>Total price:</div>
+                <div className='above-detail-con'>Total price:</div>
                 <div className='detail-con'> {typeof newTotal === 'number' ? `₪${newTotal.toFixed(1)}` : ''}</div>
             </div>
             <br></br>

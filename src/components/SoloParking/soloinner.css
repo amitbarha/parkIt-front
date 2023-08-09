@@ -2,7 +2,7 @@
 
 #solo-parking-name{
     display: flex;
-    background-color: var(--primary-200);
+    background-color: var(--container);
     color: white;
     width: 80%;
     justify-content: center;
@@ -15,7 +15,7 @@
 
 .solo-parking-detail{
     display: flex;
-    background-color: var(--bg-200);
+    background-color: var(--solo-inner-tab);
     width: 80%;
     height: 10vw;
     margin: 2vw;
@@ -97,7 +97,7 @@
     text-align: center;
     width: 90%;
     word-wrap: break-word;
-    
+    color: var(--regular-text);
 }
 .solo-parking-detail-comment{
     display: flex;

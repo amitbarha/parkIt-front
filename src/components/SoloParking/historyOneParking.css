@@ -5,23 +5,20 @@
     justify-content: center;
     align-items: center;
     margin: 3vw;
+    color: var(--regular-text);
 }
 .history-item-parking2{
     display: flex;
     justify-content: center;
     width: 90%;
-    background-color: var(--bg-200);
+    background-color: var(--parking-tab);
     height: 5vh;
     transition: sigma 3s linear;
 }
 
-/* @keyframes sigma {
-    from{height: 0px;}
-    to{height: 5vh;}
-} */
 .side-color-history{
     width: 1%;
-    background-color: var(--dark-container);
+    background-color: black;
 }
 .history-item-text{
     width: 99%;
@@ -72,8 +69,6 @@
     justify-content: space-evenly;
     align-items: center;
 }
-
-
 
 @media  screen and (min-width:450px) {
     .history-one-container{

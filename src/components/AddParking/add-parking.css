@@ -7,18 +7,36 @@
     flex-direction: column;
     max-width: 300px;
     margin: 0 auto;
-
-    
   }
+
+  /* .find-parking-input{
+    background-color: green;
+  }
+  .find-parking-input::placeholder{
+    color: white;
+    background-color: green;
+  } */
+  
+.add-parking-inputs-outside{
+  color: var(--regular-text);
+}
+
+
   .add-parking-title{
     text-align: center;
-    color: var(--accent-200);
+    color: var(--page-header);
     font-weight: bold;
   }
   
   .form-container .MuiTextField-root {
     margin-bottom: 16px;
+    border: 1px var(--add-parking-border) solid;
+    /* background-color: var(--container); */
+    background-color: var(--add-parking-container);
+    color: white;
   }
+  
+
   
   .form-container .MuiButton-root {
     margin-top: 16px;
@@ -31,17 +49,16 @@
   .time-picker-form{
     width: 130%;
     background-color: rgba(255, 255, 255, 0.13);
+    color: var(--regular-text);
   }
   .button-form{
     all: unset;
     cursor: pointer;
     text-align: center;
-    background-color: var(--primary-100);
+    background-color: var(--button-background);
+    color: var(--button-text);
     height: 35px;
-    color: white;
     font-size: large;
-    border-radius: 6px;
-    border: solid white;
   }
   .button-form:hover{
     background-color: #8c5fbfaf ;
@@ -58,6 +75,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    color: var(--regular-text);
   }
   
   .day-checkbox {
@@ -66,6 +84,9 @@
     flex-direction: column-reverse;
   }
   
+  .sub-titile-to-change-color{
+    color: var(--regular-text);
+  }
   .day-checkbox input[type="checkbox"] {
     margin-right: 2px;
   }
@@ -78,5 +99,10 @@
     justify-content: space-evenly;
   }
   .back-time{
-    background-color: #e7b6eb38;
+    /* background-color: #e7b6eb38; */
+    background-color: var(--add-parking-container-time);
+  }
+
+  .find-parking-input{
+    color: white;
   }

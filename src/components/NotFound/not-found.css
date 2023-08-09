@@ -15,15 +15,16 @@
 #not-found-header{
     margin: 5vw;
     font-size: var(font-family);
-    color: var(--dark-header);
+  color: var(--page-header);
+
 }
 
 #not-found-back-home-button{
     bottom: 15vw;
     right: 10vw;
     padding: 10px;
-    background-color: purple;
-    color: snow;
+    background-color: var(--button-background);
+    color: var(--button-text);
     text-decoration: none;
 }
 #imgerror{

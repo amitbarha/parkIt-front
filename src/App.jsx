@@ -38,6 +38,7 @@ function App() {
   const [colorMode, setColorMode] = useState("light");
   const [googleLocation, setGoogleLocation] = useState(croods);
   const [cloudinaryImg, setCloudinaryImg] = useState([]);
+  const [cloudinaryEmpty, setCloudinaryEmpty] = useState(true);
   const [userData, setUserData] = useState();
   const [openSpring, setOpenSpring] = useState(false);
   const [parkingId, setParkingId] = useState();
@@ -70,7 +71,7 @@ function App() {
     <userDataContext.Provider value={{userData, setUserData}}>
     <modeContext.Provider value={{ colorMode, setColorMode }}>
       <gooleAutoLocation.Provider value={{ googleLocation, setGoogleLocation }}>
-        <CloudinaryContext.Provider value={{ cloudinaryImg, setCloudinaryImg }}>
+        <CloudinaryContext.Provider value={{ cloudinaryImg, setCloudinaryImg,cloudinaryEmpty, setCloudinaryEmpty }}>
           <ChosenParkingContext.Provider value={{openSpring, setOpenSpring, parkingId, setParkingId,parkingIdData, setParkingIdData,center, setCenter, myLocation, setMyLocation}}>
           <div className={`${colorMode}-app-container`}>
             <Routes>

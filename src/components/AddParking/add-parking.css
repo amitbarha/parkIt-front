@@ -15,6 +15,14 @@
     color: var(--accent-200);
     font-weight: bold;
   }
+  .change-address-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .button-change-address{
+    height: 4vh;
+  }
   
   .form-container .MuiTextField-root {
     margin-bottom: 16px;
@@ -66,6 +74,11 @@
     flex-direction: column-reverse;
   }
   
+  .cloudinery-add-div{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   .day-checkbox input[type="checkbox"] {
     margin-right: 2px;
   }

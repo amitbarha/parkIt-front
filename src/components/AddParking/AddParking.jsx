@@ -295,6 +295,7 @@ const AddParking = () => {
                 style: {
                   height: "100px",
                 },
+                maxLength:50
               }}
               type="text"
               style={{ marginTop: "20px" }}

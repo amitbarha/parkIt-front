@@ -368,12 +368,20 @@ function HomePage() {
                 <div className="add-parking-box-web">
                   <Link className="add-parking-web" to={"/addParking"}>
                     <h5>Add New Parking:</h5>{" "}
+                    {colorMode=="light"?
                     <img
+                    width="72"
+                    height="72"
+                    src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
+                    alt="external-plus-essentials-ui-line-adri-ansyah"
+                  />:
+                  <img
                       width="72"
                       height="72"
-                      src="https://img.icons8.com/external-line-adri-ansyah/64/external-plus-essentials-ui-line-adri-ansyah.png"
+                      src="https://img.icons8.com/external-line-adri-ansyah/64/FFFFFF/external-plus-essentials-ui-line-adri-ansyah.png"
                       alt="external-plus-essentials-ui-line-adri-ansyah"
                     />
+                }
                   </Link>
                 </div>
               </div>

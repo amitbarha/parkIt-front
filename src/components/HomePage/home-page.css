@@ -351,9 +351,10 @@ width: 125px;
   border: 2px solid;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-200);
+  background-color: var(--home-statistics);
   margin-bottom: 20px;
   margin-right: 20px;
+  color: var(--regular-text);
 }
 
 .icon-state-web{
@@ -503,7 +504,7 @@ width: 125px;
 .border-circle-web{
   height: 43vw;
   width: 43vw;
-  background-color: #b396d38f;
+  background-color:#b396d38f;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -521,7 +522,7 @@ width: 125px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-100);
+  background-color: #8b5fbf;
 }
 
 .circle-web >p{
@@ -569,7 +570,7 @@ width: 125px;
     height: 250px;
     width: 200px;
     border-left: 3px solid;
-    border-color: var(--primary-200);
+    border-color: var(--regular-border);
     margin-left: 10px;
     overflow: hidden;
     display: block;
@@ -638,8 +639,8 @@ width: 125px;
     height: 250px;
     width: 200px;
     border-left: 3px solid;
-    border-color: var(--primary-200);
-    background-color:var(--bg-200);
+    border-color: var(--regular-border);
+    background-color:var(--home-statistics);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -647,7 +648,7 @@ width: 125px;
     margin-left:10px;
     border-radius: 10px;
     text-decoration: none;
-    color: black;
+    color: var(--regular-text);
 }
 
 .add-parking-box-web{

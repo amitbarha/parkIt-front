@@ -2,8 +2,9 @@ import './receipt.css'
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useState , useContext } from 'react';
 import { HOST } from '../../Utils/host'
+import { modeContext } from "../../App";
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 function Receipt() {
 
@@ -13,6 +14,7 @@ function Receipt() {
     const [endtime, setendTime] = useState()
     const [totalPrice, setPrice] = useState()
     const newTotal = parseFloat(totalPrice);
+    const { colorMode} =useContext(modeContext);
     useEffect(() => {
         axios
             .post(`${HOST}/payment/getLastPayment`, { token: localStorage.getItem('loggedUser') })
@@ -29,7 +31,12 @@ function Receipt() {
     }, [])
     return (
         <div id="receipt-container">
-            <div id="back-to-homepage" onClick={() => navigate("/homePage")}><img width="50" height="50" src="https://img.icons8.com/ios/50/cancel.png" alt="cancel" /></div>
+            <div id="back-to-homepage" onClick={() => navigate("/homePage")}>
+                {colorMode=="light"?
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/cancel.png" alt="cancel" />:
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/FFFFFF/cancel.png" alt="cancel" />
+                }
+                </div>
             <h1 id="page-title">Summary of your parking</h1>
             <div id="inner-container-receipt">
                 <div><img width="64" height="64" src="https://img.icons8.com/cotton/64/location--v2.png" alt="location--v2" /></div>

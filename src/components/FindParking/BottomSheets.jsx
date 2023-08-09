@@ -6,6 +6,7 @@ import Carousel from "../SoloParking/Carousel";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { HOST } from "../../Utils/host";
+import { modeContext } from "../../App";
 import io from "socket.io-client";
 
 const BottomSheet = ({ payment}) => {
@@ -15,6 +16,7 @@ const BottomSheet = ({ payment}) => {
   const [ownerParkingData, setOwnerParkingData] = useState();
   const [parksDistance, setParksDistance] = useState([]);
   const [loader, setLoader] = useState(false);
+  const { colorMode} =useContext(modeContext);
 
   const {
     openSpring,
@@ -137,13 +139,22 @@ const BottomSheet = ({ payment}) => {
           <div className="icons-details">
             <div className="line-icon">
               <div className="icon-chosen-parking">
+                {colorMode=="light"?
                 <img
                   className="icon-image-park"
                   src="https://img.icons8.com/ios/50/time--v1.png"
                   height={40}
                   width={40}
                   alt="time--v1"
+                />:
+                <img
+                  className="icon-image-park"
+                  src="https://img.icons8.com/ios/50/FFFFFF/time--v1.png"
+                  height={40}
+                  width={40}
+                  alt="time--v1"
                 />
+                }
               </div>
               <div className="text-for-icon">
                 {parkingIdData?.availableStart} - {parkingIdData?.availableEnd}
@@ -152,12 +163,11 @@ const BottomSheet = ({ payment}) => {
             <br />
             <div className="line-icon">
               <div className="icon-chosen-parking">
-                <img
-                  width="40"
-                  height="40"
-                  src="https://img.icons8.com/external-those-icons-fill-those-icons/24/external-distance-maps-and-locations-those-icons-fill-those-icons-1.png"
-                  alt="external-distance-maps-and-locations-those-icons-fill-those-icons-1"
-                />
+                {colorMode=="light"?
+                <img width="40" height="40" src="https://img.icons8.com/external-others-phat-plus/64/external-adventure-map-outline-others-phat-plus.png" alt="external-adventure-map-outline-others-phat-plus"/>
+                :
+<img width="40" height="40" src="https://img.icons8.com/external-others-phat-plus/64/FFFFFF/external-adventure-map-outline-others-phat-plus.png" alt="external-adventure-map-outline-others-phat-plus"/>
+                }
               </div>
               <div className="text-for-icon">
                 <b>{parkingIdData?.distanceText}</b> from destination

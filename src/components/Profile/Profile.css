@@ -60,7 +60,11 @@
     font-size: 4vw;
 }
 
-.dark-profile-detail{
+.make-stick-color{
+    color: var(--regular-text);
+}
+
+.profile-detail{
     display: flex;
     background-color: var(--container);
     width: 90%;

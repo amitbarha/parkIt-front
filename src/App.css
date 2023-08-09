@@ -28,6 +28,7 @@
   --home-button-timer: snow;
   --solo-inner-tab:#e9e4ed;
   --find-parking-tab:#D6C6E1;
+  --bottom-sheet-container: snow;
 }
 .dark-app-container {
   background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1691497691/ftvnhk7imtgvlt9kazsr.png");
@@ -51,8 +52,9 @@
   --home-button-timer: #d7bbf5;
   --solo-inner-tab:#895896;
   --find-parking-tab:#563763;
+  --bottom-sheet-container: #5e406b;
 }
-
+br94c0
 * {
   margin: 0;
   box-sizing: border-box;

@@ -85,8 +85,11 @@
     }
 }
 .parking-img{
-    height: 30vh;
+    height: 23vh;
     object-fit: contain;
+}
+.make-stick-color{
+  color: var(--regular-text);
 }
 .solo-parking-detail-divfortext-comment{
     display: flex;

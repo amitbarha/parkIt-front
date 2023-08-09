@@ -23,13 +23,16 @@ import { HOST } from "../../Utils/host";
 const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
 
 const AddParking = () => {
-
   const navigate = useNavigate();
-  const { handleSubmit, control, formState: { errors }} = useForm();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const [selectAdd, setSelectAdd] = useState(false);
   const [shortTerm, setShortTerm] = useState(false);
   const { googleLocation, setGoogleLocation } = useContext(gooleAutoLocation);
-  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
+  const { cloudinaryImg, setCloudinaryImg, cloudinaryEmpty, setCloudinaryEmpty } = useContext(CloudinaryContext);
   const { userData, setUserData } = useContext(userDataContext);
   const [selectedDays, setSelectedDays] = useState([
     true,
@@ -57,20 +60,17 @@ const AddParking = () => {
     formData.photos = cloudinaryImg;
     formData.ownerID = userData._id;
     formData.selectedDays = selectedDays;
-    formData.shortTerm = shortTerm
-    if(!shortTerm)
-    {
-      formData.startDate=null
-      formData.endDate=null
+    formData.shortTerm = shortTerm;
+    if (!shortTerm) {
+      formData.startDate = null;
+      formData.endDate = null;
     }
     if (shortTerm) {
-      const dateStart = new Date(formData.startDate)
-      const dateEnd = new Date(formData.endDate)
-      if(dateStart> dateEnd)
-      {
-        return alert("The date is not valid ")
+      const dateStart = new Date(formData.startDate);
+      const dateEnd = new Date(formData.endDate);
+      if (dateStart > dateEnd) {
+        return alert("The date is not valid ");
       }
-      
     }
     console.log(formData);
     axios
@@ -99,6 +99,7 @@ const AddParking = () => {
           lng: "",
           fullAddress: "",
         });
+        setCloudinaryEmpty(true);
         navigate("/homePage");
       })
       .catch((err) => console.log(err.response.data + "basa"));
@@ -111,6 +112,10 @@ const AddParking = () => {
   const handleTermSelection = () => {
     setShortTerm(!shortTerm);
   };
+  useEffect(() => () => {
+    setCloudinaryImg([])
+    setCloudinaryEmpty(true)
+  }, []);
 
   return (
     <div className="add-parking-container">
@@ -135,36 +140,42 @@ const AddParking = () => {
         />
         {!selectAdd && <LocationSearchInput />}
         {selectAdd && (
-          <div>
+          <div className="change-address-div">
             <TextField
               disabled
               className="add-parking-input"
               label="Chosen Address"
               value={googleLocation.fullAddress}
             />
-            <button onClick={() => setSelectAdd(false)}>Change</button>
+            <button
+              className="button-change-address"
+              onClick={() => setSelectAdd(false)}
+            >
+              Change
+            </button>
           </div>
         )}
-       <Controller
-        name="pricePerHour"
-        control={control}
-        defaultValue=""
-        rules={{
-          required: 'Price per hour is required',
-          validate: value => parseFloat(value) <= 99 || 'Price per hour must be 99 or lower',
-        }}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label="Enter Price Per Hour"
-            variant="outlined"
-            required
-            type="number"
-            error={Boolean(errors.pricePerHour)}
-            helperText={errors.pricePerHour?.message}
-          />
-        )}
-      />
+        <Controller
+          name="pricePerHour"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: "Price per hour is required",
+            validate: (value) =>
+              parseFloat(value) <= 99 || "Price per hour must be 99 or lower",
+          }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label="Enter Price Per Hour"
+              variant="outlined"
+              required
+              type="number"
+              error={Boolean(errors.pricePerHour)}
+              helperText={errors.pricePerHour?.message}
+            />
+          )}
+        />
         <div className="short-or-long">
           <div>
             <label className="add-parking-inputs-outside">
@@ -191,7 +202,7 @@ const AddParking = () => {
           </div>
         </div>
         <br />
-        { !shortTerm &&
+        {!shortTerm && (
           <div className="chosen-long">
             <div className="sub-titile-to-change-color">Available days:</div>
             <div className="day-checkboxes">
@@ -208,45 +219,44 @@ const AddParking = () => {
               ))}
             </div>
           </div>
-        }
-        {
-          shortTerm &&
+        )}
+        {shortTerm && (
           <div className="chosen-short">
-          <div>
-            <Controller
-              name="startDate"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <input
-                  {...field}
-                  required
-                  type="date"
-                  className="time-picker-form back-time"
-                  style={{ border: "medium, solid, black;", width: "135px" }}
-                />
-              )}
-            />
+            <div>
+              <Controller
+                name="startDate"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    required
+                    type="date"
+                    className="time-picker-form back-time"
+                    style={{ border: "medium, solid, black;", width: "135px" }}
+                  />
+                )}
+              />
+            </div>
+            <div>-</div>
+            <div>
+              <Controller
+                name="endDate"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    required
+                    type="date"
+                    className="time-picker-form back-time"
+                    style={{ border: "medium, solid, black;", width: "135px" }}
+                  />
+                )}
+              />
+            </div>
           </div>
-          <div>-</div>
-          <div>
-            <Controller
-              name="endDate"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <input
-                  {...field}
-                  required
-                  type="date"
-                  className="time-picker-form back-time"
-                  style={{ border: "medium, solid, black;", width: "135px" }}
-                />
-              )}
-            />
-          </div>
-        </div>
-        }
+        )}
         <br />
         <div className="time-picker-line">
           <div>
@@ -299,7 +309,7 @@ const AddParking = () => {
                 style: {
                   height: "100px",
                 },
-                maxLength:50
+                maxLength: 50,
               }}
               type="text"
               style={{ marginTop: "20px" }}
@@ -307,8 +317,19 @@ const AddParking = () => {
           )}
         />
         <br />
-        <div>
+        <div className="cloudinery-add-div">
           <UploadWidget />
+          {
+            !cloudinaryEmpty&&
+            <div>
+              <img
+                width="30"
+                height="30"
+                src="https://img.icons8.com/ios-glyphs/30/40C057/checked-checkbox.png"
+                alt="checked-checkbox"
+              />
+            </div>
+          }
         </div>
         <br />
         <button type="submit" className="button-form">

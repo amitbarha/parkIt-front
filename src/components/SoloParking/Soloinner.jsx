@@ -35,7 +35,7 @@ function Soloinner({
             console.log("function work");
             window.location.reload();
           })
-          .catch((err) => console.log(err.response.data));
+          .catch((err) => {alert("error"); window.location.reload()});
       }
     } else {
       alert("Someone is parking now. Try again later.");
@@ -176,8 +176,7 @@ function Soloinner({
                 );
               })}
             <img
-              width={10}
-              className="parking-img place-holder-logo"
+              className="parking-img"
               src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
               alt="parking--v4"
             />

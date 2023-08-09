@@ -4,7 +4,7 @@ import { CloudinaryContext } from "../../App";
 function UploadWidget({ onPhotoChange }) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-  const { cloudinaryImg, setCloudinaryImg } = useContext(CloudinaryContext);
+  const { cloudinaryImg, setCloudinaryImg, cloudinaryEmpty, setCloudinaryEmpty } = useContext(CloudinaryContext);
   const arrImg = []
 
   useEffect(() => {
@@ -18,6 +18,7 @@ function UploadWidget({ onPhotoChange }) {
         if (!err && results && results.event == "success") {
           arrImg.push(results.info.url)
              setCloudinaryImg(arrImg)
+             setCloudinaryEmpty(false)
         }
       },
 

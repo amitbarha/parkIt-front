@@ -2,7 +2,8 @@ import Carousel from "./Carousel";
 import { HOST } from "../../Utils/host";
 import "./soloinner.css";
 import axios from "axios";
-import { useState } from "react";
+import { useState , useContext } from "react";
+import { modeContext } from "../../App";
 
 function Soloinner({
   name,
@@ -22,7 +23,7 @@ function Soloinner({
 }) {
   const [available, setAvailable] = useState(Available);
   const temparr = [true, true, false, false, true, true, false];
-
+  const { colorMode} =useContext(modeContext);
   function changeStatus(id) {
     if (whoParking == undefined || whoParking == null || whoParking == "") {
       if (
@@ -47,12 +48,20 @@ function Soloinner({
       <div id="solo-parking-name">{name}</div>
       <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
+          {colorMode=="light"?
           <img
             className="icon-con"
             src="https://img.icons8.com/pastel-glyph/64/parking--v4.png"
             alt="parking--v4"
           />
-          |
+          :
+          <img
+            className="icon-con"
+            src="https://img.icons8.com/pastel-glyph/64/FFFFFF/parking--v4.png"
+            alt="parking--v4"
+          />
+  }
+          <span className="make-stick-color">|</span>
         </div>
         <div className="solo-parking-detail-divfortext">
           {Available ? "Available" : "Unavailable"}
@@ -70,23 +79,37 @@ function Soloinner({
       </div>
       <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
+          {colorMode=="light"?
           <img
             className="icon-con"
             src="https://img.icons8.com/ios/50/marker--v1.png"
             alt="marker--v1"
+          />:
+          <img
+            className="icon-con"
+            src="https://img.icons8.com/ios/50/FFFFFF/marker--v1.png"
+            alt="marker--v1"
           />
-          |
+          }
+          <span className="make-stick-color">|</span>
         </div>
         <div className="solo-parking-detail-divfortext">{Address}</div>
       </div>
       <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
+          {colorMode=="light"?
           <img
             className="icon-con"
             src="https://img.icons8.com/ios/50/time--v1.png"
             alt="time--v1"
+          />:
+          <img
+            className="icon-con"
+            src="https://img.icons8.com/ios/50/FFFFFF/time--v1.png"
+            alt="time--v1"
           />
-          |
+          }
+          <span className="make-stick-color">|</span>
         </div>
         <div className="solo-parking-detail-divfortext">
           {StartHour} - {EndHour}
@@ -94,12 +117,20 @@ function Soloinner({
       </div>
       <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
+          {colorMode=="light"?
           <img
             className="icon-con"
             src="https://img.icons8.com/external-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto/64/external-calender-time-and-date-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto.png"
             alt="calendar-time"
+          />:
+          <img
+            className="icon-con"
+            src="https://img.icons8.com/FFFFFF/external-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto/64/external-calender-time-and-date-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto.png"
+            alt="calendar-time"
           />
-          |
+
+          }
+          <span className="make-stick-color">|</span>
         </div>
         <div className="solo-parking-detail-divfortext ">
           {!shortTerm ? (
@@ -144,23 +175,30 @@ function Soloinner({
       </div>
       <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
+          {colorMode=="light"?
           <img
             className="icon-con"
             src="https://img.icons8.com/fluency-systems-regular/48/shekel.png"
             alt="average-2"
+          />:
+          <img
+            className="icon-con"
+            src="https://img.icons8.com/FFFFFF/fluency-systems-regular/48/shekel.png"
+            alt="average-2"
           />
-          |
+          }
+          <span className="make-stick-color">|</span>
         </div>
         <div className="solo-parking-detail-divfortext">₪{Price} per hour</div>
       </div>
       <div className="solo-parking-detail">
         <div className="solo-parking-detail-divforicon">
-          <img
-            className="icon-con"
-            src="https://img.icons8.com/?size=512&id=38977&format=png"
-            alt="comments"
-          />
-          |
+           {colorMode=="light"?
+           <img className="icon-con" src="https://img.icons8.com/ios/50/chat-message--v1.png" alt="chat-message--v1"/>
+          :
+          <img className="icon-con" src="https://img.icons8.com/ios/50/FFFFFF/chat-message--v1.png" alt="chat-message--v1"/>
+          }
+          <span className="make-stick-color">|</span>
         </div>
         <div className="solo-parking-detail-divfortext-comment">
           {comments ? comments : "Nothing to mention"}
@@ -185,8 +223,8 @@ function Soloinner({
         {
           Photos&& !Photos[0]&&
           <img
-              width={10}
-              className="parking-img place-holder-logo"
+              
+              className="parking-img"
               src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
               alt="parking--v4"
             />

@@ -4,7 +4,7 @@
     bottom: 0;
     width: 100%;
     height: 80%; /* Set the desired height of the bottom sheet */
-    background-color: var(--container);
+    background-color: var(--bottom-sheet-container);
     padding: 16px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;

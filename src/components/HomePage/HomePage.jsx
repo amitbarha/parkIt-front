@@ -77,9 +77,17 @@ function HomePage() {
 
   function stopParkingFunc() {
     console.log("stop");
+    const date = new Date();
+    const time = [date.getHours(), date.getMinutes()];
+    if (time[0] * 1 < 10) time[0] = "0" + time[0];
+    if (time[1] * 1 < 10) time[1] = "0" + time[1];
+    console.log(time);
+    const endTime = time.join(":");
+    console.log(endTime);
     axios
       .patch(`${HOST}/payment/updatePayment`, {
         token: localStorage.getItem("loggedUser"),
+        endTime: endTime
       })
       .then(({ data }) => {
         navigate("/Receipt");

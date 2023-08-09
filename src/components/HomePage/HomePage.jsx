@@ -78,9 +78,17 @@ function HomePage() {
 
   function stopParkingFunc() {
     console.log("stop");
+    const date = new Date();
+    const time = [date.getHours(), date.getMinutes()];
+    if (time[0] * 1 < 10) time[0] = "0" + time[0];
+    if (time[1] * 1 < 10) time[1] = "0" + time[1];
+    console.log(time);
+    const endTime = time.join(":");
+    console.log(endTime);
     axios
       .patch(`${HOST}/payment/updatePayment`, {
         token: localStorage.getItem("loggedUser"),
+        endTime: endTime
       })
       .then(({ data }) => {
         navigate("/Receipt");
@@ -227,16 +235,21 @@ function HomePage() {
                               id="icon-status-my-parking"
                               width="64"
                               height="64"
-                              src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                              src={
+                                parking.availableToPark
+                                  ? "https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                                  : "https://img.icons8.com/material-outlined/24/FFFFFF/close-window.png" 
+                              }
                               alt="ok"
-                            />
+                            />{" "}
                             <p>
+                            &nbsp;
                               {parking.availableToPark
                                 ? "Availible"
-                                : "Unavailble "}
+                                :  "Unavailble "}
                             </p>
                           </div>
-                          {!parking.currentLicense && (
+                          {parking.currentLicense && (
                             <div className="parking-status-my-parking">
                               <img
                                 id="icon-status-my-parking"
@@ -245,7 +258,7 @@ function HomePage() {
                                 src="https://img.icons8.com/material-outlined/24/FFFFFF/sedan.png"
                                 alt="sedan"
                               />
-                              <p>
+                              <p id="licensenumber-current">
                                 &nbsp;
                                 {parking.currentLicense}
                               </p>
@@ -318,7 +331,11 @@ function HomePage() {
                                   id="icon-status-my-parking-web"
                                   width="64"
                                   height="64"
-                                  src="https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                                  src={
+                                    parking.availableToPark
+                                      ? "https://img.icons8.com/sf-regular/48/FFFFFF/ok.png"
+                                      : "https://img.icons8.com/material-outlined/24/FFFFFF/close-window.png" 
+                                  }
                                   alt="ok"
                                 />
                                 <p>

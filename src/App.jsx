@@ -44,6 +44,7 @@ function App() {
   const [parkingIdData, setParkingIdData] = useState();
   const [center, setCenter] = useState();
   const [myLocation, setMyLocation] = useState();
+  const [forRestart, setForRestart] = useState();
   const navigate = useNavigate()
 
   
@@ -68,7 +69,7 @@ function App() {
 
   return (
     <userDataContext.Provider value={{userData, setUserData}}>
-    <modeContext.Provider value={{ colorMode, setColorMode }}>
+    <modeContext.Provider value={{ colorMode, setColorMode,forRestart,setForRestart }}>
       <gooleAutoLocation.Provider value={{ googleLocation, setGoogleLocation }}>
         <CloudinaryContext.Provider value={{ cloudinaryImg, setCloudinaryImg }}>
           <ChosenParkingContext.Provider value={{openSpring, setOpenSpring, parkingId, setParkingId,parkingIdData, setParkingIdData,center, setCenter, myLocation, setMyLocation}}>

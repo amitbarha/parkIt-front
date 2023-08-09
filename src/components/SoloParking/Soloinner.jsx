@@ -18,7 +18,7 @@ function Soloinner({
   selectedDays,
   shortTerm,
   startDate,
-  endDate
+  endDate,
 }) {
   const [available, setAvailable] = useState(Available);
   const temparr = [true, true, false, false, true, true, false];
@@ -26,7 +26,7 @@ function Soloinner({
   function changeStatus(id) {
     if (whoParking == undefined || whoParking == null || whoParking == "") {
       if (
-        window.confirm("Are you sure you want to unavailable your parking?")
+        window.confirm("Are you sure you want to change the parking status?")
       ) {
         setAvailable(!available);
         axios
@@ -102,42 +102,44 @@ function Soloinner({
           |
         </div>
         <div className="solo-parking-detail-divfortext ">
-          {!shortTerm?
-          <table className="table-of-days" id="bigdiv-oftable">
-            <tr>
-              <th>Sun</th>
-              <th>Mon</th>
-              <th>Tue</th>
-              <th>Wed</th>
-              <th>Thu</th>
-              <th>Fri</th>
-              <th>Sat</th>
-            </tr>
-            <tr>
-              {selectedDays?.map((day, index) => {
-                return (
-                  <td key={index}>
-                    {day ? (
-                      <img
-                        className="icon-con"
-                        src="https://img.icons8.com/color/48/000000/ok--v1.png"
-                        alt="ok"
-                      />
-                    ) : (
-                      <img
-                        className="icon-con"
-                        src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"
-                        alt="not-ok"
-                      />
-                    )}
-                  </td>
-                );
-              })}
-            </tr>
-          </table>
-          :
-          <div>{startDate} <b>-</b> {endDate}</div>
-          }
+          {!shortTerm ? (
+            <table className="table-of-days" id="bigdiv-oftable">
+              <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+              <tr>
+                {selectedDays?.map((day, index) => {
+                  return (
+                    <td key={index}>
+                      {day ? (
+                        <img
+                          className="icon-con"
+                          src="https://img.icons8.com/color/48/000000/ok--v1.png"
+                          alt="ok"
+                        />
+                      ) : (
+                        <img
+                          className="icon-con"
+                          src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-delete-customer-reviews-tanah-basah-glyph-tanah-basah.png"
+                          alt="not-ok"
+                        />
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            </table>
+          ) : (
+            <div>
+              {startDate} <b>-</b> {endDate}
+            </div>
+          )}
         </div>
       </div>
       <div className="solo-parking-detail">
@@ -147,35 +149,49 @@ function Soloinner({
             src="https://img.icons8.com/fluency-systems-regular/48/shekel.png"
             alt="average-2"
           />
-
           |
         </div>
         <div className="solo-parking-detail-divfortext">₪{Price} per hour</div>
       </div>
-        <div className="solo-parking-detail">
-          <div className="solo-parking-detail-divforicon">
-            <img
-              className="icon-con"
-              src="https://img.icons8.com/?size=512&id=38977&format=png"
-              alt="comments"
-            />
-            |
-          </div>
-          <div className="solo-parking-detail-divfortext-comment">
-            {comments ? comments : "Nothing to mention"}
-          </div>
-        </div>
-      <div id="solo-parking-img-container">
-        <Carousel>
-          {Photos?.map((element, index) => {
-            return <img className="parking-img" key={index} src={element} />;
-          })}
+      <div className="solo-parking-detail">
+        <div className="solo-parking-detail-divforicon">
           <img
-            className="parking-img"
-            src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
-            alt="parking--v4"
+            className="icon-con"
+            src="https://img.icons8.com/?size=512&id=38977&format=png"
+            alt="comments"
           />
-        </Carousel>
+          |
+        </div>
+        <div className="solo-parking-detail-divfortext-comment">
+          {comments ? comments : "Nothing to mention"}
+        </div>
+      </div>
+      <div id="solo-parking-img-container">
+        {Photos&& Photos[0] &&
+          <Carousel>
+            {Photos &&
+              Photos?.map((element, index) => {
+                return (
+                  <img className="parking-img" key={index} src={element} />
+                );
+              })}
+            <img
+              width={10}
+              className="parking-img place-holder-logo"
+              src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
+              alt="parking--v4"
+            />
+          </Carousel>
+        }
+        {
+          Photos&& !Photos[0]&&
+          <img
+              width={10}
+              className="parking-img place-holder-logo"
+              src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg"
+              alt="parking--v4"
+            />
+        }
       </div>
     </>
   );

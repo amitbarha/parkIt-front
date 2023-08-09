@@ -41,7 +41,7 @@ function PayingHistory() {
           return (
           <div className='histoy-pay-event-tab' key={index}>
             <HistoryOneParking
-              price={park?.pricePerHour}
+              price={park?.finalPrice}
               name={park?.parkName}
               startTime={park?.startTime}
               endTime={park?.endTime}

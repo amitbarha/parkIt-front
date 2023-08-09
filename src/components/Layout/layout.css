@@ -112,6 +112,7 @@
   color: var(--primary-100);
   font-size: 25px;
   border-bottom: solid;
+  cursor: pointer;
 }
 
 

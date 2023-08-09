@@ -290,11 +290,22 @@ socket.on('know-update',()=>{
           <BottomSheet payment={payment}/>
           <div id="find-showing-parking-container">
             {stillLoading ? (
-              <div>loading</div>
+                 <div>
+                 <div class="wrapper">
+                   <div class="circle-loader"></div>
+                   <div class="circle-loader"></div>
+                   <div class="circle-loader"></div>
+                   <div class="shadow"></div>
+                   <div class="shadow"></div>
+                   <div class="shadow"></div>
+                 </div>
+               </div>
             ) : (
               parkingsToMap?.map((item, index) => {
-                return (
-                  <div
+               
+                  if(item.distanceValue<5000){
+                    return (
+                    <div
                     className="find-parking-tab"
                     onClick={() => handleParkingClick(item._id)}
                   >
@@ -325,7 +336,9 @@ socket.on('know-update',()=>{
                       
                     </div>
                   </div>
+                 
                 );
+                    }
               })
             )}
           </div>

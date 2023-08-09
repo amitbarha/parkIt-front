@@ -84,6 +84,7 @@ const BottomSheet = ({ payment}) => {
       parkingLocation: parkingIdData.parkingLocation,
       phoneToPay: ownerParkingData.phoneNumber,
       clientPhone: loggedUser.phoneNumber,
+      clientName: loggedUser.firstName,
       finalPrice: null,
       availableToPark: parkingIdData.availableToPark
     };
@@ -94,7 +95,7 @@ const BottomSheet = ({ payment}) => {
       .post(`${HOST}/payment/publishPayment`, payment)
       .then(({ data }) => {
         setLoader(false)
-        alert("starting parking at time:");
+        alert("The parking has started. Don't forget to turn it off when you're done");
         navigate("/homePage");
         socket.emit('paymentPublished', (payment))
       })

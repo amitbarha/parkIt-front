@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { HOST } from "../../Utils/host";
 
 function Profile() {
-  const { colorMode, setColorMode } = useContext(modeContext);
+  const { colorMode, setColorMode,forRestart,setForRestart } = useContext(modeContext);
   const [data, setData] = useState([]);
   const [platesArr,setPlatesArr]=useState([])
   useEffect(() => {

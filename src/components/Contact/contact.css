@@ -91,6 +91,20 @@
     text-decoration: none;
     margin-bottom: 20px;
 }
+.parkit-info-line{
+    display: flex;
+}
+.icon-parkit-line{
+    height: 3vh;
+    margin-right: 1vw;
+}
+.email-link-info{
+    font-size: 18px;
+}
+.image-contact{
+    height: 150px;
+}
+
 
 @media screen and (min-width: 590px){
     #contact-header{

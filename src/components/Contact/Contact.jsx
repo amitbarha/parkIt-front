@@ -74,7 +74,39 @@ function Contact() {
         </div>
       </div>
       </form>
-    </div>
+      <br />
+      <div className="parkit-info">
+        <div className="parkit-info-line">
+          <div className="icon-parkit-line">
+          <img
+                className="icon-parkit-line"
+                src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/external-email-social-media-ui-tanah-basah-glyph-tanah-basah.png"
+                alt="external-email-social-media-ui-tanah-basah-glyph-tanah-basah"
+              />
+          </div>
+          <div className="text-parkit-info">
+            <a className="email-link-info" href="mailto:parkit.web@gmail.com" target="_blank" rel="noopener noreferrer">parkit.web@gmail.com</a>
+          </div>
+        </div>
+        <br />
+        <div className="parkit-info-line">
+          <div className="icon-parkit-line">
+          <img
+                className="icon-parkit-line"
+                src="https://img.icons8.com/external-others-inmotus-design/67/external-Phone-game-play-others-inmotus-design-2.png"
+                alt="external-Phone-game-play-others-inmotus-design-2"
+              />
+          </div>
+          <div className="text-parkit-info">
+            <a className="email-link-info" href="tel:+972543043477" target="_blank" rel="noopener noreferrer">054-3043477</a>
+          </div>
+        </div>
+        </div>
+        <br />
+        <div>
+          <img className="image-contact" src="http://res.cloudinary.com/deiofeueo/image/upload/v1691048663/mroogw5gclyjxswyaixm.jpg" alt="" />
+        </div>
+      </div>
   );
 }
 export default Contact;

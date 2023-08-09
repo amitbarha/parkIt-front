@@ -1,14 +1,15 @@
 import "./contact.css";
 import { TextField } from "@mui/material";
 import { green } from "@mui/material/colors";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { modeContext } from "../../App";
 
 import emailjs from '@emailjs/browser';
 
 
 function Contact() {
-
+  const { colorMode} = useContext(modeContext);
 
   const form = useRef();
 
@@ -79,11 +80,19 @@ function Contact() {
       <div className="parkit-info">
         <div className="parkit-info-line">
           <div className="icon-parkit-line">
+          {colorMode=="light"?
           <img
                 className="icon-parkit-line"
                 src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/external-email-social-media-ui-tanah-basah-glyph-tanah-basah.png"
                 alt="external-email-social-media-ui-tanah-basah-glyph-tanah-basah"
               />
+              :
+          <img
+                className="icon-parkit-line"
+                src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/FFFFFF/external-email-social-media-ui-tanah-basah-glyph-tanah-basah.png"
+                alt="external-email-social-media-ui-tanah-basah-glyph-tanah-basah"
+              />
+          }
           </div>
           <div className="text-parkit-info">
             <a className="email-link-info" href="mailto:parkit.web@gmail.com" target="_blank" rel="noopener noreferrer">parkit.web@gmail.com</a>
@@ -92,11 +101,19 @@ function Contact() {
         <br />
         <div className="parkit-info-line">
           <div className="icon-parkit-line">
+            {colorMode=="light"?
           <img
                 className="icon-parkit-line"
                 src="https://img.icons8.com/external-others-inmotus-design/67/external-Phone-game-play-others-inmotus-design-2.png"
                 alt="external-Phone-game-play-others-inmotus-design-2"
               />
+              :
+          <img
+                className="icon-parkit-line"
+                src="https://img.icons8.com/external-others-inmotus-design/67/FFFFFF/external-Phone-game-play-others-inmotus-design-2.png"
+                alt="external-Phone-game-play-others-inmotus-design-2"
+              />
+            }          
           </div>
           <div className="text-parkit-info">
             <a className="email-link-info" href="tel:+972543043477" target="_blank" rel="noopener noreferrer">054-3043477</a>

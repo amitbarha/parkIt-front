@@ -87,7 +87,7 @@
 }
 
 #profile-no-plates-header{
-    color: black;
+    color: var(--regular-text);
 }
 
 .profile-detail-divfortext{

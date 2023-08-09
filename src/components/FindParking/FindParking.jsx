@@ -187,14 +187,14 @@ socket.on('know-update',()=>{
   };
 
   return (
-    <div id={`${colorMode}-find-page`}>
+    <div id="find-page">
       <div>
         <ParkingMap />
       </div>
       <div>
         <MyLocation />
       </div>
-      <div id={`${colorMode}-find-container`}>
+      <div id="find-container">
         <div id="find-container-filters">
           <div id="find-location-filter">
             <div id="find-current-location">
@@ -214,7 +214,7 @@ socket.on('know-update',()=>{
                       />
                     </button>
                     <TextField
-                      className="change-location-find"
+                      className={"change-location-find"}
                       disabled
                       label="Chosen Address"
                       value={googleLocation.fullAddress}

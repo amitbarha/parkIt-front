@@ -43,6 +43,7 @@ function LocationSearchInput() {
             placeholder="Parking Address *"
             onChange={() => setSelectAdd(true)}
             required
+            style={{color:"var(--regular-text)"}}
             className=""
             {...getInputProps({
               className: "location-search-input",

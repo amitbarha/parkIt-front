@@ -18,7 +18,7 @@
 }
 .solo-parking-detail{
     display: flex;
-    background-color: var(--bg-200);
+    background-color: var(--solo-inner-tab);
     width: 80%;
     height: 10vw;
     margin: 2vw;
@@ -36,6 +36,7 @@
     justify-content: center;
     align-items: center;
     width: 90%;
+    color: var(--regular-text);
 }
 #solo-parking-body{
     width: 100%;
@@ -50,9 +51,10 @@
     margin-top: 5vw;
     margin-bottom: 5vh;
 }
-#Solo-parking-history-title{
+.Solo-parking-history-title{
     display: flex;
     width: 80%;
+    color: var(--regular-text);
 }
 .all-history-parking{
     overflow-y: scroll;

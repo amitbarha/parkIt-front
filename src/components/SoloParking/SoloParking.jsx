@@ -301,9 +301,9 @@ function SoloParking() {
           </div>
         </div>
         <div id="history-part-solo">
-        <div id="Solo-parking-history-title">History:</div>
+        <div className="Solo-parking-history-title">History:</div>
         {(paymentdata==null || paymentdata==undefined || paymentdata.length==0)&&
-        <div>No one has parked yet...</div>
+        <div className="Solo-parking-history-title">No one has parked yet...</div>
         }
         <div className="all-history-parking">
           {paymentdata.map((element, index) => {

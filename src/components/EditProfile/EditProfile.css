@@ -6,6 +6,7 @@
 
 .info-container{
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,15 +42,23 @@
 }
 .title-input{
   display: flex;
-  align-self:flex-start
+  align-self:flex-start;
+  color: var(--regular-text);
 }
 
 .info-input{
   width: 100%;
-  background-color: var(--bg-200);
+  background-color: var(--add-parking-container);
   height: 10vw;
   max-height: 30px;
   max-width: 400px;
+  color: var(--regular-text);
+  padding-left: 7px;
+  margin-bottom: 8px;
+}
+
+.info-input::placeholder{
+  color: var(--regular-text);
 }
 .info-error{
   color: red;

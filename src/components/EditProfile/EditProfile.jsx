@@ -87,7 +87,7 @@ function EditProfile() {
       })
       .catch((err) => console.log(err.response.data));
    }
-  
+   
   };
 
   return (

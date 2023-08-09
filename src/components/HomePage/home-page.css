@@ -29,7 +29,7 @@
 }
 
 .circle-timer{
-  background-color: white;
+  background-color: var(--home-button-timer);
   display: flex;
   flex-direction: column;
 }
@@ -54,7 +54,7 @@
   width: 80px;
   background-color: var(--white-text);
   border-radius: 100%;
-  border: 3px solid black;
+  border: 3px solid var(--regular-border);
     box-shadow: inset 0px 0px 10px grey;
   display: flex;
   align-items: center;

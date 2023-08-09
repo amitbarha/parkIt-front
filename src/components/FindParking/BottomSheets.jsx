@@ -52,7 +52,7 @@ const BottomSheet = ({ payment}) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const height = screen.height;
-  const size = height * 0.8;
+  const size = height * 0.87;
 
   // Define the animation spring for the bottom sheet
   const bottomSheetAnimation = useSpring({
@@ -161,6 +161,15 @@ const BottomSheet = ({ payment}) => {
               </div>
               <div className="text-for-icon">
                 <b>{parkingIdData?.distanceText}</b> from destination
+              </div>
+            </div>
+            <br />
+            <div className="line-icon">
+              <div className="icon-chosen-parking">
+                <img width="40" height="40" src="https://img.icons8.com/ios/50/chat-message--v1.png" alt="chat-message--v1"/>
+              </div>
+              <div className="text-for-icon comments-bottom">
+                {parkingIdData?.comments}
               </div>
             </div>
           </div>

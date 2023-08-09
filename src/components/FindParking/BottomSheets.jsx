@@ -95,7 +95,7 @@ const BottomSheet = ({ payment}) => {
       .post(`${HOST}/payment/publishPayment`, payment)
       .then(({ data }) => {
         setLoader(false)
-        alert("starting parking at time:");
+        alert("The parking has started. Don't forget to turn it off when you're done");
         navigate("/homePage");
         socket.emit('paymentPublished', (payment))
       })

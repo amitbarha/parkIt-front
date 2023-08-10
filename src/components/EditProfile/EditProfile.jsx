@@ -191,6 +191,10 @@ function EditProfile() {
                       className="info-input"
                       label={`license No. ${index + 1}`}
                       placeholder="enter one license..."
+                      maxLength="8"
+                      onInput={(e) => {
+                        e.target.value = e.target.value.replace(/[^0-9]/g, ''); 
+                      }}
                       {...register(`licensePlates.${index}.onelicenses`, {
                         required: "license Plate is required",
                       })}

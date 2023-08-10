@@ -110,6 +110,10 @@ const Register = () => {
                 type="text"
                 className="reg__input"
                 placeholder="License Plates:"
+                maxLength="8"
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, ''); // Allow only numeric characters
+                }}
               />
             </div>
             {errorMessage1 && <p className="error-message">{errorMessage1}</p>}

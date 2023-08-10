@@ -29,6 +29,7 @@
   --solo-inner-tab:#e9e4ed;
   --find-parking-tab:#D6C6E1;
   --bottom-sheet-container: snow;
+  --contact-link-text:blue;
 }
 .dark-app-container {
   background-image: url("http://res.cloudinary.com/deiofeueo/image/upload/v1691497691/ftvnhk7imtgvlt9kazsr.png");
@@ -53,6 +54,7 @@
   --solo-inner-tab:#895896;
   --find-parking-tab:#563763;
   --bottom-sheet-container: #5e406b;
+  --contact-link-text:white;
 }
 br94c0
 * {

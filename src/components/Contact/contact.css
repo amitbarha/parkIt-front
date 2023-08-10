@@ -112,6 +112,7 @@
 }
 .email-link-info{
     font-size: 18px;
+    color: var(--contact-link-text);
 }
 .image-contact{
     height: 150px;

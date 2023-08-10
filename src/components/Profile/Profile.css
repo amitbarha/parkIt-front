@@ -312,9 +312,9 @@
     }
     
 
-    .light-profile-detail{
+    .profile-detail{
         display: flex;
-        background-color: var(--accent-100);
+     
         width: 620px;
         height: 50px;
         border-radius: 15px;

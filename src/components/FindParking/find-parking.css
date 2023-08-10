@@ -88,7 +88,7 @@
 }
 .button-in-change-loc{
     all: unset;
-    background-color: var(--primary-100);
+    background-color: var(--button-background);
     color: white;
     height: 35px;
 }
@@ -237,9 +237,8 @@
 }
 .loaction-find-input{
     width: 99%;
-    border: 1px solid var(--regular-border);
     color: var(--regular-text);
-    background-color: var(--add-parking-container);
+    /* background-color: var(--add-parking-container); */
 }
 
 .find-parking-tab-distance{
